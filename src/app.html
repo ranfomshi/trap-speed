@@ -3771,7 +3771,10 @@ function combo(side){
   const input=$("#car"+S_), list=$("#list"+S_), opts=$("#opts"+S_), fltEl=$("#flt"+S_);
   const f=FLT[side];
   let open=false, idx=-1, items=[], q="";
-  const label=()=>{ const c=car(S[side]); input.value=`${c.mk} ${c.md} · ${c.yr}`; };
+  /* Never write over what is being typed. Badges load lazily as new makes
+     appear in the list, and each one that arrives re-bakes both lane cards --
+     which called this and replaced the query with the car already selected. */
+  const label=()=>{ if(open) return; const c=car(S[side]); input.value=`${c.mk} ${c.md} · ${c.yr}`; };
 
   /* ---- the filter panel, folded away until asked for ------------------- */
   const CHIPS={
