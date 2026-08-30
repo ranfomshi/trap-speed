@@ -1,0 +1,82 @@
+[
+ {
+  "a": "bmw-m3-n-a",
+  "b": "bmw-m4-coup",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "bmw m3 vs m4",
+  "label": "BMW M3 G80 vs BMW M4 G82"
+ },
+ {
+  "a": "bmw-m4-coup",
+  "b": "bmw-m5-g90-pre-facelift-2024",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "bmw m4 vs m5",
+  "label": "BMW M4 G82 vs BMW M5 G90"
+ },
+ {
+  "a": "m2g87",
+  "b": "bmw-m4-coup",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "bmw m2 vs m4",
+  "label": "BMW M2 (G87) vs BMW M4 G82"
+ },
+ {
+  "a": "audi-rs3-sportback-8v",
+  "b": "m2g87",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "audi rs3 vs bmw m2",
+  "label": "Audi RS3 Sportback 8V vs BMW M2 (G87)"
+ },
+ {
+  "a": "audi-rs6-performance",
+  "b": "audi-rs7-performance",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "audi rs6 vs rs7",
+  "label": "Audi RS6 Avant Performance C8 vs Audi RS7 Sportback Performance 4K8"
+ },
+ {
+  "a": "mercedes-benz-c63-amg-coupe",
+  "b": "mercedes-benz-e63-amg",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "mercedes c63 vs e63",
+  "label": "Mercedes-Benz C63 AMG Coupe vs Mercedes-Benz E63 AMG"
+ },
+ {
+  "a": "porsche-911-turbo-992",
+  "b": "992ts",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "porsche 911 turbo vs turbo s",
+  "label": "Porsche 911 Turbo 992 vs Porsche 911 Turbo S (992)"
+ },
+ {
+  "a": "porsche-718-cayman-gts",
+  "b": "porsche-911-carrera-4s-992",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "porsche cayman vs 911",
+  "label": "Porsche 718 Cayman GTS vs Porsche 911 Carrera 4S 992"
+ },
+ {
+  "a": "gti8",
+  "b": "golfr",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "golf gti vs golf r",
+  "label": "Volkswagen Golf GTI (Mk8) vs Volkswagen Golf R (Mk8)"
+ },
+ {
+  "a": "mustang",
+  "b": "dodge-challenger-srt-8-hellcat",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "ford mustang vs dodge challenger",
+  "label": "Ford Mustang GT 5.0 (S650) vs Dodge Challenger SRT Hellcat"
+ }
+]

@@ -3563,6 +3563,14 @@ function readSharedState(){
   return {name:q.get("from").trim().slice(0,40) || "A friend",car:host};
 }
 const SHARED=readSharedState();
+/* The /vs/ comparison pages link straight into a matchup with ?a=&b=. A
+   challenge link (?from=&car=) has already fixed the left lane, so leave it. */
+if(!SHARED){
+  const _q=new URLSearchParams(location.search);
+  const _a=_q.get("a"), _b=_q.get("b");
+  if(_a&&car(_a)) S.a=_a;
+  if(_b&&car(_b)) S.b=_b;
+}
 let challengeActive=!!SHARED;     /* arrived on someone else's link */
 let awaitingOpponent=!!SHARED;    /* ...and has not picked a car yet */
 function shareURL(name,host){

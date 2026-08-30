@@ -93,11 +93,16 @@ for (const f of ["robots.txt", "og.png"]) {
   if (fs.existsSync(p)) fs.copyFileSync(p, path.join(OUT, f));
 }
 
+/* Comparison pages. Their numbers come from the simulator itself, run in a VM
+   over the same car data the app ships, so a page cannot disagree with the app. */
+const vsUrls = require("./lib/vs.js").build(app, OUT, SITE);
+
 fs.writeFileSync(path.join(OUT, "sitemap.xml"),
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`).join("\n")}
 </urlset>
 `);
 
-console.log(`built public/index.html (${(html.length / 1024).toFixed(0)} KB) + ${n} logos`);
+console.log(`built public/index.html (${(html.length / 1024).toFixed(0)} KB) + ${n} logos + ${vsUrls.length} comparison pages`);
