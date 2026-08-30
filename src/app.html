@@ -138,6 +138,8 @@ canvas{display:block;width:100%}
 .sub{font-family:var(--mono);font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
 
 /* ---------- verdict ---------- */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .verdict{display:flex;align-items:center;gap:14px;padding:13px 16px;border:1px solid var(--edge);
   border-left:3px solid var(--edge2);border-radius:var(--r);background:var(--surface);flex-wrap:wrap}
 .verdict.a{border-left-color:var(--A)} .verdict.b{border-left-color:var(--B)}
@@ -501,7 +503,8 @@ body.embed .embed-back{display:block}
     </div>
   </section>
 
-  <div class="verdict" id="verdict" role="status" aria-live="polite" aria-atomic="true"><span class="win">Stage the cars</span>
+  <p class="sr-only" id="say" role="status" aria-live="polite"></p>
+  <div class="verdict" id="verdict"><span class="win">Stage the cars</span>
     <span class="by">Pick two cars and an event, then hit Stage to run the tree.</span></div>
 
   <section class="slips" id="slips"></section>
@@ -5249,8 +5252,10 @@ function startRace(){
   if(running) return;
   stopAnim(); running=true; photoCaptured=false;
   const btn=$("#race"); btn.disabled=true; btn.textContent="Staged";
-  $("#verdict").className="verdict"; $("#verdict").innerHTML=
-    `<span class="win">On the tree…</span><span class="by">Watch the ambers.</span>`;
+  /* The tree is right there, lit, and the strip draws its own -- saying so in a
+     bar only costs height. Screen readers still get it, they cannot see it. */
+  $("#verdict").hidden=true;
+  $("#say").textContent="On the tree. Watch the ambers.";
   computeTraces();
   const lineD=Math.max(TR.a.dEnd,TR.b.dEnd);
   ["a","b"].forEach(k=>reached[k].clear()); renderPips();
@@ -5311,7 +5316,7 @@ function finishRace(){
    ======================================================================= */
 function renderVerdict(){
   const A=car(S.a), B=car(S.b), rA=result(TR.a), rB=result(TR.b), hi=higherWins();
-  const el=$("#verdict");
+  const el=$("#verdict"); el.hidden=false;
   if(awaitingOpponent){
     el.className="verdict";
     el.innerHTML=`<span class="win">Choose your challenger</span><span class="by">Select your car in the right lane to unlock the race.</span>`
