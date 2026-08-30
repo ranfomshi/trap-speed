@@ -263,6 +263,8 @@ summary:hover{color:var(--ink)}
   cursor:pointer;font:10px var(--cond);letter-spacing:.08em;text-transform:uppercase;padding:3px 7px}
 .cfltchip[aria-pressed=true]{background:rgba(242,162,12,.16);border-color:var(--amber);color:var(--amber)}
 .copts{overflow-y:auto;max-height:300px;padding:4px}
+.cend{padding:9px 10px 7px;text-align:center;color:var(--ink3);font-size:11px;font-family:var(--cond);
+  letter-spacing:.08em;text-transform:uppercase}
 .notes{padding:0 15px 16px;color:var(--ink2);font-size:13px;display:grid;gap:14px;max-width:74ch}
 .notes h4{margin:0 0 3px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.13em;font-size:11px;color:var(--ink)}
 .notes code{font-family:var(--mono);font-size:12px;color:var(--amber)}
@@ -3831,28 +3833,59 @@ function combo(side){
   fltEl.addEventListener("input",e=>{ if(e.target.tagName==="INPUT") onFlt(e); });
 
   /* ---- the list ------------------------------------------------------- */
+  /* The whole result set is held, but only a page of it is ever in the DOM:
+     2,843 rows each carrying a maker badge is far too much to build up front,
+     and a hard cap of 120 meant the list simply stopped inside the As. */
+  const PAGE=80;
+  let shownN=0, lastGrp=null;
+  function rowHTML(c,i){
+    let h="";
+    if(c.cls!==lastGrp){ lastGrp=c.cls; h+=`<div class="cgrp">${c.cls}</div>`; }
+    return h+`<div class="copt${c.id===S[side]?" cur":""}" role="option" id="o-${side}-${i}"
+      aria-selected="${i===idx}" data-i="${i}">${markImg(c.mk,19,"mki cmk",1.4)}<span class="nm">${hilite(c._label,q)}</span>
+      <span class="yr">${c.yr}</span><span class="st">${c.kW} kW · ${c.kg} kg</span></div>`;
+  }
+  function appendPage(){
+    if(shownN>=items.length) return false;
+    const to=Math.min(items.length,shownN+PAGE);
+    let html="";
+    for(let i=shownN;i<to;i++) html+=rowHTML(items[i],i);
+    const end=opts.querySelector(".cend"); if(end) end.remove();
+    opts.insertAdjacentHTML("beforeend",html);
+    shownN=to;
+    if(shownN>=items.length && items.length>PAGE)
+      opts.insertAdjacentHTML("beforeend",`<div class="cend">That is all ${items.length.toLocaleString()} of them.</div>`);
+    return true;
+  }
+  /* keep filling while the arrow keys or a jump run past what is rendered */
+  function ensureShown(i){ while(shownN<=i && appendPage()); }
   function render(){
-    items=searchCars(q,120,f);
-    if(!q){                       /* with no query, keep the car you already have in view */
+    items=searchCars(q,Infinity,f);
+    if(!q){
+      /* With no query the car you already have goes to the top -- both so you can
+         see it, and so opening the picker never has to page in the 2,600 rows
+         that would otherwise sit above a Tesla or a Zeekr. */
       const cur=car(S[side]);
-      if(cur && (!fltCount(f)||fltPass(f,cur)) && !items.some(c=>c.id===cur.id)) items.unshift(cur);
+      if(cur && (!fltCount(f)||fltPass(f,cur))){
+        const at=items.findIndex(c=>c.id===cur.id);
+        if(at>0) items.splice(at,1);
+        if(at!==0) items.unshift(cur);
+      }
     }
     if(!items.length){
       const n=fltCount(f);
       opts.innerHTML=`<div class="cnone">No car matches that${n?" with these filters":""}.</div>`;
-      idx=-1; return;
+      idx=-1; shownN=0; return;
     }
     if(idx>=items.length) idx=items.length-1;
-    let html="", grp=null;
-    items.forEach((c,i)=>{
-      if(c.cls!==grp){ grp=c.cls; html+=`<div class="cgrp">${grp}</div>`; }
-      html+=`<div class="copt${c.id===S[side]?" cur":""}" role="option" id="o-${side}-${i}"
-        aria-selected="${i===idx}" data-i="${i}">${markImg(c.mk,19,"mki cmk",1.4)}<span class="nm">${hilite(c._label,q)}</span>
-        <span class="yr">${c.yr}</span><span class="st">${c.kW} kW · ${c.kg} kg</span></div>`;
-    });
-    opts.innerHTML=html;
+    opts.innerHTML=""; opts.scrollTop=0; shownN=0; lastGrp=null;
+    appendPage();
+    if(idx>=0) ensureShown(idx);
     scrollToSel();
   }
+  opts.addEventListener("scroll",()=>{
+    if(opts.scrollTop+opts.clientHeight >= opts.scrollHeight-240) appendPage();
+  });
   /* moving the highlight must not rebuild 120 rows and their badges */
   function markSel(prev){
     if(prev>=0){ const p=opts.querySelector(`#o-${side}-${prev}`); if(p) p.setAttribute("aria-selected","false"); }
@@ -3875,7 +3908,7 @@ function combo(side){
     q=""; input.value=""; idx=-1; show();
     /* the highlight has to be found in the list we just built, not the last one */
     idx=items.findIndex(c=>c.id===S[side]);
-    if(idx>=0){ input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); scrollToSel(); }
+    if(idx>=0){ ensureShown(idx); input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); scrollToSel(); }
   });
   input.addEventListener("input",()=>{ q=input.value; idx=-1; if(!open) show(); else { render(); renderFlt(); } });
   input.addEventListener("blur",()=>setTimeout(()=>{ if(open&&!list.contains(document.activeElement)) hide(); },140));
@@ -3884,6 +3917,7 @@ function combo(side){
       e.preventDefault(); if(!open) return show();
       const prev=idx;
       idx=Math.max(0,Math.min(items.length-1, idx+(e.key==="ArrowDown"?1:-1)));
+      ensureShown(idx);
       input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); markSel(prev);
     }else if(e.key==="Enter"){
       /* Enter takes the top match: having to arrow down to it first surprised people */
