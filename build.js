@@ -19,7 +19,8 @@ const logomap = JSON.parse(fs.readFileSync(path.join(SRC, "logomap.json"), "utf8
 /* The artifact host wraps the file itself, so title, font links and the whole
    stylesheet sit at the top of the body. A real page wants them in the head. */
 const headBits = [];
-let body = app.replace(/^<title>[\s\S]*?<\/title>\n|^<link [^>]*>\n/gm, m => {
+let body = app.replace(/^<title>[\s\S]*?<\/title>\n/m, "");   /* the page title is set below */
+body = body.replace(/^<link [^>]*>\n/gm, m => {
   headBits.push(m.trim());
   return "";
 });
@@ -52,7 +53,7 @@ const html = `<!doctype html>
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0B0D10">
 <meta name="description" content="${DESC}">
-<link rel="canonical" href="${SITE}/">
+<title>${TITLE}</title>\n<link rel="canonical" href="${SITE}/">
 <link rel="icon" href="${favicon}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Trap Speed">
