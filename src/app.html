@@ -271,6 +271,23 @@ summary:hover{color:var(--ink)}
 .notes ul{margin:4px 0 0;padding-left:18px} .notes li{margin-bottom:3px}
 footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid var(--edge);padding-top:16px}
 
+/* ?embed=1 -- the sim dropped into a comparison page: keep the strip, the tree
+   and the verdict, drop everything you would only want on the full site. */
+body.embed .mast, body.embed .card, body.embed .slips, body.embed footer,
+body.embed details, body.embed .panel:not(.stripwrap){display:none}
+body.embed .wrap{padding:10px;max-width:none}
+body.embed .lanes{grid-template-columns:1fr;gap:8px}
+body.embed .tree{order:0;flex-direction:row;align-items:center;justify-content:center;gap:14px}
+body.embed .tower{display:none}          /* the strip draws its own tree */
+body.embed .vs{display:none}
+body.embed .tree .go-btn{width:auto;padding:10px 30px}
+body.embed .verdict{margin-top:8px}
+body.embed .embed-back{display:block}
+.embed-back{display:none;text-align:center;margin-top:9px;font:600 10px var(--cond);
+  letter-spacing:.16em;text-transform:uppercase}
+.embed-back a{color:var(--ink3);text-decoration:none}
+.embed-back a:hover{color:var(--amber)}
+
 @media (max-width:900px){
   .lanes{grid-template-columns:1fr;gap:12px}
   .tree{flex-direction:row;align-items:center;justify-content:center;gap:16px;order:3}
@@ -506,6 +523,8 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
     <summary>Where the data comes from &amp; how the model works</summary>
     <div class="notes" id="notes"></div>
   </details>
+
+  <p class="embed-back"><a href="./" target="_blank" rel="noopener">Open the full simulator &rarr;</a></p>
 
   <footer>Trap Speed &mdash; a simulator. Real elapsed times depend on the track, the air, the tyres and the driver.<br>
     Acceleration figures from <a href="https://accelerationtimes.com">accelerationtimes.com</a> and
@@ -3570,6 +3589,7 @@ if(!SHARED){
   const _a=_q.get("a"), _b=_q.get("b");
   if(_a&&car(_a)) S.a=_a;
   if(_b&&car(_b)) S.b=_b;
+  if(_q.get("embed")==="1") document.body.classList.add("embed");
 }
 let challengeActive=!!SHARED;     /* arrived on someone else's link */
 let awaitingOpponent=!!SHARED;    /* ...and has not picked a car yet */
@@ -5024,7 +5044,12 @@ function drawStrip(pos,spd,clock,finish,acc){
 
   /* The camera zooms to hold both cars: tight off the line where the detail
      is, opening out as they pull apart. It never cuts, it eases. */
-  let tSpan=Math.max(23,Math.min(58,split*1.45+17));
+  /* The frame widens as the cars separate, but every metre of extra span costs
+     px/m -- and apparent speed is real speed times px/m. Widening to 58m made
+     the leader appear to DECELERATE by up to a third while it was actually
+     pulling toward trap speed. Holding it to 34 keeps that under 5%; the car
+     that drops off the back is what the behind-arrow is for. */
+  let tSpan=Math.max(22,Math.min(34,split*0.90+19));
   const tX0=Math.max(-9, Math.min(lead-tSpan*0.62, fD?fD-tSpan*0.60:1e9));
   if(!cam) cam={span:tSpan,x0:tX0};
   else { cam.span+=(tSpan-cam.span)*0.07; cam.x0+=(tX0-cam.x0)*0.22; }
