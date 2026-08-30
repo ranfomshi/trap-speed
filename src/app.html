@@ -227,6 +227,13 @@ details{background:var(--surface);border:1px solid var(--edge);border-radius:var
 summary{padding:12px 15px;cursor:pointer;font-family:var(--cond);text-transform:uppercase;letter-spacing:.15em;
   font-size:12px;font-weight:600;color:var(--ink2)}
 summary:hover{color:var(--ink)}
+.adv>summary{display:flex;align-items:center;gap:12px;border-bottom:1px solid transparent}
+.adv[open]>summary{border-bottom-color:var(--edge)}
+.advsum{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:0;
+  text-transform:none;color:var(--ink3);text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.adv[open] .advsum{display:none}
+.adv .pbody{display:grid;gap:15px}
+@media (max-width:560px){.advsum{display:none}}
 .notes{padding:0 15px 16px;color:var(--ink2);font-size:13px;display:grid;gap:14px;max-width:74ch}
 .notes h4{margin:0 0 3px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.13em;font-size:11px;color:var(--ink)}
 .notes code{font-family:var(--mono);font-size:12px;color:var(--amber)}
@@ -369,6 +376,16 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
             <button data-u="met" aria-pressed="false">km/h &middot; m</button>
           </div>
         </div>
+      </div>
+      <div class="field"><span class="k" id="presetK">Preset</span><div class="chips" id="presets"></div></div>
+      <div class="fields" id="customFields"></div>
+    </div>
+  </section>
+
+  <details class="panel adv" id="advWrap">
+    <summary><span>Advanced setup</span><span class="advsum" id="advSummary"></span></summary>
+    <div class="pbody">
+      <div class="fields">
         <div class="field">
           <span class="k">Playback</span>
           <div class="seg" id="rateSeg" role="group" aria-label="Playback speed">
@@ -378,16 +395,6 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
             <button data-p="0" aria-pressed="false">Fit</button>
           </div>
         </div>
-      </div>
-      <div class="field"><span class="k" id="presetK">Preset</span><div class="chips" id="presets"></div></div>
-      <div class="fields" id="customFields"></div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <div class="phead"><h2>Conditions</h2><span class="hint">Air density scales aero drag and engine power; surface sets the grip ceiling.</span></div>
-    <div class="pbody">
-      <div class="fields">
         <div class="field" style="grid-column:span 2;min-width:300px">
           <span class="k">Surface</span>
           <div class="seg" id="surfSeg" role="group" aria-label="Surface">
@@ -414,8 +421,9 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
             <button data-r="0" aria-pressed="false">From rest</button>
           </div></div>
       </div>
+      <p class="hint" style="margin:0">Air density scales aero drag and engine power; surface sets the grip ceiling.</p>
     </div>
-  </section>
+  </details>
 
   <section class="panel stripwrap">
     <canvas id="strip"></canvas>
@@ -5433,8 +5441,25 @@ function renderNotes(){
 /* =======================================================================
    WIRING
    ======================================================================= */
+/* Collapsed, the Advanced panel still has to say what it is holding, or a
+   setting left on from an earlier run silently changes every result. */
+const ADV_DEFAULT={surf:"dry",temp:20,alt:0,wind:0,grade:0,load:0,rollout:1,rate:1};
+function renderAdvSummary(){
+  const el=$("#advSummary"); if(!el) return;
+  const NAME={prepped:"Prepped strip",dry:"Dry asphalt",cold:"Cold / dusty",damp:"Damp",wet:"Wet"};
+  const bits=[NAME[S.surf], S.temp+" °C"];
+  if(S.alt)   bits.push(imp()?Math.round(S.alt/FT)+" ft":S.alt+" m");
+  if(S.wind)  bits.push((S.wind>0?"head ":"tail ")+f0(vN(Math.abs(S.wind)))+" "+vU());
+  if(S.grade) bits.push((S.grade>0?"+":"")+S.grade+" %");
+  if(S.load)  bits.push("+"+S.load+" kg");
+  bits.push(S.rollout?"1 ft rollout":"from rest");
+  if(S.rate!==1) bits.push(S.rate>0?S.rate+"× replay":"fit replay");
+  const off=Object.keys(ADV_DEFAULT).some(k=>S[k]!==ADV_DEFAULT[k]);
+  el.textContent=(off?"● ":"")+bits.join(" · ");
+  el.style.color=off?"var(--amber)":"var(--ink3)";
+}
 function refresh(){
-  raceHint();
+  raceHint(); renderAdvSummary();
   const need=!TR||!running;
   if(need){ computeTraces(); }
   const posEnd={a:TR.a.dEnd,b:TR.b.dEnd}, spdEnd={a:TR.a.vEnd,b:TR.b.vEnd};
@@ -5514,7 +5539,7 @@ function init(){
   segWire("#surfSeg","s",s=>{ S.surf=s; refresh(); });
   segWire("#rollSeg","r",r=>{ S.rollout=+r; refresh(); });
   segWire("#axisSeg","x",x=>{ S.xaxis=x; drawChart(); });
-  segWire("#rateSeg","p",p=>{ S.rate=+p; });
+  segWire("#rateSeg","p",p=>{ S.rate=+p; renderAdvSummary(); });
   bindRange("temp","temp",v=>v+" °C");
   bindRange("alt","alt",v=>imp()?Math.round(v/FT)+" ft":v+" m");
   bindRange("wind","wind",v=>v===0?"still":(v>0?"head ":"tail ")+f0(vN(Math.abs(v)))+" "+vU());
