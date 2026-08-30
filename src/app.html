@@ -4180,6 +4180,135 @@ const BODY={
   bubble:  {sill:.16,nose:.46,bon:.58,belt:.62,tail:.72,cowl:.30,rf:.44,rr:.64,deck:.90,dr:1,rk:1.0,bl:.55,spec:1,two:1},
   seven:   {sill:.22,nose:.40,bon:.54,belt:.62,tail:.58,cowl:.50,rf:.62,rr:.82,deck:.94,dr:1,rk:.3,bl:0,spec:1,open:1,bare:1}
 };
+/* =======================================================================
+   PER-MODEL PROFILES
+   The archetypes below get a car's proportions right but not its face. A
+   profile replaces the outline with that model's own, authored against side
+   elevations and the car's published dimensions: x runs 0 at the nose to 1 at
+   the tail as a fraction of length, y runs 0 at the road to 1 at the roof as a
+   fraction of height, so the same outline stretches correctly across every
+   variant of a generation. A third element on a point marks a crease -- the
+   line goes sharp there instead of rolling through.
+
+   The wheels, the arch cut, the squat and the wheel spin all still come from
+   the car's real wheelbase, overhang and tyre size. A profile only says what
+   the bodywork does between them.
+   ======================================================================= */
+const PROFILE={
+/* Every outline is authored against the car's own hard points: u is the
+   fraction of overall length back from the nose, v the fraction of overall
+   height up from the road. The wheel centres land at u=fo/L and u=(fo+wb)/L,
+   so the cowl, roof and deck are placed relative to wheels that are already
+   in the right place. One outline then stretches over every variant. */
+"911-992":{                                   /* wheels at u .212 / .750 */
+  sill:.155, belt:.620,
+  b:[[.005,.155,1],[.000,.300],[.012,.430],[.040,.500],[.085,.535],[.140,.548],
+     [.215,.560],[.278,.585],[.312,.612,1],                    /* flat bonnet, then the cowl */
+     [.360,.760],[.420,.925],[.455,.978],[.530,.996],      /* fast screen, short roof */
+     [.620,.945],[.720,.862],[.800,.805],[.862,.775,1],        /* the long fastback */
+     [.905,.762],[.955,.735,1],[.995,.640],[1.00,.470],
+     [.992,.300],[.975,.155,1]],
+  g:[[.318,.640,1],[.395,.800],[.452,.940,1],[.530,.958,1],
+     [.640,.895],[.740,.812],[.785,.775,1],[.700,.718],[.560,.678],[.420,.655]],
+  crease:[[.100,.500],[.330,.505],[.600,.518],[.860,.548]],
+  door:[.335,.625],
+  lampF:[[.015,.480],[.048,.452],[.088,.492],[.084,.556],[.045,.578],[.012,.535]],
+  lampR:[[.900,.700],[.996,.662],[.996,.612],[.895,.648]],
+  skirt:[[.345,.195],[.560,.180],[.780,.196]]
+},
+"mustang-s650":{                              /* wheels at u .193 / .823 */
+  sill:.145, belt:.568,
+  b:[[.005,.145,1],[.000,.285],[.010,.400],[.032,.470],[.070,.502],[.130,.515],
+     [.240,.528],[.330,.545],[.375,.568,1],                    /* the long flat bonnet */
+     [.440,.760],[.505,.905],[.548,.965],[.660,.992],      /* screen, then roof */
+     [.760,.925],[.845,.855],[.895,.818,1],                    /* fastback into a short deck */
+     [.945,.800],[.980,.780,1],[1.00,.640],[1.00,.330],[.985,.145,1]],
+  g:[[.392,.598,1],[.470,.775],[.540,.940,1],[.655,.965,1],
+     [.745,.900],[.820,.845],[.855,.818,1],[.760,.735],[.600,.665],[.470,.625]],
+  crease:[[.090,.470],[.330,.478],[.620,.492],[.900,.525]],
+  door:[.415,.700],
+  lampF:[[.012,.415],[.070,.400],[.098,.455],[.075,.492],[.014,.478]],
+  lampR:[[.950,.762],[.998,.752],[.998,.640],[.946,.650]],
+  skirt:[[.420,.185],[.620,.170],[.840,.186]]
+},
+"golf-8":{                                    /* wheels at u .202 / .815 */
+  sill:.165, belt:.600,
+  b:[[.005,.165,1],[.000,.330],[.010,.430],[.030,.482],[.062,.505],[.130,.522],
+     [.215,.548],[.278,.585,1],                                /* short bonnet, upright cowl */
+     [.340,.740],[.408,.900],[.455,.970],                    /* the A-pillar */
+     [.600,.995],[.730,.988],[.792,.958,1],                    /* long roof, then the spoiler */
+     [.848,.878],[.898,.775],[.930,.680,1],                    /* the steep hatch */
+     [.962,.600],[.988,.510],[1.00,.380],[.988,.165,1]],
+  g:[[.298,.612,1],[.360,.755],[.448,.938,1],[.600,.962],[.720,.955],[.775,.928,1],
+     [.828,.855],[.868,.782],[.885,.735,1],[.760,.700],[.560,.668],[.400,.640]],
+  crease:[[.080,.478],[.300,.492],[.620,.508],[.900,.545]],
+  door:[.395,.640],
+  lampF:[[.012,.428],[.078,.418],[.098,.470],[.070,.505],[.014,.492]],
+  lampR:[[.928,.678],[.995,.612],[.995,.545],[.922,.608]],
+  skirt:[[.360,.205],[.580,.190],[.800,.206]]
+},
+"model-3":{                                   /* wheels at u .200 / .815 */
+  sill:.155, belt:.585,
+  b:[[.005,.155,1],[.000,.340],[.008,.415],[.028,.462],[.062,.482],[.120,.505],
+     [.180,.542],[.222,.578,1],                                /* cab-forward: the screen starts early */
+     [.290,.730],[.375,.895],[.448,.970],[.500,.990],      /* one long bow over the cabin */
+     [.600,.958],[.700,.905],[.800,.828],[.878,.752,1],
+     [.928,.712],[.972,.672,1],[.995,.560],[1.00,.360],[.988,.155,1]],
+  g:[[.242,.605,1],[.318,.745],[.408,.908],[.462,.948,1],
+     [.560,.925],[.672,.872],[.782,.795],[.848,.738,1],[.740,.690],[.560,.652],[.390,.628]],
+  crease:[[.070,.462],[.300,.478],[.620,.492],[.900,.532]],
+  door:[.372,.638],
+  lampF:[[.012,.425],[.082,.418],[.105,.468],[.072,.498],[.014,.482]],
+  lampR:[[.952,.672],[.998,.640],[.998,.575],[.948,.600]],
+  skirt:[[.360,.192],[.580,.178],[.800,.194]]
+},
+"mx5-nd":{                                    /* wheels at u .207 / .807 */
+  open:1, sill:.145, belt:.575,
+  b:[[.005,.145,1],[.000,.320],[.010,.408],[.032,.462],[.072,.488],[.140,.508],
+     [.240,.530],[.330,.552],[.398,.598,1],                    /* the scuttle */
+     [.428,.500,1],[.520,.488],[.610,.498],[.650,.602,1],      /* down into the cockpit, up the bulkhead */
+     [.740,.612],[.830,.605],[.905,.575,1],                    /* the rounded tail */
+     [.962,.500],[.995,.390],[1.00,.280],[.986,.145,1]],
+  screen:[[.392,.600,1],[.438,.720],[.470,.802,1],[.536,.798,1],[.492,.706],[.452,.598,1]],
+  crease:[[.090,.470],[.320,.492],[.620,.505],[.880,.520]],
+  door:[.430,.640],
+  lampF:[[.014,.412],[.080,.400],[.104,.452],[.075,.488],[.016,.470]],
+  lampR:[[.902,.560],[.978,.500],[.978,.442],[.898,.500]],
+  skirt:[[.380,.185],[.580,.172],[.780,.188]]
+}
+};
+/* which cars each profile speaks for */
+const PFMATCH=[
+  ["911-992",     c=>c.mk==="Porsche" && /\b992\b/.test(c.md)],
+  ["mustang-s650",c=>c.mk==="Ford" && /mustang/i.test(c.md) && (/S650/i.test(c.md)||c.yr>=2024)],
+  ["golf-8",      c=>/^(VW|Volkswagen)$/.test(c.mk) && /golf/i.test(c.md) && (/Mk8|VIII/i.test(c.md)||c.yr>=2020)],
+  ["model-3",     c=>c.mk==="Tesla" && /model 3/i.test(c.md)],
+  ["mx5-nd",      c=>c.mk==="Mazda" && /mx-5/i.test(c.md) && (/ND/i.test(c.md)||c.yr>=2015)]
+];
+CARS.forEach(c=>{ for(const [k,t] of PFMATCH) if(t(c)){ c._pf=PROFILE[k]; break; } });
+
+/* A Catmull-Rom run through the points, so a couple of dozen of them describe a
+   whole flank. A point flagged as a crease kills the tangent on its side. */
+function splinePath(g,pts,L,H,close){
+  const P=pts.map(p=>[p[0]*L,p[1]*H,p[2]||0]);
+  g.moveTo(P[0][0],P[0][1]);
+  const n=P.length, last=close?n:n-1;
+  for(let i=0;i<last;i++){
+    const p1=P[i], p2=P[(i+1)%n],
+          p0=P[i-1]||(close?P[n-1]:P[i]), p3=P[(i+2)%n]||p2,
+          t=1/6,
+          ax=p1[2]?0:(p2[0]-p0[0])*t, ay=p1[2]?0:(p2[1]-p0[1])*t,
+          bx=p2[2]?0:(p3[0]-p1[0])*t, by=p2[2]?0:(p3[1]-p1[1])*t;
+    g.bezierCurveTo(p1[0]+ax,p1[1]+ay,p2[0]-bx,p2[1]-by,p2[0],p2[1]);
+  }
+  if(close) g.closePath();
+}
+function polyPath(g,pts,L,H){
+  g.beginPath();
+  pts.forEach((p,i)=>i?g.lineTo(p[0]*L,p[1]*H):g.moveTo(p[0]*L,p[1]*H));
+  g.closePath();
+}
+
 const SHAPE_DEF=[4.30,1.45,2.60,0.90,0.32];
 function shapeOf(c){
   const s=(c&&c.sh)||SHAPE_DEF;
@@ -4242,6 +4371,7 @@ function drawWheel(g,cx,wr,ang,blur,spokes,chrome){
 /* x is the screen position of the car's NOSE; gy is the ground line. */
 function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   const {L,H,wb,fo,wr,B}=shapeOf(c);
+  const PRO=c&&c._pf;                      /* this model's own outline, if it has one */
   const era=eraOf((c&&c.yr)||2015), en=(c&&c.en)||"f", open=(c&&c.op)||B.open, wing=(c&&c.wg)||0;
   const P=Object.assign({},B);
   /* engine position moves the whole cabin, which is most of what tells a
@@ -4263,6 +4393,11 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
      wings you can see over the bonnet from the driver's seat. */
   const crownF=Math.max(lerp(BN,BB,0.62)*H, 2*wr+0.085*H);
   const topAt=x0=>{
+    if(PRO){                                  /* read it off the authored outline */
+      const u=x0/L; let best=1e9,y=H;
+      for(const p of PRO.b){ const d=Math.abs(p[0]-u); if(d<best){ best=d; y=p[1]*H; } }
+      return y;
+    }
     if(x0<=xf)       return lerp(BN*H,crownF,Math.min(1,x0/Math.max(0.25,xf)));
     if(x0<=P.cowl*L) return lerp(crownF,BB*H,Math.min(1,(x0-xf)/Math.max(0.25,P.cowl*L-xf)));
     if(x0<=P.rf*L)   return lerp(BB*H,H,(x0-P.cowl*L)/Math.max(0.2,(P.rf-P.cowl)*L));
@@ -4301,7 +4436,13 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   const cockpit=open?Math.max(P.belt*H+0.10*H, cowlY+0.10*H):0;   /* screen-top height, open cars */
 
   g.beginPath();
-  if(B.bare){
+  if(PRO){
+    /* the model's own outline, closed along the sill with the arches that the
+       car's real wheels cut in it */
+    splinePath(g,PRO.b,L,H);
+    arch(g,PR); arch(g,PF);
+    g.closePath();
+  }else if(B.bare){
     /* A Seven is a body BETWEEN the wheels, not over them: a long tapered
        nose, a cockpit you sit in rather than under, and cycle wings on stalks. */
     const bY=0.56*H, scY=0.90*H;
@@ -4359,7 +4500,40 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
     g.beginPath(); A.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); g.stroke();
   }
 
-  if(B.bare){
+  if(PRO){
+    if(PRO.g){                                                  /* the model's glass */
+      g.beginPath(); splinePath(g,PRO.g,L,H,1);
+      g.fillStyle="rgba(15,21,29,.93)"; g.fill();
+      g.save(); g.clip(); g.fillStyle=shade(col,-0.20);         /* pillars */
+      for(const dx of (PRO.door||[])) g.fillRect(dx*L-1.7*px,0,3.4*px,H);
+      g.restore();
+      g.strokeStyle="rgba(190,214,238,.22)"; g.lineWidth=1.3*px;
+      g.beginPath(); splinePath(g,PRO.g,L,H,1); g.stroke();
+    }
+    if(PRO.open){                                               /* the cockpit, seen into */
+      g.beginPath(); splinePath(g,PRO.b.filter(p=>p[0]>.39&&p[0]<.66),L,H);
+      g.lineTo(.650*L,.604*H); g.lineTo(.394*L,.604*H); g.closePath();
+      g.fillStyle="rgba(10,14,20,.88)"; g.fill();
+    }
+    if(PRO.crease){                                             /* the shoulder line */
+      g.strokeStyle="rgba(255,255,255,.16)"; g.lineWidth=1.3*px;
+      g.beginPath(); splinePath(g,PRO.crease,L,H); g.stroke();
+      g.strokeStyle="rgba(0,0,0,.22)"; g.lineWidth=1.1*px;
+      g.beginPath(); splinePath(g,PRO.crease.map(p=>[p[0],p[1]-0.018]),L,H); g.stroke();
+    }
+    if(PRO.skirt){                                              /* the sill shadow */
+      g.strokeStyle="rgba(0,0,0,.34)"; g.lineWidth=2.4*px;
+      g.beginPath(); splinePath(g,PRO.skirt,L,H); g.stroke();
+    }
+    g.strokeStyle="rgba(0,0,0,.30)"; g.lineWidth=1.2*px;        /* door shutlines */
+    for(const dx of (PRO.door||[])){
+      g.beginPath(); g.moveTo(dx*L,s+0.02*H); g.lineTo(dx*L,PRO.belt*H+0.06*H); g.stroke();
+    }
+    if(PRO.lampF){ polyPath(g,PRO.lampF,L,H); g.fillStyle="rgba(255,243,214,.95)"; g.fill(); }
+    if(PRO.lampR){ polyPath(g,PRO.lampR,L,H); g.fillStyle="rgba(226,60,60,.94)"; g.fill(); }
+    g.fillStyle=shade(col,-0.30);                               /* wing mirror */
+    g.fillRect((PRO.g?PRO.g[0][0]:PRO.b[8][0])*L+0.03*L, PRO.belt*H+0.01*H, 0.042*L, 0.045*H);
+  }else if(B.bare){
     g.fillStyle="rgba(10,14,19,.92)";                           /* the cockpit hole */
     roundRect(g,0.625*L,0.42*H,0.215*L,0.22*H,0.03*H); g.fill();
     g.fillStyle="rgba(255,255,255,.10)";                        /* bonnet louvres */
@@ -4407,11 +4581,13 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
     g.beginPath(); gl.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); g.stroke();
   }
   /* beltline and the door shutlines that make the length readable */
+  if(!PRO){
   g.fillStyle="rgba(255,255,255,.18)"; g.fillRect(0.09*L,P.belt*H,0.86*L,1.1*px);
   g.strokeStyle="rgba(0,0,0,.35)"; g.lineWidth=1.1*px;
   for(let i=1;i<=(open?1:P.dr);i++){
     const dx=lerp(xf+ar*0.95, xr-ar*0.95, i/((open?1:P.dr)+0.6));
     g.beginPath(); g.moveTo(dx,s+0.02*H); g.lineTo(dx,P.belt*H+0.10*H); g.stroke();
+  }
   }
   /* engine cover louvres, on the cars that have an engine back there */
   if(en!=="f"&&!open){
@@ -4420,7 +4596,8 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   }
   /* lamps and bumpers, which are what really date a car */
   const lampY=BN*H-0.115*H;
-  if(era===0){
+  if(PRO){ /* the profile drew its own */ }
+  else if(era===0){
     g.fillStyle="rgba(255,244,214,.95)";
     g.beginPath(); g.arc(0.062*L,lampY+0.040*H,0.038*H,0,7); g.fill();
     g.fillStyle="#B9C3CE"; g.fillRect(0.005*L,BN*H-0.30*H,0.12*L,0.055*H);   /* chrome */
@@ -4439,14 +4616,20 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
       roundRect(g,0.012*L,s+0.03*H,0.13*L,0.13*H,0.03*H); g.fill(); }
   }
   /* grille, but only where the engine is */
-  if(en==="f"&&era>0){ g.fillStyle="rgba(0,0,0,.34)";
+  if(!PRO&&en==="f"&&era>0){ g.fillStyle="rgba(0,0,0,.34)";
     roundRect(g,0.020*L,lampY-0.055*H,0.085*L,0.055*H,0.015*H); g.fill(); }
-  g.strokeStyle="rgba(0,0,0,.30)"; g.lineWidth=1.1*px;
-  g.beginPath(); g.moveTo(0.05*L,BN*H-0.02*H); g.lineTo(P.cowl*L-0.02*L,cowlY-0.015*H); g.stroke();
-  /* wing mirror */
-  if(c&&c.bd!=="seven"){ g.fillStyle=shade(col,-0.30);
-    g.fillRect(P.cowl*L+0.04*L, P.belt*H+0.02*H, 0.045*L, 0.045*H); }
+  if(!PRO){
+    g.strokeStyle="rgba(0,0,0,.30)"; g.lineWidth=1.1*px;
+    g.beginPath(); g.moveTo(0.05*L,BN*H-0.02*H); g.lineTo(P.cowl*L-0.02*L,cowlY-0.015*H); g.stroke();
+    if(c&&c.bd!=="seven"){ g.fillStyle=shade(col,-0.30);          /* wing mirror */
+      g.fillRect(P.cowl*L+0.04*L, P.belt*H+0.02*H, 0.045*L, 0.045*H); }
+  }
   g.restore();                       /* end of the clip to the silhouette */
+  if(PRO&&PRO.screen){               /* a roadster screen stands above the body */
+    g.beginPath(); splinePath(g,PRO.screen,L,H,1);
+    g.fillStyle="rgba(150,182,210,.30)"; g.fill();
+    g.strokeStyle=shade(col,-0.25); g.lineWidth=2.0*px; g.stroke();
+  }
 
   /* the bits that stand off the body: cycle wings, spoilers, wings */
   if(wing===1){ g.fillStyle=shade(col,-0.28);
@@ -4461,7 +4644,10 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
     g.fillRect(0.945*L,deckY-0.01*H,0.016*L,wy-deckY);
   }
   /* a highlight along the roof so the shape reads against the sky */
-  if(!open&&c&&c.bd!=="seven"){
+  if(PRO&&!PRO.open){
+    g.strokeStyle="rgba(255,255,255,.30)"; g.lineWidth=1.4*px;
+    g.beginPath(); splinePath(g,PRO.b.filter(p=>p[1]>0.88),L,H); g.stroke();
+  }else if(!open&&c&&c.bd!=="seven"){
     g.strokeStyle="rgba(255,255,255,.34)"; g.lineWidth=1.3*px;
     g.beginPath(); g.moveTo(screenX,roofY-0.7*px);
     g.quadraticCurveTo((screenX+backX)/2, crown-0.7*px, backX, roofY-0.7*px); g.stroke();
