@@ -74,3 +74,24 @@ src/logomap.json  make name -> badge file
 build.js          wraps app.html into public/index.html
 netlify.toml      build command, publish dir, cache headers
 ```
+
+## Deploying
+
+GitHub Actions builds; Netlify only receives the files.
+
+Netlify's own git builds are **off** for this site (`stop_builds`), because a
+Netlify build costs credits and this build is `node build.js` — two seconds,
+zero dependencies. Actions minutes are free on a public repo, so the same work
+costs nothing. `.github/workflows/deploy.yml` runs the build and then
+`netlify deploy --prod --no-build --dir=public`, tagging the deploy with the
+commit SHA so what is live is still traceable to a commit.
+
+Needs two repo secrets: `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`.
+
+To deploy by hand from a clean checkout:
+
+    node build.js
+    netlify deploy --prod --no-build --dir=public --site=<site id>
+
+Re-enabling Netlify's builds means setting `stop_builds` back to false —
+otherwise a push would deploy twice.

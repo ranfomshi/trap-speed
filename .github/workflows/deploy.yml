@@ -1,0 +1,39 @@
+# Trap Speed deploys itself: GitHub builds, Netlify only receives the files.
+#
+# Netlify's own git builds are turned OFF for this site (stop_builds), because
+# a Netlify build costs credits and this build is two seconds of `node build.js`
+# with no dependencies. Actions minutes are free on a public repo, so the same
+# work costs nothing here. The deploy message carries the commit SHA so the
+# live deploy is still traceable back to a commit.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build
+        run: node build.js
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npx --yes netlify-cli@24 deploy \
+            --prod --no-build --dir=public \
+            --message "$GITHUB_SHA"
