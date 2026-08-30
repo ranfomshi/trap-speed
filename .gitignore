@@ -3,3 +3,7 @@ node_modules/
 .netlify/
 *.log
 ref/
+/car.png
+/page.png
+/strip.png
+/crop.png
