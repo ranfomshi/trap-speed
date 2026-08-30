@@ -144,6 +144,35 @@ canvas{display:block;width:100%}
 .verdict.a .win{color:var(--Aink)} .verdict.b .win{color:var(--Bink)}
 .verdict .by{color:var(--ink2);font-size:13px}
 .verdict .by .num{color:var(--ink)}
+.result-actions{margin-left:auto;display:flex;gap:8px}
+.secondary-btn{background:var(--sunk);border:1px solid var(--edge2);border-radius:var(--r);padding:8px 12px;
+  color:var(--ink2);cursor:pointer;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:11.5px}
+.secondary-btn:hover{border-color:var(--amber);color:var(--ink)}
+.share-arrival{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid var(--amber2);
+  border-left:3px solid var(--amber);background:rgba(242,162,12,.08);border-radius:var(--r)}
+.share-arrival strong{color:var(--amber)} .share-arrival span{color:var(--ink2)}
+.share-arrival .arrival-actions{margin-left:auto;display:flex;gap:8px;flex:0 0 auto}
+.result-board{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:15px}
+.finish-photo{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);overflow:hidden}
+.finish-photo h2,.result-stats h2{padding:10px 14px;border-bottom:1px solid var(--edge);font-size:11px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink2)}
+#finishPhoto{height:224px;background:var(--asphalt)}
+.finish-caption{padding:8px 13px;color:var(--ink3);font-size:11.5px}
+.result-stats{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr}
+.stat{padding:11px 13px;border-bottom:1px solid var(--edge);min-width:0}
+.stat:nth-child(odd){border-right:1px solid var(--edge)} .stat:last-child:nth-child(odd){grid-column:1/-1;border-right:0}
+.stat b{display:block;font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--ink3)}
+.stat span{display:block;margin-top:2px;font-family:var(--mono);font-size:13px;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
+dialog{width:min(520px,calc(100% - 28px));padding:0;border:1px solid var(--edge2);border-radius:6px;
+  background:var(--surface);color:var(--ink);box-shadow:0 22px 70px rgba(0,0,0,.75)}
+dialog::backdrop{background:rgba(4,7,10,.78)}
+.result-dialog{width:min(960px,calc(100% - 28px))}
+.result-dialog .result-board{padding:16px}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--edge)}
+.dialog-head h2{font-size:17px}.icon-btn{background:none;border:0;color:var(--ink2);cursor:pointer;font-size:23px;line-height:1}
+.dialog-body{display:grid;gap:13px;padding:16px}.dialog-body p{margin:0;color:var(--ink2);font-size:13px}
+.share-link{display:flex;gap:8px}.share-link input{font-size:11px}.share-link button{flex:0 0 auto}
 
 /* ---------- time slip ---------- */
 .slips{display:grid;grid-template-columns:1fr 1fr;gap:15px}
@@ -209,7 +238,10 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   .slips{grid-template-columns:1fr}
   .live{grid-template-columns:1fr}
   .mark h1{font-size:25px}
+  .result-board{grid-template-columns:1fr}
 }
+@media (max-width:560px){.share-arrival{align-items:flex-start;flex-wrap:wrap}.share-arrival .arrival-actions{width:100%;margin-left:0}.share-arrival .arrival-actions button{flex:1}
+  .result-actions{width:100%;margin-left:0}.result-actions button{flex:1}.share-link{flex-direction:column}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* ---------- searchable car picker ---------- */
@@ -221,6 +253,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   background-size:5px 5px,5px 5px;background-repeat:no-repeat}
 .comboInput:hover{border-color:var(--ink3)}
 .comboInput:focus{border-color:var(--amber);outline:none;background-image:none}
+.comboInput:disabled{cursor:not-allowed;color:var(--ink2);border-color:var(--edge);opacity:.8;background-image:none}
 .comboInput::placeholder{color:var(--ink3)}
 .clist{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 4px);max-height:302px;overflow-y:auto;
   background:#0C1015;border:1px solid var(--edge2);border-radius:var(--r);
@@ -254,6 +287,12 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 </style>
 
 <div class="wrap">
+
+  <aside class="share-arrival" id="shareArrival" hidden>
+    <div><strong id="shareFrom"></strong><br><span id="shareInstruction"></span></div>
+    <div class="arrival-actions"><button class="secondary-btn" id="dismissShare" type="button">Hide</button>
+      <button class="secondary-btn" id="exitChallenge" type="button">Exit challenge</button></div>
+  </aside>
 
   <header class="mast">
     <div class="mark">
@@ -383,7 +422,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
     </div>
   </section>
 
-  <div class="verdict" id="verdict"><span class="win">Stage the cars</span>
+  <div class="verdict" id="verdict" role="status" aria-live="polite" aria-atomic="true"><span class="win">Stage the cars</span>
     <span class="by">Pick two cars and an event, then hit Stage to run the tree.</span></div>
 
   <section class="slips" id="slips"></section>
@@ -423,6 +462,26 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
     carlogos.org; every badge is the trademark of its owner and is shown here only to identify that
     maker's cars. Not affiliated with, endorsed by or connected to any manufacturer.</footer>
 </div>
+
+<dialog id="shareDialog" aria-labelledby="shareTitle">
+  <div class="dialog-head"><h2 id="shareTitle">Challenge a friend</h2><button class="icon-btn" id="closeShare" type="button" aria-label="Close">&times;</button></div>
+  <form class="dialog-body" id="shareForm">
+    <p>Choose your car and add your name. Your friend will pick the car they want to race against you.</p>
+    <label class="field"><span class="k">Your car</span><select id="shareCar" required></select></label>
+    <label class="field"><span class="k">Your name</span><input id="shareName" type="text" maxlength="40" required autocomplete="name" placeholder="e.g. Alex"></label>
+    <button class="go-btn" type="submit">Create challenge link</button>
+    <div class="share-link" id="shareLinkWrap" hidden><input id="shareLink" type="text" readonly aria-label="Share link"><button class="secondary-btn" id="copyShare" type="button">Copy link</button></div>
+    <span class="hint" id="copyStatus" role="status" aria-live="polite"></span>
+  </form>
+</dialog>
+
+<dialog id="resultDialog" class="result-dialog" aria-labelledby="resultTitle">
+  <div class="dialog-head"><h2 id="resultTitle">Race result</h2><button class="icon-btn" id="closeResult" type="button" aria-label="Close">&times;</button></div>
+  <section class="result-board" id="resultBoard" aria-label="Race result summary">
+    <div class="finish-photo"><h2>Finish-line photo</h2><canvas id="finishPhoto" role="img" aria-label="The two cars at the finish"></canvas><div class="finish-caption" id="finishCaption"></div></div>
+    <div class="result-stats"><h2>Race at a glance</h2><div class="stat-grid" id="resultStats"></div></div>
+  </section>
+</dialog>
 
 <script>
 /* =======================================================================
@@ -3424,6 +3483,32 @@ const car=id=>CARS.find(c=>c.id===id);
 const COMBO={};
 const env=()=>({surf:S.surf,tempC:S.temp,alt:S.alt,wind:S.wind,grade:S.grade,load:S.load});
 
+/* Share links are deliberately plain query strings: they remain inspectable,
+   durable and host-independent. Unknown or malformed values simply fall back. */
+const SHARE_KEYS={mode:"m",dist:"d",spd:"v",r0:"r0",r1:"r1",dur:"t",units:"u",
+  surf:"s",temp:"temp",alt:"alt",wind:"wind",grade:"grade",load:"load",rollout:"ro"};
+function readSharedState(){
+  const q=new URLSearchParams(location.search);
+  const host=q.get("car");
+  if(!q.has("from")||!host||!car(host)) return null;
+  S.a=host;
+  const enums={mode:["dist","speed","roll","time"],units:["imp","met"],surf:["prepped","dry","cold","damp","wet"]};
+  for(const [key,vals] of Object.entries(enums)){ const v=q.get(SHARE_KEYS[key]); if(vals.includes(v)) S[key]=v; }
+  for(const key of ["dist","spd","r0","r1","dur","temp","alt","wind","grade","load","rollout"]){
+    const v=parseFloat(q.get(SHARE_KEYS[key])); if(Number.isFinite(v)) S[key]=v;
+  }
+  S.dist=Math.max(5,S.dist); S.spd=Math.max(2,S.spd); S.dur=Math.max(.5,S.dur);
+  S.r0=Math.max(0,S.r0); S.r1=Math.max(S.r0+.1,S.r1); S.rollout=S.rollout?1:0;
+  return {name:q.get("from").trim().slice(0,40) || "A friend",car:host};
+}
+const SHARED=readSharedState();
+let challengeActive=!!SHARED, awaitingOpponent=challengeActive;
+function shareURL(name,host){
+  const q=new URLSearchParams(); q.set("from",name.trim()); q.set("car",host);
+  for(const [key,param] of Object.entries(SHARE_KEYS)) q.set(param,String(S[key]));
+  return location.origin+location.pathname+"?"+q.toString();
+}
+
 const imp=()=>S.units==="imp";
 const vU =()=>imp()?"mph":"km/h";
 const vN =v=>v*(imp()?2.23694:3.6);
@@ -3611,7 +3696,9 @@ function combo(side){
                    input.removeAttribute("aria-activedescendant"); idx=-1; label(); }
   function pick(i){
     const c=items[i]; if(!c) return;
-    S[side]=c.id; hide(); renderCar(side); refresh();
+    S[side]=c.id; hide(); renderCar(side);
+    if(side==="b"&&awaitingOpponent){ awaitingOpponent=false; completeSharedChallenge(c); }
+    refresh();
   }
   input.addEventListener("focus",()=>{ q=""; input.value=""; idx=items.findIndex(c=>c.id===S[side]); show(); });
   input.addEventListener("input",()=>{ q=input.value; idx=-1; if(!open) show(); else render(); });
@@ -4558,7 +4645,7 @@ function drawStrip(pos,spd,clock,finish,acc){
 /* =======================================================================
    RUN + ANIMATE
    ======================================================================= */
-let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null;
+let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null, photoCaptured=false, hasRun=false;
 const RUNOUT=2.4;      /* seconds the cars keep driving after the line, for show */
 function stopAnim(){ if(anim) cancelAnimationFrame(anim); anim=null; running=false; }
 let ACC={a:0,b:0};
@@ -4596,7 +4683,7 @@ function tree(cb,onstep){
 }
 function startRace(){
   if(running) return;
-  stopAnim(); running=true;
+  stopAnim(); running=true; photoCaptured=false; $("#resultBoard").hidden=true;
   const btn=$("#race"); btn.disabled=true; btn.textContent="Staged";
   $("#verdict").className="verdict"; $("#verdict").innerHTML=
     `<span class="win">On the tree…</span><span class="by">Watch the ambers.</span>`;
@@ -4637,6 +4724,7 @@ function animate(){
       });
     });
     drawStrip(pos,spd,Math.min(t,tFin),lineD,ACC);
+    if(!photoCaptured && t>=Math.min(finT.a,finT.b)){ captureFinishPhoto(); photoCaptured=true; }
     liveUpdate(shown,spd);
     const gone = lastGeo && t>tFin &&
       ["a","b"].every(k=>pos[k] > lastGeo.x0+lastGeo.span+6);
@@ -4646,7 +4734,10 @@ function animate(){
   };
   anim=requestAnimationFrame(step);
 }
-function finishRace(){ treeLit=new Set(); renderVerdict(); renderSlips(); drawChart(); }
+function finishRace(){
+  treeLit=new Set(); if(!photoCaptured) captureFinishPhoto(); hasRun=true;
+  renderVerdict(); renderSlips(); renderResultBoard(); drawChart(); openResultDialog();
+}
 
 /* =======================================================================
    RESULTS
@@ -4654,6 +4745,13 @@ function finishRace(){ treeLit=new Set(); renderVerdict(); renderSlips(); drawCh
 function renderVerdict(){
   const A=car(S.a), B=car(S.b), rA=result(TR.a), rB=result(TR.b), hi=higherWins();
   const el=$("#verdict");
+  if(awaitingOpponent){
+    el.className="verdict";
+    el.innerHTML=`<span class="win">Choose your challenger</span><span class="by">Select your car in the right lane to unlock the race.</span>
+      <span class="result-actions"><button class="secondary-btn" id="clearChallenge" type="button">Exit challenge</button></span>`;
+    $("#clearChallenge").onclick=clearChallengeMode;
+    return;
+  }
   if(rA==null&&rB==null){
     el.className="verdict";
     el.innerHTML=`<span class="win">Neither car got there</span><span class="by">Try a lower target, or better conditions.</span>`;
@@ -4677,9 +4775,53 @@ function renderVerdict(){
     by=`by <span class="num">${f2(lr-wr)} s</span>`
       + (gap!=null&&gap>0?` — <span class="num">${dLabel(gap)}</span>, about <span class="num">${(gap/4.6).toFixed(1)}</span> car lengths`:"");
   }
-  el.innerHTML=markImg(wc.mk,22,"mki vmk",1.45)+`<span class="win">${wc.mk} ${wc.md}</span><span class="by">${by}</span>`;
+  el.innerHTML=markImg(wc.mk,22,"mki vmk",1.45)+`<span class="win">${wc.mk} ${wc.md} wins</span><span class="by">${by}</span>
+    <span class="result-actions">${hasRun?`<button class="secondary-btn" id="viewResult" type="button">View result</button>`:""}
+      <button class="secondary-btn" id="shareRace" type="button">Challenge a friend</button>
+      ${challengeActive?`<button class="secondary-btn" id="clearChallenge" type="button">Exit challenge</button>`:""}</span>`;
+  $("#shareRace").onclick=openShareDialog;
+  if($("#viewResult")) $("#viewResult").onclick=openResultDialog;
+  if($("#clearChallenge")) $("#clearChallenge").onclick=clearChallengeMode;
+}
+
+function captureFinishPhoto(){
+  const out=$("#finishPhoto");
+  out.width=stripC.width; out.height=stripC.height;
+  out.getContext("2d").drawImage(stripC,0,0);
+}
+function eventLabel(){
+  if(S.mode==="dist") return dLabel(S.dist);
+  if(S.mode==="speed") return `0–${f0(vN(S.spd))} ${vU()}`;
+  if(S.mode==="roll") return `${f0(vN(S.r0))}–${f0(vN(S.r1))} ${vU()}`;
+  return `${S.dur} second sprint`;
+}
+function renderResultBoard(){
+  const ra=result(TR.a), rb=result(TR.b), hi=higherWins();
+  if(ra==null&&rb==null){
+    $("#resultStats").innerHTML=[["Result","Neither car reached the target"],["Event",eventLabel()],
+      [car(S.a).md+" finish speed",f1(vN(TR.a.vEnd))+" "+vU()],[car(S.b).md+" finish speed",f1(vN(TR.b.vEnd))+" "+vU()]]
+      .map(([k,v])=>`<div class="stat"><b>${k}</b><span>${v}</span></div>`).join("");
+    $("#finishCaption").textContent=`Both cars at the end of the simulated ${eventLabel()} attempt.`;
+    $("#finishPhoto").setAttribute("aria-label","Both cars at the end of an unfinished race");
+    $("#resultBoard").hidden=false; return;
+  }
+  const aWins=ra!=null&&(rb==null||(hi?ra>rb:ra<rb)), wk=aWins?"a":"b", lk=aWins?"b":"a";
+  const W=car(S[wk]), L=car(S[lk]), wr=result(TR[wk]), lr=result(TR[lk]);
+  const finishSpeed=k=>f1(vN(TR[k].vEnd))+" "+vU();
+  const margin=lr==null?"Did not finish":hi?dLabel(Math.abs(wr-lr)):f2(Math.abs(lr-wr))+" s";
+  const lead=S.mode==="dist"&&lr!=null?Math.max(0,S.dist-(at(TR[lk],"t",tAtD(TR[wk],S.dist),"d")??0)):null;
+  const stats=[
+    ["Winner",`${W.mk} ${W.md}`],["Winning result",S.mode==="time"?dLabel(wr):f2(wr)+" s"],
+    ["Margin",lead>0?`${margin} · ${dLabel(lead)}`:margin],["Event",eventLabel()],
+    [`${W.md} finish speed`,finishSpeed(wk)],[`${L.md} finish speed`,finishSpeed(lk)]
+  ];
+  $("#resultStats").innerHTML=stats.map(([k,v])=>`<div class="stat"><b>${k}</b><span>${v}</span></div>`).join("");
+  $("#finishCaption").textContent=`Captured as ${W.md} decided the ${eventLabel()} against ${L.md}.`;
+  $("#finishPhoto").setAttribute("aria-label",`${W.mk} ${W.md} crossing ahead of ${L.mk} ${L.md}`);
+  $("#resultBoard").hidden=false;
 }
 function renderSlips(){
+  if(awaitingOpponent){ $("#slips").innerHTML=""; return; }
   $("#slips").innerHTML=["a","b"].map(k=>{
     const c=car(S[k]), tr=TR[k], rows=slipRows(tr);
     const body=rows.map(r=>r[0]==="rule"?`<span class="rule"></span>`
@@ -4973,8 +5115,59 @@ function bindRange(id,key,fmt){
   el.value=S[key]; show();
   el.oninput=()=>{ S[key]=parseFloat(el.value); show(); refresh(); };
 }
+function openShareDialog(){
+  const dlg=$("#shareDialog");
+  const A=car(S.a), B=car(S.b), select=$("#shareCar");
+  select.innerHTML=`<option value="${A.id}">${A.mk} ${A.md} · ${A.yr}</option><option value="${B.id}">${B.mk} ${B.md} · ${B.yr}</option>`;
+  $("#shareLinkWrap").hidden=true; $("#copyStatus").textContent="";
+  dlg.showModal(); requestAnimationFrame(()=>$("#shareName").focus());
+}
+function openResultDialog(){
+  const dlg=$("#resultDialog"); if(!dlg.open) dlg.showModal();
+}
+function initSharing(){
+  const dlg=$("#shareDialog"), name=$("#shareName"), link=$("#shareLink"), shareCar=$("#shareCar");
+  $("#closeShare").onclick=()=>dlg.close();
+  dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
+  $("#shareForm").onsubmit=e=>{
+    e.preventDefault(); if(!name.value.trim()){ name.focus(); return; }
+    link.value=shareURL(name.value,shareCar.value); $("#shareLinkWrap").hidden=false; $("#copyStatus").textContent="Link ready to send.";
+    link.focus(); link.select();
+  };
+  $("#copyShare").onclick=async()=>{
+    try{ await navigator.clipboard.writeText(link.value); $("#copyStatus").textContent="Copied — send it to your challenger."; }
+    catch(e){ link.focus(); link.select(); $("#copyStatus").textContent="Select the link and copy it."; }
+  };
+  if(SHARED){
+    const A=car(S.a), owner=SHARED.name.endsWith("s")?SHARED.name+"’":SHARED.name+"’s";
+    $("#shareFrom").textContent=`Race ${owner} ${A.mk} ${A.md}`;
+    $("#shareInstruction").textContent=`Choose your car in the right lane. The ${eventLabel()} setup and conditions are already set.`;
+    $("#shareArrival").hidden=false;
+    $("#dismissShare").onclick=()=>$("#shareArrival").hidden=true;
+    $("#exitChallenge").onclick=clearChallengeMode;
+    $("#carA").disabled=true; $("#carA").setAttribute("aria-label",`${owner} ${A.mk} ${A.md}, fixed challenge car`);
+    $("#race").disabled=true;
+    setTimeout(()=>$("#carB").focus(),150);
+  }
+}
+function clearChallengeMode(){
+  challengeActive=false; awaitingOpponent=false;
+  $("#shareArrival").hidden=true; $("#carA").disabled=false;
+  $("#carA").setAttribute("aria-label","Left lane car, type to search");
+  $("#race").disabled=false;
+  history.replaceState({},"",location.pathname+location.hash);
+  refresh();
+}
+function completeSharedChallenge(c){
+  const A=car(S.a), owner=SHARED.name.endsWith("s")?SHARED.name+"’":SHARED.name+"’s";
+  $("#shareFrom").textContent=`${c.mk} ${c.md} vs ${owner} ${A.mk} ${A.md}`;
+  $("#shareInstruction").textContent="Your matchup is ready. Review the conditions or press Stage to run the race.";
+  $("#race").disabled=false;
+}
 function init(){
   COMBO.a=combo("a"); COMBO.b=combo("b");
+  setSeg("#modeSeg","mode",S.mode); setSeg("#unitSeg","u",S.units); setSeg("#surfSeg","s",S.surf);
+  setSeg("#rollSeg","r",S.rollout); setSeg("#axisSeg","x",S.xaxis); setSeg("#rateSeg","p",S.rate);
   segWire("#modeSeg","mode",m=>{ S.mode=m; renderPresets(); renderCustom(); refresh(); });
   segWire("#unitSeg","u",u=>{ S.units=u; renderPresets(); renderCustom(); refresh(); });
   segWire("#surfSeg","s",s=>{ S.surf=s; refresh(); });
@@ -4990,7 +5183,9 @@ function init(){
   $("#fieldQ").oninput=e=>{ S.fq=e.target.value;
     clearTimeout(fqT); fqT=setTimeout(renderField,140); };   /* debounce: a keystroke re-runs every car */
   $("#fieldWrap").addEventListener("toggle",()=>{ if(fieldOpen()&&fieldDirty) renderField(); });
-  $("#race").onclick=startRace;
+  $("#race").onclick=startRace; initSharing();
+  $("#closeResult").onclick=()=>$("#resultDialog").close();
+  $("#resultDialog").addEventListener("click",e=>{ if(e.target===$("#resultDialog")) e.target.close(); });
   renderCar("a"); renderCar("b"); renderPresets(); renderCustom(); renderNotes(); refresh();
   addEventListener("resize",()=>{ if(!running) refresh(); else drawChart(); });
   $("#race").textContent="Stage";
