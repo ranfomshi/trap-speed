@@ -156,11 +156,20 @@ canvas{display:block;width:100%}
 .exit-challenge-btn{border-color:var(--amber2);color:var(--amber)}
 .exit-challenge-btn:hover{border-color:var(--amber);background:rgba(242,162,12,.12)}
 .result-board{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:15px}
-.finish-photo{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);overflow:hidden}
-.finish-photo h2,.result-stats h2{padding:10px 14px;border-bottom:1px solid var(--edge);font-size:11px;
+/* The finish photo is the one thing on this screen that is a photograph, so it
+   is framed like one: a print with the deep bottom margin you write on. */
+.finish-photo{display:flex;flex-direction:column}
+.finish-photo>h2{padding:0 0 9px;border:0;font-size:11px}
+.polaroid{background:#EFEBE3;padding:11px 11px 0;border-radius:2px;
+  box-shadow:0 14px 30px rgba(0,0,0,.55),0 2px 5px rgba(0,0,0,.4);
+  transform:rotate(-.55deg);transform-origin:50% 50%}
+.polaroid canvas{display:block;width:100%;background:var(--asphalt);border-radius:1px}
+.polaroid .finish-caption{padding:11px 3px 15px;color:#3B3630;font-size:11.5px;line-height:1.35;
+  text-align:center;min-height:38px}
+@media (prefers-reduced-motion:reduce){.polaroid{transform:none}}
+.result-stats h2{padding:10px 14px;border-bottom:1px solid var(--edge);font-size:11px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--ink2)}
-#finishPhoto{height:224px;background:var(--asphalt)}
-.finish-caption{padding:8px 13px;color:var(--ink3);font-size:11.5px}
+#finishPhoto{height:224px}
 .result-stats{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r)}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr}
 .stat{padding:11px 13px;border-bottom:1px solid var(--edge);min-width:0}
@@ -302,7 +311,8 @@ body.embed .embed-back{display:block}
   .share-arrival .arrival-actions{margin-left:0;width:100%}.share-arrival .arrival-actions button{flex:1}
   .result-actions{width:100%;margin-left:0;flex-wrap:wrap}.result-actions button{flex:1 1 auto}
   .share-link{flex-direction:column}
-  .result-dialog{width:calc(100% - 16px)}.result-dialog #finishPhoto{height:170px}}
+  .result-dialog{width:calc(100% - 16px)}.result-dialog #finishPhoto{height:170px}
+  .polaroid{transform:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* ---------- searchable car picker ---------- */
@@ -552,8 +562,10 @@ body.embed .embed-back{display:block}
     <div class="result-board">
       <div class="finish-photo">
         <h2>Finish-line photo</h2>
-        <canvas id="finishPhoto" role="img" aria-label="The two cars at the finish"></canvas>
-        <div class="finish-caption" id="finishCaption"></div>
+        <figure class="polaroid">
+          <canvas id="finishPhoto" role="img" aria-label="The two cars at the finish"></canvas>
+          <figcaption class="finish-caption" id="finishCaption"></figcaption>
+        </figure>
       </div>
       <div class="result-stats">
         <h2>Race at a glance</h2>
@@ -3589,7 +3601,18 @@ if(!SHARED){
   const _a=_q.get("a"), _b=_q.get("b");
   if(_a&&car(_a)) S.a=_a;
   if(_b&&car(_b)) S.b=_b;
-  if(_q.get("embed")==="1") document.body.classList.add("embed");
+  if(_q.get("embed")==="1"){
+    document.body.classList.add("embed");
+    /* Tell the host page how tall we actually are, so the frame never needs a
+       scrollbar of its own -- the height changes as the verdict and readouts
+       fill in, so watch rather than measure once. */
+    const _post=()=>{ try{
+      parent.postMessage({trapspeed:"height",
+        h:Math.ceil(document.documentElement.getBoundingClientRect().height)+2},"*");
+    }catch(e){} };
+    addEventListener("load",_post); addEventListener("resize",_post);
+    if(window.ResizeObserver) new ResizeObserver(_post).observe(document.documentElement);
+  }
 }
 let challengeActive=!!SHARED;     /* arrived on someone else's link */
 let awaitingOpponent=!!SHARED;    /* ...and has not picked a car yet */
