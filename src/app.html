@@ -42,9 +42,10 @@ button,select,input{font-family:inherit;font-size:inherit;color:inherit}
 /* ---------- lane cards ---------- */
 .lanes{display:grid;grid-template-columns:1fr 138px 1fr;gap:16px;align-items:start}
 .card{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);padding:14px 15px 15px;
-  display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px}
+  display:flex;flex-direction:column;gap:12px;position:relative}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;border-radius:var(--r) var(--r) 0 0}
 .card.a::before{background:var(--A)} .card.b::before{background:var(--B)}
+.card:has(.clist:not([hidden])){z-index:41}
 .laneHead{display:flex;align-items:center;justify-content:space-between;gap:8px}
 /* ---------- maker badges ---------- */
 .mki{display:inline-block;vertical-align:-2px;flex:0 0 auto;border-radius:4px}
@@ -234,6 +235,26 @@ summary:hover{color:var(--ink)}
 .adv[open] .advsum{display:none}
 .adv .pbody{display:grid;gap:15px}
 @media (max-width:560px){.advsum{display:none}}
+.cflt{border-bottom:1px solid var(--edge);background:var(--sunk)}
+.cflthead{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:pointer;user-select:none}
+.cflthead .k{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:10px;color:var(--ink3)}
+.cfltn{background:var(--amber);color:#12181f;border-radius:8px;padding:0 6px;font:600 10px var(--mono)}
+.cfltclear{margin-left:auto;background:none;border:0;color:var(--ink3);cursor:pointer;font:11px var(--cond);
+  text-transform:uppercase;letter-spacing:.1em}
+.cfltclear:hover{color:var(--amber)}
+.cfltbody{display:grid;gap:7px;padding:2px 10px 10px}
+.cfltrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cfltrow>.k{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--ink3);
+  width:74px;flex:0 0 74px}
+.cfltrow select,.cfltrow input{background:var(--surface);border:1px solid var(--edge2);border-radius:3px;
+  color:var(--ink);font:11px var(--mono);padding:3px 5px;min-width:0}
+.cfltrow select{flex:1 1 auto;max-width:190px}
+.cfltrow input{width:62px}
+.cfltrow .dash{color:var(--ink3);font-size:11px}
+.cfltchip{background:var(--surface);border:1px solid var(--edge2);border-radius:3px;color:var(--ink2);
+  cursor:pointer;font:10px var(--cond);letter-spacing:.08em;text-transform:uppercase;padding:3px 7px}
+.cfltchip[aria-pressed=true]{background:rgba(242,162,12,.16);border-color:var(--amber);color:var(--amber)}
+.copts{overflow-y:auto;max-height:300px;padding:4px}
 .notes{padding:0 15px 16px;color:var(--ink2);font-size:13px;display:grid;gap:14px;max-width:74ch}
 .notes h4{margin:0 0 3px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.13em;font-size:11px;color:var(--ink)}
 .notes code{font-family:var(--mono);font-size:12px;color:var(--amber)}
@@ -268,9 +289,9 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 .comboInput:focus{border-color:var(--amber);outline:none;background-image:none}
 .comboInput:disabled{cursor:not-allowed;color:var(--ink2);border-color:var(--edge);opacity:.8;background-image:none}
 .comboInput::placeholder{color:var(--ink3)}
-.clist{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 4px);max-height:302px;overflow-y:auto;
+.clist{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 4px);
   background:#0C1015;border:1px solid var(--edge2);border-radius:var(--r);
-  box-shadow:0 14px 34px rgba(0,0,0,.6);padding:4px}
+  box-shadow:0 14px 34px rgba(0,0,0,.6);overflow:hidden}
 .copt{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:2px;cursor:pointer;
   font-size:13px;white-space:nowrap}
 .copt .nm{overflow:hidden;align-self:center;text-overflow:ellipsis;flex:1;min-width:0}
@@ -321,9 +342,12 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
       <div class="laneHead"><span class="mkb" id="mkA"></span><span class="laneTag">Left lane</span><span class="pwr" id="pwrA"></span></div>
       <div class="combo">
         <input type="text" id="carA" class="comboInput" role="combobox" aria-expanded="false"
-               aria-autocomplete="list" aria-controls="listA" autocomplete="off" spellcheck="false"
+               aria-autocomplete="list" aria-controls="optsA" autocomplete="off" spellcheck="false"
                aria-label="Left lane car, type to search">
-        <div class="clist" id="listA" role="listbox" aria-label="Left lane car results" hidden></div>
+        <div class="clist" id="listA" hidden>
+          <div class="cflt" id="fltA"></div>
+          <div class="copts" id="optsA" role="listbox" aria-label="Left lane car results"></div>
+        </div>
       </div>
       <div class="specs" id="specA"></div>
       <div class="trim" id="trimA"></div>
@@ -347,9 +371,12 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
       <div class="laneHead"><span class="mkb" id="mkB"></span><span class="laneTag">Right lane</span><span class="pwr" id="pwrB"></span></div>
       <div class="combo">
         <input type="text" id="carB" class="comboInput" role="combobox" aria-expanded="false"
-               aria-autocomplete="list" aria-controls="listB" autocomplete="off" spellcheck="false"
+               aria-autocomplete="list" aria-controls="optsB" autocomplete="off" spellcheck="false"
                aria-label="Right lane car, type to search">
-        <div class="clist" id="listB" role="listbox" aria-label="Right lane car results" hidden></div>
+        <div class="clist" id="listB" hidden>
+          <div class="cflt" id="fltB"></div>
+          <div class="copts" id="optsB" role="listbox" aria-label="Right lane car results"></div>
+        </div>
       </div>
       <div class="specs" id="specB"></div>
       <div class="trim" id="trimB"></div>
@@ -3666,11 +3693,39 @@ CARS.forEach(c=>{
   c._t=tags;                                                   /* searchable tags */
 });
 
-function searchCars(q,limit){
+/* Structured filters sit alongside the text search rather than replacing it:
+   the search ranks, the filters narrow. Empty string means "any". */
+const FLT_KEYS=["mk","cls","dr","asp","est","yr0","yr1","bhp0","bhp1","pw0","pw1"];
+const blankFilter=()=>Object.fromEntries(FLT_KEYS.map(k=>[k,""]));
+const FLT={a:blankFilter(),b:blankFilter()};
+const FLT_OPEN={a:false,b:false};
+const MAKES=[...new Set(CARS.map(c=>c.mk))].sort((a,b)=>a.localeCompare(b));
+const CLASSES=["Everyday","Performance","Sports","Supercar","Hypercar"]
+  .filter(x=>CARS.some(c=>c.cls===x));
+const BHP=c=>c.kW*1.34102;
+const PWT=c=>BHP(c)/c.kg*1000;
+const fltCount=f=>FLT_KEYS.filter(k=>f[k]!=="").length;
+function fltPass(f,c){
+  if(f.mk  && c.mk!==f.mk)   return false;
+  if(f.cls && c.cls!==f.cls) return false;
+  if(f.dr  && c.dr!==f.dr)   return false;
+  if(f.asp && c.asp!==f.asp) return false;
+  if(f.est!=="" && (c.est?1:0)!==+f.est) return false;
+  if(f.yr0 && c.yr<+f.yr0)   return false;
+  if(f.yr1 && c.yr>+f.yr1)   return false;
+  if(f.bhp0 && BHP(c)<+f.bhp0) return false;
+  if(f.bhp1 && BHP(c)>+f.bhp1) return false;
+  if(f.pw0 && PWT(c)<+f.pw0) return false;
+  if(f.pw1 && PWT(c)>+f.pw1) return false;
+  return true;
+}
+function searchCars(q,limit,f){
   const qn=norm(q), t=qn.split(" ").filter(Boolean);
-  if(!t.length) return CARS.slice(0,limit);
+  const pass=f&&fltCount(f)?(c=>fltPass(f,c)):null;
+  if(!t.length) return (pass?CARS.filter(pass):CARS).slice(0,limit);
   const hits=[];
   for(const c of CARS){
+    if(pass&&!pass(c)) continue;
     let score=0, ok=true;
     for(const tok of t){
       const i=c._n.indexOf(tok);
@@ -3699,12 +3754,74 @@ function hilite(text,q){
   return out+text.slice(i);
 }
 function combo(side){
-  const input=$("#car"+side.toUpperCase()), list=$("#list"+side.toUpperCase());
+  const S_=side.toUpperCase();
+  const input=$("#car"+S_), list=$("#list"+S_), opts=$("#opts"+S_), fltEl=$("#flt"+S_);
+  const f=FLT[side];
   let open=false, idx=-1, items=[], q="";
   const label=()=>{ const c=car(S[side]); input.value=`${c.mk} ${c.md} · ${c.yr}`; };
+
+  /* ---- the filter panel, folded away until asked for ------------------- */
+  const CHIPS={
+    dr:[["","Any"],["rwd","RWD"],["awd","AWD"],["fwd","FWD"]],
+    asp:[["","Any"],["na","NA"],["turbo","Turbo"],["sc","Super"],["ev","EV"]],
+    est:[["","Any"],["0","Published"],["1","Inferred"]]   /* matches the "inferred specs" note on each lane */
+  };
+  const chipRow=(key,lab)=>`<div class="cfltrow"><span class="k">${lab}</span>`
+    +CHIPS[key].map(([v,t])=>`<button type="button" class="cfltchip" data-f="${key}" data-v="${v}"
+        aria-pressed="${f[key]===v}">${t}</button>`).join("")+`</div>`;
+  const pairRow=(k0,k1,lab,ph0,ph1)=>`<div class="cfltrow"><span class="k">${lab}</span>
+    <input type="number" data-f="${k0}" value="${f[k0]}" placeholder="${ph0}" aria-label="${lab} from">
+    <span class="dash">–</span>
+    <input type="number" data-f="${k1}" value="${f[k1]}" placeholder="${ph1}" aria-label="${lab} to"></div>`;
+  function renderFlt(){
+    const n=fltCount(f);
+    fltEl.innerHTML=`<div class="cflthead" id="fh-${side}" role="button" tabindex="-1"
+        aria-expanded="${FLT_OPEN[side]}"><span class="k">Filters</span>
+      ${n?`<span class="cfltn">${n}</span>`:""}
+      <span class="k">${FLT_OPEN[side]?"▾":"▸"}</span>
+      ${n?`<button type="button" class="cfltclear" data-clear="1">Clear</button>`:""}</div>`
+    +(FLT_OPEN[side]?`<div class="cfltbody">
+      <div class="cfltrow"><span class="k">Make</span>
+        <select data-f="mk" aria-label="Make"><option value="">Any make</option>
+        ${MAKES.map(m=>`<option value="${m}"${f.mk===m?" selected":""}>${m}</option>`).join("")}</select></div>
+      <div class="cfltrow"><span class="k">Class</span>
+        <select data-f="cls" aria-label="Class"><option value="">Any class</option>
+        ${CLASSES.map(c=>`<option value="${c}"${f.cls===c?" selected":""}>${c}</option>`).join("")}</select></div>
+      ${pairRow("yr0","yr1","Year","1952","2026")}
+      ${pairRow("bhp0","bhp1","Power bhp","0","1500")}
+      ${pairRow("pw0","pw1","bhp / tonne","0","1200")}
+      ${chipRow("dr","Drivetrain")}
+      ${chipRow("asp","Engine")}
+      ${chipRow("est","Specs")}
+    </div>`:"");
+  }
+  /* mousedown inside the panel must not blur the input and close the popup */
+  fltEl.addEventListener("mousedown",e=>{ if(e.target.tagName!=="SELECT"&&e.target.tagName!=="INPUT") e.preventDefault(); });
+  fltEl.addEventListener("click",e=>{
+    const clear=e.target.closest("[data-clear]");
+    if(clear){ FLT_KEYS.forEach(k=>f[k]=""); renderFlt(); render(); input.focus(); return; }
+    const chip=e.target.closest(".cfltchip");
+    if(chip){ f[chip.dataset.f]=chip.dataset.v; renderFlt(); render(); return; }
+    if(e.target.closest(".cflthead")){ FLT_OPEN[side]=!FLT_OPEN[side]; renderFlt(); }
+  });
+  const onFlt=e=>{ const el=e.target.closest("[data-f]"); if(!el) return;
+    f[el.dataset.f]=el.value.trim(); render(); };
+  fltEl.addEventListener("change",onFlt);
+  fltEl.addEventListener("input",e=>{ if(e.target.tagName==="INPUT") onFlt(e); });
+
+  /* ---- the list ------------------------------------------------------- */
   function render(){
-    items=searchCars(q,120);
-    if(!items.length){ list.innerHTML='<div class="cnone">No car matches that.</div>'; return; }
+    items=searchCars(q,120,f);
+    if(!q){                       /* with no query, keep the car you already have in view */
+      const cur=car(S[side]);
+      if(cur && (!fltCount(f)||fltPass(f,cur)) && !items.some(c=>c.id===cur.id)) items.unshift(cur);
+    }
+    if(!items.length){
+      const n=fltCount(f);
+      opts.innerHTML=`<div class="cnone">No car matches that${n?" with these filters":""}.</div>`;
+      idx=-1; return;
+    }
+    if(idx>=items.length) idx=items.length-1;
     let html="", grp=null;
     items.forEach((c,i)=>{
       if(c.cls!==grp){ grp=c.cls; html+=`<div class="cgrp">${grp}</div>`; }
@@ -3712,11 +3829,19 @@ function combo(side){
         aria-selected="${i===idx}" data-i="${i}">${markImg(c.mk,19,"mki cmk",1.4)}<span class="nm">${hilite(c._label,q)}</span>
         <span class="yr">${c.yr}</span><span class="st">${c.kW} kW · ${c.kg} kg</span></div>`;
     });
-    list.innerHTML=html;
-    const sel=list.querySelector('[aria-selected=true]');
-    if(sel) sel.scrollIntoView({block:"nearest"});
+    opts.innerHTML=html;
+    scrollToSel();
   }
-  function show(){ open=true; list.hidden=false; input.setAttribute("aria-expanded","true"); render(); }
+  /* moving the highlight must not rebuild 120 rows and their badges */
+  function markSel(prev){
+    if(prev>=0){ const p=opts.querySelector(`#o-${side}-${prev}`); if(p) p.setAttribute("aria-selected","false"); }
+    scrollToSel();
+  }
+  function scrollToSel(){
+    const el=idx>=0?opts.querySelector(`#o-${side}-${idx}`):null;
+    if(el){ el.setAttribute("aria-selected","true"); el.scrollIntoView({block:"nearest"}); }
+  }
+  function show(){ open=true; list.hidden=false; input.setAttribute("aria-expanded","true"); renderFlt(); render(); }
   function hide(){ open=false; list.hidden=true; input.setAttribute("aria-expanded","false");
                    input.removeAttribute("aria-activedescendant"); idx=-1; label(); }
   function pick(i){
@@ -3725,18 +3850,27 @@ function combo(side){
     if(side==="b"&&awaitingOpponent){ awaitingOpponent=false; completeSharedChallenge(c); }
     refresh();
   }
-  input.addEventListener("focus",()=>{ q=""; input.value=""; idx=items.findIndex(c=>c.id===S[side]); show(); });
+  input.addEventListener("focus",()=>{
+    q=""; input.value=""; idx=-1; show();
+    /* the highlight has to be found in the list we just built, not the last one */
+    idx=items.findIndex(c=>c.id===S[side]);
+    if(idx>=0){ input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); scrollToSel(); }
+  });
   input.addEventListener("input",()=>{ q=input.value; idx=-1; if(!open) show(); else render(); });
-  input.addEventListener("blur",()=>setTimeout(()=>{ if(open) hide(); },140));
+  input.addEventListener("blur",()=>setTimeout(()=>{ if(open&&!list.contains(document.activeElement)) hide(); },140));
   input.addEventListener("keydown",e=>{
     if(e.key==="ArrowDown"||e.key==="ArrowUp"){
       e.preventDefault(); if(!open) return show();
+      const prev=idx;
       idx=Math.max(0,Math.min(items.length-1, idx+(e.key==="ArrowDown"?1:-1)));
-      input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); render();
-    }else if(e.key==="Enter"){ if(open&&idx>=0){ e.preventDefault(); pick(idx); } }
+      input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); markSel(prev);
+    }else if(e.key==="Enter"){
+      /* Enter takes the top match: having to arrow down to it first surprised people */
+      if(open&&items.length){ e.preventDefault(); pick(idx>=0?idx:0); }
+    }
     else if(e.key==="Escape"){ if(open){ e.stopPropagation(); hide(); input.blur(); } }
   });
-  list.addEventListener("mousedown",e=>{
+  opts.addEventListener("mousedown",e=>{
     const el=e.target.closest(".copt"); if(!el) return;
     e.preventDefault(); pick(+el.dataset.i);
   });
