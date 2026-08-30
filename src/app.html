@@ -151,7 +151,7 @@ canvas{display:block;width:100%}
 .share-arrival{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid var(--amber2);
   border-left:3px solid var(--amber);background:rgba(242,162,12,.08);border-radius:var(--r)}
 .share-arrival strong{color:var(--amber)} .share-arrival span{color:var(--ink2)}
-.share-arrival .arrival-actions{margin-left:auto;display:flex;gap:8px;flex:0 0 auto}
+.share-arrival .secondary-btn{margin-left:auto;flex:0 0 auto}
 .result-board{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:15px}
 .finish-photo{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);overflow:hidden}
 .finish-photo h2,.result-stats h2{padding:10px 14px;border-bottom:1px solid var(--edge);font-size:11px;
@@ -167,8 +167,6 @@ canvas{display:block;width:100%}
 dialog{width:min(520px,calc(100% - 28px));padding:0;border:1px solid var(--edge2);border-radius:6px;
   background:var(--surface);color:var(--ink);box-shadow:0 22px 70px rgba(0,0,0,.75)}
 dialog::backdrop{background:rgba(4,7,10,.78)}
-.result-dialog{width:min(960px,calc(100% - 28px))}
-.result-dialog .result-board{padding:16px}
 .dialog-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--edge)}
 .dialog-head h2{font-size:17px}.icon-btn{background:none;border:0;color:var(--ink2);cursor:pointer;font-size:23px;line-height:1}
 .dialog-body{display:grid;gap:13px;padding:16px}.dialog-body p{margin:0;color:var(--ink2);font-size:13px}
@@ -240,7 +238,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   .mark h1{font-size:25px}
   .result-board{grid-template-columns:1fr}
 }
-@media (max-width:560px){.share-arrival{align-items:flex-start;flex-wrap:wrap}.share-arrival .arrival-actions{width:100%;margin-left:0}.share-arrival .arrival-actions button{flex:1}
+@media (max-width:560px){.share-arrival{align-items:flex-start;flex-wrap:wrap}.share-arrival .secondary-btn{margin-left:0}
   .result-actions{width:100%;margin-left:0}.result-actions button{flex:1}.share-link{flex-direction:column}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -290,8 +288,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 
   <aside class="share-arrival" id="shareArrival" hidden>
     <div><strong id="shareFrom"></strong><br><span id="shareInstruction"></span></div>
-    <div class="arrival-actions"><button class="secondary-btn" id="dismissShare" type="button">Hide</button>
-      <button class="secondary-btn" id="exitChallenge" type="button">Exit challenge</button></div>
+    <button class="secondary-btn" id="dismissShare" type="button">Got it</button>
   </aside>
 
   <header class="mast">
@@ -425,6 +422,18 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   <div class="verdict" id="verdict" role="status" aria-live="polite" aria-atomic="true"><span class="win">Stage the cars</span>
     <span class="by">Pick two cars and an event, then hit Stage to run the tree.</span></div>
 
+  <section class="result-board" id="resultBoard" hidden aria-label="Race result summary">
+    <div class="finish-photo">
+      <h2>Finish-line photo</h2>
+      <canvas id="finishPhoto" role="img" aria-label="The two cars at the finish"></canvas>
+      <div class="finish-caption" id="finishCaption"></div>
+    </div>
+    <div class="result-stats">
+      <h2>Race at a glance</h2>
+      <div class="stat-grid" id="resultStats"></div>
+    </div>
+  </section>
+
   <section class="slips" id="slips"></section>
 
   <section class="panel rel">
@@ -464,23 +473,15 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 </div>
 
 <dialog id="shareDialog" aria-labelledby="shareTitle">
-  <div class="dialog-head"><h2 id="shareTitle">Challenge a friend</h2><button class="icon-btn" id="closeShare" type="button" aria-label="Close">&times;</button></div>
+  <div class="dialog-head"><h2 id="shareTitle">Share this race</h2><button class="icon-btn" id="closeShare" type="button" aria-label="Close">&times;</button></div>
   <form class="dialog-body" id="shareForm">
     <p>Choose your car and add your name. Your friend will pick the car they want to race against you.</p>
     <label class="field"><span class="k">Your car</span><select id="shareCar" required></select></label>
     <label class="field"><span class="k">Your name</span><input id="shareName" type="text" maxlength="40" required autocomplete="name" placeholder="e.g. Alex"></label>
-    <button class="go-btn" type="submit">Create challenge link</button>
+    <button class="go-btn" type="submit">Create share link</button>
     <div class="share-link" id="shareLinkWrap" hidden><input id="shareLink" type="text" readonly aria-label="Share link"><button class="secondary-btn" id="copyShare" type="button">Copy link</button></div>
     <span class="hint" id="copyStatus" role="status" aria-live="polite"></span>
   </form>
-</dialog>
-
-<dialog id="resultDialog" class="result-dialog" aria-labelledby="resultTitle">
-  <div class="dialog-head"><h2 id="resultTitle">Race result</h2><button class="icon-btn" id="closeResult" type="button" aria-label="Close">&times;</button></div>
-  <section class="result-board" id="resultBoard" aria-label="Race result summary">
-    <div class="finish-photo"><h2>Finish-line photo</h2><canvas id="finishPhoto" role="img" aria-label="The two cars at the finish"></canvas><div class="finish-caption" id="finishCaption"></div></div>
-    <div class="result-stats"><h2>Race at a glance</h2><div class="stat-grid" id="resultStats"></div></div>
-  </section>
 </dialog>
 
 <script>
@@ -3502,7 +3503,7 @@ function readSharedState(){
   return {name:q.get("from").trim().slice(0,40) || "A friend",car:host};
 }
 const SHARED=readSharedState();
-let challengeActive=!!SHARED, awaitingOpponent=challengeActive;
+let awaitingOpponent=!!SHARED;
 function shareURL(name,host){
   const q=new URLSearchParams(); q.set("from",name.trim()); q.set("car",host);
   for(const [key,param] of Object.entries(SHARE_KEYS)) q.set(param,String(S[key]));
@@ -4645,7 +4646,7 @@ function drawStrip(pos,spd,clock,finish,acc){
 /* =======================================================================
    RUN + ANIMATE
    ======================================================================= */
-let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null, photoCaptured=false, hasRun=false;
+let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null, photoCaptured=false;
 const RUNOUT=2.4;      /* seconds the cars keep driving after the line, for show */
 function stopAnim(){ if(anim) cancelAnimationFrame(anim); anim=null; running=false; }
 let ACC={a:0,b:0};
@@ -4734,10 +4735,7 @@ function animate(){
   };
   anim=requestAnimationFrame(step);
 }
-function finishRace(){
-  treeLit=new Set(); if(!photoCaptured) captureFinishPhoto(); hasRun=true;
-  renderVerdict(); renderSlips(); renderResultBoard(); drawChart(); openResultDialog();
-}
+function finishRace(){ treeLit=new Set(); if(!photoCaptured) captureFinishPhoto(); renderVerdict(); renderSlips(); renderResultBoard(); drawChart(); }
 
 /* =======================================================================
    RESULTS
@@ -4747,9 +4745,7 @@ function renderVerdict(){
   const el=$("#verdict");
   if(awaitingOpponent){
     el.className="verdict";
-    el.innerHTML=`<span class="win">Choose your challenger</span><span class="by">Select your car in the right lane to unlock the race.</span>
-      <span class="result-actions"><button class="secondary-btn" id="clearChallenge" type="button">Exit challenge</button></span>`;
-    $("#clearChallenge").onclick=clearChallengeMode;
+    el.innerHTML=`<span class="win">Choose your challenger</span><span class="by">Select your car in the right lane to unlock the race.</span>`;
     return;
   }
   if(rA==null&&rB==null){
@@ -4776,12 +4772,8 @@ function renderVerdict(){
       + (gap!=null&&gap>0?` — <span class="num">${dLabel(gap)}</span>, about <span class="num">${(gap/4.6).toFixed(1)}</span> car lengths`:"");
   }
   el.innerHTML=markImg(wc.mk,22,"mki vmk",1.45)+`<span class="win">${wc.mk} ${wc.md} wins</span><span class="by">${by}</span>
-    <span class="result-actions">${hasRun?`<button class="secondary-btn" id="viewResult" type="button">View result</button>`:""}
-      <button class="secondary-btn" id="shareRace" type="button">Challenge a friend</button>
-      ${challengeActive?`<button class="secondary-btn" id="clearChallenge" type="button">Exit challenge</button>`:""}</span>`;
+    <span class="result-actions"><button class="secondary-btn" id="shareRace" type="button">Share race</button></span>`;
   $("#shareRace").onclick=openShareDialog;
-  if($("#viewResult")) $("#viewResult").onclick=openResultDialog;
-  if($("#clearChallenge")) $("#clearChallenge").onclick=clearChallengeMode;
 }
 
 function captureFinishPhoto(){
@@ -5122,9 +5114,6 @@ function openShareDialog(){
   $("#shareLinkWrap").hidden=true; $("#copyStatus").textContent="";
   dlg.showModal(); requestAnimationFrame(()=>$("#shareName").focus());
 }
-function openResultDialog(){
-  const dlg=$("#resultDialog"); if(!dlg.open) dlg.showModal();
-}
 function initSharing(){
   const dlg=$("#shareDialog"), name=$("#shareName"), link=$("#shareLink"), shareCar=$("#shareCar");
   $("#closeShare").onclick=()=>dlg.close();
@@ -5144,19 +5133,10 @@ function initSharing(){
     $("#shareInstruction").textContent=`Choose your car in the right lane. The ${eventLabel()} setup and conditions are already set.`;
     $("#shareArrival").hidden=false;
     $("#dismissShare").onclick=()=>$("#shareArrival").hidden=true;
-    $("#exitChallenge").onclick=clearChallengeMode;
     $("#carA").disabled=true; $("#carA").setAttribute("aria-label",`${owner} ${A.mk} ${A.md}, fixed challenge car`);
     $("#race").disabled=true;
     setTimeout(()=>$("#carB").focus(),150);
   }
-}
-function clearChallengeMode(){
-  challengeActive=false; awaitingOpponent=false;
-  $("#shareArrival").hidden=true; $("#carA").disabled=false;
-  $("#carA").setAttribute("aria-label","Left lane car, type to search");
-  $("#race").disabled=false;
-  history.replaceState({},"",location.pathname+location.hash);
-  refresh();
 }
 function completeSharedChallenge(c){
   const A=car(S.a), owner=SHARED.name.endsWith("s")?SHARED.name+"’":SHARED.name+"’s";
@@ -5184,8 +5164,6 @@ function init(){
     clearTimeout(fqT); fqT=setTimeout(renderField,140); };   /* debounce: a keystroke re-runs every car */
   $("#fieldWrap").addEventListener("toggle",()=>{ if(fieldOpen()&&fieldDirty) renderField(); });
   $("#race").onclick=startRace; initSharing();
-  $("#closeResult").onclick=()=>$("#resultDialog").close();
-  $("#resultDialog").addEventListener("click",e=>{ if(e.target===$("#resultDialog")) e.target.close(); });
   renderCar("a"); renderCar("b"); renderPresets(); renderCustom(); renderNotes(); refresh();
   addEventListener("resize",()=>{ if(!running) refresh(); else drawChart(); });
   $("#race").textContent="Stage";
