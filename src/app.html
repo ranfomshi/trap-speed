@@ -236,12 +236,20 @@ summary:hover{color:var(--ink)}
 .adv .pbody{display:grid;gap:15px}
 @media (max-width:560px){.advsum{display:none}}
 .cflt{border-bottom:1px solid var(--edge);background:var(--sunk)}
-.cflthead{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:pointer;user-select:none}
-.cflthead .k{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:10px;color:var(--ink3)}
+.cflthead{display:flex;align-items:center;gap:8px;padding:8px 9px;user-select:none}
+.cfltbtn{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--edge2);
+  border-radius:3px;color:var(--ink2);cursor:pointer;padding:5px 10px;
+  font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.cfltbtn:hover{border-color:var(--amber);color:var(--ink)}
+.cfltbtn[aria-expanded=true]{color:var(--ink)}
+.cfltbtn.on{border-color:var(--amber);color:var(--amber);background:rgba(242,162,12,.13)}
+.cfltbtn svg{width:12px;height:12px;flex:0 0 12px}
 .cfltn{background:var(--amber);color:#12181f;border-radius:8px;padding:0 6px;font:600 10px var(--mono)}
-.cfltclear{margin-left:auto;background:none;border:0;color:var(--ink3);cursor:pointer;font:11px var(--cond);
+.cfltclear{background:none;border:0;color:var(--ink3);cursor:pointer;font:11px var(--cond);
   text-transform:uppercase;letter-spacing:.1em}
 .cfltclear:hover{color:var(--amber)}
+.cfltcount{margin-left:auto;font:11px var(--mono);color:var(--ink3);white-space:nowrap}
+.cfltcount b{color:var(--amber);font-weight:400}
 .cfltbody{display:grid;gap:7px;padding:2px 10px 10px}
 .cfltrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .cfltrow>.k{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--ink3);
@@ -3719,10 +3727,14 @@ function fltPass(f,c){
   if(f.pw1 && PWT(c)>+f.pw1) return false;
   return true;
 }
+let SEARCH_TOTAL=0;                 /* how many matched before the page limit */
 function searchCars(q,limit,f){
   const qn=norm(q), t=qn.split(" ").filter(Boolean);
   const pass=f&&fltCount(f)?(c=>fltPass(f,c)):null;
-  if(!t.length) return (pass?CARS.filter(pass):CARS).slice(0,limit);
+  if(!t.length){
+    const all=pass?CARS.filter(pass):CARS;
+    SEARCH_TOTAL=all.length; return all.slice(0,limit);
+  }
   const hits=[];
   for(const c of CARS){
     if(pass&&!pass(c)) continue;
@@ -3741,6 +3753,7 @@ function searchCars(q,limit,f){
     hits.push({c,score});
   }
   hits.sort((a,b)=> b.score-a.score || a.c._label.localeCompare(b.c._label));
+  SEARCH_TOTAL=hits.length;
   return hits.slice(0,limit).map(h=>h.c);
 }
 function hilite(text,q){
@@ -3775,11 +3788,16 @@ function combo(side){
     <input type="number" data-f="${k1}" value="${f[k1]}" placeholder="${ph1}" aria-label="${lab} to"></div>`;
   function renderFlt(){
     const n=fltCount(f);
-    fltEl.innerHTML=`<div class="cflthead" id="fh-${side}" role="button" tabindex="-1"
-        aria-expanded="${FLT_OPEN[side]}"><span class="k">Filters</span>
-      ${n?`<span class="cfltn">${n}</span>`:""}
-      <span class="k">${FLT_OPEN[side]?"▾":"▸"}</span>
-      ${n?`<button type="button" class="cfltclear" data-clear="1">Clear</button>`:""}</div>`
+    const tot=CARS.length, shown=SEARCH_TOTAL;
+    fltEl.innerHTML=`<div class="cflthead">
+      <button type="button" class="cfltbtn${n?" on":""}" data-toggle="1" aria-expanded="${FLT_OPEN[side]}">
+        <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M2 4h12M4 8h8M6.5 12h3"/></svg>
+        Filters${n?`<span class="cfltn">${n}</span>`:""} ${FLT_OPEN[side]?"▾":"▸"}
+      </button>
+      ${n?`<button type="button" class="cfltclear" data-clear="1">Clear</button>`:""}
+      <span class="cfltcount">${shown>=tot?`${tot.toLocaleString()} cars`
+        :`<b>${shown.toLocaleString()}</b> of ${tot.toLocaleString()} cars`}</span></div>`
     +(FLT_OPEN[side]?`<div class="cfltbody">
       <div class="cfltrow"><span class="k">Make</span>
         <select data-f="mk" aria-label="Make"><option value="">Any make</option>
@@ -3799,13 +3817,13 @@ function combo(side){
   fltEl.addEventListener("mousedown",e=>{ if(e.target.tagName!=="SELECT"&&e.target.tagName!=="INPUT") e.preventDefault(); });
   fltEl.addEventListener("click",e=>{
     const clear=e.target.closest("[data-clear]");
-    if(clear){ FLT_KEYS.forEach(k=>f[k]=""); renderFlt(); render(); input.focus(); return; }
+    if(clear){ FLT_KEYS.forEach(k=>f[k]=""); render(); renderFlt(); input.focus(); return; }
     const chip=e.target.closest(".cfltchip");
-    if(chip){ f[chip.dataset.f]=chip.dataset.v; renderFlt(); render(); return; }
-    if(e.target.closest(".cflthead")){ FLT_OPEN[side]=!FLT_OPEN[side]; renderFlt(); }
+    if(chip){ f[chip.dataset.f]=chip.dataset.v; render(); renderFlt(); return; }
+    if(e.target.closest("[data-toggle]")){ FLT_OPEN[side]=!FLT_OPEN[side]; renderFlt(); }
   });
   const onFlt=e=>{ const el=e.target.closest("[data-f]"); if(!el) return;
-    f[el.dataset.f]=el.value.trim(); render(); };
+    f[el.dataset.f]=el.value.trim(); render(); renderFlt(); };
   fltEl.addEventListener("change",onFlt);
   fltEl.addEventListener("input",e=>{ if(e.target.tagName==="INPUT") onFlt(e); });
 
@@ -3841,7 +3859,7 @@ function combo(side){
     const el=idx>=0?opts.querySelector(`#o-${side}-${idx}`):null;
     if(el){ el.setAttribute("aria-selected","true"); el.scrollIntoView({block:"nearest"}); }
   }
-  function show(){ open=true; list.hidden=false; input.setAttribute("aria-expanded","true"); renderFlt(); render(); }
+  function show(){ open=true; list.hidden=false; input.setAttribute("aria-expanded","true"); render(); renderFlt(); }
   function hide(){ open=false; list.hidden=true; input.setAttribute("aria-expanded","false");
                    input.removeAttribute("aria-activedescendant"); idx=-1; label(); }
   function pick(i){
@@ -3856,7 +3874,7 @@ function combo(side){
     idx=items.findIndex(c=>c.id===S[side]);
     if(idx>=0){ input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); scrollToSel(); }
   });
-  input.addEventListener("input",()=>{ q=input.value; idx=-1; if(!open) show(); else render(); });
+  input.addEventListener("input",()=>{ q=input.value; idx=-1; if(!open) show(); else { render(); renderFlt(); } });
   input.addEventListener("blur",()=>setTimeout(()=>{ if(open&&!list.contains(document.activeElement)) hide(); },140));
   input.addEventListener("keydown",e=>{
     if(e.key==="ArrowDown"||e.key==="ArrowUp"){
