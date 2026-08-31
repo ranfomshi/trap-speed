@@ -17,9 +17,17 @@ function token(){
   return cp.execSync("gcloud auth application-default print-access-token",
     {encoding:"utf8"}).trim();
 }
+/* A client library would read quota_project_id out of the credentials file and
+   send it for us; raw fetch has to say it out loud, and these APIs refuse
+   user credentials without it. */
+const QUOTA=(()=>{ try{
+  return require(require("os").homedir()+"/.config/gcloud/application_default_credentials.json").quota_project_id;
+}catch(e){ return null; } })();
+
 async function api(url,opt={}){
   const r=await fetch(url,{...opt,headers:{Authorization:"Bearer "+token(),
-    "Content-Type":"application/json",...(opt.headers||{})}});
+    "Content-Type":"application/json",
+    ...(QUOTA?{"x-goog-user-project":QUOTA}:{}),...(opt.headers||{})}});
   const t=await r.text();
   let j=null; try{ j=t?JSON.parse(t):null; }catch(e){}
   if(!r.ok) throw new Error(`${r.status} ${url}\n${t.slice(0,500)}`);

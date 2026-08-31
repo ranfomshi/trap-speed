@@ -91,7 +91,10 @@ for (const f of fs.readdirSync(path.join(SRC, "logos"))) {
 /* IndexNow: Bing and Yandex accept a push of changed URLs from anyone who can
    prove they own the host, and the proof is this file sitting at its root. */
 const INDEXNOW_KEY = "4c5a35b261552b253134c84f789dbac4";
-for (const f of ["robots.txt", "og.png", INDEXNOW_KEY + ".txt"]) {
+/* Google verifies ownership by fetching a file it named; it has to survive
+   every rebuild or the property silently loses its owner. */
+const GOOGLE_VERIFY = "googlee3b1cf31674cc5d9.html";
+for (const f of ["robots.txt", "og.png", INDEXNOW_KEY + ".txt", GOOGLE_VERIFY]) {
   const p = path.join(SRC, f);
   if (fs.existsSync(p)) fs.copyFileSync(p, path.join(OUT, f));
 }
