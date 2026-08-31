@@ -55,8 +55,11 @@ async function main(){
   }
   if(cmd==="verify"){
     const t=await getToken();
+    /* A courtesy check only. This machine can be behind a stale resolver while
+       the file is live everywhere else, and Google does its own fetch -- so a
+       failure here is worth saying out loud but not worth stopping for. */
     const live=await fetch(SITE+t).then(r=>r.status).catch(()=>0);
-    if(live!==200) throw new Error(`${SITE}${t} returns ${live} -- deploy it first`);
+    if(live!==200) console.warn(`  note: ${SITE}${t} reads ${live} from here; letting Google decide`);
     const j=await api(`${SV}/webResource?verificationMethod=FILE`,{method:"POST",
       body:JSON.stringify({site:{type:"SITE",identifier:SITE}})});
     console.log("verified:",JSON.stringify(j.owners||j));
