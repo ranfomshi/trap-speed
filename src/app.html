@@ -5072,6 +5072,30 @@ function markers(span,x0){
    ======================================================================= */
 let cam=null;                     /* smoothed camera, reset at every stage-up */
 function resetCam(){ cam=null; }
+/* A badge already says BMW, so spelling "BMW" under it is wasted space -- and
+   in a BMW-versus-BMW race it is worse than wasted. The pit board carries the
+   model instead, cut to the shortest prefix that tells THESE two cars apart:
+   M3 Competition against M3 CS, but plain RS3 against a Mustang. */
+const _mdTok=md=>{
+  const t=md.replace(/\([^)]*\)/g," ").replace(/[()]/g," ").split(/\s+/).filter(Boolean);
+  /* a trailing chassis code (8V, C8, G87, Mk8) identifies nothing at a glance */
+  if(t.length>1 && /^(mk)?(?=.*\d)(?=.*[a-z])[a-z0-9]{2,4}$/i.test(t[t.length-1])) t.pop();
+  return t;
+};
+function shortModel(c,other){
+  const t=_mdTok(c.md); if(!t.length) return c.md;
+  const o=other&&other.id!==c.id ? _mdTok(other.md) : null;
+  let n=1;
+  if(o) while(n<t.length && t.slice(0,n).join(" ").toLowerCase()===o.slice(0,n).join(" ").toLowerCase()) n++;
+  let out=t.slice(0,n).join(" ");
+  /* "Model" or "911" alone reads as a fragment; take one more word to make a name */
+  while(out.length<6 && n<t.length) out=t.slice(0,++n).join(" ");
+  /* never stop one letter short of the name: Civic Type R, not Civic Type */
+  while(n<t.length && t[n].length<=2) out=t.slice(0,++n).join(" ");
+  /* two of the same car, or one name a prefix of the other: the year separates them */
+  if(o && out.toLowerCase()===o.slice(0,n).join(" ").toLowerCase()) out+=" \u2019"+String(c.yr).slice(2);
+  return out;
+}
 function drawStrip(pos,spd,clock,finish,acc){
   const {w,h}=fit(stripC,sx);
   sx.clearRect(0,0,w,h);
@@ -5187,9 +5211,12 @@ function drawStrip(pos,spd,clock,finish,acc){
     if(c){
       const br=Math.max(12,Math.min(20,laneH*0.175)), WD=1.5, bx=br*WD+12, by=ly+laneH*0.40;
       drawMark(sx,bx,by,br,c.mk,WD);
-      sx.font='600 '+Math.round(br*0.62)+'px "Saira Condensed", system-ui, sans-serif';
-      sx.textAlign="center"; sx.fillStyle="rgba(233,237,242,.55)";
-      sx.fillText(c.mk.toUpperCase().slice(0,13),bx,by+br+Math.round(br*0.72));
+      sx.font='600 '+Math.round(br*0.66)+'px "Saira Condensed", system-ui, sans-serif';
+      let pit=shortModel(c,car(k==="a"?S.b:S.a)).toUpperCase();
+      while(pit.length>4 && sx.measureText(pit).width>132) pit=pit.slice(0,-1).trim();
+      sx.textAlign="center"; sx.fillStyle=ink+"D9";
+      /* centred under the badge, but never running off the left of the lane */
+      sx.fillText(pit,Math.max(bx,3+sx.measureText(pit).width/2),by+br+Math.round(br*0.74));
       sx.font='600 10.5px "Saira Condensed", system-ui, sans-serif';
       sx.textAlign="right"; sx.fillStyle=ink+"CC";
       sx.fillText(c.md.toUpperCase().slice(0,44),w-8,ly+12);
