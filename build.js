@@ -6,7 +6,7 @@ const path = require("path");
 const SRC = path.join(__dirname, "src");
 const OUT = path.join(__dirname, "public");
 
-const SITE  = "https://trap-speed.netlify.app";
+const SITE  = "https://myautoracer.com";
 const TITLE = "Trap Speed — drag race any two real cars";
 const DESC  = "A drag race simulator for real cars. Pick two of 2,843 models, set the "
             + "distance, the surface and the weather, and watch them run. Every car is "
