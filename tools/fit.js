@@ -136,8 +136,15 @@ function fit(spec){
      power stops buying time, the car is telling us it has more grip than its
      class default -- so solve that instead and leave power alone. */
   if(!spec.ft60){
-    const tHi=tTo(c,sprint.v,kg,2.2), tMid=tTo(c,sprint.v,kg,1.5);
-    if(tHi>sprint.t && (tMid-tHi)<0.08){
+    /* The exact test, not a heuristic: if the target is still out of reach at
+       the top of the power search, then power cannot reach it at all. An
+       earlier version asked whether extra power had stopped buying time, and
+       missed the 320d -- where power was still buying a little, just never
+       enough. Note this bites hardest on light rear-drive cars, because taking
+       mass OUT takes load off the driven axle: correcting the 320d's kerb mass
+       down by 90 kg is what pushed it over the edge. */
+    const tHi=tTo(c,sprint.v,kg,2.2);
+    if(tHi>sprint.t){
       kp=1;
       kg=solve(g=>tTo(c,sprint.v,g,kp),sprint.t,0.60,1.95);
       notes.push("traction-limited: solved grip, not power");
@@ -206,7 +213,7 @@ function row(s,r){
   const q=v=>typeof v==="string"?JSON.stringify(v):v;
   const p=[["id",s.id],["mk",s.mk],["md",s.md],["yr",s.yr],["cls",s.cls],["kW",s.kW],
     ["kg",s.kg],["dr",s.dr],["g",s.g],["bx",s.bx],["cda",r.cda],["vmx",s.vmx],
-    ["ty",s.ty],["asp",s.asp],["hL",s.hL],["wd",s.wd],["src",s.src||"mfr"],
+    ["ty",s.ty],["asp",s.asp],["fu",s.fu],["hL",s.hL],["wd",s.wd],["src",s.src||"mfr"],
     ["est",1],["cdaD",r.cdaD],["h60",s.t60!=null?s.t60:null],["bd",s.bd]];
   if(s.en) p.push(["en",s.en]);
   if(s.op) p.push(["op",s.op]);
