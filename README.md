@@ -1,4 +1,4 @@
-# Trap Speed
+# My Auto Racer
 
 A drag race simulator for real cars. Pick any two of 2,843 models, set the
 distance (or a target speed, a rolling start, a fixed time), set the surface,

@@ -13,7 +13,7 @@ setTimeout(()=>{
   document.getElementById("strip").style.height="330px";
   const h=document.createElement("div");
   h.style.cssText="position:fixed;top:0;left:0;right:0;padding:40px 54px 0;font-family:'Saira Condensed',system-ui;";
-  h.innerHTML='<div style="font-size:66px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Trap Speed</div>'+
+  h.innerHTML='<div style="font-size:66px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">My Auto Racer</div>'+
     '<div style="font-size:23px;color:#98A4B2;margin-top:6px;letter-spacing:.02em">Drag race any two real cars &mdash; 2,843 of them, simulated from published figures</div>';
   document.body.appendChild(h);
   treeLit=new Set([5]); computeTraces(); resetCam();

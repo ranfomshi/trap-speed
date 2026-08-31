@@ -7,7 +7,7 @@ const SRC = path.join(__dirname, "src");
 const OUT = path.join(__dirname, "public");
 
 const SITE  = "https://myautoracer.com";
-const TITLE = "Trap Speed — drag race any two real cars";
+const TITLE = "My Auto Racer — drag race any two real cars";
 const DESC  = "A drag race simulator for real cars. Pick two of 2,843 models, set the "
             + "distance, the surface and the weather, and watch them run. Every car is "
             + "simulated from its published mass, power and drivetrain, then fitted "
@@ -56,7 +56,7 @@ const html = `<!doctype html>
 <title>${TITLE}</title>\n<link rel="canonical" href="${SITE}/">
 <link rel="icon" href="${favicon}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Trap Speed">
+<meta property="og:site_name" content="My Auto Racer">
 <meta property="og:title" content="${TITLE}">
 <meta property="og:description" content="${DESC}">
 <meta property="og:url" content="${SITE}/">
