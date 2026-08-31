@@ -88,7 +88,10 @@ for (const f of fs.readdirSync(path.join(SRC, "logos"))) {
   fs.copyFileSync(path.join(SRC, "logos", f), path.join(OUT, "logos", f));
   n++;
 }
-for (const f of ["robots.txt", "og.png"]) {
+/* IndexNow: Bing and Yandex accept a push of changed URLs from anyone who can
+   prove they own the host, and the proof is this file sitting at its root. */
+const INDEXNOW_KEY = "4c5a35b261552b253134c84f789dbac4";
+for (const f of ["robots.txt", "og.png", INDEXNOW_KEY + ".txt"]) {
   const p = path.join(SRC, f);
   if (fs.existsSync(p)) fs.copyFileSync(p, path.join(OUT, f));
 }
