@@ -454,6 +454,16 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
           </div>
         </div>
       </div>
+      <div class="fields" id="startWrap" hidden>
+        <div class="field">
+          <span class="k">Start</span>
+          <div class="seg" id="startSeg" role="group" aria-label="Start type">
+            <button data-rs="0" aria-pressed="true">Standing</button>
+            <button data-rs="1" aria-pressed="false">Rolling</button>
+          </div>
+        </div>
+        <div class="field" id="rsField" hidden></div>
+      </div>
       <div class="field"><span class="k" id="presetK">Preset</span><div class="chips" id="presets"></div></div>
       <div class="fields" id="customFields"></div>
     </div>
@@ -579,7 +589,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   <div class="dialog-body">
     <div class="result-board">
       <div class="finish-photo">
-        <h2>Finish-line photo</h2>
+        <h2 id="photoHead">Finish-line photo</h2>
         <figure class="polaroid">
           <canvas id="finishPhoto" role="img" aria-label="The two cars at the finish"></canvas>
           <figcaption class="finish-caption" id="finishCaption"></figcaption>
@@ -3587,6 +3597,7 @@ const FITSTATS={"cars": 2843, "ptsAll": 27240, "ptsUsed": 24496, "meanRms": 4.81
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const REDUCED=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const S={ a:"m3p", b:"mustang", mode:"dist", dist:D.Q, spd:96.56/3.6, r0:48.28/3.6, r1:112.65/3.6,
+          rs:0,   /* rolling-start speed for a distance or fixed-time race; 0 = standing */
           dur:5, units:"imp", surf:"dry", temp:20, alt:0, wind:0, grade:0, load:0, rollout:1,
           xaxis:"t", rate:1, fq:"", sortKey:"res", sortDir:1 };
 const car=id=>CARS.find(c=>c.id===id);
@@ -3595,7 +3606,7 @@ const env=()=>({surf:S.surf,tempC:S.temp,alt:S.alt,wind:S.wind,grade:S.grade,loa
 
 /* Share links are deliberately plain query strings: they remain inspectable,
    durable and host-independent. Unknown or malformed values simply fall back. */
-const SHARE_KEYS={mode:"m",dist:"d",spd:"v",r0:"r0",r1:"r1",dur:"t",units:"u",
+const SHARE_KEYS={mode:"m",dist:"d",spd:"v",r0:"r0",r1:"r1",rs:"rs",dur:"t",units:"u",
   surf:"s",temp:"temp",alt:"alt",wind:"wind",grade:"grade",load:"load",rollout:"ro"};
 function readSharedState(){
   const q=new URLSearchParams(location.search);
@@ -3604,11 +3615,11 @@ function readSharedState(){
   S.a=host;
   const enums={mode:["dist","speed","roll","time"],units:["imp","met"],surf:["prepped","dry","cold","damp","wet"]};
   for(const [key,vals] of Object.entries(enums)){ const v=q.get(SHARE_KEYS[key]); if(vals.includes(v)) S[key]=v; }
-  for(const key of ["dist","spd","r0","r1","dur","temp","alt","wind","grade","load","rollout"]){
+  for(const key of ["dist","spd","r0","r1","rs","dur","temp","alt","wind","grade","load","rollout"]){
     const v=parseFloat(q.get(SHARE_KEYS[key])); if(Number.isFinite(v)) S[key]=v;
   }
   S.dist=Math.max(5,S.dist); S.spd=Math.max(2,S.spd); S.dur=Math.max(.5,S.dur);
-  S.r0=Math.max(0,S.r0); S.r1=Math.max(S.r0+.1,S.r1); S.rollout=S.rollout?1:0;
+  S.r0=Math.max(0,S.r0); S.r1=Math.max(S.r0+.1,S.r1); S.rs=Math.max(0,S.rs); S.rollout=S.rollout?1:0;
   return {name:q.get("from").trim().slice(0,40) || "A friend",car:host};
 }
 const SHARED=readSharedState();
@@ -3678,14 +3689,21 @@ const PRESETS={
    ======================================================================= */
 function traceFor(c){
   const e=env();
-  if(S.mode==="dist")  return run(c,e,{maxD:S.dist,maxT:90});
+  /* A distance or fixed-time race can be run from a roll: the cars arrive at
+     the line already moving and the clock starts there. A race TO a speed is
+     standing by definition -- its rolling form is the Rolling event. */
+  if(S.mode==="dist")  return run(c,e,{v0:S.rs,maxD:S.dist,maxT:90});
   if(S.mode==="speed") return run(c,e,{maxV:S.spd,maxT:90});
   if(S.mode==="roll")  return run(c,e,{v0:S.r0,maxV:S.r1,maxT:90});
-  return run(c,e,{maxT:S.dur});
+  return run(c,e,{v0:S.rs,maxT:S.dur});
 }
+/* true when the cars are already moving as they reach the line */
+const rollingStart=()=>S.mode==="roll" ? S.r0 : ((S.mode==="dist"||S.mode==="time") ? S.rs : 0);
 /* offset applied so standing times honour the 1-ft rollout convention */
 function rollOff(tr){
-  if(!S.rollout || S.mode==="roll") return 0;
+  /* A 1-ft rollout is how a standing car clears the beams. Off a roll it is
+     meaningless -- the car is through the lights before the clock starts. */
+  if(!S.rollout || S.mode==="roll" || rollingStart()>0) return 0;
   const t0=tAtD(tr,FT); return t0==null?0:t0;
 }
 /* the number the event is decided on. lower wins, unless it's a distance-in-time */
@@ -4084,11 +4102,42 @@ function renderCustom(){
     };
   });
 }
+/* The Start control only exists for the two events that can be run either way:
+   a distance and a fixed time. "To a speed" is standing by definition and
+   "Rolling" already carries its own entry speed. */
+const RS_DEFAULT=()=>vFromU(imp()?50:80);
+/* No tree stages a roll-on, so take it down rather than leave it standing dark.
+   This follows every state change; the Start control itself does not, because
+   re-rendering its input on each refresh would eat keystrokes. */
+function syncTower(){ const tw=$("#tower"); if(tw) tw.hidden=rollingStart()>0; }
+function renderStart(){
+  const wrap=$("#startWrap"), can=S.mode==="dist"||S.mode==="time";
+  wrap.hidden=!can;
+  syncTower();
+  if(!can) return;
+  const on=S.rs>0;
+  setSeg("#startSeg","rs",on?1:0);
+  const f=$("#rsField");
+  f.hidden=!on;
+  if(!on){ f.innerHTML=""; return; }
+  f.innerHTML=`<span class="k">Roll-on speed (${vU()})</span>`
+    +`<input type="number" inputmode="decimal" step="5" min="1" value="${vN(S.rs).toFixed(0)}" `
+    +`id="rsInput" aria-label="Roll-on speed in ${vU()}">`;
+  $("#rsInput").oninput=e=>{
+    const v=parseFloat(e.target.value); if(isNaN(v)) return;
+    S.rs=Math.max(vFromU(1),vFromU(v)); raceHint(); refresh();
+  };
+}
 function raceHint(){
-  const m={dist:`Both cars leave the line together; first to ${dLabel(S.dist)} wins.`,
+  const rs=`${f0(vN(S.rs))} ${vU()}`;
+  const m={dist: S.rs>0
+      ? `Both cars hit the line together at ${rs}; first to ${dLabel(S.dist)} from there wins.`
+      : `Both cars leave the line together; first to ${dLabel(S.dist)} wins.`,
     speed:`Standing start, first to ${f0(vN(S.spd))} ${vU()} wins.`,
     roll:`Rolling start at ${f0(vN(S.r0))} ${vU()}, first to ${f0(vN(S.r1))} ${vU()} wins.`,
-    time:`Both launch together; furthest after ${S.dur} s wins.`};
+    time: S.rs>0
+      ? `Both cars pass the line at ${rs}; furthest after ${S.dur} s wins.`
+      : `Both launch together; furthest after ${S.dur} s wins.`};
   $("#raceHint").textContent=m[S.mode];
 }
 
@@ -5105,7 +5154,13 @@ function drawStrip(pos,spd,clock,finish,acc){
   const laneH=(trackH-pad*2-gapY)/2;
   const lead=Math.max(pos.a,pos.b), split=Math.abs(pos.a-pos.b);
   const total = S.mode==="dist" ? S.dist : Math.max(finish||1,lead,1);
-  const fD = S.mode==="dist" ? S.dist : finish;
+  /* Only a distance race has a finish LINE. Painting chequers at max(dEnd) in
+     the other modes put a flag on the road that nothing was racing to -- in a
+     0-60 it landed on the SLOWER car's 60mph point, ahead of the winner, so
+     the photo showed the winner short of a line it had supposedly won at.
+     camD still frames the far end; fD is now only drawn when it is real. */
+  const camD = S.mode==="dist" ? S.dist : finish;
+  const fD = S.mode==="dist" ? S.dist : 0;
 
   /* The camera zooms to hold both cars: tight off the line where the detail
      is, opening out as they pull apart. It never cuts, it eases. */
@@ -5115,7 +5170,7 @@ function drawStrip(pos,spd,clock,finish,acc){
      pulling toward trap speed. Holding it to 34 keeps that under 5%; the car
      that drops off the back is what the behind-arrow is for. */
   let tSpan=Math.max(22,Math.min(34,split*0.90+19));
-  const tX0=Math.max(-9, Math.min(lead-tSpan*0.62, fD?fD-tSpan*0.60:1e9));
+  const tX0=Math.max(CAMFLOOR, Math.min(lead-tSpan*0.62, camD?camD-tSpan*0.60:1e9));
   if(!cam) cam={span:tSpan,x0:tX0};
   else { cam.span+=(tSpan-cam.span)*0.07; cam.x0+=(tX0-cam.x0)*0.22; }
   const span=cam.span, x0=cam.x0, ppm=w/span;
@@ -5182,6 +5237,22 @@ function drawStrip(pos,spd,clock,finish,acc){
           sx.fillRect(fX-sq*1.5+cN*sq,gy+r*sq,sq,Math.min(sq,apron-r*sq));
         }
     }
+    /* 6b. ...and where the event IS a speed, mark the two places the cars each
+       reached it, in their own lane colours. Two marks, not one, because that
+       is the truth of the event. */
+    if(TGT&&TGT[k]!=null){
+      const px=X(TGT[k]);
+      if(px>-32&&px<w+32){
+        sx.strokeStyle=ink+"BB"; sx.lineWidth=2; sx.setLineDash([5,4]);
+        sx.beginPath(); sx.moveTo(px,gy-bH-2); sx.lineTo(px,gy+apron); sx.stroke();
+        sx.setLineDash([]);
+        sx.fillStyle=ink; sx.textAlign="center";
+        sx.font='700 10px "JetBrains Mono", monospace';
+        sx.fillText(TGTLBL,px,gy-bH-7);
+        sx.font='10px "JetBrains Mono", monospace';
+      }
+    }
+
     /* 7. (the tree is drawn last, in front of the cars) */
 
     /* 8. the car */
@@ -5203,7 +5274,9 @@ function drawStrip(pos,spd,clock,finish,acc){
     /* 9. the tree, standing trackside just past the line -- in front of the car,
        because that is where you would be watching it from */
     const treeX=X(0)+0.75*ppm;
-    if(treeX>-40&&treeX<w+40){
+    /* Nobody stages a roll-on against a tree -- the line is just where the
+       timing starts, so leave it unlit scenery out of the picture entirely. */
+    if(treeX>-40&&treeX<w+40&&!rollingStart()){
       /* once they are gone it is just scenery, so let it fall back */
       sx.globalAlpha=Math.max(0.34,1-Math.max(0,lead-4)/22);
       drawMiniTree(sx,treeX,gy,ppm,ly+3); sx.globalAlpha=1;
@@ -5255,8 +5328,10 @@ function drawStrip(pos,spd,clock,finish,acc){
    RUN + ANIMATE
    ======================================================================= */
 let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null, photoCaptured=false, hasRun=false;
+let TGT=null, TGTLBL="";   /* where each car met a speed target, when that is the event */
+let CAMFLOOR=-9;   /* how far behind the line the camera may sit; the roll-on run-up needs more */
 const RUNOUT=2.4;      /* seconds the cars keep driving after the line, for show */
-function stopAnim(){ if(anim) cancelAnimationFrame(anim); anim=null; running=false; }
+function stopAnim(){ if(anim) cancelAnimationFrame(anim); anim=null; running=false; CAMFLOOR=-9; }
 let ACC={a:0,b:0};
 
 /* A second, longer run per car used ONLY by the strip. Nothing is timed or
@@ -5270,6 +5345,13 @@ function extTrace(c,tEnd){
 function computeTraces(){
   TR={a:traceFor(car(S.a)), b:traceFor(car(S.b))};
   TRX={a:extTrace(car(S.a),TR.a.tEnd), b:extTrace(car(S.b),TR.b.tEnd)};
+  /* A race to a speed is not decided at a line: each car gets there at its own
+     point on the road. Record those two points so the strip can mark them. */
+  if(S.mode==="speed"||S.mode==="roll"){
+    const v=S.mode==="speed"?S.spd:S.r1;
+    TGT={a:at(TR.a,"v",v,"d"), b:at(TR.b,"v",v,"d")};
+    TGTLBL=f0(vN(v))+" "+vU();
+  } else { TGT=null; TGTLBL=""; }
   return TR;
 }
 function liveUpdate(pos,spd,t){
@@ -5290,6 +5372,29 @@ function tree(cb,onstep){
   const seq=[[0,[0]],[320,[0,1]],[700,[0,1,2]],[1200,[0,1,2,3]],[1700,[0,1,2,3,4]],[2200,[5]]];
   seq.forEach(([ms,rowsOn])=>setTimeout(()=>{ show(new Set(rowsOn)); if(ms===2200) cb(); },ms));
 }
+/* A rolling start has no tree. The cars come down the road already at the
+   roll-on speed and the clock starts as they reach the line -- so show that,
+   rather than parking them on the line and pretending. APPROACH is how long
+   the run-up lasts; the cars enter from however far back that speed carries. */
+const APPROACH=1.9;
+function rollApproach(done){
+  const v=rollingStart(), lineD=Math.max(TR.a.dEnd,TR.b.dEnd);
+  const d0=-v*APPROACH, t0=performance.now();
+  CAMFLOOR=d0-9; resetCam();          /* let the camera sit behind the line for the run-up */
+  const step=now=>{
+    const f=Math.min(1,(now-t0)/1000/APPROACH);
+    const d=d0*(1-f);
+    ACC={a:0,b:0};
+    drawStrip({a:d,b:d},{a:v,b:v},0,lineD,ACC);
+    liveUpdate({a:0,b:0},{a:v,b:v});
+    $("#say").textContent = f<1
+      ? `Rolling on at ${f0(vN(v))} ${vU()}\u2026`
+      : "Line. Go.";
+    if(f<1) anim=requestAnimationFrame(step);
+    else { CAMFLOOR=-9; done(); }
+  };
+  anim=requestAnimationFrame(step);
+}
 function startRace(){
   if(running) return;
   stopAnim(); running=true; photoCaptured=false;
@@ -5297,12 +5402,21 @@ function startRace(){
   /* The tree is right there, lit, and the strip draws its own -- saying so in a
      bar only costs height. Screen readers still get it, they cannot see it. */
   $("#verdict").hidden=true;
-  $("#say").textContent="On the tree. Watch the ambers.";
   computeTraces();
   const lineD=Math.max(TR.a.dEnd,TR.b.dEnd);
   ["a","b"].forEach(k=>reached[k].clear()); renderPips();
   /* put the start line on screen before the countdown runs */
   stripC.closest(".panel").scrollIntoView({behavior:REDUCED?"auto":"smooth",block:"center"});
+  const go=()=>{ btn.textContent="Running"; animate(); };
+  const rv=rollingStart();
+  if(rv>0){
+    $("#say").textContent=`Rolling on at ${f0(vN(rv))} ${vU()}\u2026`;
+    treeLit=new Set();
+    if(REDUCED){ drawStrip({a:0,b:0},{a:rv,b:rv},0,lineD,{a:0,b:0}); go(); }
+    else rollApproach(go);
+    return;
+  }
+  $("#say").textContent="On the tree. Watch the ambers.";
   const staged=()=>{ resetCam(); ACC={a:0,b:0};
     drawStrip({a:0,b:0},{a:0,b:0},0,lineD,ACC); liveUpdate({a:0,b:0},{a:0,b:0}); };
   staged();
@@ -5428,11 +5542,24 @@ function captureFinishAt(){
   for(let i=0;i<16;i++) drawStrip(pos,spd,tw,lineD,{a:0,b:0});
   captureFinishPhoto();
 }
+/* What the photo actually shows depends on what decided the race: a line for a
+   distance run, a speed reached for 0-60 or a roll-on, a clock for a sprint. */
+function photoWords(W,L){
+  if(S.mode==="dist") return {head:"Finish-line photo",
+    cap:`Captured as the ${W.md} crossed the ${dLabel(S.dist)} line ahead of the ${L.md}.`,
+    alt:`${W.mk} ${W.md} crossing the line ahead of ${L.mk} ${L.md}`};
+  if(S.mode==="speed"||S.mode==="roll") return {head:"The deciding moment",
+    cap:`Captured as the ${W.md} hit ${TGTLBL}. The dashed mark in each lane is where that car got there — they are not the same place.`,
+    alt:`${W.mk} ${W.md} reaching ${TGTLBL} ahead of ${L.mk} ${L.md}`};
+  return {head:"When the clock stopped",
+    cap:`Captured on the ${S.dur} second mark, with the ${W.md} further down the road than the ${L.md}.`,
+    alt:`${W.mk} ${W.md} ahead of ${L.mk} ${L.md} when the clock stopped`};
+}
 function eventLabel(){
-  if(S.mode==="dist") return dLabel(S.dist);
+  if(S.mode==="dist") return dLabel(S.dist)+(S.rs>0?` from a ${f0(vN(S.rs))} ${vU()} roll`:"");
   if(S.mode==="speed") return `0–${f0(vN(S.spd))} ${vU()}`;
   if(S.mode==="roll") return `${f0(vN(S.r0))}–${f0(vN(S.r1))} ${vU()}`;
-  return `${S.dur} second sprint`;
+  return `${S.dur} second sprint`+(S.rs>0?` from a ${f0(vN(S.rs))} ${vU()} roll`:"");
 }
 function renderResultBoard(){
   const ra=result(TR.a), rb=result(TR.b), hi=higherWins();
@@ -5440,7 +5567,8 @@ function renderResultBoard(){
     $("#resultStats").innerHTML=[["Result","Neither car reached the target"],["Event",eventLabel()],
       [car(S.a).md+" finish speed",f1(vN(TR.a.vEnd))+" "+vU()],[car(S.b).md+" finish speed",f1(vN(TR.b.vEnd))+" "+vU()]]
       .map(([k,v])=>`<div class="stat"><b>${k}</b><span>${v}</span></div>`).join("");
-    $("#finishCaption").textContent=`Both cars at the end of the simulated ${eventLabel()} attempt.`;
+    $("#photoHead").textContent="Neither car got there";
+    $("#finishCaption").textContent=`Both cars at the end of the simulated ${eventLabel()} attempt — neither reached the target.`;
     $("#finishPhoto").setAttribute("aria-label","Both cars at the end of an unfinished race");
     return;
   }
@@ -5455,8 +5583,10 @@ function renderResultBoard(){
     [`${W.md} finish speed`,finishSpeed(wk)],[`${L.md} finish speed`,finishSpeed(lk)]
   ];
   $("#resultStats").innerHTML=stats.map(([k,v])=>`<div class="stat"><b>${k}</b><span>${v}</span></div>`).join("");
-  $("#finishCaption").textContent=`Captured as ${W.md} decided the ${eventLabel()} against ${L.md}.`;
-  $("#finishPhoto").setAttribute("aria-label",`${W.mk} ${W.md} crossing ahead of ${L.mk} ${L.md}`);
+  const pw=photoWords(W,L);
+  $("#photoHead").textContent=pw.head;
+  $("#finishCaption").textContent=pw.cap;
+  $("#finishPhoto").setAttribute("aria-label",pw.alt);
 }
 function renderSlips(){
   if(awaitingOpponent){ $("#slips").innerHTML=""; return; }
@@ -5751,14 +5881,15 @@ function renderAdvSummary(){
   el.style.color=off?"var(--amber)":"var(--ink3)";
 }
 function refresh(){
-  raceHint(); renderAdvSummary();
+  raceHint(); renderAdvSummary(); syncTower();
   const need=!TR||!running;
   if(need){ computeTraces(); }
   const posEnd={a:TR.a.dEnd,b:TR.b.dEnd}, spdEnd={a:TR.a.vEnd,b:TR.b.vEnd};
   if(!running){
     /* idle: both cars sitting on the line, so you can see what you have picked */
     resetCam();
-    drawStrip({a:0,b:0},{a:0,b:0},0,Math.max(TR.a.dEnd,TR.b.dEnd),{a:0,b:0});
+    const idleV=rollingStart();
+    drawStrip({a:0,b:0},{a:idleV,b:idleV},0,Math.max(TR.a.dEnd,TR.b.dEnd),{a:0,b:0});
     liveUpdate(posEnd,spdEnd);
     renderVerdict(); renderSlips(); drawChart(); settlePips();
   }
@@ -5826,8 +5957,13 @@ function init(){
   COMBO.a=combo("a"); COMBO.b=combo("b");
   setSeg("#modeSeg","mode",S.mode); setSeg("#unitSeg","u",S.units); setSeg("#surfSeg","s",S.surf);
   setSeg("#rollSeg","r",S.rollout); setSeg("#axisSeg","x",S.xaxis); setSeg("#rateSeg","p",S.rate);
-  segWire("#modeSeg","mode",m=>{ S.mode=m; renderPresets(); renderCustom(); refresh(); });
-  segWire("#unitSeg","u",u=>{ S.units=u; renderPresets(); renderCustom(); refresh(); });
+  segWire("#modeSeg","mode",m=>{ S.mode=m; renderStart(); renderPresets(); renderCustom(); refresh(); });
+
+  $$("#startSeg button").forEach(b=>b.onclick=()=>{
+    S.rs = b.dataset.rs==="1" ? (S.rs>0?S.rs:RS_DEFAULT()) : 0;
+    renderStart(); refresh();
+  });
+  segWire("#unitSeg","u",u=>{ S.units=u; renderStart(); renderPresets(); renderCustom(); refresh(); });
   segWire("#surfSeg","s",s=>{ S.surf=s; refresh(); });
   segWire("#rollSeg","r",r=>{ S.rollout=+r; refresh(); });
   segWire("#axisSeg","x",x=>{ S.xaxis=x; drawChart(); });
@@ -5845,7 +5981,7 @@ function init(){
   const rdlg=$("#resultDialog");
   $("#closeResult").onclick=()=>rdlg.close();
   rdlg.addEventListener("click",e=>{ if(e.target===rdlg) rdlg.close(); });
-  renderCar("a"); renderCar("b"); renderPresets(); renderCustom(); renderNotes(); refresh();
+  renderCar("a"); renderCar("b"); renderStart(); renderPresets(); renderCustom(); renderNotes(); refresh();
   addEventListener("resize",()=>{ if(!running) refresh(); else drawChart(); });
   $("#race").textContent="Stage";
 }
