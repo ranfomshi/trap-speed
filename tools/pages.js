@@ -55,7 +55,10 @@ function lookup(q,near){
      odd spelling is not lost. */
   const words=c=>norm(`${c.mk} ${c.md}`).split(" ");
   const whole=CARS.filter(c=>{ const w=words(c); return toks.every(t=>w.includes(t)); });
+  /* The fallback is for odd spellings, not for two-letter fragments: "se"
+     matched the "se" inside "PHASE" and returned a 1971 Falcon. */
   const pool=whole.length ? whole
+    : toks.some(t=>t.length<3) ? []
     : CARS.filter(c=>{ const h=norm(`${c.mk} ${c.md}`); return toks.every(t=>h.includes(t)); });
   let best=null, bestScore=-1e9;
   for(const c of pool){
@@ -124,13 +127,18 @@ const PREFER={
   "lamborghini huracan":"perf",                     /* no closed base car exists in the data */
   "aston martin vantage":"aston-martin-vantage-amr",/* not the 1999 DB7 that carries the word */
   "porsche 911":        "porsche-911-carrera-991",
-  "toyota supra":       "toyota-supra-a90"
+  "toyota supra":       "toyota-supra-a90",
+  "tesla":              "plaid"
 };
 
 const rows=JSON.parse(fs.readFileSync(path.join(ROOT,"data/pairs.json"),"utf8"));
 const seen=new Map();
 for(const r of rows){
   if(DROP.has(r.phrase)) continue;
+  /* Autocomplete answers "jaguar f-type vs" with "jaguar f pace vs bmw x3".
+     The phrase is a real question; it is just not a question about the seed,
+     and pairing an F-Type with an X3 is nobody's question at all. */
+  if(!clean(r.phrase).startsWith(clean(r.seed))) continue;
   const ov=OVERRIDE[r.phrase];
   let A=ov?CARS.find(c=>c.id===ov[0]):resolve(r.seed);
   if(!A) continue;

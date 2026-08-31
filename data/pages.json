@@ -56,6 +56,14 @@
   "label": "BMW 330i E90 272 PS vs BMW 340i F30"
  },
  {
+  "a": "audi-s3-sportback",
+  "b": "audi-rs3-sedan-8y-facelift",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "audi s3 vs rs3",
+  "label": "Audi S3 Sportback vs Audi RS3 Sedan 8Y Facelift"
+ },
+ {
   "a": "audi-rs4-avant-b9",
   "b": "audi-rs6-performance",
   "weight": 1,
@@ -70,14 +78,6 @@
   "rank": 0,
   "phrase": "audi rs6 vs rs7",
   "label": "Audi RS6 Avant Performance C8 vs Audi RS7 Sportback Performance 4K8"
- },
- {
-  "a": "audi-s3-sportback",
-  "b": "audi-rs3-sedan-8y-facelift",
-  "weight": 1,
-  "rank": 0,
-  "phrase": "audi s3 vs rs3",
-  "label": "Audi S3 Sportback vs Audi RS3 Sedan 8Y Facelift"
  },
  {
   "a": "mercedes-benz-c63-amg-coupe",
@@ -360,14 +360,6 @@
   "label": "BMW M2 (G87) vs BMW M3 G80"
  },
  {
-  "a": "bmw-m5-g90-pre-facelift-2024",
-  "b": "bmw-m850i-xdrive",
-  "weight": 0.5,
-  "rank": 1,
-  "phrase": "bmw m5 vs m8",
-  "label": "BMW M5 G90 vs BMW M850i Gran Coupe G16"
- },
- {
   "a": "mercedes-benz-e63-amg",
   "b": "bmw-m5-g90-pre-facelift-2024",
   "weight": 0.5,
@@ -390,6 +382,14 @@
   "rank": 1,
   "phrase": "audi rs4 vs rs5",
   "label": "Audi RS4 Avant B9 vs Audi RS5 B10"
+ },
+ {
+  "a": "audi-rs5-b10",
+  "b": "audi-s5-b10",
+  "weight": 0.5,
+  "rank": 1,
+  "phrase": "audi rs5 vs s5",
+  "label": "Audi RS5 B10 vs Audi S5 B10"
  },
  {
   "a": "audi-rs6-avant-gt",
@@ -544,14 +544,6 @@
   "label": "Mclaren 570S vs Mclaren 570GT"
  },
  {
-  "a": "hyundai-i30-n-pd",
-  "b": "hyundai-veloster-1-6-gdi",
-  "weight": 0.5,
-  "rank": 1,
-  "phrase": "hyundai i30 n vs veloster n",
-  "label": "Hyundai i30 N Mk III vs Hyundai Veloster 1.6 GDi 140 PS"
- },
- {
   "a": "jaguar-f-type-coupe",
   "b": "jaguar-xk-cabriolet",
   "weight": 0.5,
@@ -598,6 +590,14 @@
   "rank": 2,
   "phrase": "bmw m135i vs audi s3",
   "label": "BMW M135i F20 vs Audi S3 Sportback"
+ },
+ {
+  "a": "audi-rs4",
+  "b": "audi-s4",
+  "weight": 0.3333333333333333,
+  "rank": 2,
+  "phrase": "audi rs4 vs s4",
+  "label": "Audi RS4 B7 vs Audi S4 B6"
  },
  {
   "a": "audi-rs5-b10",
@@ -689,11 +689,11 @@
  },
  {
   "a": "fiestast",
-  "b": "ford-fiesta-rs1800",
+  "b": "ford-focus-rs-2009",
   "weight": 0.3333333333333333,
   "rank": 2,
   "phrase": "ford fiesta st vs rs",
-  "label": "Ford Fiesta ST (Mk8) vs Ford Fiesta RS1800"
+  "label": "Ford Fiesta ST (Mk8) vs Ford Focus RS"
  },
  {
   "a": "honda-integra-type-r",
@@ -702,14 +702,6 @@
   "rank": 2,
   "phrase": "honda integra type r vs civic type r",
   "label": "Honda Integra Type R DC2 vs Honda Civic Type R (FK8)"
- },
- {
-  "a": "gryaris",
-  "b": "gr86",
-  "weight": 0.3333333333333333,
-  "rank": 2,
-  "phrase": "toyota gr yaris vs gr 86",
-  "label": "Toyota GR Yaris vs Toyota GR86"
  },
  {
   "a": "gr86",
@@ -822,14 +814,6 @@
   "rank": 2,
   "phrase": "mini jcw vs s",
   "label": "MINI Cooper JCW 231 PS vs MINI Cooper S 184 PS"
- },
- {
-  "a": "bmw-m4-coup",
-  "b": "bmw-m850i-xdrive",
-  "weight": 0.25,
-  "rank": 3,
-  "phrase": "bmw m4 vs m8",
-  "label": "BMW M4 G82 vs BMW M850i Gran Coupe G16"
  },
  {
   "a": "bmw-m5-g90-pre-facelift-2024",
@@ -960,14 +944,6 @@
   "label": "Honda Integra Type R DC2 vs Honda S2000 Type V"
  },
  {
-  "a": "toyota-supra-a90",
-  "b": "nissan-370z",
-  "weight": 0.25,
-  "rank": 3,
-  "phrase": "toyota supra vs nissan z",
-  "label": "Toyota GR Supra Mk V 340 PS vs Nissan 370Z"
- },
- {
   "a": "m3p",
   "b": "bmw-m3-n-a",
   "weight": 0.25,
@@ -1038,5 +1014,269 @@
   "rank": 3,
   "phrase": "mclaren 720s vs p1",
   "label": "McLaren 720S vs Mclaren P1"
+ },
+ {
+  "a": "mclaren-570s",
+  "b": "mclaren-600lt-spider",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "mclaren 570s vs 600lt",
+  "label": "Mclaren 570S vs Mclaren 600LT Spider"
+ },
+ {
+  "a": "alpine-a110",
+  "b": "lotus-emira-turbo-se",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "alpine a110 vs lotus emira",
+  "label": "Alpine A110 Mk II vs Lotus Emira Turbo SE"
+ },
+ {
+  "a": "lotus-emira-turbo-se",
+  "b": "porsche-911-carrera-991",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "lotus emira vs porsche 911",
+  "label": "Lotus Emira Turbo SE vs Porsche 911 Carrera 991"
+ },
+ {
+  "a": "lotus-elise-1-6",
+  "b": "tesla-roadster",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "lotus elise vs tesla roadster",
+  "label": "Lotus Elise 1.6 vs Tesla Roadster"
+ },
+ {
+  "a": "renault-megane-rs-mk-iv",
+  "b": "hyundai-i30n-performance",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "renault megane rs vs hyundai i30n",
+  "label": "Renault Megane RS MK IV 280 PS vs Hyundai I30N Performance Mk III"
+ },
+ {
+  "a": "aston-martin-vantage-amr",
+  "b": "aston-martin-v8-vantage-s-n-a",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "aston martin vantage vs vantage s",
+  "label": "Aston Martin Vantage AMR Mk II vs Aston Martin Vantage S MK II facelift"
+ },
+ {
+  "a": "c8",
+  "b": "chevrolet-zr1-base",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "corvette c8 vs zr1",
+  "label": "Chevrolet Corvette C8 Stingray vs Chevrolet Corvette ZR1 C8"
+ },
+ {
+  "a": "hellcat",
+  "b": "bmw-m5-f90-competition",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "dodge charger hellcat vs bmw m5 competition",
+  "label": "Dodge Charger SRT Hellcat vs BMW M5 Competition F90"
+ },
+ {
+  "a": "mini-cooper-jcw-f66-pre-facelift",
+  "b": "mini-cooper-s-184-ps",
+  "weight": 0.25,
+  "rank": 3,
+  "phrase": "mini jcw vs cooper s",
+  "label": "MINI Cooper JCW F66) (Pre-Facelift vs MINI Cooper S 184 PS"
+ },
+ {
+  "a": "bmw-m3-n-a",
+  "b": "bmw-m3-competition-n-a",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "bmw m3 vs m3 competition",
+  "label": "BMW M3 G80 vs BMW M3 Competition G80"
+ },
+ {
+  "a": "mercedes-benz-c63-amg-coupe",
+  "b": "bmw-m3-n-a",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "mercedes c63 vs bmw m3",
+  "label": "Mercedes-Benz C63 AMG Coupe vs BMW M3 G80"
+ },
+ {
+  "a": "m2g87",
+  "b": "bmw-m240i-g42",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "bmw m2 vs m240i",
+  "label": "BMW M2 (G87) vs BMW M240i G42"
+ },
+ {
+  "a": "bmw-m135i",
+  "b": "bmw-m235i",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "bmw m135i vs m235i",
+  "label": "BMW M135i F20 vs BMW M235i"
+ },
+ {
+  "a": "bmw-m140i",
+  "b": "m2g87",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "bmw m140i vs m2",
+  "label": "BMW M140i vs BMW M2 (G87)"
+ },
+ {
+  "a": "bmw-330i-2006",
+  "b": "bmw-320i",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "bmw 330i vs 320i",
+  "label": "BMW 330i E90 272 PS vs BMW 320i E90"
+ },
+ {
+  "a": "audi-rs4-avant-b9",
+  "b": "audi-rs3-sedan-8y-facelift",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "audi rs4 vs rs3",
+  "label": "Audi RS4 Avant B9 vs Audi RS3 Sedan 8Y Facelift"
+ },
+ {
+  "a": "audi-rs6-2012",
+  "b": "audi-r8-lmx",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "audi rs6 vs r8",
+  "label": "Audi RS6 C7 vs Audi R8 LMX"
+ },
+ {
+  "a": "audi-s3-sportback",
+  "b": "audi-s5-b10",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "audi s3 vs s5",
+  "label": "Audi S3 Sportback vs Audi S5 B10"
+ },
+ {
+  "a": "992gt3",
+  "b": "porsche-911-gt3-touring-package",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "porsche 911 gt3 vs gt3 touring",
+  "label": "Porsche 911 GT3 (992) vs Porsche 911 GT3 Touring Package 991 facelift"
+ },
+ {
+  "a": "porsche-911-turbo-992",
+  "b": "porsche-911-carrera-4-gts-992-facelift",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "porsche 911 turbo vs gts",
+  "label": "Porsche 911 Turbo 992 vs Porsche 911 Carrera 4 GTS 992 facelift"
+ },
+ {
+  "a": "porsche-718-cayman",
+  "b": "porsche-718-cayman-s",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "porsche cayman vs cayman s",
+  "label": "Porsche 718 Cayman vs Porsche 718 Cayman S"
+ },
+ {
+  "a": "porsche-718-boxster",
+  "b": "bmw-z4-20i",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "porsche boxster vs bmw z4",
+  "label": "Porsche 718 Boxster vs BMW Z4 20i G29"
+ },
+ {
+  "a": "porsche-taycan-gts-facelift",
+  "b": "plaid",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "porsche taycan vs tesla",
+  "label": "Porsche Taycan GTS Facelift vs Tesla Model S Plaid"
+ },
+ {
+  "a": "porsche-macan-n-a",
+  "b": "bmw-x5-xdrive50e",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "porsche macan vs bmw x5",
+  "label": "Porsche Macan 265 PS vs BMW X5 xDrive50e G05) (Facelift"
+ },
+ {
+  "a": "fiestast",
+  "b": "honda-fit-sport",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "ford fiesta st vs honda fit",
+  "label": "Ford Fiesta ST (Mk8) vs Honda Fit Sport"
+ },
+ {
+  "a": "ford-focus-rs-2009",
+  "b": "wrxsti",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "ford focus rs vs wrx sti",
+  "label": "Ford Focus RS vs Subaru WRX STI"
+ },
+ {
+  "a": "nissan-gt-r-r35-550-ps",
+  "b": "porsche-911-carrera-991",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "nissan gtr vs porsche 911",
+  "label": "Nissan GT-R R35 550 PS vs Porsche 911 Carrera 991"
+ },
+ {
+  "a": "nissan-370z",
+  "b": "infiniti-g37-sedan",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "nissan 370z vs infiniti g37",
+  "label": "Nissan 370Z vs Infiniti G37 Sedan"
+ },
+ {
+  "a": "wrxsti",
+  "b": "subaru-impreza-wrx-sti-ts",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "subaru wrx sti vs ts",
+  "label": "Subaru WRX STI vs Subaru Impreza WRX STI tS"
+ },
+ {
+  "a": "perf",
+  "b": "lamborghini-huracn-evo-rwd",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "lamborghini huracan vs evo",
+  "label": "Lamborghini Huracan Performante vs Lamborghini Huracán Evo RWD"
+ },
+ {
+  "a": "488",
+  "b": "perf",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "ferrari 488 vs lamborghini huracan",
+  "label": "Ferrari 488 GTB vs Lamborghini Huracan Performante"
+ },
+ {
+  "a": "720s",
+  "b": "perf",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "mclaren 720s vs lamborghini huracan",
+  "label": "McLaren 720S vs Lamborghini Huracan Performante"
+ },
+ {
+  "a": "ferrari-f8-tributo",
+  "b": "ferrari-488-pista-spider",
+  "weight": 0.2,
+  "rank": 4,
+  "phrase": "ferrari f8 vs 488 pista",
+  "label": "Ferrari F8 Tributo vs Ferrari 488 Pista Spider"
  }
 ]
