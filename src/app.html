@@ -1,3 +1,10 @@
+<script>
+/* Embed mode has to be known before the markup below is parsed -- setting it
+   at the end of the script (where it used to live) let the frame paint the
+   full desktop UI first, then snap to the strip. */
+try{ if(new URLSearchParams(location.search).get("embed")==="1")
+       document.documentElement.classList.add("embed"); }catch(e){}
+</script>
 <title>Trap Speed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -284,17 +291,20 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 
 /* ?embed=1 -- the sim dropped into a comparison page: keep the strip, the tree
    and the verdict, drop everything you would only want on the full site. */
-body.embed .mast, body.embed .card, body.embed .slips, body.embed footer,
-body.embed details, body.embed .panel:not(.stripwrap){display:none}
-body.embed .wrap{padding:10px;max-width:none}
-body.embed .lanes{grid-template-columns:1fr;gap:8px}
-body.embed .tree{order:0;flex-direction:row;align-items:center;justify-content:center;gap:14px}
-body.embed .tower{display:none}          /* the strip draws its own tree */
-body.embed .vs{display:none}
-body.embed .tree .go-btn{width:auto;padding:10px 30px}
-body.embed .verdict{margin-top:8px}
-body.embed .embed-back{display:block}
-body.embed .wrap>p.embed-back:not(:last-of-type){display:none}
+.embed .mast, .embed .card, .embed .slips, .embed footer,
+.embed details, .embed .panel:not(.stripwrap){display:none}
+.embed .wrap{padding:10px;max-width:none}
+.embed .lanes{grid-template-columns:1fr;gap:8px}
+.embed .tree{order:0;flex-direction:row;align-items:center;justify-content:center;gap:14px}
+.embed .tower{display:none}          /* the strip draws its own tree */
+.embed .vs{display:none}
+.embed .tree .go-btn{width:auto;padding:10px 30px}
+.embed .verdict{margin-top:8px}
+.embed .embed-back{display:block}
+/* The comparisons index belongs on the standalone page; inside a frame that a
+   comparison page owns, the useful exit is the full simulator. */
+.vslink{display:block;margin-top:18px}
+.embed .vslink{display:none}
 .embed-back{display:none;text-align:center;margin-top:9px;font:600 10px var(--cond);
   letter-spacing:.16em;text-transform:uppercase}
 .embed-back a{color:var(--ink3);text-decoration:none}
@@ -540,7 +550,7 @@ body.embed .wrap>p.embed-back:not(:last-of-type){display:none}
 
   <p class="embed-back"><a href="./" target="_blank" rel="noopener">Open the full simulator &rarr;</a></p>
 
-  <p class="embed-back" style="display:block;margin-top:18px"><a href="vs/">Head-to-head comparisons &rarr;</a></p>
+  <p class="embed-back vslink"><a href="vs/">Head-to-head comparisons &rarr;</a></p>
 
   <footer>Trap Speed &mdash; a simulator. Real elapsed times depend on the track, the air, the tyres and the driver.<br>
     Acceleration figures from <a href="https://accelerationtimes.com">accelerationtimes.com</a> and
@@ -5811,6 +5821,16 @@ function init(){
   $("#race").textContent="Stage";
 }
 init();
+/* The comparison pages hold their own loading panel over this frame. Tell them
+   when it is worth looking at -- which is after the condensed face lands and
+   the badges are rebaked below, not merely when init() returns. */
+if(document.documentElement.classList.contains("embed")){
+  let told=false;
+  const _ready=()=>{ if(told) return; told=true;
+    try{ parent.postMessage({trapspeed:"ready"},"*"); }catch(e){} };
+  if(document.fonts) document.fonts.ready.then(()=>requestAnimationFrame(_ready));
+  setTimeout(_ready,2500);          /* fonts.ready can hang; never strand the host */
+}
 /* badges are baked to images, so any that were drawn before the condensed face
    arrived need baking again */
 if(document.fonts) document.fonts.ready.then(()=>{ _mkURL.clear(); renderCar("a"); renderCar("b"); refresh(); });
