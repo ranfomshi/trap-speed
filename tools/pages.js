@@ -128,7 +128,13 @@ const PREFER={
   "aston martin vantage":"aston-martin-vantage-amr",/* not the 1999 DB7 that carries the word */
   "porsche 911":        "porsche-911-carrera-991",
   "toyota supra":       "toyota-supra-a90",
-  "tesla":              "plaid"
+  "tesla":              "plaid",
+  /* a bare make name means the car the make is known for, not its halo car:
+     "audi rs6 vs ferrari" is not a question about an F80 */
+  "ferrari":            "488",
+  "lamborghini":        "perf",
+  "mclaren":            "720s",
+  "porsche":            "porsche-911-carrera-991"
 };
 
 const rows=JSON.parse(fs.readFileSync(path.join(ROOT,"data/pairs.json"),"utf8"));

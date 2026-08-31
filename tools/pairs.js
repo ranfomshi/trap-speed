@@ -36,22 +36,34 @@ async function suggest(q){
   return (JSON.parse(await r.text())[1]||[]);
 }
 
+/* Autocomplete returns ten suggestions per query, so "bmw m3 vs " only ever
+   yields the ten most-searched rivals. Asking again for each opening letter --
+   "bmw m3 vs a", "... vs b" -- walks the same ranking twenty-six more times and
+   reaches the long tail, where the pages nobody else has bothered to build are.
+   Rank is kept per query, so a letter's top hit does not outrank the overall
+   top hit: a letter-expanded row is discounted for being a narrower question. */
+const DEEP=process.argv.includes("--deep");
+const TAILS=DEEP?[""].concat("abcdefghijklmnopqrstuvwxyz".split("")):[""];
+
 (async()=>{
   const rows=[];
   for(const car of SEED){
+   for(const tail of TAILS){
     let out=[];
-    try{ out=await suggest(car+" vs "); }
-    catch(e){ console.error("  skip",car,e.message); }
+    try{ out=await suggest(car+" vs "+tail); }
+    catch(e){ console.error("  skip",car,tail,e.message); }
     out.forEach((phrase,rank)=>{
       const m=/^(.*?)\s+vs\.?\s+(.+)$/i.exec(phrase);
       if(!m) return;
       const b=m[2].trim();
       if(/\bvs\b/i.test(b)) return;                 /* three-way comparisons */
       /* rank 0 is the most searched; weight accordingly */
-      rows.push({seed:car, other:b, rank, weight:1/(rank+1), phrase});
+      rows.push({seed:car, other:b, rank, phrase,
+                 weight:(tail?0.45:1)/(rank+1)});
     });
-    process.stdout.write(".");
-    await sleep(320);                               /* be a good citizen */
+    await sleep(DEEP?170:320);                      /* be a good citizen */
+   }
+   process.stdout.write(".");
   }
   console.log("\nharvested",rows.length,"comparisons from",SEED.length,"seeds");
   const out=path.join(__dirname,"..","data"); fs.mkdirSync(out,{recursive:true});

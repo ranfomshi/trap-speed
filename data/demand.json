@@ -1,0 +1,6330 @@
+[
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 m3",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 m4",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 330i",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 fastest",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 i3",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 m5",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 x5",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "bmw 0-60 ",
+  "phrase": "bmw 0 60 m2",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw i8",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m4",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw s1000rr",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m3",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m4 competition",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m5",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m2",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m5 competition",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw m8",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bmw ",
+  "phrase": "how fast is a bmw 330i",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw quarter mile record",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw quarter mile times",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw m3 quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw m2 quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw i8 quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw m4 quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw m5 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw m340i quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw s1000rr quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "bmw quarter mile ",
+  "phrase": "bmw m8 quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche 0-60 by model",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche 0-60 speed",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche 0-60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche 911 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche 0 60 fastest",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche suv 0-60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche taycan 0-60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche macan 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "porsche 0-60 ",
+  "phrase": "porsche cayenne 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche 911",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche 911 gt3 rs",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche cayenne",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche 911 turbo s",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche gt3 rs",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche macan",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche taycan",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche 911 gt3",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche gt3",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a porsche ",
+  "phrase": "how fast is a porsche cayman",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche quarter mile times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche 911 quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche taycan quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche gt3 quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche 911 quarter mile time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche gt3rs quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche 918 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche cayenne quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "fastest porsche quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "porsche quarter mile ",
+  "phrase": "porsche gt3 quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi 0 60 s5",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi 0 60 a4",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi rs3 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi s3 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi s4 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi r8 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi rs5 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "audi 0-60 ",
+  "phrase": "audi rs7 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi r8",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi a4",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi a6",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi s5",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi rs7",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi s3",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi rs3",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi rs6",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi a3",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a audi ",
+  "phrase": "how fast is a audi tt",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi rs3 quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi r8 quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi s5 quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi rs7 quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi rs5 quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi s3 quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi rs6 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi r8 quarter mile time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi s4 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "audi quarter mile ",
+  "phrase": "audi rs3 quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz 0-60",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz 0 60 times",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz c300 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz e350 0-60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz eqs 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz cla 0-60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz s580 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz s550 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz e450 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "mercedes-benz 0-60 ",
+  "phrase": "mercedes benz amg 0-60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz c300",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz amg",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz cla 250",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz s class",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz g wagon",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz amg gt",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes benz maybach",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes c class",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mercedes-benz ",
+  "phrase": "how fast is a mercedes e class",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford 0 60 months",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford raptor 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford lightning 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford gt 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford explorer 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford maverick 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford mustang 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "ford 0-60 ",
+  "phrase": "ford bronco 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford raptor",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford gt",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford mustang",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford explorer st",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford lightning",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford mustang gt",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford focus st",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford model t",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford f150",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ford ",
+  "phrase": "how fast is a ford focus rs",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford gt quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford lightning quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford raptor quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford raptor quarter mile time",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford lightning quarter mile time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford gt quarter mile time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford mustang quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford maverick quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford f150 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "ford quarter mile ",
+  "phrase": "ford gtd quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw gti 0 60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw arteon 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw atlas 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw tiguan 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw jetta 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw id 4 0-60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw golf 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "vw 0-60 ",
+  "phrase": "vw taos 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw beetle",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw golf gti",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw id3",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw id 4",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw golf r",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw gti",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw scirocco",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw golf",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw tiguan",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a vw ",
+  "phrase": "how fast is a vw jetta",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw gti quarter mile time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw arteon quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw gli quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw gti quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw tiguan quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw golf quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw atlas quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw id4 quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "fastest vw quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "vw quarter mile ",
+  "phrase": "vw r32 quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari 0-60 time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari 0-60 speed",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari 0-60 mph",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari 0-60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari 0 60 mph time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari 0 60 fastest",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari zero to 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari roma 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari sf90 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari 0-60 ",
+  "phrase": "ferrari f40 0-60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari f40",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari sf90",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari 0 to 60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari f80",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari enzo",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari testarossa",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari f50",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari roma",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari 812",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a ferrari ",
+  "phrase": "how fast is a ferrari luce",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari quarter mile time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari 1 4 mile time",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari 1/4 mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari sf90 quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari f80 quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari 458 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari 488 quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari f40 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "ferrari quarter mile ",
+  "phrase": "ferrari roma quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xf 0 60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xkr 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xj220 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xe 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar svr 0-60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xj 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xk8 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar 0-60 ",
+  "phrase": "jaguar xk 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar animal",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar cat",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar f-type",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar car",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar xf",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar e type",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar f pace",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar xj220",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar compared to a cheetah",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a jaguar ",
+  "phrase": "how fast is a jaguar f type r",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xkr quarter mile time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xf quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xj220 quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xkr quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar svr quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xf quarter mile time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xjr quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar xj220 quarter mile time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar f type quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "jaguar quarter mile ",
+  "phrase": "jaguar f type quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0-60 time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0-60 mph time",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0 60 speed",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0-60 mph",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0 60 huracan",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini urus 0-60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0 60 aventador",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0 60 list",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini 0-60 ",
+  "phrase": "lamborghini 0 60 in 1.8 seconds",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini urus",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini huracan",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini aventador",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini revuelto",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini svj",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini countach",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini gallardo",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini go",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini veneno",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lamborghini ",
+  "phrase": "how fast is a lamborghini aventador svj",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini quarter mile time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini quarter mile speed",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini 1 4 mile time",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini 1/4 mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini 1/4 mile record",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini huracan quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini urus quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini aventador quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lamborghini quarter mile ",
+  "phrase": "lamborghini temerario quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina 0-60",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina xb7 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina b7 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina b8 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "x7 alpina 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina b6 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina b3 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "bmw alpina 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina b5 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "alpina 0-60 ",
+  "phrase": "alpina d3 0-60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "how fast is a bmw alpina",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "how fast is the alpina b7",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "how fast is the alpina xb7",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "how fast is the alpina b8",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "is alpina worth it",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "how long is the via alpina",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "what is alpina",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "who makes alpina",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alpina ",
+  "phrase": "is alpina a good brand",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "alpina b7 quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "alpina xb7 quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "alpina b8 quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "alpina b6 quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "x7 alpina quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "alpina xb7 quarter mile time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "2022 alpina b7 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "2018 alpina b7 quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "2016 alpina b6 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "alpina quarter mile ",
+  "phrase": "is alpina worth it",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin 0 60 vantage",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin valkyrie 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin dbx 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin vanquish 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin valhalla 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin db12 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin db9 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin 0-60 ",
+  "phrase": "aston martin db11 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin valkyrie",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin db9",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin vantage",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin vulcan",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin valhalla",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is aston martin dbs",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin db11",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin v8 vantage",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a aston martin ",
+  "phrase": "how fast is a aston martin dbx",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin quarter mile time",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin valkyrie quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin vantage quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin valhalla quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin vanquish quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin db12 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin valkyrie quarter mile time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin dbx quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "aston martin quarter mile ",
+  "phrase": "aston martin db9 quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet 0 60 months",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevy 0 60 times",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "gm 0 60 months",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet ss 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet camaro 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet corvette 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet trax 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet 0-60 ",
+  "phrase": "chevrolet traverse 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet camaro",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet corvette",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet corvette stingray",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet camaro zl1",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet corvette zr1",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet silverado",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet corvette z06",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet corvette c8",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a chevrolet ",
+  "phrase": "how fast is a chevrolet tahoe",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet ss quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet zr1x quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet corvette quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet corvette zr1x quarter mile time",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet corvette zr1 quarter mile time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet corvette z06 quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet camaro zl1 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevrolet corvette zr1x quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "chevrolet quarter mile ",
+  "phrase": "chevy volt quarter mile time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus 0 60 emira",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus 0 60 speed",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus zero to 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus evija 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus elise 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus evora 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus carlton 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lotus 0-60 ",
+  "phrase": "lotus eletre 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus emira",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus car",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus elise",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus carlton",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus evora",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus evija",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus esprit",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus exige",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lotus ",
+  "phrase": "how fast is a lotus esprit turbo",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus quarter mile time",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus 1/4 mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus 1 4 mile time",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus emira quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus evija quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus emira quarter mile time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus evora quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus evija quarter mile time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lotus quarter mile ",
+  "phrase": "lotus elise quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota gr86 0 60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota supra 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota camry 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota crown 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota corolla 0-60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota prius 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota 86 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "toyota 0-60 ",
+  "phrase": "toyota tacoma 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota supra",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota camry",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota gr86",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota supra mk4",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota corolla",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota 86",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota prius",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota corolla gr",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota crown",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a toyota ",
+  "phrase": "how fast is a toyota rav4",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota supra quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota supra quarter mile time",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota gr86 quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota 86 quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota camry quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota gr86 quarter mile time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota tundra quarter mile time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota corolla quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota corolla gr quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "toyota quarter mile ",
+  "phrase": "toyota gr gt quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault 5 0-60",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault clio 0-60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault zoe 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault twizy 0-60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault captur 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault austral 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault 5 0 60 time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault 4 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault symbioz 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "renault 0-60 ",
+  "phrase": "renault twingo 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault twizy",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault clio",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault 5 gt turbo",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault megane rs",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault captur",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault megane",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a renault 5",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast is a formula renault car",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a renault ",
+  "phrase": "how fast does a renault twizy go",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "renault quarter mile ",
+  "phrase": "renault clio v6 quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "renault quarter mile ",
+  "phrase": "renault 5 gt turbo quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo 0-60 time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo 0-60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo giulia 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo 4c 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo stelvio 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo quadrifoglio 0-60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo tonale 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo giulia 0 60 time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo junior 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo 0-60 ",
+  "phrase": "alfa romeo 8c 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a alfa romeo giulia",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a alfa romeo stelvio",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a alfa romeo",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a alfa romeo 4c",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a 2017 alfa romeo giulia",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a 2018 alfa romeo giulia",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a 2019 alfa romeo giulia",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is a 2020 alfa romeo giulia",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast is alfa romeo giulia quadrifoglio",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a alfa romeo ",
+  "phrase": "how fast does a alfa romeo go",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo 1/4 mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo 4c quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo giulia quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo giulia quarter mile time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo quadrifoglio quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo stelvio quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo 4c quarter mile time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo quadrifoglio quarter-mile time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "alfa romeo quarter mile ",
+  "phrase": "alfa romeo stelvio quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley 0-60 time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley 0-60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley bentayga 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley continental 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley gt 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley mulsanne 0-60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley suv 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley bentayga 0 60 time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley w12 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "bentley 0-60 ",
+  "phrase": "bentley batur 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley continental gt",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley bentayga",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley flying spur",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley continental",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley gt",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley suv",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley continental gt speed",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley continental gt3",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a bentley ",
+  "phrase": "how fast is a bentley truck",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley 1 4 mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley bentayga quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley continental quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley continental gt quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley flying spur quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley continental gt quarter mile time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley bentayga speed quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley bentayga w12 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "bentley quarter mile ",
+  "phrase": "bentley continental gt speed quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda prelude 0 60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda civic 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda accord 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda odyssey 0-60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda prologue 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda pilot 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda s660 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "honda 0-60 ",
+  "phrase": "honda fit 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda grom",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda ruckus",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda navi",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda civic type r",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda rebel 500",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda civic",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda rebel 300",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda crf125f",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda 400ex",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a honda ",
+  "phrase": "how fast is a honda crf 110",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda 1 4 mile record",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda s2000 quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "fastest honda quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda odyssey quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda civic quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda prelude quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda cbr650r quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda accord quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda cbr600rr quarter mile time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "honda quarter mile ",
+  "phrase": "honda goldwing quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan 0 60 months",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan z 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan gtr 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan 370z 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan 350z 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan maxima 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan altima 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "nissan 0-60 ",
+  "phrase": "nissan leaf 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan gtr",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan 350z",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan skyline",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan altima",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan 370z",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan skyline gtr r34",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan z",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan maxima",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan gtr r35",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a nissan ",
+  "phrase": "how fast is a nissan sentra",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan z quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan gtr quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan gtr quarter mile time",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan z quarter mile time",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan 370z quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan 350z quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan 400z quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan 370z quarter mile time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan maxima quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "nissan quarter mile ",
+  "phrase": "nissan 400z quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati 0-60 time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati 0-60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati 0 60 speed",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati mc20 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati granturismo 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati ghibli 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati levante 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati quattroporte 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati grecale 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "maserati 0-60 ",
+  "phrase": "maserati suv 0-60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati mc20",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati ghibli sq4",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati ghibli",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati granturismo",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati quattroporte",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati levante",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati suv",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati shamal",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a maserati ",
+  "phrase": "how fast is a maserati 0 to 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati quarter mile time",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati 1 4 mile time",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati 1/4 mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati mc20 quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati granturismo quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati mc20 quarter mile time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati ghibli quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati levante quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "maserati quarter mile ",
+  "phrase": "maserati granturismo quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel gt 0 60",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel speedster 0-60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel corsa 0 60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel astra 0-60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel manta 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel mokka 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel calibra 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel grandland 0-60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel insignia 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "opel 0-60 ",
+  "phrase": "opel manta gte 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is a vauxhall corsa",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is a vauxhall astra 1.4 turbo",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is a vauxhall insignia",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is a vauxhall mokka",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is a vauxhall corsa vxr",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is a vauxhall astra",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a opel ",
+  "phrase": "how fast is saw the ride",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda 0 60 miata",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda 3 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda cx 5 0-60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda rx8 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda 6 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda mx 5 0-60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda cx50 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "mazda 0-60 ",
+  "phrase": "mazda cx 30 0-60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda miata",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda 3",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda rx7",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda rx8",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda 6",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda 3 turbo",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda mx 5",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda cx 5",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mazda ",
+  "phrase": "how fast is a mazda cx 50",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda 3 quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda miata quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda rx8 quarter mile time",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda mx5 quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda miata quarter mile time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda rx7 quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda rx8 quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda cx5 quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda cx90 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "mazda quarter mile ",
+  "phrase": "mazda 3 turbo quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 0-60 time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 0-60 speed",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 0-60 mph",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 0 60 720s",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 0 60 570s",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren p1 0-60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren artura 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren gt 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren 0-60 ",
+  "phrase": "mclaren 750s 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren 720s",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren p1",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren f1",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren senna",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren 570s",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren w1",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren 750s",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren gt",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren solus gt",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a mclaren ",
+  "phrase": "how fast is a mclaren artura",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren quarter mile time",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren 1 4 mile time",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren 1/4 mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren 720s quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren 570s quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren 765lt quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren 750s quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren p1 quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "mclaren quarter mile ",
+  "phrase": "mclaren artura quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus 0 60 is350",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus 0 60 350",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus rcf 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus lfa 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus is500 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus lc500 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus isf 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lexus 0-60 ",
+  "phrase": "lexus is300 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus is 350 f sport",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus is350",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus lc 500",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus lfa",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus is250",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus es 350",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus is300",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus rcf",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus is 500 f sport",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a lexus ",
+  "phrase": "how fast is a lexus rx",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus lfa quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus is500 quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus rcf quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus isf quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus lc500 quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus is350 quarter mile",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus lfa quarter mile time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus isf quarter mile time",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus is500 quarter mile time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "lexus quarter mile ",
+  "phrase": "lexus gsf quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru wrx 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru 0 60 outback",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru 0 60 brz",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru crosstrek 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru forester 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru impreza 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru ascent 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "subaru 0-60 ",
+  "phrase": "subaru sti 0-60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru wrx",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru brz",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru wrx sti",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru impreza",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru forester",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru crosstrek",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru outback",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru legacy",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru sti",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a subaru ",
+  "phrase": "how fast is a subaru wrx premium",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru 1 4 mile record",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru wrx quarter mile",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru brz quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru wrx quarter mile time",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru sti quarter mile",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru brz quarter mile time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru sti quarter mile time",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "fastest subaru quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru trailseeker quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "subaru quarter mile ",
+  "phrase": "subaru impreza quarter mile",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge 0-60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge 0 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "chrysler 0-60",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge demon 0 60",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge viper 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge charger 0 60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge challenger 0 60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge hellcat 0 60",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge hornet 0 60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "dodge 0-60 ",
+  "phrase": "dodge durango 0 60",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge charger",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge demon",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge viper",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge challenger",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge hellcat",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge durango",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge charger rt",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge demon 170",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge charger gt",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "how fast is a dodge ",
+  "phrase": "how fast is a dodge charger hellcat",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge demon quarter mile",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge demon quarter mile time",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge hellcat quarter mile",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge viper quarter mile",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge hellcat quarter mile time",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge viper quarter mile time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge challenger quarter mile",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge charger quarter mile",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge trx quarter mile",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "car",
+  "probe": "dodge quarter mile ",
+  "phrase": "dodge charger quarter mile time",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "= -60",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 times",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 calculator",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 tesla model 3",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 tesla",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 tesla plaid",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 ratchet beyblade x",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 tesla model y",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 cybertruck",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 app",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 ",
+  "phrase": "0-60 mustang gt",
+  "rank": 10,
+  "weight": 0.09090909090909091
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 times",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 tesla",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 calculator",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 tesla model 3",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 in 3.5",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 fastest car",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 tesla model y",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 tesla plaid",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 cybertruck",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0 to 60 ",
+  "phrase": "0 to 60 app",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "= 402.33600 meters",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile in km",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile in feet",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile calculator",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile in meters",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile at a time",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile in yards",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile ranch",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile horse",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile world record",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "quarter mile ",
+  "phrase": "quarter mile record",
+  "rank": 10,
+  "weight": 0.09090909090909091
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed meaning",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed calculator",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed hq",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed 400",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed hp calculator",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed dip",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed 1320",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed race development",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "trap speed to 1/4 mile time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "phrasing",
+  "probe": "trap speed ",
+  "phrase": "types of speed traps",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control xl",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control forza horizon 6",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control car",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control xl 3",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control meaning",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control panel from cmd",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control bmw",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control 3",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control xl mk3",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "phrasing",
+  "probe": "launch control ",
+  "phrase": "launch control novation",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 60 time for a tesla",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 60 time for a dodge charger",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "average 0 60 time for a car",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a hellcat",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a tesla plaid",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a corvette",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a 2026 corvette",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a subaru crosstrek",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a 2025 corvette",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "phrasing",
+  "probe": "0-60 time for a ",
+  "phrase": "0 to 60 time for a cybertruck",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in the world",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in forza horizon 6",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in gta 5",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in fh6",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in gta 5 online",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in the world 2026",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in forza horizon 5",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in forza 6",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in gta online",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest car ",
+  "phrase": "fastest car in the world in km/h",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv in the world",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv in india",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv under 30k",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv under 50k",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv 2026",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv around the nurburgring",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv in gta 5",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv in the world top 10",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv 0-60",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest suv ",
+  "phrase": "fastest suv in gta 5 online",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest saloon ",
+  "phrase": "fastest saloon car",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest saloon ",
+  "phrase": "fastest saloon car in the world",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest saloon ",
+  "phrase": "fastest saloon car around the nurburgring",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest saloon ",
+  "phrase": "fastest saloon car uk",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest saloon ",
+  "phrase": "fastest saloon car 0 60",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate cars",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate cars uk",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate car in the world",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate car top speed",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate car nurburgring",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate in the world",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate nurburgring",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate cars 2025",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest estate ",
+  "phrase": "fastest estate car ever",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch 2026",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch uk",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch around the nurburgring",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch australia",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch in the world",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch 0-60",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch in south africa",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch of the 90s",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch of the 80s",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest hot hatch ",
+  "phrase": "fastest hot hatch fh6",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car in the world",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car 0 to 60",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car in fh6",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car in gta 5",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car in india",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car australia",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car in forza horizon 5",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car top speed",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car charger",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest electric car ",
+  "phrase": "fastest electric car uk",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 car",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 production car",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 ever recorded",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 car in the world",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 motorcycle",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 street legal car",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 car road legal",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 electric car",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 time",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 ",
+  "phrase": "fastest 0-60 tesla",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 car",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 production car",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 car in the world",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 motorcycle",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 electric car",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 suv",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0 60 cars under 50k",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0 60 road legal car",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "quickest 0-60 ",
+  "phrase": "quickest 0-60 ever",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating car",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating car in the world",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating car in forza horizon 6",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating roller coaster in the world",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating car gta 5",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating roller coaster",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating car in forza horizon 5",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating car fh6",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating production car",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest accelerating ",
+  "phrase": "fastest accelerating motorcycle",
+  "rank": 9,
+  "weight": 0.1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 50k",
+  "rank": 0,
+  "weight": 1
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 100k",
+  "rank": 1,
+  "weight": 0.5
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 30k",
+  "rank": 2,
+  "weight": 0.3333333333333333
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 40k",
+  "rank": 3,
+  "weight": 0.25
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 60k",
+  "rank": 4,
+  "weight": 0.2
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 20k",
+  "rank": 5,
+  "weight": 0.16666666666666666
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0-60 under 80k",
+  "rank": 6,
+  "weight": 0.14285714285714285
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0 60 under 10k",
+  "rank": 7,
+  "weight": 0.125
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0 60 cars under 30k",
+  "rank": 8,
+  "weight": 0.1111111111111111
+ },
+ {
+  "kind": "list",
+  "probe": "fastest 0-60 under ",
+  "phrase": "fastest 0 60 car under 50k",
+  "rank": 9,
+  "weight": 0.1
+ }
+]
