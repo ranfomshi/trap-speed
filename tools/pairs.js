@@ -12,12 +12,19 @@ const fs=require("fs"), path=require("path");
 /* A seed of cars people actually search for. Deliberately UK-weighted: the
    money here is UK affiliate, so ranking for Civic Si traffic is worth little. */
 const SEED=[
-  "bmw m3","bmw m4","bmw m2","bmw m5","audi rs3","audi rs6","audi r8",
-  "mercedes a45","mercedes c63","porsche 911 gt3","porsche 911 turbo","porsche cayman",
-  "golf gti","golf r","ford mustang","ford fiesta st","honda civic type r",
-  "tesla model 3 performance","tesla model s plaid","toyota gr yaris","toyota supra",
-  "nissan gtr","subaru wrx sti","lamborghini huracan","ferrari 488","mclaren 720s",
-  "alpine a110","lotus emira","hyundai i30 n","bmw m140i"
+  /* Performance staples people actually cross-shop, UK-weighted. */
+  "bmw m3","bmw m4","bmw m2","bmw m5","bmw m135i","bmw m140i","bmw 330i",
+  "audi rs3","audi rs4","audi rs5","audi rs6","audi r8","audi s3","audi ttrs",
+  "mercedes a45","mercedes c63","mercedes e63","mercedes a35","mercedes cla45",
+  "porsche 911 gt3","porsche 911 turbo","porsche cayman","porsche boxster","porsche taycan","porsche macan",
+  "golf gti","golf r","ford mustang","ford fiesta st","ford focus rs","ford focus st",
+  "honda civic type r","honda integra type r","toyota gr yaris","toyota supra","toyota gr86",
+  "tesla model 3 performance","tesla model s plaid","tesla model y performance",
+  "nissan gtr","nissan 370z","subaru wrx sti","mitsubishi evo",
+  "lamborghini huracan","lamborghini urus","ferrari 488","ferrari f8","mclaren 720s","mclaren 570s",
+  "alpine a110","lotus emira","lotus elise","hyundai i30 n","renault megane rs","cupra leon",
+  "jaguar f-type","aston martin vantage","corvette c8","dodge charger hellcat",
+  "range rover sport svr","alfa romeo giulia quadrifoglio","mini jcw","abarth 595"
 ];
 
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));

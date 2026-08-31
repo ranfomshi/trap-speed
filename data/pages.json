@@ -8,6 +8,14 @@
   "label": "BMW M3 G80 vs BMW M4 G82"
  },
  {
+  "a": "audi-rs5-b10",
+  "b": "bmw-m3-n-a",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "audi rs5 vs bmw m3",
+  "label": "Audi RS5 B10 vs BMW M3 G80"
+ },
+ {
   "a": "bmw-m4-coup",
   "b": "bmw-m5-g90-pre-facelift-2024",
   "weight": 1,
@@ -32,12 +40,44 @@
   "label": "Audi RS3 Sportback 8V vs BMW M2 (G87)"
  },
  {
+  "a": "bmw-m135i",
+  "b": "bmw-m140i",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "bmw m135i vs m140i",
+  "label": "BMW M135i F20 vs BMW M140i"
+ },
+ {
+  "a": "bmw-330i-2006",
+  "b": "bmw-340i",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "bmw 330i vs 340i",
+  "label": "BMW 330i E90 272 PS vs BMW 340i F30"
+ },
+ {
+  "a": "audi-rs4-avant-b9",
+  "b": "audi-rs6-performance",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "audi rs4 vs rs6",
+  "label": "Audi RS4 Avant B9 vs Audi RS6 Avant Performance C8"
+ },
+ {
   "a": "audi-rs6-performance",
   "b": "audi-rs7-performance",
   "weight": 1,
   "rank": 0,
   "phrase": "audi rs6 vs rs7",
   "label": "Audi RS6 Avant Performance C8 vs Audi RS7 Sportback Performance 4K8"
+ },
+ {
+  "a": "audi-s3-8v",
+  "b": "audi-rs3-sportback-8v",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "audi s3 vs rs3",
+  "label": "Audi S3 8V vs Audi RS3 Sportback 8V"
  },
  {
   "a": "mercedes-benz-c63-amg-coupe",
@@ -64,6 +104,30 @@
   "label": "Porsche 718 Cayman GTS vs Porsche 911 Carrera 4S 992"
  },
  {
+  "a": "porsche-718-boxster",
+  "b": "porsche-718-cayman",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "porsche boxster vs cayman",
+  "label": "Porsche 718 Boxster vs Porsche 718 Cayman"
+ },
+ {
+  "a": "porsche-taycan-turbo",
+  "b": "porsche-panamera-gts-2013",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "porsche taycan vs panamera",
+  "label": "Porsche Taycan Turbo vs Porsche Panamera GTS"
+ },
+ {
+  "a": "porsche-macan-gts-n-a",
+  "b": "porsche-cayenne-s-coupe",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "porsche macan vs cayenne",
+  "label": "Porsche Macan GTS vs Porsche Cayenne Coupé S 9YB) (Facelift"
+ },
+ {
   "a": "gti8",
   "b": "golfr",
   "weight": 1,
@@ -78,5 +142,181 @@
   "rank": 0,
   "phrase": "ford mustang vs dodge challenger",
   "label": "Ford Mustang GT 5.0 (S650) vs Dodge Challenger SRT Hellcat"
+ },
+ {
+  "a": "fiestast",
+  "b": "ford-focus-st-2012",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "ford fiesta st vs focus st",
+  "label": "Ford Fiesta ST (Mk8) vs Ford Focus ST"
+ },
+ {
+  "a": "ford-focus-rs-2009",
+  "b": "ford-focus-st-2012",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "ford focus rs vs st",
+  "label": "Ford Focus RS vs Ford Focus ST"
+ },
+ {
+  "a": "fl5",
+  "b": "honda-civic-si",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "honda civic type r vs si",
+  "label": "Honda Civic Type R (FK8) vs Honda Civic SI"
+ },
+ {
+  "a": "gryaris",
+  "b": "toyota-gr-corolla",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "toyota gr yaris vs gr corolla",
+  "label": "Toyota GR Yaris vs Toyota GR Corolla"
+ },
+ {
+  "a": "toyota-supra-a90",
+  "b": "gr86",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "toyota supra vs gr86",
+  "label": "Toyota GR Supra Mk V 340 PS vs Toyota GR86"
+ },
+ {
+  "a": "gr86",
+  "b": "subaru-brz",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "toyota gr86 vs subaru brz",
+  "label": "Toyota GR86 vs Subaru BRZ"
+ },
+ {
+  "a": "m3p",
+  "b": "my",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "tesla model 3 performance vs long range",
+  "label": "Tesla Model 3 Performance vs Tesla Model Y Long Range"
+ },
+ {
+  "a": "nissan-gt-r",
+  "b": "nissan-skyline-gt-r",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "nissan gtr vs skyline",
+  "label": "Nissan GT-R R35 vs Nissan Skyline GT-R R34"
+ },
+ {
+  "a": "nissan-370z",
+  "b": "nissan-nismo-350z",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "nissan 370z vs 350z",
+  "label": "Nissan 370Z vs Nissan Nismo 350Z"
+ },
+ {
+  "a": "mitsubishi-lancer-evo-ix",
+  "b": "mitsubishi-lancer-ralliart",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "mitsubishi evo vs lancer",
+  "label": "Mitsubishi Lancer EVO IX vs Mitsubishi Lancer Ralliart"
+ },
+ {
+  "a": "perf",
+  "b": "lamborghini-aventador-lp700-4",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "lamborghini huracan vs aventador",
+  "label": "Lamborghini Huracan Performante vs Lamborghini Aventador LP700-4"
+ },
+ {
+  "a": "lamborghini-urus",
+  "b": "audi-rsq8-performance",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "lamborghini urus vs audi rsq8",
+  "label": "Lamborghini Urus vs Audi RSQ8 Performance facelift"
+ },
+ {
+  "a": "488",
+  "b": "ferrari-458-speciale",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "ferrari 488 vs 458",
+  "label": "Ferrari 488 GTB vs Ferrari 458 Speciale"
+ },
+ {
+  "a": "ferrari-f8-tributo",
+  "b": "488",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "ferrari f8 vs 488",
+  "label": "Ferrari F8 Tributo vs Ferrari 488 GTB"
+ },
+ {
+  "a": "720s",
+  "b": "mclaren-750s",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "mclaren 720s vs 750s",
+  "label": "McLaren 720S vs Mclaren 750S"
+ },
+ {
+  "a": "mclaren-570s",
+  "b": "720s",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "mclaren 570s vs 720s",
+  "label": "Mclaren 570S vs McLaren 720S"
+ },
+ {
+  "a": "lotus-emira-turbo-se",
+  "b": "lotus-evora-400",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "lotus emira vs evora",
+  "label": "Lotus Emira Turbo SE vs Lotus Evora 400"
+ },
+ {
+  "a": "lotus-elise-s",
+  "b": "lotus-exige-2004",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "lotus elise vs exige",
+  "label": "Lotus Elise S vs Lotus Exige"
+ },
+ {
+  "a": "jaguar-f-type-400-sport",
+  "b": "992gt3",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "jaguar f type vs porsche 911",
+  "label": "Jaguar F-Type 400 Sport vs Porsche 911 GT3 (992)"
+ },
+ {
+  "a": "aston-martin-v12-vantage",
+  "b": "aston-martin-vanquish",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "aston martin vantage vs vanquish",
+  "label": "Aston Martin V12 Vantage Mk I vs Aston Martin Vanquish"
+ },
+ {
+  "a": "c8",
+  "b": "chevrolet-corvette-z06-z07-pkg",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "corvette c8 vs z06",
+  "label": "Chevrolet Corvette C8 Stingray vs Chevrolet Corvette Z06 Z07 Package C8 645 PS"
+ },
+ {
+  "a": "range-rover-sport-svr",
+  "b": "land-rover-range-rover-sport-sv",
+  "weight": 1,
+  "rank": 0,
+  "phrase": "range rover sport svr vs sv",
+  "label": "Range Rover Sport SVR vs Range Rover Sport SV"
  }
 ]

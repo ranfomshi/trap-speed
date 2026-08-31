@@ -67,7 +67,18 @@ function resolve(phrase, ctxCar){
 const OVERRIDE={
   "ford mustang vs dodge challenger":["mustang","dodge-challenger-srt-8-hellcat"],
   "audi rs6 vs rs7":                 ["audi-rs6-performance","audi-rs7-performance"],
-  "porsche cayman vs 911":           ["porsche-718-cayman-gts","porsche-911-carrera-4s-992"]
+  "porsche cayman vs 911":           ["porsche-718-cayman-gts","porsche-911-carrera-4s-992"],
+  /* "f8" resolved to the F80 hypercar, which is a different car entirely */
+  "ferrari f8 vs 488":               ["ferrari-f8-tributo","488"],
+  /* a generic "vantage" is the modern one, not a 1999 DB7 */
+  "aston martin vantage vs vanquish":["aston-martin-v12-vantage","aston-martin-vanquish"],
+  /* these three paired cars from different decades */
+  "bmw 330i vs 340i":                ["bmw-330i-2006","bmw-340i"],
+  "corvette c8 vs z06":              ["c8","chevrolet-corvette-z06-z07-pkg"],
+  "audi rs4 vs rs6":                 ["audi-rs4-avant-b9","audi-rs6-performance"],
+  /* a base Macan against the hottest Cayenne is not the question people ask */
+  "porsche macan vs cayenne":        ["porsche-macan-gts-n-a","porsche-cayenne-s-coupe"],
+  "toyota supra vs gr86":            ["toyota-supra-a90","gr86"]
 };
 
 const rows=JSON.parse(fs.readFileSync(path.join(ROOT,"data/pairs.json"),"utf8"));

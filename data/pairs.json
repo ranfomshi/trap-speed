@@ -266,6 +266,216 @@
   "phrase": "bmw m5 vs lamborghini which is faster"
  },
  {
+  "seed": "bmw m135i",
+  "other": "m140i",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "bmw m135i vs m140i"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "golf r",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "bmw m135i vs golf r"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "audi s3",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "bmw m135i vs audi s3"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "128ti",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "bmw m135i vs 128ti"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "m235i",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "bmw m135i vs m235i"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "mercedes a35",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "bmw m135i vs mercedes a35"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "a45 amg",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "bmw m135i vs a45 amg"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "m135",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "bmw m135i vs m135"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "mercedes a35 amg",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "bmw m135i vs mercedes a35 amg"
+ },
+ {
+  "seed": "bmw m135i",
+  "other": "golf gti",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "bmw m135i vs golf gti"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "m135i",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "bmw m140i vs m135i"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "rs3",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "bmw m140i vs rs3"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "golf r",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "bmw m140i vs golf r"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "m240i",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "bmw m140i vs m240i"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "m2",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "bmw m140i vs m2"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "audi s3",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "bmw m140i vs audi s3"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "mercedes a45 amg",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "bmw m140i vs mercedes a45 amg"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "m340i",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "bmw m140i vs m340i"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "135i",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "bmw m140i vs 135i"
+ },
+ {
+  "seed": "bmw m140i",
+  "other": "340i",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "bmw m140i vs 340i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "340i",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "bmw 330i vs 340i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "m340i",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "bmw 330i vs m340i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "330e",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "bmw 330i vs 330e"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "mercedes c300",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "bmw 330i vs mercedes c300"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "320i",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "bmw 330i vs 320i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "430i",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "bmw 330i vs 430i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "lexus is350",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "bmw 330i vs lexus is350"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "530i",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "bmw 330i vs 530i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "335i",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "bmw 330i vs 335i"
+ },
+ {
+  "seed": "bmw 330i",
+  "other": "audi a5",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "bmw 330i vs audi a5"
+ },
+ {
   "seed": "audi rs3",
   "other": "bmw m2",
   "rank": 0,
@@ -334,6 +544,139 @@
   "rank": 9,
   "weight": 0.1,
   "phrase": "audi rs3 vs bmw m240i"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "rs6",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "audi rs4 vs rs6"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "rs5",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "audi rs4 vs rs5"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "s4",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "audi rs4 vs s4"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "bmw m3",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "audi rs4 vs bmw m3"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "rs3",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "audi rs4 vs rs3"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "bmw m340i",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "audi rs4 vs bmw m340i"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "a4",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "audi rs4 vs a4"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "bmw m3 touring",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "audi rs4 vs bmw m3 touring"
+ },
+ {
+  "seed": "audi rs4",
+  "other": "golf r",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "audi rs4 vs golf r"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "bmw m3",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "audi rs5 vs bmw m3"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "s5",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "audi rs5 vs s5"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "rs7",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "audi rs5 vs rs7"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "rs6",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "audi rs5 vs rs6"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "rs3",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "audi rs5 vs rs3"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "bmw m340i",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "audi rs5 vs bmw m340i"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "bmw m4",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "audi rs5 vs bmw m4"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "bmw m5",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "audi rs5 vs bmw m5"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "m3 competition",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "audi rs5 vs m3 competition"
+ },
+ {
+  "seed": "audi rs5",
+  "other": "mercedes c63 amg",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "audi rs5 vs mercedes c63 amg"
  },
  {
   "seed": "audi rs6",
@@ -476,6 +819,125 @@
   "phrase": "audi r8 vs nissan gtr"
  },
  {
+  "seed": "audi s3",
+  "other": "rs3",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "audi s3 vs rs3"
+ },
+ {
+  "seed": "audi s3",
+  "other": "golf r",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "audi s3 vs golf r"
+ },
+ {
+  "seed": "audi s3",
+  "other": "s4",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "audi s3 vs s4"
+ },
+ {
+  "seed": "audi s3",
+  "other": "a3",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "audi s3 vs a3"
+ },
+ {
+  "seed": "audi s3",
+  "other": "s5",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "audi s3 vs s5"
+ },
+ {
+  "seed": "audi s3",
+  "other": "m240i",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "audi s3 vs m240i"
+ },
+ {
+  "seed": "audi s3",
+  "other": "m340i",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "audi s3 vs m340i"
+ },
+ {
+  "seed": "audi s3",
+  "other": "bmw 330i",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "audi s3 vs bmw 330i"
+ },
+ {
+  "seed": "audi s3",
+  "other": "golf gti",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "audi s3 vs golf gti"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "rs3",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "audi tt rs vs rs3"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "r8",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "audi ttrs vs r8"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "tts",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "audi tt rs vs tts"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "supra",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "audi ttrs vs supra"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "bmw m2",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "audi ttrs vs bmw m2"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "m2",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "audi ttrs vs m2"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "golf r",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "audi tt rs vs golf r"
+ },
+ {
+  "seed": "audi ttrs",
+  "other": "ttrs",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "audi tt vs ttrs"
+ },
+ {
   "seed": "mercedes a45",
   "other": "a35",
   "rank": 0,
@@ -607,6 +1069,195 @@
   "rank": 9,
   "weight": 0.1,
   "phrase": "mercedes c63 vs c200"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "c63",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "mercedes e63 vs c63"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "bmw m5",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "mercedes e63 vs bmw m5"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "s63",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "mercedes e63 vs s63"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "e63s",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "mercedes e63 vs e63s"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "e53",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "mercedes e63 vs e53"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "e55",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "mercedes e63 vs e55"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "bmw m5 competition",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "mercedes e63s vs bmw m5 competition"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "c63 amg",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "mercedes e63 amg vs c63 amg"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "bmw m5",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "mercedes e63 amg vs bmw m5"
+ },
+ {
+  "seed": "mercedes e63",
+  "other": "audi rs6",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "mercedes e63 amg vs audi rs6"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "a45",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "mercedes a35 vs a45"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "a35h",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "mercedes a35 vs a35h"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "audi s3",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "mercedes a35 vs audi s3"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "golf r",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "mercedes a35 vs golf r"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "a250",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "mercedes a35 vs a250"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "a45 amg",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "mercedes a35 vs a45 amg"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "cla 35",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "mercedes a35 vs cla 35"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "golf gti",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "mercedes a35 vs golf gti"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "bmw m135i",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "mercedes a35 vs bmw m135i"
+ },
+ {
+  "seed": "mercedes a35",
+  "other": "bmw m135",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "mercedes a35 vs bmw m135"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "35",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "mercedes cla 45 vs 35"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "a35",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "mercedes a45 vs a35"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "a45s",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "mercedes a45 vs a45s"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "audi rs3",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "mercedes a45 vs audi rs3"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "a250",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "mercedes a45 vs a250"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "35",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "mercedes amg cla 45 vs 35"
+ },
+ {
+  "seed": "mercedes cla45",
+  "other": "cla35",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "cla45 vs cla35"
  },
  {
   "seed": "porsche 911 gt3",
@@ -810,6 +1461,209 @@
   "rank": 9,
   "weight": 0.1,
   "phrase": "porsche cayman vs taycan"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "cayman",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "porsche boxster vs cayman"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "911",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "porsche boxster vs 911"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "miata",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "porsche boxster vs miata"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "bmw z4",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "porsche boxster vs bmw z4"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "spyder",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "porsche boxster vs spyder"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "boxster s",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "porsche boxster vs boxster s"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "carrera",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "porsche boxster vs carrera"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "718",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "porsche boxster vs 718"
+ },
+ {
+  "seed": "porsche boxster",
+  "other": "mazda miata",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "porsche boxster vs mazda miata"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "panamera",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "porsche taycan vs panamera"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "911",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "porsche taycan vs 911"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "tesla model s",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "porsche taycan vs tesla model s"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "macan",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "porsche taycan vs macan"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "tesla",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "porsche taycan vs tesla"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "tesla model 3",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "porsche taycan vs tesla model 3"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "cayenne",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "porsche taycan vs cayenne"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "audi e tron",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "porsche taycan vs audi e tron"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "cayman",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "porsche taycan vs cayman"
+ },
+ {
+  "seed": "porsche taycan",
+  "other": "tesla model y",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "porsche taycan vs tesla model y"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "cayenne",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "porsche macan vs cayenne"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "cayenne price",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "porsche macan vs cayenne price"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "audi q5",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "porsche macan vs audi q5"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "bmw x3",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "porsche macan vs bmw x3"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "bmw x5",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "porsche macan vs bmw x5"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "mercedes glc",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "porsche macan vs mercedes glc"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "macan s",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "porsche macan vs macan s"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "audi sq5",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "porsche macan vs audi sq5"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "lexus rx 350",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "porsche macan vs lexus rx 350"
+ },
+ {
+  "seed": "porsche macan",
+  "other": "taycan",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "porsche macan vs taycan"
  },
  {
   "seed": "golf gti",
@@ -1092,6 +1946,146 @@
   "phrase": "ford fiesta st vs fiesta"
  },
  {
+  "seed": "ford focus rs",
+  "other": "st",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "ford focus rs vs st"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "golf r",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "ford focus rs vs golf r"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "gr corolla",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "ford focus rs vs gr corolla"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "civic type r",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "ford focus rs vs civic type r"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "wrx sti",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "ford focus rs vs wrx sti"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "fiesta st",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "ford focus rs vs fiesta st"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "toyota corolla gr",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "ford focus rs vs toyota corolla gr"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "type r",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "ford focus rs vs type r"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "golf gti",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "ford focus rs vs golf gti"
+ },
+ {
+  "seed": "ford focus rs",
+  "other": "gr yaris",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "ford focus rs vs gr yaris"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "rs",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "ford focus st vs rs"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "fiesta st",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "ford focus st vs fiesta st"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "golf gti",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "ford focus st vs golf gti"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "subaru wrx",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "ford focus st vs subaru wrx"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "se",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "ford focus st vs se"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "honda civic si",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "ford focus st vs honda civic si"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "mazdaspeed3",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "ford focus st vs mazdaspeed3"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "gti",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "ford focus st vs gti"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "st line",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "ford focus st vs st line"
+ },
+ {
+  "seed": "ford focus st",
+  "other": "golf r",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "ford focus st vs golf r"
+ },
+ {
   "seed": "honda civic type r",
   "other": "si",
   "rank": 0,
@@ -1162,144 +2156,46 @@
   "phrase": "honda civic type r vs toyota supra"
  },
  {
-  "seed": "tesla model 3 performance",
-  "other": "long range",
+  "seed": "honda integra type r",
+  "other": "acura integra type r",
   "rank": 0,
   "weight": 1,
-  "phrase": "tesla model 3 performance vs long range"
+  "phrase": "honda integra type r vs acura integra type r"
  },
  {
-  "seed": "tesla model 3 performance",
-  "other": "model y performance",
+  "seed": "honda integra type r",
+  "other": "type s",
   "rank": 1,
   "weight": 0.5,
-  "phrase": "tesla model 3 performance vs model y performance"
+  "phrase": "honda integra type r vs type s"
  },
  {
-  "seed": "tesla model 3 performance",
-  "other": "premium",
+  "seed": "honda integra type r",
+  "other": "civic type r",
   "rank": 2,
   "weight": 0.3333333333333333,
-  "phrase": "tesla model 3 performance vs premium"
+  "phrase": "honda integra type r vs civic type r"
  },
  {
-  "seed": "tesla model 3 performance",
-  "other": "bmw m3",
+  "seed": "honda integra type r",
+  "other": "s2000",
   "rank": 3,
   "weight": 0.25,
-  "phrase": "tesla model 3 performance vs bmw m3"
+  "phrase": "honda integra type r vs s2000"
  },
  {
-  "seed": "tesla model 3 performance",
-  "other": "plaid",
+  "seed": "honda integra type r",
+  "other": "gsr",
   "rank": 4,
   "weight": 0.2,
-  "phrase": "tesla model 3 performance vs plaid"
+  "phrase": "honda integra type r vs gsr"
  },
  {
-  "seed": "tesla model 3 performance",
-  "other": "ioniq 5 n",
-  "rank": 5,
-  "weight": 0.16666666666666666,
-  "phrase": "tesla model 3 performance vs ioniq 5 n"
- },
- {
-  "seed": "tesla model 3 performance",
-  "other": "model s plaid",
+  "seed": "honda integra type r",
+  "other": "dc5",
   "rank": 6,
   "weight": 0.14285714285714285,
-  "phrase": "tesla model 3 performance vs model s plaid"
- },
- {
-  "seed": "tesla model 3 performance",
-  "other": "model s",
-  "rank": 7,
-  "weight": 0.125,
-  "phrase": "tesla model 3 performance vs model s"
- },
- {
-  "seed": "tesla model 3 performance",
-  "other": "standard",
-  "rank": 8,
-  "weight": 0.1111111111111111,
-  "phrase": "tesla model 3 performance vs standard"
- },
- {
-  "seed": "tesla model 3 performance",
-  "other": "byd seal performance",
-  "rank": 9,
-  "weight": 0.1,
-  "phrase": "tesla model 3 performance vs byd seal performance"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "model s",
-  "rank": 0,
-  "weight": 1,
-  "phrase": "tesla model s plaid vs model s"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "model 3 performance",
-  "rank": 1,
-  "weight": 0.5,
-  "phrase": "tesla model s plaid vs model 3 performance"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "corvette zr1x",
-  "rank": 2,
-  "weight": 0.3333333333333333,
-  "phrase": "tesla model s plaid vs corvette zr1x"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "performance",
-  "rank": 3,
-  "weight": 0.25,
-  "phrase": "tesla model s plaid vs performance"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "lucid air sapphire",
-  "rank": 4,
-  "weight": 0.2,
-  "phrase": "tesla model s plaid vs lucid air sapphire"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "model x plaid",
-  "rank": 5,
-  "weight": 0.16666666666666666,
-  "phrase": "tesla model s plaid vs model x plaid"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "bugatti",
-  "rank": 6,
-  "weight": 0.14285714285714285,
-  "phrase": "tesla model s plaid vs bugatti"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "xiaomi su7 ultra",
-  "rank": 7,
-  "weight": 0.125,
-  "phrase": "tesla model s plaid vs xiaomi su7 ultra"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "zr1x",
-  "rank": 8,
-  "weight": 0.1111111111111111,
-  "phrase": "tesla model s plaid vs zr1x"
- },
- {
-  "seed": "tesla model s plaid",
-  "other": "porsche taycan",
-  "rank": 9,
-  "weight": 0.1,
-  "phrase": "tesla model s plaid vs porsche taycan"
+  "phrase": "honda integra type r dc2 vs dc5"
  },
  {
   "seed": "toyota gr yaris",
@@ -1442,6 +2338,286 @@
   "phrase": "toyota supra vs bmw m4"
  },
  {
+  "seed": "toyota gr86",
+  "other": "subaru brz",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "toyota gr86 vs subaru brz"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "supra",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "toyota gr86 vs supra"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "gt86",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "toyota gr86 vs gt86"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "miata",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "toyota gr86 vs miata"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "brz",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "toyota gr86 vs brz"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "86",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "toyota gr86 vs 86"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "mazda mx 5",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "toyota gr86 vs mazda mx 5"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "gr corolla",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "toyota gr86 vs gr corolla"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "nissan z",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "toyota gr86 vs nissan z"
+ },
+ {
+  "seed": "toyota gr86",
+  "other": "civic si",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "toyota gr86 vs civic si"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "long range",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "tesla model 3 performance vs long range"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "model y performance",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "tesla model 3 performance vs model y performance"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "premium",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "tesla model 3 performance vs premium"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "bmw m3",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "tesla model 3 performance vs bmw m3"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "plaid",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "tesla model 3 performance vs plaid"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "ioniq 5 n",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "tesla model 3 performance vs ioniq 5 n"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "model s plaid",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "tesla model 3 performance vs model s plaid"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "model s",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "tesla model 3 performance vs model s"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "standard",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "tesla model 3 performance vs standard"
+ },
+ {
+  "seed": "tesla model 3 performance",
+  "other": "byd seal performance",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "tesla model 3 performance vs byd seal performance"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "model s",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "tesla model s plaid vs model s"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "model 3 performance",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "tesla model s plaid vs model 3 performance"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "corvette zr1x",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "tesla model s plaid vs corvette zr1x"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "performance",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "tesla model s plaid vs performance"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "lucid air sapphire",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "tesla model s plaid vs lucid air sapphire"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "model x plaid",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "tesla model s plaid vs model x plaid"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "bugatti",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "tesla model s plaid vs bugatti"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "xiaomi su7 ultra",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "tesla model s plaid vs xiaomi su7 ultra"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "zr1x",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "tesla model s plaid vs zr1x"
+ },
+ {
+  "seed": "tesla model s plaid",
+  "other": "porsche taycan",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "tesla model s plaid vs porsche taycan"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "long range",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "tesla model y performance vs long range"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "premium",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "tesla model y performance vs premium"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "model 3 performance",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "tesla model y performance vs model 3 performance"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "premium awd",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "tesla model y performance vs premium awd"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "rivian r2 performance",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "tesla model y performance vs rivian r2 performance"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "zeekr 7x performance",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "tesla model y performance vs zeekr 7x performance"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "standard",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "tesla model y performance vs standard"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "premium 2026",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "tesla model y performance vs premium 2026"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "plaid",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "tesla model y performance vs plaid"
+ },
+ {
+  "seed": "tesla model y performance",
+  "other": "bmw ix3",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "tesla model y performance vs bmw ix3"
+ },
+ {
   "seed": "nissan gtr",
   "other": "skyline",
   "rank": 0,
@@ -1510,6 +2686,76 @@
   "rank": 9,
   "weight": 0.1,
   "phrase": "nissan gtr vs audi r8"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "350z",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "nissan 370z vs 350z"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "nissan z",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "nissan 370z vs nissan z"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "gr86",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "nissan 370z vs gr86"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "nismo",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "nissan 370z vs nismo"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "infiniti g37",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "nissan 370z vs infiniti g37"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "gtr",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "nissan 370z vs gtr"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "supra",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "nissan 370z vs supra"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "miata",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "nissan 370z vs miata"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "subaru brz",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "nissan 370z vs subaru brz"
+ },
+ {
+  "seed": "nissan 370z",
+  "other": "400z",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "nissan 370z vs 400z"
  },
  {
   "seed": "subaru wrx sti",
@@ -1582,6 +2828,69 @@
   "phrase": "subaru wrx sti vs mitsubishi lancer evo"
  },
  {
+  "seed": "mitsubishi evo",
+  "other": "lancer",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "mitsubishi evo vs lancer"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "subaru wrx",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "mitsubishi evo vs subaru wrx"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "subaru wrx sti",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "mitsubishi evo vs subaru wrx sti"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "subaru impreza",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "mitsubishi evo vs subaru impreza"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "subaru wrx sti reliability",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "mitsubishi evo vs subaru wrx sti reliability"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "nissan skyline",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "mitsubishi evo vs nissan skyline"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "nissan gtr",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "mitsubishi evo vs nissan gtr"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "ralliart",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "mitsubishi evo vs ralliart"
+ },
+ {
+  "seed": "mitsubishi evo",
+  "other": "lamborghini",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "mitsubishi evo vs lamborghini"
+ },
+ {
   "seed": "lamborghini huracan",
   "other": "aventador",
   "rank": 0,
@@ -1650,6 +2959,76 @@
   "rank": 9,
   "weight": 0.1,
   "phrase": "lamborghini huracan vs bmw m5"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "audi rsq8",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "lamborghini urus vs audi rsq8"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "porsche cayenne",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "lamborghini urus vs porsche cayenne"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "ferrari purosangue",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "lamborghini urus vs ferrari purosangue"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "audi q8",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "lamborghini urus vs audi q8"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "g wagon",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "lamborghini urus vs g wagon"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "audi rsq8 price",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "lamborghini urus vs audi rsq8 price"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "rolls royce cullinan",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "lamborghini urus vs rolls royce cullinan"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "bentley bentayga",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "lamborghini urus vs bentley bentayga"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "aston martin dbx",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "lamborghini urus vs aston martin dbx"
+ },
+ {
+  "seed": "lamborghini urus",
+  "other": "huracan",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "lamborghini urus vs huracan"
  },
  {
   "seed": "ferrari 488",
@@ -1722,6 +3101,76 @@
   "phrase": "ferrari 488 vs 296 gtb"
  },
  {
+  "seed": "ferrari f8",
+  "other": "488",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "ferrari f8 vs 488"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "sf90",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "ferrari f8 vs sf90"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "296",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "ferrari f8 vs 296"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "458",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "ferrari f8 vs 458"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "488 pista",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "ferrari f8 vs 488 pista"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "f8 tributo",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "ferrari f8 vs f8 tributo"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "296 gtb",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "ferrari f8 vs 296 gtb"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "812",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "ferrari f8 vs 812"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "corvette c8",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "ferrari f8 vs corvette c8"
+ },
+ {
+  "seed": "ferrari f8",
+  "other": "812 superfast",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "ferrari f8 vs 812 superfast"
+ },
+ {
   "seed": "mclaren 720s",
   "other": "750s",
   "rank": 0,
@@ -1783,6 +3232,76 @@
   "rank": 9,
   "weight": 0.1,
   "phrase": "mclaren 720s vs porsche gt3 rs"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "720s",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "mclaren 570s vs 720s"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "570gt",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "mclaren 570s vs 570gt"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "gt",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "mclaren 570s vs gt"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "600lt",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "mclaren 570s vs 600lt"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "650s",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "mclaren 570s vs 650s"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "artura",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "mclaren 570s vs artura"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "audi r8",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "mclaren 570s vs audi r8"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "c8 z06",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "mclaren 570s vs c8 z06"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "huracan",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "mclaren 570s vs huracan"
+ },
+ {
+  "seed": "mclaren 570s",
+  "other": "p1",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "mclaren 570s vs p1"
  },
  {
   "seed": "alpine a110",
@@ -1925,6 +3444,69 @@
   "phrase": "lotus emira vs c8"
  },
  {
+  "seed": "lotus elise",
+  "other": "exige",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "lotus elise vs exige"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "miata",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "lotus elise vs miata"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "evora",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "lotus elise vs evora"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "tesla roadster",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "lotus elise vs tesla roadster"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "alfa 4c",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "lotus elise vs alfa 4c"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "s2000",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "lotus elise vs s2000"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "emira",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "lotus elise vs emira"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "mx5",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "lotus elise vs mx5"
+ },
+ {
+  "seed": "lotus elise",
+  "other": "mr2",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "lotus elise vs mr2"
+ },
+ {
   "seed": "hyundai i30 n",
   "other": "n line",
   "rank": 0,
@@ -1995,73 +3577,668 @@
   "phrase": "hyundai i30 n vs golf r"
  },
  {
-  "seed": "bmw m140i",
-  "other": "m135i",
+  "seed": "renault megane rs",
+  "other": "golf gti",
   "rank": 0,
   "weight": 1,
-  "phrase": "bmw m140i vs m135i"
+  "phrase": "renault megane rs vs golf gti"
  },
  {
-  "seed": "bmw m140i",
-  "other": "rs3",
+  "seed": "renault megane rs",
+  "other": "golf r",
   "rank": 1,
   "weight": 0.5,
-  "phrase": "bmw m140i vs rs3"
+  "phrase": "renault megane rs vs golf r"
  },
  {
-  "seed": "bmw m140i",
-  "other": "golf r",
+  "seed": "renault megane rs",
+  "other": "ford focus st",
   "rank": 2,
   "weight": 0.3333333333333333,
-  "phrase": "bmw m140i vs golf r"
+  "phrase": "renault megane rs vs ford focus st"
  },
  {
-  "seed": "bmw m140i",
-  "other": "m240i",
+  "seed": "renault megane rs",
+  "other": "hyundai i30n",
   "rank": 3,
   "weight": 0.25,
-  "phrase": "bmw m140i vs m240i"
+  "phrase": "renault megane rs vs hyundai i30n"
  },
  {
-  "seed": "bmw m140i",
-  "other": "m2",
+  "seed": "renault megane rs",
+  "other": "honda civic type r",
   "rank": 4,
   "weight": 0.2,
-  "phrase": "bmw m140i vs m2"
+  "phrase": "renault megane rs vs honda civic type r"
  },
  {
-  "seed": "bmw m140i",
-  "other": "audi s3",
+  "seed": "renault megane rs",
+  "other": "peugeot 308 gti",
   "rank": 5,
   "weight": 0.16666666666666666,
-  "phrase": "bmw m140i vs audi s3"
+  "phrase": "renault megane rs vs peugeot 308 gti"
  },
  {
-  "seed": "bmw m140i",
-  "other": "mercedes a45 amg",
+  "seed": "renault megane rs",
+  "other": "gt",
   "rank": 6,
   "weight": 0.14285714285714285,
-  "phrase": "bmw m140i vs mercedes a45 amg"
+  "phrase": "renault megane rs vs gt"
  },
  {
-  "seed": "bmw m140i",
-  "other": "m340i",
+  "seed": "renault megane rs",
+  "other": "trophy",
   "rank": 7,
   "weight": 0.125,
-  "phrase": "bmw m140i vs m340i"
+  "phrase": "renault megane rs ultime vs trophy"
  },
  {
-  "seed": "bmw m140i",
-  "other": "135i",
+  "seed": "renault megane rs",
+  "other": "clio rs",
   "rank": 8,
   "weight": 0.1111111111111111,
-  "phrase": "bmw m140i vs 135i"
+  "phrase": "renault megane rs vs clio rs"
  },
  {
-  "seed": "bmw m140i",
-  "other": "340i",
+  "seed": "renault megane rs",
+  "other": "nissan which is better",
   "rank": 9,
   "weight": 0.1,
-  "phrase": "bmw m140i vs 340i"
+  "phrase": "renault vs nissan which is better"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "seat leon",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "cupra leon vs seat leon"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "formentor",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "cupra leon vs formentor"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "golf",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "cupra leon vs golf"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "golf gti",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "cupra leon vs golf gti"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "audi a3",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "cupra leon vs audi a3"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "formentor size",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "cupra leon vs formentor size"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "skoda octavia",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "cupra leon vs skoda octavia"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "golf r",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "cupra leon vs golf r"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "jeep avenger",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "cupra leon vs jeep avenger"
+ },
+ {
+  "seed": "cupra leon",
+  "other": "bmw 1 series",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "cupra leon vs bmw 1 series"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "porsche 911",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "jaguar f type vs porsche 911"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "xk",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "jaguar f type vs xk"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "range rover velar",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "jaguar f pace vs range rover velar"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "bmw x3",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "jaguar f pace vs bmw x3"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "volvo xc60",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "jaguar f pace vs volvo xc60"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "bmw x5",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "jaguar f pace vs bmw x5"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "audi q5",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "jaguar f pace vs audi q5"
+ },
+ {
+  "seed": "jaguar f-type",
+  "other": "svr",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "jaguar f type r vs svr"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "vanquish",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "aston martin vantage vs vanquish"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "db12",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "aston martin vantage vs db12"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "porsche 911",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "aston martin vantage vs porsche 911"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "vantage s",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "aston martin vantage vs vantage s"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "db11",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "aston martin vantage vs db11"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "db9",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "aston martin vantage vs db9"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "mercedes amg gt",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "aston martin vantage vs mercedes amg gt"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "dbs",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "aston martin vantage vs dbs"
+ },
+ {
+  "seed": "aston martin vantage",
+  "other": "jaguar f type",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "aston martin vantage vs jaguar f type"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "z06",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "corvette c8 vs z06"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "c7",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "corvette c8 vs c7"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "stingray",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "corvette c8 vs stingray"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "zr1",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "corvette c8 vs zr1"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "audi r8",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "corvette c8 vs audi r8"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "bmw m4",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "corvette c8 vs bmw m4"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "911",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "corvette c8 vs 911"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "mustang gt",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "corvette c8 vs mustang gt"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "c9",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "corvette c8 vs c9"
+ },
+ {
+  "seed": "corvette c8",
+  "other": "ferrari",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "corvette c8 vs ferrari"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "scat pack",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "dodge charger hellcat vs scat pack"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "challenger hellcat",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "dodge charger hellcat vs challenger hellcat"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "demon",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "dodge charger hellcat vs demon"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "bmw m5 competition",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "dodge charger hellcat vs bmw m5 competition"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "srt",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "dodge charger hellcat vs srt"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "redeye",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "dodge charger hellcat vs redeye"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "corvette z06",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "dodge charger hellcat vs corvette z06"
+ },
+ {
+  "seed": "dodge charger hellcat",
+  "other": "jailbreak",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "dodge charger hellcat vs jailbreak"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "sv",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "range rover sport svr vs sv"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "autobiography",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "range rover sport svr vs autobiography"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "jaguar f pace svr",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "range rover sport svr vs jaguar f pace svr"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "trackhawk",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "range rover sport svr vs trackhawk"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "audi rsq8",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "range rover sport svr vs audi rsq8"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "defender octa",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "range rover sport svr vs defender octa"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "x5m",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "range rover sport svr vs x5m"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "porsche cayenne turbo",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "range rover sport svr vs porsche cayenne turbo"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "bmw x5m competition",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "range rover sport svr vs bmw x5m competition"
+ },
+ {
+  "seed": "range rover sport svr",
+  "other": "gle 63 amg",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "range rover sport svr vs gle 63 amg"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "bmw m3",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "alfa romeo giulia quadrifoglio vs bmw m3"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "veloce",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "alfa romeo giulia quadrifoglio vs veloce"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "bmw m4",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "alfa romeo giulia quadrifoglio vs bmw m4"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "giulia",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "alfa romeo giulia quadrifoglio vs giulia"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "bmw m340i",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "alfa romeo giulia quadrifoglio vs bmw m340i"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "audi rs5",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "alfa romeo giulia quadrifoglio vs audi rs5"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "gtam",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "alfa romeo giulia quadrifoglio vs gtam"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "m3 drag race",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "alfa romeo giulia quadrifoglio vs m3 drag race"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "c63 amg",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "alfa romeo giulia quadrifoglio vs c63 amg"
+ },
+ {
+  "seed": "alfa romeo giulia quadrifoglio",
+  "other": "bmw m3 competition",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "alfa romeo giulia quadrifoglio vs bmw m3 competition"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "golf gti",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "mini jcw vs golf gti"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "golf r",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "mini jcw vs golf r"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "s",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "mini jcw vs s"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "cooper s",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "mini jcw vs cooper s"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "gti",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "mini jcw vs gti"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "gr86",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "mini jcw vs gr86"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "audi s3",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "mini jcw vs audi s3"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "abarth 595",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "mini jcw vs abarth 595"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "bmw m135i",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "mini jcw vs bmw m135i"
+ },
+ {
+  "seed": "mini jcw",
+  "other": "gr yaris",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "mini jcw vs gr yaris"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "695",
+  "rank": 0,
+  "weight": 1,
+  "phrase": "abarth 595 vs 695"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "500",
+  "rank": 1,
+  "weight": 0.5,
+  "phrase": "abarth 595 vs 500"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "fiat 500",
+  "rank": 2,
+  "weight": 0.3333333333333333,
+  "phrase": "abarth 595 vs fiat 500"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "595c",
+  "rank": 3,
+  "weight": 0.25,
+  "phrase": "abarth 595 vs 595c"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "fiesta st",
+  "rank": 4,
+  "weight": 0.2,
+  "phrase": "abarth 595 vs fiesta st"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "mini cooper s",
+  "rank": 5,
+  "weight": 0.16666666666666666,
+  "phrase": "abarth 595 vs mini cooper s"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "polo gti",
+  "rank": 6,
+  "weight": 0.14285714285714285,
+  "phrase": "abarth 595 vs polo gti"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "mini jcw",
+  "rank": 7,
+  "weight": 0.125,
+  "phrase": "abarth 595 vs mini jcw"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "695 difference",
+  "rank": 8,
+  "weight": 0.1111111111111111,
+  "phrase": "abarth 595 vs 695 difference"
+ },
+ {
+  "seed": "abarth 595",
+  "other": "695 competizione",
+  "rank": 9,
+  "weight": 0.1,
+  "phrase": "abarth 595 vs 695 competizione"
  }
 ]
