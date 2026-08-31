@@ -95,7 +95,11 @@ for (const f of ["robots.txt", "og.png"]) {
 
 /* Comparison pages. Their numbers come from the simulator itself, run in a VM
    over the same car data the app ships, so a page cannot disagree with the app. */
-const vsUrls = require("./lib/vs.js").build(app, OUT, SITE);
+const vs = require("./lib/vs.js").build(app, OUT, SITE);
+/* Make pages and the fastest-lists. They get the comparison manifest so a make
+   page can point at the head-to-heads that already exist for it. */
+const listUrls = require("./lib/lists.js").build(app, OUT, SITE, vs.made);
+const vsUrls = vs.urls.concat(listUrls);
 
 fs.writeFileSync(path.join(OUT, "sitemap.xml"),
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -105,4 +109,5 @@ ${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><changefreq>monthly</changefreq>
 </urlset>
 `);
 
-console.log(`built public/index.html (${(html.length / 1024).toFixed(0)} KB) + ${n} logos + ${vsUrls.length} comparison pages`);
+console.log(`built public/index.html (${(html.length / 1024).toFixed(0)} KB) + ${n} logos + `
+  + `${vs.urls.length} comparison pages + ${listUrls.length} list pages`);
