@@ -5340,7 +5340,14 @@ let ACC={a:0,b:0};
    instead of stopping dead on the line. */
 function extTrace(c,tEnd){
   const o={maxT:Math.min(tEnd+RUNOUT,95)};
-  if(S.mode==="roll") o.v0=S.r0;
+  /* This shadows traceFor() for the strip, so it has to leave the line at the
+     same speed. Keying it on mode==="roll" alone meant a distance race from a
+     roll drew cars launching from REST while the clock ran the rolling trace:
+     they crawled away from a line the readout said they were passing at 50,
+     never reached the chequers, and never satisfied the off-screen test that
+     ends the run -- so the result dialog never opened. */
+  const v0=rollingStart();
+  if(v0>0) o.v0=v0;
   return run(c,env(),o);
 }
 function computeTraces(){
