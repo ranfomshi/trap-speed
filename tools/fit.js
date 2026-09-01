@@ -198,7 +198,15 @@ if(require.main===module){
        makers publish kerb mass to two conventions, and EU already includes a
        75 kg driver that this simulator adds again. A car whose trim is high but
        falls into line exactly 75 kg lighter is almost certainly quoted EU. */
-    if(r.kp>1.10){
+    /* massOk marks a car whose mass has been read off a document that states
+       its own convention -- Skoda's "Kerb weight incl. driver**" with the 75 kg
+       footnote, zeperfs printing DIN and EU side by side. The heuristic still
+       fires on some of those, because "a 75 kg lighter car would need less
+       power trim" is mildly true of almost any car with an optimistic factory
+       0-100. Left unsuppressed it would send someone to re-verify a car that is
+       already as verified as it can get, and a check that cries wolf stops
+       being read. */
+    if(r.kp>1.10 && !spec.massOk){
       const lighter=fit(Object.assign({},spec,{kg:spec.kg-75}));
       if(lighter.kp<=1.10) bad.push("mass may be an EU figure: 75 kg lighter fits at "
         +lighter.kp.toFixed(3)+" instead of "+r.kp.toFixed(3));

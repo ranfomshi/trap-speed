@@ -10,7 +10,11 @@
   "hyundai-i20-1-0-tgdi-100": "DIN 1065 / EU 1140; ours was the EU figure. vmx 185->188 (185 was the DCT column, we model the 6MT)",
   "citroen-c3-puretech-83": "DIN 980 (Argus \"masse a vide\"); ours (1090) matched neither convention. 0-100 12.8->13.3, vmx 171->169, yr 2016->2018 (PureTech 83 is the later Euro 6.2 engine)",
   "seat-leon-1-5-tsi-150": "DIN 1241 / EU 1316 (SEAT UK prints \"Kerb weight [with driver]\"); ours (1289) matched neither. vmx 222->221",
-  "vw-golf-1-6-tdi-115-mk7": "DIN 1226 base trim / EU 1301; ours 1275 was near the Comfortline DIN. vmx 200->198. 5-speed CONFIRMED correct"
+  "vw-golf-1-6-tdi-115-mk7": "DIN 1226 base trim / EU 1301; ours 1275 was near the Comfortline DIN. vmx 200->198. 5-speed CONFIRMED correct",
+  "seat-leon-2-0-tdi-150": "DIN 1230 / EU 1305 (SEAT 5D sheet, \"In running order with driver\", gross 1820 matches auto-data). vmx 216->215. 0-100 8.4 confirmed for the 5-door manual",
+  "hyundai-i30-1-6-crdi-110": "DIN 1263 / EU 1338 base trim (Hyundai DE, \"inkl. 75 kg Fahrergewicht\"). 0-100 11.3->11.0 -- 11.3 was the KOMBI estate figure",
+  "alfa-romeo-giulietta-1-6-jtdm": "DIN 1310 / EU 1385 (zeperfs prints both). vmx 195->185 -- 195 belongs to the 120 CV facelift. Renamed to \"105\" to stop the two being merged",
+  "skoda-superb-2-0-tdi-150": "DIN 1445 / EU 1520 (Skoda sheet, \"Kerb weight incl. driver**\", footnote \"weight of driver 75 kg\"). 0-100 8.9->8.8 and vmx 218->220 -- both were the DSG column"
  },
  "verified_already_correct": {
   "vw-up-1-0": "929 kg confirmed as DIN, no change"
@@ -19,12 +23,6 @@
  "pending_agent_verification": {
   "blocked": "running one group at a time to stay inside the weekly limit",
   "groups": {
-   "2": [
-    "seat-leon-2-0-tdi-150",
-    "hyundai-i30-1-6-crdi-110",
-    "alfa-romeo-giulietta-1-6-jtdm",
-    "skoda-superb-2-0-tdi-150"
-   ],
    "3": [
     "nissan-qashqai-1-5-dci-110",
     "nissan-juke-1-0-dig-t-117",
@@ -43,5 +41,7 @@
    ]
   }
  },
- "calibration": "auto-data.net \"Kerb Weight\" is the DIN figure (driver excluded). Established against two makers who state their own convention: Hyundai i20 1140 \"inkl. 75 kg Fahrergewicht\" vs auto-data 1065; SEAT Leon 1316 \"[with driver]\" vs auto-data 1241. auto-data \"Max. weight\" matching the maker gross weight confirms the variant."
+ "calibration": "auto-data.net \"Kerb Weight\" is the DIN figure (driver excluded). Established against two makers who state their own convention: Hyundai i20 1140 \"inkl. 75 kg Fahrergewicht\" vs auto-data 1065; SEAT Leon 1316 \"[with driver]\" vs auto-data 1241. auto-data \"Max. weight\" matching the maker gross weight confirms the variant.",
+ "calibration_caveat": "auto-data.net is USUALLY DIN but NOT always: it gave the EU figure for the pre-facelift SEAT Leon Mk3 (1305, matching SEAT), and for the Alfa Giulietta printed 1395 -- above Alfa own with-driver 1385. Reliable test: auto-data kerb exactly 75 below the maker with-driver figure AND auto-data \"Max. weight\" equal to the maker gross weight.",
+ "massOk_flag": "specs carrying massOk:1 have a source that states its own convention; tools/fit.js skips the EU-mass heuristic for them, because it still fires on some verified cars and a check that cries wolf stops being read"
 }

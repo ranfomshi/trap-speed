@@ -51,7 +51,8 @@
    0.301
   ],
   "t100": 10.8,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "hyundai-i20-1-0-tgdi-100",
@@ -78,7 +79,8 @@
    0.301
   ],
   "t100": 10.4,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "kia-picanto-1-0",
@@ -186,7 +188,8 @@
    0.299
   ],
   "t100": 13.3,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "skoda-fabia-1-0-tsi-95",
@@ -213,7 +216,8 @@
    0.301
   ],
   "t100": 10.6,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "fiat-500-1-2",
@@ -240,7 +244,8 @@
    0.288
   ],
   "t100": 12.9,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "honda-jazz-1-3-i-vtec",
@@ -294,7 +299,8 @@
    0.288
   ],
   "t100": 14.4,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "toyota-aygo-1-0-vvt-i",
@@ -510,7 +516,8 @@
    0.312
   ],
   "t100": 8.4,
-  "src": "mfr"
+  "src": "mfr",
+  "massOk": 1
  },
  {
   "id": "skoda-octavia-1-5-tsi-150",
@@ -755,7 +762,8 @@
   ],
   "t100": 10.2,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "ford-focus-1-5-tdci-120",
@@ -839,7 +847,8 @@
   ],
   "t100": 8.4,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "seat-leon-2-0-tdi-150",
@@ -848,11 +857,11 @@
   "yr": 2013,
   "cls": "Everyday",
   "kW": 110,
-  "kg": 1315,
+  "kg": 1230,
   "dr": "fwd",
   "g": 6,
   "bx": "man",
-  "vmx": 216,
+  "vmx": 215,
   "ty": "all",
   "asp": "turbo",
   "hL": 0.25,
@@ -867,7 +876,8 @@
   ],
   "t100": 8.4,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "audi-a3-2-0-tdi-150-8v",
@@ -904,7 +914,7 @@
   "yr": 2017,
   "cls": "Everyday",
   "kW": 81,
-  "kg": 1350,
+  "kg": 1263,
   "dr": "fwd",
   "g": 6,
   "bx": "man",
@@ -921,9 +931,10 @@
    0.88,
    0.312
   ],
-  "t100": 11.3,
+  "t100": 11.0,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "kia-ceed-1-6-crdi-136",
@@ -1068,15 +1079,15 @@
  {
   "id": "alfa-romeo-giulietta-1-6-jtdm",
   "mk": "Alfa Romeo",
-  "md": "Giulietta 1.6 JTDM-2",
+  "md": "Giulietta 1.6 JTDM-2 105",
   "yr": 2010,
   "cls": "Everyday",
   "kW": 77,
-  "kg": 1320,
+  "kg": 1310,
   "dr": "fwd",
   "g": 6,
   "bx": "man",
-  "vmx": 195,
+  "vmx": 185,
   "ty": "all",
   "asp": "turbo",
   "hL": 0.25,
@@ -1091,7 +1102,8 @@
   ],
   "t100": 11.3,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "bmw-520d-g30",
@@ -1119,7 +1131,8 @@
   ],
   "t100": 7.5,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "audi-a4-2-0-tdi-150-b9",
@@ -1212,11 +1225,11 @@
   "yr": 2015,
   "cls": "Everyday",
   "kW": 110,
-  "kg": 1465,
+  "kg": 1445,
   "dr": "fwd",
   "g": 6,
   "bx": "man",
-  "vmx": 218,
+  "vmx": 220,
   "ty": "all",
   "asp": "turbo",
   "hL": 0.24,
@@ -1229,9 +1242,10 @@
    0.9,
    0.324
   ],
-  "t100": 8.9,
+  "t100": 8.8,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "vauxhall-insignia-2-0-cdti-170",
@@ -1315,7 +1329,8 @@
   ],
   "t100": 8.5,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "vw-passat-estate-2-0-tdi-190",
