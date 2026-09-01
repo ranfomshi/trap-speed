@@ -12,9 +12,9 @@
  *   - no session replay;
  *   - no third-party script, no third-party cookie, nothing to block.
  *
- * Storage: two localStorage keys, `mar:consent` and `mar:did`, and NEITHER is
- * written before the visitor has agreed. Decline and the only thing kept is
- * the word "denied", so we can stop asking.
+ * Storage: three localStorage keys, `mar:consent`, `mar:did` and `mar:first`,
+ * and NONE is written before the visitor has agreed. Decline and the only thing
+ * kept is the word "denied", so we can stop asking.
  *
  * With no token configured every call here is a no-op and the banner still
  * behaves correctly, so the site works identically before Mixpanel is set up
@@ -31,7 +31,11 @@
      you go looking. Hence a build-time constant with the EU default this
      project was set up for, overridable without touching this file. */
   var HOST  = "__MP_HOST__";
-  var CKEY  = "mar:consent", DKEY = "mar:did";
+  /* The commit the pages were generated from. Every event carries it, which is
+     what makes an SEO change measurable: you can cut any metric by the build
+     that introduced it instead of guessing at a date. */
+  var BUILD = "__MP_BUILD__";
+  var CKEY  = "mar:consent", DKEY = "mar:did", FKEY = "mar:first";
 
   /* localStorage throws outright in some privacy modes, so every touch is
      wrapped: a browser that refuses storage should still get a working site,
@@ -56,6 +60,102 @@
     catch (e) { return "d" + Date.now().toString(36) + Math.random().toString(36).slice(2,10); }
   }
 
+  /* --- where the visit came from ---------------------------------------
+     The whole point of the SEO and GEO work is that somebody arrives who did
+     not before, so every event has to be able to say who sent them. Three
+     buckets matter and the rest is noise:
+
+       ai      -- an answer engine cited us and a human followed the citation
+       search  -- a classic results page
+       social  -- a link somebody posted
+
+     Note what this CANNOT see: the crawlers themselves. GPTBot, ClaudeBot and
+     PerplexityBot do not run JavaScript, so a page they fetch produces no event
+     here at all. Being read by a model and being clicked through from one are
+     different things, and only the second is visible from the browser. Server
+     logs are the only place the first shows up. */
+  /* Anchored the same way as the two below -- "(^|\.)" rather than "^" -- because
+     the referrer that actually arrives is www.perplexity.ai, not perplexity.ai,
+     and an exact-host match quietly files it under "referral". No entry here may
+     contain a slash: this is matched against a hostname, and a path in the list
+     can never match anything. */
+  var AI = /(^|\.)(chatgpt\.com|openai\.com|perplexity\.ai|claude\.ai|anthropic\.com|gemini\.google\.com|bard\.google\.com|copilot\.microsoft\.com|you\.com|phind\.com|poe\.com|mistral\.ai|grok\.com|x\.ai|felo\.ai|iask\.ai|andisearch\.com|kagi\.com|arc\.net|komo\.ai|exa\.ai)$/;
+  var SEARCH = /(^|\.)(google\.[a-z.]+|bing\.com|duckduckgo\.com|search\.yahoo\.com|yahoo\.com|ecosia\.org|search\.brave\.com|startpage\.com|qwant\.com|yandex\.[a-z.]+|baidu\.com|search\.marginalia\.nu)$/;
+  var SOCIAL = /(^|\.)(t\.co|twitter\.com|x\.com|reddit\.com|facebook\.com|instagram\.com|linkedin\.com|news\.ycombinator\.com|pinterest\.[a-z.]+|youtube\.com|tiktok\.com|threads\.net|bsky\.app|mastodon\.[a-z.]+|substack\.com|discord\.com|pistonheads\.com)$/;
+
+  function qp(k){
+    try { return new URLSearchParams(location.search).get(k) || ""; }
+    catch (e) { return ""; }
+  }
+
+  var refHost = (function(){
+    try { return document.referrer ? new URL(document.referrer).host.toLowerCase() : ""; }
+    catch (e) { return ""; }
+  })();
+
+  var utm = { source: qp("utm_source").toLowerCase(), medium: qp("utm_medium").toLowerCase(),
+              campaign: qp("utm_campaign").toLowerCase() };
+
+  /* ChatGPT stamps its outbound citations with utm_source=chatgpt.com, and it
+     is the more reliable of the two signals: a referrer can be stripped by the
+     referrer policy at the other end, a query parameter survives. Check the tag
+     first, the host second. */
+  var channel = (function(){
+    var s = utm.source;
+    if (s) {
+      if (AI.test(s) || s === "chatgpt" || s === "perplexity" || s === "copilot") return "ai";
+      if (SEARCH.test(s)) return "search";
+      if (SOCIAL.test(s)) return "social";
+      return utm.medium === "cpc" || utm.medium === "paid" ? "paid" : "campaign";
+    }
+    if (!refHost) return "direct";
+    if (refHost === location.host) return "internal";
+    if (AI.test(refHost)) return "ai";
+    if (SEARCH.test(refHost)) return "search";
+    if (SOCIAL.test(refHost)) return "social";
+    return "referral";
+  })();
+
+  /* --- which page ------------------------------------------------------
+     page_type groups the four templates so an experiment can be scoped to one
+     of them; page_id is the individual slug, for the long tail. */
+  var pageType, pageId = "";
+  (function(){
+    var p = location.pathname.replace(/\/+$/, "/");
+    var m;
+    if (p === "/" || p === "") { pageType = framed ? "simulator-embed" : "simulator"; return; }
+    if ((m = p.match(/^\/vs\/([^/]+)\/$/)))          { pageType = "comparison"; pageId = m[1]; return; }
+    if (p === "/vs/")                                { pageType = "comparison-index"; return; }
+    if ((m = p.match(/^\/0-60-times\/([^/]+)\/$/)))  { pageType = "make"; pageId = m[1]; return; }
+    if (p === "/0-60-times/")                        { pageType = "make-index"; return; }
+    if ((m = p.match(/^\/fastest\/([^/]+)\/$/)))     { pageType = "fastest"; pageId = m[1]; return; }
+    if (p === "/fastest/")                           { pageType = "fastest-index"; return; }
+    if ((m = p.match(/^\/cars\/([^/]+)\/$/)))        { pageType = "car"; pageId = m[1]; return; }
+    pageType = "other";
+  })();
+
+  /* First touch, kept only once consent exists. Somebody who arrives from
+     ChatGPT, leaves, and comes back direct a week later was still won by the
+     citation, and a last-touch-only report hands that credit to "direct". */
+  var first = null;
+  function readFirst(){
+    var raw = get(FKEY);
+    if (!raw) return null;
+    try { return JSON.parse(raw); } catch (e) { return null; }
+  }
+  function saveFirst(){
+    if (first) return;
+    first = { c: channel, p: location.pathname, t: Date.now() };
+    set(FKEY, JSON.stringify(first));
+  }
+  first = readFirst();
+  /* A visitor who consented on an earlier visit reaches here with state already
+     "granted", so grant() never runs and the first touch was never written.
+     Record it now: for anyone who consents from this build onwards it is the
+     genuine first touch, and for the handful who consented before it is the
+     earliest one we are able to know. */
+  if (state === "granted" && !first) saveFirst();
+
   function send(name, props){
     if (!TOKEN) return;
     var p = {
@@ -66,8 +166,16 @@
          and Race staged sends surface_grip alongside this */
       context: framed ? "embed" : "site",
       path: location.pathname,
-      referrer_host: (function(){ try { return document.referrer ? new URL(document.referrer).host : ""; } catch (e) { return ""; } })()
+      page_type: pageType,
+      page_id: pageId,
+      channel: channel,
+      referrer_host: refHost,
+      build: BUILD
     };
+    if (utm.source)   p.utm_source   = utm.source;
+    if (utm.medium)   p.utm_medium   = utm.medium;
+    if (utm.campaign) p.utm_campaign = utm.campaign;
+    if (first) { p.first_channel = first.c; p.first_landing = first.p; }
     for (var k in props) if (Object.prototype.hasOwnProperty.call(props,k)) p[k] = props[k];
     var body = new URLSearchParams({ data: JSON.stringify([{ event: name, properties: p }]), ip: "1" });
     /* Form encoding is CORS-safelisted, so this never needs a preflight -- which
@@ -93,13 +201,14 @@
     state = "granted";
     set(CKEY, "granted");
     if (!did) { did = newId(); set(DKEY, did); }
+    saveFirst();
     hideBanner();
     flush();
   }
   function deny(){
     state = "denied"; queue = [];
     set(CKEY, "denied");
-    del(DKEY); did = "";
+    del(DKEY); del(FKEY); did = ""; first = null;
     hideBanner();
   }
   function revoke(){ deny(); }
@@ -157,7 +266,8 @@
   }
 
   window.MAR = { track: track, grant: grant, deny: deny, revoke: revoke,
-                 state: function(){ return state; }, configured: !!TOKEN };
+                 state: function(){ return state; }, configured: !!TOKEN,
+                 channel: channel, pageType: pageType, build: BUILD };
 
   /* The simulator runs before this file arrives and buffers its events here.
      Drain the buffer, then replace it with something that forwards straight
@@ -167,9 +277,52 @@
   for (var j = 0; j < pending.length; j++) track(pending[j][0], pending[j][1]);
   window.MAR_QUEUE = { push: function(e){ track(e[0], e[1]); return 0; }, length: 0 };
 
+  /* --- did the visit actually work? ------------------------------------
+     A pageview from an answer-engine citation is worth nothing on its own; the
+     question is whether the person who followed it stayed. One event, fired at
+     most once, on the first of: ten seconds with any scroll, or a quarter of
+     the page. Bounce rate we can compute from its absence. */
+  function engagement(){
+    var done = false, t0 = Date.now(), scrolled = 0;
+    function depth(){
+      var h = document.documentElement;
+      var max = Math.max(h.scrollHeight, document.body ? document.body.scrollHeight : 0) - innerHeight;
+      return max <= 0 ? 1 : Math.min(1, (scrollY || h.scrollTop || 0) / max);
+    }
+    function check(){
+      if (done) return;
+      var d = depth();
+      if (d > scrolled) scrolled = d;
+      var secs = (Date.now() - t0) / 1000;
+      if (scrolled >= 0.25 || (secs >= 10 && scrolled > 0.02)) {
+        done = true;
+        removeEventListener("scroll", check);
+        clearInterval(iv);
+        track("Page engaged", { seconds: Math.round(secs), scroll_depth: Math.round(scrolled*100) });
+      }
+    }
+    addEventListener("scroll", check, { passive: true });
+    var iv = setInterval(check, 2000);
+  }
+
   /* An embedded simulator sits inside a page that has already counted itself;
      counting again would double every comparison view. */
-  if (!framed) track("Page viewed", {});
+  if (!framed) {
+    track("Page viewed", {});
+    engagement();
+    /* Which internal link the visitor took is how you tell a page that answered
+       the question from a page that merely started one. Delegated, so it covers
+       links the templates add later without another edit here. */
+    document.addEventListener("click", function(ev){
+      var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+      if (!a) return;
+      var u;
+      try { u = new URL(a.href, location.href); } catch (e) { return; }
+      if (u.host !== location.host) return;
+      if (u.pathname === location.pathname) return;
+      track("Internal link clicked", { to: u.pathname });
+    }, true);
+  }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", showBanner);
   else showBanner();

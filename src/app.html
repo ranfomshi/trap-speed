@@ -379,6 +379,18 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 .big.flash{animation:msflash .7s cubic-bezier(.2,.8,.3,1)}
 @keyframes msflash{0%{transform:scale(1)}18%{transform:scale(1.14)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.big.flash{animation:none}}
+
+/* The prose block under the app. Narrow measure, quiet colour: it is there to
+   be read by whoever wants it and to be ignorable by everyone else. */
+.about{max-width:62ch;margin:34px auto 0;color:var(--ink2);font-size:14.5px;line-height:1.65}
+.about h2{font-family:var(--cond);text-transform:uppercase;letter-spacing:.15em;font-size:13px;
+  color:var(--ink2);margin:0 0 10px}
+.about b{color:var(--ink);font-weight:600}
+.about p{margin:0 0 12px}
+.about .faq{margin:16px 0 0}
+.about .faq dt{font-weight:600;color:var(--ink);margin:14px 0 4px}
+.about .faq dd{margin:0 0 0 0;color:var(--ink2)}
+.embed .about{display:none}
 </style>
 
 <div class="wrap">
@@ -583,6 +595,44 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   <p class="embed-back vslink"><a href="vs/">Head-to-head comparisons</a>
     &nbsp;&middot;&nbsp; <a href="0-60-times/">0-60 times by make</a>
     &nbsp;&middot;&nbsp; <a href="fastest/">Fastest lists &rarr;</a></p>
+
+  <!-- The home page is an app, and an app is close to invisible to anything
+       that reads rather than clicks: a retrieval system sees a canvas, two
+       dropdowns and no claim it can quote. This section is the page saying, in
+       words, what it is and where its numbers come from. It is written for a
+       reader first -- it is the honest answer to "what am I looking at?" -- and
+       it happens to be the only part of this page an answer engine can cite. -->
+  <section class="about" id="about">
+    <h2>What this is</h2>
+    <p><b>My Auto Racer is a drag race simulator for real cars.</b> Pick any two of
+      <b id="aboutCount">2,900</b> models, set the distance, the surface and the weather, and watch
+      them run &mdash; a full standing start with a Christmas tree, 60&nbsp;ft, 1/8&nbsp;mile,
+      1/4&nbsp;mile, trap speed and a rolling speed trace for each car.</p>
+    <p>Every time is <b>simulated, not measured</b>. Each car is modelled from its published kerb
+      mass, rated power, drivetrain and gearing; the model then trims tyre grip and delivered power
+      until the car reproduces its own published acceleration figures. Both cars run in identical
+      conditions &mdash; dry asphalt, 20&nbsp;&deg;C, sea level, 1&nbsp;ft rollout &mdash; which is
+      what makes the comparison fair even though no single time is a timing slip.</p>
+    <dl class="faq">
+      <dt>Are the times on My Auto Racer real measured times?</dt>
+      <dd>No. They are produced by a physics simulation, not by a stopwatch at a drag strip. The
+        simulation is calibrated against each car&rsquo;s published acceleration figures, so it
+        agrees with the manufacturer where the manufacturer has published a number, and interpolates
+        between those points everywhere else.</dd>
+      <dt>What can I change about the race?</dt>
+      <dd>Distance (60&nbsp;ft, 1/8&nbsp;mile, 1/4&nbsp;mile, standing kilometre, or a roll-on),
+        surface grip from dry to wet, air temperature, altitude, headwind or tailwind, gradient,
+        passenger load, and a rolling start.</dd>
+      <dt>Where does the car data come from?</dt>
+      <dd>Kerb mass, power, drivetrain and published acceleration figures come from
+        <a href="https://accelerationtimes.com">accelerationtimes.com</a> and
+        <a href="https://cardata.wiki">cardata.wiki</a>, both CC&nbsp;BY&nbsp;4.0. Kerb mass is
+        recorded as the DIN figure &mdash; the car with no driver &mdash; and the simulator adds a
+        75&nbsp;kg driver of its own.</dd>
+      <dt>Does it cost anything?</dt>
+      <dd>No. It runs in the browser, there is no account, and there are no ads.</dd>
+    </dl>
+  </section>
 
   <footer>My Auto Racer &mdash; a simulator. Real elapsed times depend on the track, the air, the tyres and the driver.<br>
     Acceleration figures from <a href="https://accelerationtimes.com">accelerationtimes.com</a> and

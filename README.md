@@ -65,13 +65,53 @@ node tools/make-og.js         # regenerates the social card (needs chromium)
 
 Netlify runs `node build.js` and publishes `public/`.
 
+## Being found
+
+Two audiences, one body of work, all of it generated at build time by
+`lib/seo.js`:
+
+- **Search.** Every page carries a canonical, a `BreadcrumbList`, and
+  `max-snippet:-1` so a result is not truncated to 160 characters. The sitemap
+  carries a real `lastmod`.
+- **Answer engines.** Every generated page opens with one self-contained
+  paragraph that names both cars, carries every unit, and says where the number
+  came from — written so it survives being quoted with nothing around it. Below
+  it, a visible Q&A block, mirrored exactly in `FAQPage` markup: schema that
+  describes content the page does not show is a guidelines violation, so the two
+  are always written together. `robots.txt` names the model crawlers
+  individually, and `/llms.txt` maps the site for anything that reads it.
+
+What this **cannot** tell you is whether a model crawled you. GPTBot, ClaudeBot
+and PerplexityBot do not run JavaScript, so they raise no analytics event. Being
+read by a model and being clicked through from one are different things, and
+only the second is visible from a browser. Server logs are the only place the
+first shows up.
+
+## Measurement
+
+Every event carries `channel` (`ai` / `search` / `social` / `referral` /
+`direct`), `page_type`, `page_id`, `first_channel` and `build` — the commit the
+pages were generated from. That last one is what makes an experiment legible:
+segment any metric by `build` and the before and after separate themselves
+without anyone having to remember which day a deploy happened.
+
+The funnel on a generated page is `Page viewed` -> `Page engaged` (10 s with
+scroll, or 25% depth) -> `Sim opened` (the conversion; the visitor staged a
+race). `Internal link clicked` says which page they went to next.
+
 ## Layout
 
 ```
 src/app.html      the whole app: markup, styles and script in one file
+src/analytics.js  events, consent, and where the visit came from
+src/robots.txt    the wildcard, plus every model crawler by name
 src/logos/        126 maker badges
 src/logomap.json  make name -> badge file
-build.js          wraps app.html into public/index.html
+build.js          wraps app.html into public/index.html; writes llms.txt
+lib/seo.js        JSON-LD, answer blocks, FAQ markup, crawl directives
+lib/vs.js         the /vs/ comparison pages
+lib/lists.js      /0-60-times/<make>/ and /fastest/<what>/
+lib/race.js       the race panel shared by every generated page
 netlify.toml      build command, publish dir, cache headers
 ```
 

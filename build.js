@@ -8,7 +8,9 @@ const OUT = path.join(__dirname, "public");
 
 const SITE  = "https://myautoracer.com";
 const TITLE = "My Auto Racer — drag race any two real cars";
-const DESC  = "A drag race simulator for real cars. Pick two of 2,843 models, set the "
+/* The count is in the description, so the description cannot be a constant --
+   it is written once the car data has actually been read. */
+const DESC_ = n => "A drag race simulator for real cars. Pick two of " + n + " models, set the "
             + "distance, the surface and the weather, and watch them run. Every car is "
             + "simulated from its published mass, power and drivetrain, then fitted "
             + "against its own published acceleration figures.";
@@ -30,20 +32,99 @@ body = body.replace(/^<style>[\s\S]*?<\/style>\n/m, m => {
 });
 if (!headBits.some(h => h.startsWith("<style>"))) throw new Error("stylesheet not found in src/app.html");
 
+/* Every car must produce a finite run. A NaN here is silent in the browser --
+   the car just never finishes its race -- and one slipped through once when a
+   field the physics reads stopped being a value it recognised. Run before
+   anything is written: a build that is going to fail should fail in a second,
+   not after thirteen seconds of list-building. */
+const CARS = (() => {
+  const vm=require("vm");
+  const dom=app.indexOf("const $=s=>document.querySelector");
+  const ctx={console}; vm.createContext(ctx);
+  vm.runInContext(app.slice(app.lastIndexOf("<script>",dom)+8).slice(0,
+    app.slice(app.lastIndexOf("<script>",dom)+8).indexOf("const $=s=>document.querySelector"))
+    +";globalThis.__c={CARS,run,QM};",ctx);
+  const {CARS,run,QM}=ctx.__c;
+  const env={surf:"dry",tempC:20,alt:0,wind:0,grade:0,load:0};
+  const bad=CARS.filter(c=>!Number.isFinite(run(c,env,{maxD:QM,maxT:90}).vEnd));
+  if(bad.length) throw new Error("build: "+bad.length+" car(s) produce a non-finite run: "
+    +bad.slice(0,5).map(c=>c.id).join(", "));
+  return CARS;
+})();
+
+/* The About block states a number of models; it has to be the real one, and it
+   has to be in the HTML rather than filled in by script, because the readers it
+   is written for do not run any. */
+body = body.replace('<b id="aboutCount">2,900</b>', `<b id="aboutCount">${CARS.length.toLocaleString("en-GB")}</b>`);
+
 const withLogos = body.replace(
   /const LOGOMAP=\/\*\[\[LOGOMAP\]\]\*\/\{\};/,
   "const LOGOMAP=" + JSON.stringify(logomap) + ";"
 );
 if (withLogos === body) throw new Error("LOGOMAP marker not found in src/app.html");
 
-const favicon =
-  `data:image/svg+xml,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">` +
-    `<rect width="32" height="32" rx="7" fill="#0B0D10"/>` +
-    `<circle cx="16" cy="8"  r="3.4" fill="#F2A20C"/>` +
-    `<circle cx="16" cy="16" r="3.4" fill="#F2A20C"/>` +
-    `<circle cx="16" cy="24" r="3.4" fill="#2FCB6E"/></svg>`
-  )}`;
+/* Written to a file rather than inlined as a data URI on the home page only.
+   The generated pages declared no icon at all, so every one of the 470 of them
+   cost a 404 on /favicon.ico -- harmless to a reader, wasted requests to a
+   crawler, and the kind of thing that shows up in an audit as a real finding. */
+const FAVICON_SVG =
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">` +
+  `<rect width="32" height="32" rx="7" fill="#0B0D10"/>` +
+  `<circle cx="16" cy="8"  r="3.4" fill="#F2A20C"/>` +
+  `<circle cx="16" cy="16" r="3.4" fill="#F2A20C"/>` +
+  `<circle cx="16" cy="24" r="3.4" fill="#2FCB6E"/></svg>`;
+const favicon = "/favicon.svg";
+
+const SEO = require("./lib/seo.js");
+const DESC = DESC_(CARS.length.toLocaleString("en-GB"));
+
+/* The home page is the strongest page on the site and, being an app, the one
+   with least for a machine to read. These three nodes say what it is: a piece
+   of software, the dataset behind it, and the questions the About block below
+   answers in visible prose. Nothing here is marked up that the page does not
+   actually show. */
+const HOME_LD = SEO.jsonld({ "@context":"https://schema.org", "@graph":[
+  { "@type":"WebSite", "@id":`${SITE}/#website`, url:`${SITE}/`, name:"My Auto Racer",
+    description:DESC, inLanguage:"en" },
+  { "@type":"SoftwareApplication", "@id":`${SITE}/#app`, name:"My Auto Racer",
+    url:`${SITE}/`, applicationCategory:"Simulation", applicationSubCategory:"Drag race simulator",
+    operatingSystem:"Any browser", browserRequirements:"Requires JavaScript",
+    description:DESC, inLanguage:"en", isAccessibleForFree:true,
+    offers:{ "@type":"Offer", price:"0", priceCurrency:"GBP" },
+    featureList:["Standing 60 ft, 1/8 mile, 1/4 mile and standing kilometre",
+      "Trap speed and speed trace", "Dry to wet surface grip", "Air temperature, altitude and wind",
+      "Gradient, passenger load and rolling starts", "Head-to-head between any two models"] },
+  { "@type":"Dataset", "@id":`${SITE}/#dataset`, name:"My Auto Racer simulated acceleration figures",
+    url:`${SITE}/vs/`, inLanguage:"en", dateModified:SEO.BUILT,
+    description:`Simulated 0-60 mph, 60 ft, 1/8 mile, 1/4 mile and trap-speed figures for `
+      + `${CARS.length.toLocaleString("en-GB")} car models, each computed from published kerb mass, `
+      + `rated power, drivetrain and gearing and then fitted to that model's own published `
+      + `acceleration figures. Identical conditions for every car: dry asphalt, 20 C, sea level, `
+      + `1 ft rollout. Simulated, not measured.`,
+    variableMeasured:["0-60 mph time","60 ft time","1/8 mile time","1/4 mile time",
+      "quarter-mile trap speed","kerb mass","rated power","power to weight"],
+    /* Where the inputs came from. An answer engine deciding whether to trust a
+       number wants the chain, not a claim of accuracy. */
+    isBasedOn:["https://accelerationtimes.com","https://cardata.wiki"],
+    creator:{ "@type":"Organization", name:"My Auto Racer", url:`${SITE}/` } },
+  SEO.faqPage([
+    { q:"Are the times on My Auto Racer real measured times?",
+      a:"No. They are produced by a physics simulation, not by a stopwatch at a drag strip. The "
+       +"simulation is calibrated against each car's published acceleration figures, so it agrees "
+       +"with the manufacturer where the manufacturer has published a number, and interpolates "
+       +"between those points everywhere else." },
+    { q:"What can I change about the race?",
+      a:"Distance (60 ft, 1/8 mile, 1/4 mile, standing kilometre, or a roll-on), surface grip from "
+       +"dry to wet, air temperature, altitude, headwind or tailwind, gradient, passenger load, and "
+       +"a rolling start." },
+    { q:"Where does the car data come from?",
+      a:"Kerb mass, power, drivetrain and published acceleration figures come from "
+       +"accelerationtimes.com and cardata.wiki, both CC BY 4.0. Kerb mass is recorded as the DIN "
+       +"figure - the car with no driver - and the simulator adds a 75 kg driver of its own." },
+    { q:"Does it cost anything?",
+      a:"No. It runs in the browser, there is no account, and there are no ads." }
+  ])
+]});
 
 const html = `<!doctype html>
 <html lang="en">
@@ -65,6 +146,8 @@ const html = `<!doctype html>
 <meta name="twitter:title" content="${TITLE}">
 <meta name="twitter:description" content="${DESC}">
 <meta name="twitter:image" content="${SITE}/og.png">
+${SEO.ROBOTS}
+${HOME_LD}
 ${headBits.join("\n")}
 <style>
   html{color-scheme:dark}
@@ -82,6 +165,7 @@ ${withLogos}
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(path.join(OUT, "logos"), { recursive: true });
 fs.writeFileSync(path.join(OUT, "index.html"), html);
+fs.writeFileSync(path.join(OUT, "favicon.svg"), FAVICON_SVG);
 
 let n = 0;
 for (const f of fs.readdirSync(path.join(SRC, "logos"))) {
@@ -105,32 +189,78 @@ const vs = require("./lib/vs.js").build(app, OUT, SITE);
 /* Make pages and the fastest-lists. They get the comparison manifest so a make
    page can point at the head-to-heads that already exist for it. */
 const listUrls = require("./lib/lists.js").build(app, OUT, SITE, vs.made);
-/* Every car must produce a finite run. A NaN here is silent in the browser --
-   the car just never finishes its race -- and one slipped through once when a
-   field the physics reads stopped being a value it recognised. */
-{
-  const vm=require("vm");
-  const dom=app.indexOf("const $=s=>document.querySelector");
-  const ctx={console}; vm.createContext(ctx);
-  vm.runInContext(app.slice(app.lastIndexOf("<script>",dom)+8).slice(0,
-    app.slice(app.lastIndexOf("<script>",dom)+8).indexOf("const $=s=>document.querySelector"))
-    +";globalThis.__c={CARS,run,QM};",ctx);
-  const {CARS,run,QM}=ctx.__c;
-  const env={surf:"dry",tempC:20,alt:0,wind:0,grade:0,load:0};
-  const bad=CARS.filter(c=>!Number.isFinite(run(c,env,{maxD:QM,maxT:90}).vEnd));
-  if(bad.length) throw new Error("build: "+bad.length+" car(s) produce a non-finite run: "
-    +bad.slice(0,5).map(c=>c.id).join(", "));
-}
-
 const vsUrls = vs.urls.concat(listUrls);
 
+/* lastmod is the one field crawlers actually act on, and it has to be honest:
+   every page here is regenerated from the car data on every build, so the build
+   date is the true modification date for all of them. The index pages get a
+   higher priority than the leaves because they are how a crawler reaches them. */
+const isIndex = u => /^\/(vs|0-60-times|fastest)\/$/.test(u);
 fs.writeFileSync(path.join(OUT, "sitemap.xml"),
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${SITE}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`).join("\n")}
+  <url><loc>${SITE}/</loc><lastmod>${SEO.BUILT}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><lastmod>${SEO.BUILT}</lastmod>`
+  + `<changefreq>${isIndex(u) ? "weekly" : "monthly"}</changefreq>`
+  + `<priority>${isIndex(u) ? "0.9" : "0.7"}</priority></url>`).join("\n")}
 </urlset>
 `);
+
+/* --- llms.txt ------------------------------------------------------------
+   A proposed convention (llmstxt.org): a markdown map of the site at a fixed
+   path, for a model that has landed here and wants to know what else is worth
+   fetching. Be straight about its status -- no major crawler has committed to
+   reading it, so this is a cheap bet, not a mechanism. It costs one file and it
+   is the only place on the site that states the whole shape of it in one page,
+   which makes it worth having even if nothing ever requests it. */
+{
+  const cats = listUrls.filter(u => u.startsWith("/fastest/") && u !== "/fastest/");
+  const makesU = listUrls.filter(u => u.startsWith("/0-60-times/") && u !== "/0-60-times/");
+  const pretty = u => u.replace(/^\/[a-z0-9-]+\//, "").replace(/\/$/, "").replace(/-/g, " ");
+  const llms = `# My Auto Racer
+
+> A drag race simulator for real cars, at ${SITE}. ${CARS.length.toLocaleString("en-GB")} models.
+> Pick any two, set the distance, surface and weather, and watch them run: 60 ft,
+> 1/8 mile, 1/4 mile, standing kilometre, trap speed and a speed trace for each car.
+
+## What the numbers are
+
+Every figure on this site is **simulated, not measured**. Each car is modelled from its
+published kerb mass, rated power, drivetrain and gearing; the model then trims tyre grip
+and delivered power until the car reproduces its own published acceleration figures. Every
+car runs in identical conditions -- dry asphalt, 20 C, sea level, 1 ft rollout -- so the
+comparison between two cars is fair even though no individual time is a timing slip.
+
+Kerb mass is held as the **DIN** figure (the car with no driver); the simulator adds a
+75 kg driver of its own. Source data: accelerationtimes.com and cardata.wiki, both CC BY 4.0.
+
+If you cite a figure from this site, please say that it is simulated.
+
+Last regenerated: ${SEO.BUILT}. Build: see /analytics.js.
+
+## Head-to-head comparisons
+
+- [All ${vs.urls.length - 1} comparisons](${SITE}/vs/): every pair we have built, filterable.
+${vs.made.slice(0, 25).map(m => `- [${m.a.mk} ${m.a.md} vs ${m.b.mk} ${m.b.md}](${SITE}/vs/${m.dir}/)`).join("\n")}
+
+## 0-60 times by make
+
+- [Every make](${SITE}/0-60-times/): ${makesU.length} makes, each model ranked by 0-60.
+${makesU.map(u => `- [${pretty(u)} 0-60 times](${SITE}${u})`).join("\n")}
+
+## Fastest lists
+
+- [All lists](${SITE}/fastest/)
+${cats.map(u => `- [Fastest ${pretty(u)}](${SITE}${u})`).join("\n")}
+
+## Optional
+
+- [Sitemap](${SITE}/sitemap.xml)
+- [robots.txt](${SITE}/robots.txt) -- all answer-engine crawlers are explicitly allowed.
+`;
+  fs.writeFileSync(path.join(OUT, "llms.txt"), llms);
+  console.log(`  llms.txt written (${(llms.length/1024).toFixed(1)} KB)`);
+}
 
 /* Analytics and the consent that gates it, as one file shared by the app and by
    every generated page, so there is a single implementation of the question and
@@ -147,8 +277,22 @@ ${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><changefreq>monthly</changefreq>
      live in US residency. Getting this wrong loses every event silently. */
   const mpHost = process.env.MIXPANEL_HOST || "https://api-eu.mixpanel.com";
   if (!/^https:\/\/api(-eu)?\.mixpanel\.com$/.test(mpHost)) throw new Error("build: MIXPANEL_HOST is not a Mixpanel ingestion host");
+  /* The commit these pages were generated from, stamped into every event. It
+     is what turns "we changed the SEO" into something you can put on an axis:
+     segment any metric by build and the before and after separate themselves,
+     with no need to remember which day a deploy happened. Falls back to the
+     date when git is not available (Netlify's own build image, a tarball). */
+  let build = "";
+  try {
+    build = require("child_process")
+      .execFileSync("git", ["rev-parse", "--short=8", "HEAD"], { encoding: "utf8", stdio:["ignore","pipe","ignore"] })
+      .trim();
+  } catch (e) {}
+  if (!/^[0-9a-f]{6,12}$/.test(build)) build = "d" + SEO.BUILT.replace(/-/g, "");
   fs.writeFileSync(path.join(OUT, "analytics.js"),
-    src.replace("__MP_TOKEN__", token).replace("__MP_HOST__", mpHost));
+    src.replace("__MP_TOKEN__", token).replace("__MP_HOST__", mpHost)
+       .replace("__MP_BUILD__", build));
+  console.log(`  analytics build stamp ${build}`);
   if (!token) console.log("  note: MIXPANEL_TOKEN unset -- analytics.js will no-op");
 
   /* Injected into every page the build produced, rather than into each of the

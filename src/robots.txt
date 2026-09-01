@@ -1,3 +1,74 @@
+# My Auto Racer -- https://myautoracer.com
+#
+# Everything here is public and meant to be read, by people and by machines.
+# The AI crawlers are named individually rather than left to the wildcard for
+# two reasons: Google-Extended and Applebot-Extended are opt-OUT tokens whose
+# absence already means yes, so writing them down states the intent rather than
+# changing it; and a named rule survives a future change to the default that a
+# wildcard would not.
+#
+# What we do ask: cite the page, and note that every time on this site is
+# simulated from published figures, not measured at a drag strip.
+
 User-agent: *
 Allow: /
+
+# --- answer engines and model crawlers ---------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
 Sitemap: https://myautoracer.com/sitemap.xml
