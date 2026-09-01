@@ -1,0 +1,15 @@
+{
+ "convention": "kg field holds DIN kerb mass, driver excluded; sim adds 75kg",
+ "verified_corrected": {
+  "vauxhall-corsa-1-2-turbo-100": "DIN 1090 / EU 1165 -- exactly 75 apart",
+  "skoda-fabia-1-0-tsi-95": "DIN 1067",
+  "fiat-500-1-2": "DIN 865 / EU 940",
+  "skoda-octavia-2-0-tdi-150": "DIN 1255 / EU 1330; mine was the EU figure",
+  "skoda-octavia-estate-2-0-tdi-150": "DIN 1272 / EU 1347; mine was the EU figure",
+  "bmw-520d-g30": "BMW press sheet: unladen DIN/EU 1540/1615"
+ },
+ "verified_already_correct": {
+  "vw-up-1-0": "929 kg confirmed as DIN, no change"
+ },
+ "still_unverified": "every other car in everyday.json -- see tools/fit.js suspect output"
+}

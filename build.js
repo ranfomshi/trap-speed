@@ -105,6 +105,23 @@ const vs = require("./lib/vs.js").build(app, OUT, SITE);
 /* Make pages and the fastest-lists. They get the comparison manifest so a make
    page can point at the head-to-heads that already exist for it. */
 const listUrls = require("./lib/lists.js").build(app, OUT, SITE, vs.made);
+/* Every car must produce a finite run. A NaN here is silent in the browser --
+   the car just never finishes its race -- and one slipped through once when a
+   field the physics reads stopped being a value it recognised. */
+{
+  const vm=require("vm");
+  const dom=app.indexOf("const $=s=>document.querySelector");
+  const ctx={console}; vm.createContext(ctx);
+  vm.runInContext(app.slice(app.lastIndexOf("<script>",dom)+8).slice(0,
+    app.slice(app.lastIndexOf("<script>",dom)+8).indexOf("const $=s=>document.querySelector"))
+    +";globalThis.__c={CARS,run,QM};",ctx);
+  const {CARS,run,QM}=ctx.__c;
+  const env={surf:"dry",tempC:20,alt:0,wind:0,grade:0,load:0};
+  const bad=CARS.filter(c=>!Number.isFinite(run(c,env,{maxD:QM,maxT:90}).vEnd));
+  if(bad.length) throw new Error("build: "+bad.length+" car(s) produce a non-finite run: "
+    +bad.slice(0,5).map(c=>c.id).join(", "));
+}
+
 const vsUrls = vs.urls.concat(listUrls);
 
 fs.writeFileSync(path.join(OUT, "sitemap.xml"),

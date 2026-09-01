@@ -164,6 +164,11 @@ function fit(spec){
   const rms=checks.length?Math.sqrt(checks.reduce((s,x)=>s+x.err*x.err,0)/checks.length):0;
 
   add("vmax",vMax(c,cda,kg,kp),spec.lim?null:spec.vmx);
+  /* A NaN anywhere in the physics propagates silently and produces a car that
+     simply never finishes. It happened once already, from an asp value the
+     altitude table had stopped recognising. Never emit one. */
+  if(![kg,kp,cda].every(Number.isFinite))
+    throw new Error(spec.id+": fit produced a non-finite value -- check asp/fu/bx are values the model knows");
   return {kg:+kg.toFixed(4), kp:+kp.toFixed(4), cda:+cda.toFixed(3), cdaD,
           checks, used:checks.length, rms:+rms.toFixed(2), notes};
 }
@@ -189,6 +194,15 @@ if(require.main===module){
        to a maker's figure is allowed that much more before it is suspect. */
     const hi=(spec.src||"mfr")==="mfr"?1.36:1.22;
     if(r.kp<0.78||r.kp>hi) bad.push("power trim "+r.kp);
+    /* The specific mistake that produced most of the first batch's bad fits:
+       makers publish kerb mass to two conventions, and EU already includes a
+       75 kg driver that this simulator adds again. A car whose trim is high but
+       falls into line exactly 75 kg lighter is almost certainly quoted EU. */
+    if(r.kp>1.10){
+      const lighter=fit(Object.assign({},spec,{kg:spec.kg-75}));
+      if(lighter.kp<=1.10) bad.push("mass may be an EU figure: 75 kg lighter fits at "
+        +lighter.kp.toFixed(3)+" instead of "+r.kp.toFixed(3));
+    }
     if(r.kg<0.72||r.kg>1.55) bad.push("grip trim "+r.kg);
     if(r.rms>6) bad.push("rms "+r.rms+"%");
     if(bad.length) warn.push(spec.id+": "+bad.join(", "));
