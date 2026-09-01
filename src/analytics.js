@@ -131,6 +131,14 @@
     if ((m = p.match(/^\/fastest\/([^/]+)\/$/)))     { pageType = "fastest"; pageId = m[1]; return; }
     if (p === "/fastest/")                           { pageType = "fastest-index"; return; }
     if ((m = p.match(/^\/cars\/([^/]+)\/$/)))        { pageType = "car"; pageId = m[1]; return; }
+    if (p === "/answers/")                           { pageType = "answers-index"; return; }
+    /* The two page families that exist to answer a question rather than to list
+       a set. Kept apart because they behave differently: a threshold page is a
+       ranking somebody scans, a condition page is a claim somebody reads. */
+    if ((m = p.match(/^\/(0-60-in|quarter-mile-in)\/([^/]+)\/$/)))
+      { pageType = "threshold"; pageId = m[1] + ":" + m[2]; return; }
+    if ((m = p.match(/^\/(in-the-wet|at-altitude|with-a-passenger)\/$/)))
+      { pageType = "condition"; pageId = m[1]; return; }
     pageType = "other";
   })();
 

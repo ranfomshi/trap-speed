@@ -214,7 +214,18 @@ console.log(`  ${cars.urls.length - 1} car pages of ${all.length} (CAR_PAGES=${c
    page can point at the head-to-heads that already exist for it, and the car-page
    lookup so a listed car links to its own page instead of straight into the app. */
 const listUrls = require("./lib/lists.js").build(app, OUT, SITE, vs.made, all, cars.carUrl);
-const vsUrls = vs.urls.concat(cars.urls, listUrls);
+
+/* The pages nobody else can write: threshold lists ("cars that do 0-60 in under
+   four seconds", which is a real search with an exact answer we hold), and the
+   condition pages, which re-run every car in the wet, at altitude and with a
+   passenger. Those last three are the only content on this site a rival with the
+   same spec sheets could not reproduce. */
+const t1 = Date.now();
+const answers = require("./lib/answers.js").build(A, all, OUT, SITE, cars.carUrl);
+const answerUrls = answers.map(a => a.url);
+console.log(`  ${answers.length} answer pages in ${((Date.now()-t1)/1000).toFixed(1)}s`);
+
+const vsUrls = vs.urls.concat(cars.urls, listUrls, answerUrls);
 
 /* lastmod is the one field crawlers actually act on, and it has to be honest:
    every page here is regenerated from the car data on every build, so the build
@@ -271,6 +282,15 @@ against. ${cars.urls.length - 1} published of ${CARS.length.toLocaleString("en-G
 
 - [Every car](${SITE}/cars/): filterable, grouped by make.
 ${cars.published.slice(0, 25).map(r => `- [${r.c.mk} ${r.c.md}](${SITE}/cars/${r.slug}/)`).join("\n")}
+
+## Questions a spec sheet cannot answer
+
+Every other car site publishes the same manufacturer 0-60. These are the questions
+only a simulation can answer, computed by re-running every car under changed conditions.
+
+- [All of them](${SITE}/answers/)
+${answers.filter(a => a.url !== "/answers/")
+  .map(a => `- [${a.label}](${SITE}${a.url})${a.n ? ` — ${a.n} cars` : ""}`).join("\n")}
 
 ## Head-to-head comparisons
 
