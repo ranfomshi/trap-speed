@@ -168,11 +168,14 @@ canvas{display:block;width:100%}
 .share-arrival .arrival-actions{margin-left:auto;flex:0 0 auto;display:flex;gap:8px}
 .exit-challenge-btn{border-color:var(--amber2);color:var(--amber)}
 .exit-challenge-btn:hover{border-color:var(--amber);background:rgba(242,162,12,.12)}
-.result-line{margin:0 0 14px;padding:12px 14px;background:var(--sunk);
-  border:1px solid var(--edge2);border-left:3px solid var(--amber);border-radius:var(--r);
-  font-size:14.5px;line-height:1.55;color:var(--ink2)}
-.result-line b{color:var(--ink);font-weight:600}
-.result-line .num{font-family:var(--mono);color:var(--amber)}
+.result-head{margin:0 0 14px;padding:13px 15px;background:var(--sunk);
+  border:1px solid var(--edge2);border-left:3px solid var(--amber);border-radius:var(--r)}
+.result-win{margin:0;font-family:var(--cond);font-size:26px;line-height:1.15;color:var(--ink)}
+.result-win .ta{color:var(--Aink)} .result-win .tb{color:var(--Bink)}
+.result-win .num{font-family:var(--mono);font-size:23px;color:var(--amber)}
+.result-sub{margin:7px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink3)}
+.result-sub .num{font-family:var(--mono);color:var(--ink2)}
+@media (max-width:560px){.result-win{font-size:21px}.result-win .num{font-size:19px}}
 .result-board{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:15px}
 /* The finish photo is the one thing on this screen that is a photograph, so it
    is framed like one: a print with the deep bottom margin you write on. */
@@ -698,10 +701,15 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 <dialog id="resultDialog" class="result-dialog" aria-labelledby="resultTitle">
   <div class="dialog-head"><h2 id="resultTitle">Race result</h2><button class="icon-btn" id="closeResult" type="button" aria-label="Close">&times;</button></div>
   <div class="dialog-body">
-    <!-- The contest, in one sentence, across the full width. The grid beside
-         the photo is 140px a cell and can only hold short numbers; this is
-         where what actually happened between the two cars gets room. -->
-    <p class="result-line" id="resultLine"></p>
+    <!-- The answer first, in the largest type on the screen, because it is the
+         only thing most people opened this to read. One supporting line under
+         it and no more: the eight numbers beside the photo are there for anyone
+         who wants the detail, and repeating them in prose only buries the
+         result they came to see. -->
+    <div class="result-head">
+      <p class="result-win" id="resultWin"></p>
+      <p class="result-sub" id="resultSub"></p>
+    </div>
     <div class="result-board">
       <div class="finish-photo">
         <h2 id="photoHead">Finish-line photo</h2>
@@ -5981,51 +5989,37 @@ function renderResultBoard(){
   const speedRace = S.mode==="speed"||S.mode==="roll";
   const lengths=Math.abs(gapEnd)/(shapeOf(L).L||4.6);
 
-  /* --- the sentence ------------------------------------------------------- */
-  const bits=[];
+  /* --- the headline ------------------------------------------------------
+     "Model 3 Performance won by 0.63 s", and then at most one more thing. The
+     numbers are all in the grid; the job here is to answer the question, not to
+     narrate the race back to somebody who just watched it. */
+  $("#resultWin").innerHTML=`<span class="${wk==="a"?"ta":"tb"}">${esc(W.md)}</span> won by `
+    + `<span class="num">${margin}</span>`;
+
   const lenTxt=lengths<10?lengths.toFixed(1).replace(/\.0$/,""):String(Math.round(lengths));
-  const inLengths=gapEnd>0.3
-    ? `about <span class="num">${lenTxt}</span> ${lenTxt==="1"?"length":"lengths"} of the ${esc(L.md)}`
-    : ``;
-  /* In a fixed-time sprint the margin IS the distance, so the gap does not get
-     printed twice. */
-  bits.push(`<b>${esc(W.mk+" "+W.md)}</b> took the ${esc(eventLabel())} by `
-    + `<span class="num">${margin}</span>`
-    + (!inLengths ? ``
-       : hi ? `, ${inLengths}`
-            : ` &mdash; <span class="num">${dLabel(gapEnd)}</span>, ${inLengths}`)
-    + `.`);
+  const sub=[];
+  if(gapEnd>0.3) sub.push(
+    /* in a fixed-time sprint the margin already IS this distance */
+    (hi?``:`<span class="num">${dLabel(gapEnd)}</span> clear &mdash; `)
+    + `about <span class="num">${lenTxt}</span> ${lenTxt==="1"?"length":"lengths"} of the ${esc(L.md)}.`);
+  /* One note, whichever is the most worth having. Ordered by how surprising it
+     is, not by how easy it was to compute. */
+  const pc=x=>`<span class="num">${Math.round(x*100)}%</span>`;
   if(ledFirst===-1)
-    bits.push(`It came from behind: the ${esc(L.md)} led off the line`
-      + (passAt!=null?` and was still in front at <span class="num">${dLabel(passAt)}</span>`:``)+`.`);
-  else if(seg){
-    const pc=x=>`<span class="num">${Math.round(x*100)}%</span>`;
-    if(seg.launch>=0.5)
-      bits.push(`It was won on the launch: <span class="num">${dLabel(gap60)}</span> up by
-        60&nbsp;ft, ${pc(seg.launch)} of the final gap.`);
-    else if(seg.launch<=0.15)
-      bits.push(`The launch counted for little &mdash; only ${pc(seg.launch)} of the gap was there
-        by 60&nbsp;ft, and the rest came down the road.`);
-    else
-      bits.push(`${pc(seg.launch)} of the gap was there by 60&nbsp;ft; the rest came down the road.`);
-    /* A winner still being caught at the flag is the most interesting thing a
-       result can say, and a share of the total cannot say it. */
-    if(seg.tail<-0.02)
-      bits.push(`The ${esc(L.md)} was closing at the line.`);
-    else if(seg.tail>=0.4)
-      bits.push(`The ${esc(W.md)} was still pulling away at the flag.`);
-  }
-  /* Skipped when it would say nothing: in a 0-60 or a roll-on both cars finish
-     on the target speed by definition, so "doing 60.0 to the other's 60.0" is
-     noise dressed as a statistic. */
-  if(Math.abs(vW-vL)>=0.5)
-    bits.push(`At the finish the ${esc(W.md)} was doing <span class="num">${f1(vW)} ${vU()}</span>
-      to the ${esc(L.md)}&rsquo;s <span class="num">${f1(vL)}</span>,
-      <span class="num">${(vW>vL?"+":"")+f1(vW-vL)}</span> ${vU()}.`);
+    sub.push(`Came from behind &mdash; the ${esc(L.md)} led off the line.`);
+  else if(seg&&seg.tail<-0.02)
+    sub.push(`The ${esc(L.md)} was closing at the line.`);
+  else if(seg&&seg.launch>=0.5)
+    sub.push(`Won on the launch: ${pc(seg.launch)} of the gap was there by 60&nbsp;ft.`);
+  else if(seg&&seg.launch<=0.15)
+    sub.push(`Almost none of it off the line &mdash; ${pc(seg.launch)} by 60&nbsp;ft.`);
+  else if(seg&&seg.tail>=0.4)
+    sub.push(`Still pulling away at the flag.`);
   else if(speedRace)
-    bits.push(`The ${esc(W.md)} needed <span class="num">${dLabel(dAt(TW,tFin))}</span> of road to
-      get there, the ${esc(L.md)} <span class="num">${dLabel(dAt(TL,result(TL)!=null?result(TL)+rollOff(TL):TL.tEnd))}</span>.`);
-  $("#resultLine").innerHTML=bits.join(" ");
+    sub.push(`It needed <span class="num">${dLabel(dAt(TW,tFin))}</span> of road to get there.`);
+  /* In a fixed-time sprint the first clause drops its "N ft clear" prefix, so
+     the line would otherwise open lowercase. */
+  $("#resultSub").innerHTML=sub.join(" ").replace(/^[a-z]/,m=>m.toUpperCase());
 
   /* --- the grid: short numbers only, ~14 characters a cell ---------------- */
   const stats=[
