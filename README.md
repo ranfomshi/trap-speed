@@ -116,6 +116,24 @@ read by a model and being clicked through from one are different things, and
 only the second is visible from a browser. Server logs are the only place the
 first shows up.
 
+## Telling the search engines
+
+The sitemap does not need resubmitting when pages change — it lives at a fixed
+URL, Search Console re-downloads it on its own schedule, and the `lastmod` in it
+is what says which pages moved. Resubmitting only forces that download to happen
+now:
+
+```sh
+node tools/gsc.js status      # what Google currently knows
+node tools/gsc.js submit      # nudge it to refetch (safe to repeat)
+node tools/indexnow.js        # push every URL to Bing, Yandex, Seznam, Naver
+```
+
+Google retired its sitemap `/ping` endpoint in 2023 and Bing retired its own
+soon after, both pointing at IndexNow. So `indexnow.js` is the only mechanism
+left that says "these URLs changed, now" — and it does **not** reach Google,
+which never joined. For Google it is the sitemap and `lastmod`, and nothing else.
+
 ## Measurement
 
 Every event carries `channel` (`ai` / `search` / `social` / `referral` /
