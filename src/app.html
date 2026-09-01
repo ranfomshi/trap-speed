@@ -5589,7 +5589,7 @@ function drawStrip(pos,spd,clock,finish,acc){
 /* =======================================================================
    RUN + ANIMATE
    ======================================================================= */
-let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null, photoCaptured=false, hasRun=false;
+let TR=null, TRX=null, anim=null, running=false, playRate=1, lastGeo=null, photoCaptured=false;
 let TGT=null, TGTLBL="";   /* where each car met a speed target, when that is the event */
 let CAMFLOOR=-9;   /* how far behind the line the camera may sit; the roll-on run-up needs more */
 const RUNOUT=2.4;      /* seconds the cars keep driving after the line, for show */
@@ -5733,7 +5733,7 @@ function animate(){
 function finishRace(){
   treeLit=new Set();
   captureFinishAt(); photoCaptured=true;
-  hasRun=true; ranSig=raceSig();
+  ranSig=raceSig();
   {
     const rA=result(TR.a), rB=result(TR.b), hi=higherWins();
     const win = rA==null&&rB==null ? null
@@ -5756,6 +5756,16 @@ function renderVerdict(){
   if(awaitingOpponent){
     el.className="verdict";
     el.innerHTML=`<span class="win">Choose your challenger</span><span class="by">Select your car in the right lane to unlock the race.</span>`
+      +verdictActions();
+    wireVerdictActions(); return;
+  }
+  /* Announcing the winner before the lights is the same mistake the time slip
+     was making, in larger type: the result is the whole reason to press Stage.
+     The bar still carries its actions, because "Challenge a friend" is worth
+     offering before a race as much as after one. */
+  if(!raced()){
+    el.className="verdict";
+    el.innerHTML=`<span class="win">Nothing decided yet</span><span class="by">Stage the race to see who takes it.</span>`
       +verdictActions();
     wireVerdictActions(); return;
   }
@@ -5791,7 +5801,7 @@ function renderVerdict(){
    result again, send the race on, or get out of someone else's challenge. */
 function verdictActions(){
   const b=[];
-  if(hasRun) b.push(`<button class="secondary-btn" id="viewResult" type="button">View result</button>`);
+  if(raced()) b.push(`<button class="secondary-btn" id="viewResult" type="button">View result</button>`);
   if(!challengeActive) b.push(`<button class="secondary-btn" id="shareRace" type="button">Challenge a friend</button>`);
   else b.push(`<button class="secondary-btn exit-challenge-btn" id="exitChallengeV" type="button">Exit challenge mode</button>`);
   return `<span class="result-actions">${b.join("")}</span>`;
@@ -5906,6 +5916,11 @@ function renderResultBoard(){
 const raceSig=()=>[S.a,S.b].concat(
   Object.keys(SHARE_KEYS).filter(k=>k!=="units").map(k=>S[k])).join("|");
 let ranSig=null;
+/* The one question every result element has to ask before it prints anything:
+   do these numbers belong to a race that was actually run, in this exact
+   configuration? Verdict, time slip and the View result button all key off it,
+   so they can never disagree about whether a race has happened. */
+const raced=()=>ranSig!==null&&ranSig===raceSig();
 
 function renderSlips(){
   if(awaitingOpponent){ $("#slips").innerHTML=""; return; }
@@ -5913,7 +5928,7 @@ function renderSlips(){
      could be. Printing the splits before the lights gives away the only thing
      the page exists to show you -- and printing them after a setting changed is
      worse, because those numbers then describe a race nobody watched. */
-  if(ranSig===null || ranSig!==raceSig()){
+  if(!raced()){
     $("#slips").innerHTML=`<p class="slip-wait">Time slips print here once the cars have run.</p>`;
     return;
   }
