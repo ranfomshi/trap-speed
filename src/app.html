@@ -101,6 +101,10 @@ option{background:var(--sunk);color:var(--ink)}
   font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.15em;font-size:15px;
   padding:11px 6px;cursor:pointer;transition:filter .12s}
 .go-btn:hover{filter:brightness(1.12)}
+.stagerow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.stagerow .go-btn{width:auto;padding:12px 34px;flex:0 0 auto}
+.stagerow .hint{font-size:11.5px;color:var(--ink3)}
+@media (max-width:540px){.stagerow .go-btn{width:100%}.stagerow .hint{display:none}}
 .go-btn[disabled]{background:var(--surface2);color:var(--ink3);cursor:default;filter:none}
 .vs{font-family:var(--cond);font-size:11px;letter-spacing:.22em;color:var(--ink3);text-transform:uppercase}
 
@@ -189,6 +193,13 @@ dialog{width:min(520px,calc(100% - 28px));padding:0;border:1px solid var(--edge2
   background:var(--surface);color:var(--ink);box-shadow:0 22px 70px rgba(0,0,0,.75)}
 dialog::backdrop{background:rgba(4,7,10,.78)}
 .result-dialog{width:min(880px,calc(100% - 28px))}
+.welcome-dialog{width:min(600px,calc(100% - 28px))}
+.welcome-dialog .dialog-body p{font-size:13px;line-height:1.62}
+.welcome-acts{display:flex;gap:11px;flex-wrap:wrap;align-items:center;margin-top:3px}
+.welcome-acts .go-btn{width:auto;flex:1 1 auto;padding:12px 22px}
+.welcome-acts .secondary-btn{padding:12px 18px;flex:0 0 auto}
+.fineprint{font-size:11.5px!important;color:var(--ink3)!important}
+@media (max-width:520px){.welcome-acts .secondary-btn{flex:1 1 100%;text-align:center}}
 .result-dialog .dialog-body{gap:15px}
 .result-dialog .result-board{margin:0}
 .dialog-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--edge)}
@@ -414,7 +425,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
         <div class="row foul"><span class="bulb"></span><span class="bulb"></span></div>
       </div>
       <span class="vs">Versus</span>
-      <button class="go-btn" id="race">Stage</button>
+      <button class="go-btn go-race" id="race">Stage</button>
     </div>
 
     <div class="card b">
@@ -467,6 +478,14 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
       </div>
       <div class="field"><span class="k" id="presetK">Preset</span><div class="chips" id="presets"></div></div>
       <div class="fields" id="customFields"></div>
+      <!-- The other Stage button is up in the tree, between the lanes. That is
+           where you pick the cars, but this is where you finish setting the race
+           up, and it is the one within reach of the strip below. Same control,
+           written together by raceBtn() so they can never disagree. -->
+      <div class="stagerow">
+        <button class="go-btn go-race" id="race2">Stage</button>
+        <span class="hint" id="stageHint">Lights, then go &mdash; the strip is just below.</span>
+      </div>
     </div>
   </section>
 
@@ -570,8 +589,34 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
     <a href="https://cardata.wiki">cardata.wiki</a> (CC&nbsp;BY&nbsp;4.0). Maker badges via the
     <a href="https://github.com/filippofilip95/car-logos-dataset">car-logos-dataset</a>, sourced from
     carlogos.org; every badge is the trademark of its owner and is shown here only to identify that
-    maker's cars. Not affiliated with, endorsed by or connected to any manufacturer.</footer>
+    maker's cars. Not affiliated with, endorsed by or connected to any manufacturer.<br><a href="#" id="legalLink">Disclaimer, cookies &amp; analytics</a></footer>
 </div>
+
+<dialog id="welcomeDialog" class="welcome-dialog" aria-labelledby="welcomeTitle">
+  <div class="dialog-head"><h2 id="welcomeTitle">Before you race</h2></div>
+  <div class="dialog-body">
+    <p><strong>Every time here is simulated, not measured.</strong> Each car is modelled
+      from its published mass, rated power and drivetrain, then fitted to its own published
+      acceleration figures. The numbers are estimates. A real car, on a real day, with real
+      tyres and a real driver, will do something else &mdash; treat these as a fair comparison
+      between two cars, not as a spec sheet.</p>
+    <p><strong>Not affiliated with any manufacturer.</strong> Marques, model names and badges
+      belong to their owners and appear here only to identify the cars.</p>
+    <p><strong>Race on a track.</strong> Nothing on this site is an instruction, an
+      encouragement, or advice about how to drive on a public road.</p>
+    <p><strong>Cookies and analytics.</strong> Nothing is stored on your device unless you say
+      yes below. If you do, we keep two values in your browser &mdash; a random ID and your answer
+      to this question &mdash; and send anonymous usage events to Mixpanel in the EU: which cars
+      get raced, over what distance, which comparison pages get read. No advertising, no
+      third-party trackers, no data sold, and nothing that identifies you. Say no and the site
+      works exactly the same.</p>
+    <div class="welcome-acts">
+      <button class="go-btn" id="welcomeAccept" type="button">Agree &amp; allow analytics</button>
+      <button class="secondary-btn" id="welcomeDecline" type="button">Agree, no analytics</button>
+    </div>
+    <p class="fineprint">You can change your mind at any time from the link in the footer.</p>
+  </div>
+</dialog>
 
 <dialog id="shareDialog" aria-labelledby="shareTitle">
   <div class="dialog-head"><h2 id="shareTitle">Challenge a friend</h2><button class="icon-btn" id="closeShare" type="button" aria-label="Close">&times;</button></div>
@@ -608,7 +653,9 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 /* =======================================================================
    CAR DATA
    kW  = rated power (EU/UK type-approval or manufacturer figure)
-   kg  = kerb mass (DIN/EU, incl. 75kg driver allowance where quoted that way)
+   kg  = DIN kerb mass -- the car with 90% fuel and NO DRIVER. run() adds its own
+         75 kg driver, so putting an EU/EC kerb figure here (which already includes a
+         75 kg driver) double-counts and shows up later as an inflated power trim.
    cd  = published drag coefficient where known, else class estimate
    ar  = frontal area, m^2 (estimated from track width x height x 0.83)
    bench = the published acceleration figure used to trim the model
@@ -3691,6 +3738,62 @@ const FITSTATS={"cars": 2843, "ptsAll": 27240, "ptsUsed": 24496, "meanRms": 4.81
    STATE + FORMATTING
    ======================================================================= */
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+/* There are two Stage buttons -- one in the tree, one at the foot of the Race
+   panel where the strip is in reach. Write them together, always: a second copy
+   of this control that can be enabled while the first is disabled is a bug
+   waiting to be reported as "it let me start a race twice". */
+function raceBtn(o){
+  $$(".go-race").forEach(b=>{
+    if(o.text!=null) b.textContent=o.text;
+    if(o.on!=null)   b.disabled=!o.on;
+  });
+}
+
+/* =======================================================================
+   DISCLAIMER, CONSENT AND ANALYTICS
+
+   analytics.js is a separate file loaded at the end of the document, so it is
+   not here yet when init() runs -- and it may never arrive, because a blocker
+   or a failed request can eat it. Two consequences shape this code:
+
+   1. Events are pushed to a queue that analytics.js drains when it loads.
+      Nothing is sent from here.
+   2. The dialog is NOT dependent on analytics.js. It is a disclaimer first and
+      a cookie prompt second, and the disclaimer still has to appear if the
+      analytics never load. So this reads and writes the consent key itself,
+      using the same two keys, and simply also tells MAR when MAR exists.
+   ======================================================================= */
+window.MAR_OWN_UI=true;                 /* suppress analytics.js's own banner */
+window.MAR_QUEUE=window.MAR_QUEUE||[];
+const CKEY="mar:consent";
+const lsGet=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
+const lsSet=(k,v)=>{ try{ localStorage.setItem(k,v); }catch(e){} };
+function track(name,props){
+  if(window.MAR&&MAR.track) MAR.track(name,props||{});
+  else if(MAR_QUEUE.length<20) MAR_QUEUE.push([name,props||{}]);
+}
+function answerConsent(yes){
+  lsSet(CKEY, yes?"granted":"denied");
+  if(window.MAR) yes ? MAR.grant() : MAR.deny();
+  else if(!yes) MAR_QUEUE.length=0;
+  $("#welcomeDialog").close();
+  if(yes) track("Consent granted",{});
+}
+function initDisclaimer(){
+  const d=$("#welcomeDialog");
+  /* Never inside the comparison-page frame: the host page asks, and two prompts
+     stacked on one screen is worse than none. */
+  if(!d || document.documentElement.classList.contains("embed")) return;
+  $("#welcomeAccept").onclick=()=>answerConsent(true);
+  $("#welcomeDecline").onclick=()=>answerConsent(false);
+  /* A disclaimer you cannot dismiss with Escape is a dark pattern; a disclaimer
+     Escape silently accepts is worse. Escape counts as the private answer. */
+  d.addEventListener("cancel",e=>{ e.preventDefault(); answerConsent(false); });
+  $("#legalLink").onclick=e=>{ e.preventDefault(); d.showModal(); };
+  let forced=false;
+  try{ forced=new URLSearchParams(location.search).get("legal")==="1"; }catch(e){}
+  if(forced || !lsGet(CKEY)) d.showModal();
+}
 const REDUCED=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const S={ a:"m3p", b:"mustang", mode:"dist", dist:D.Q, spd:96.56/3.6, r0:48.28/3.6, r1:112.65/3.6,
           rs:0,   /* rolling-start speed for a distance or fixed-time race; 0 = standing */
@@ -4089,6 +4192,7 @@ function combo(side){
   function pick(i){
     const c=items[i]; if(!c) return;
     S[side]=c.id; hide(); renderCar(side);
+    track("Car chosen",{lane:side, car:c.id, make:c.mk, model_class:c.cls});
     if(side==="b"&&awaitingOpponent){ awaitingOpponent=false; completeSharedChallenge(c); }
     refresh();
   }
@@ -5508,7 +5612,10 @@ function rollApproach(done){
 function startRace(){
   if(running) return;
   stopAnim(); running=true; photoCaptured=false;
-  const btn=$("#race"); btn.disabled=true; btn.textContent="Staged";
+  raceBtn({on:false,text:"Staged"});
+  track("Race staged",{event_type:S.mode, event_label:eventLabel(), units:S.units,
+    surface_grip:S.surf, rolling:rollingStart()>0,
+    car_a:S.a, car_b:S.b, make_a:car(S.a).mk, make_b:car(S.b).mk});
   /* The tree is right there, lit, and the strip draws its own -- saying so in a
      bar only costs height. Screen readers still get it, they cannot see it. */
   $("#verdict").hidden=true;
@@ -5517,7 +5624,7 @@ function startRace(){
   ["a","b"].forEach(k=>reached[k].clear()); renderPips();
   /* put the start line on screen before the countdown runs */
   stripC.closest(".panel").scrollIntoView({behavior:REDUCED?"auto":"smooth",block:"center"});
-  const go=()=>{ btn.textContent="Running"; animate(); };
+  const go=()=>{ raceBtn({text:"Running"}); animate(); };
   const rv=rollingStart();
   if(rv>0){
     $("#say").textContent=`Rolling on at ${f0(vN(rv))} ${vU()}\u2026`;
@@ -5530,7 +5637,7 @@ function startRace(){
   const staged=()=>{ resetCam(); ACC={a:0,b:0};
     drawStrip({a:0,b:0},{a:0,b:0},0,lineD,ACC); liveUpdate({a:0,b:0},{a:0,b:0}); };
   staged();
-  setTimeout(()=>tree(()=>{ btn.textContent="Running"; animate(); }, staged), REDUCED?0:460);
+  setTimeout(()=>tree(go, staged), REDUCED?0:460);
 }
 function animate(){
   const finT={a:TR.a.tEnd,b:TR.b.tEnd};
@@ -5564,8 +5671,7 @@ function animate(){
     const gone = lastGeo && t>tFin &&
       ["a","b"].every(k=>pos[k] > lastGeo.x0+lastGeo.span+6);
     if(t<tMax && !gone){ anim=requestAnimationFrame(step); }
-    else{ running=false; playRate=1; $("#race").disabled=false;
-          $("#race").textContent="Run again"; finishRace(); }
+    else{ running=false; playRate=1; raceBtn({on:true,text:"Run again"}); finishRace(); }
   };
   anim=requestAnimationFrame(step);
 }
@@ -5573,6 +5679,15 @@ function finishRace(){
   treeLit=new Set();
   captureFinishAt(); photoCaptured=true;
   hasRun=true;
+  {
+    const rA=result(TR.a), rB=result(TR.b), hi=higherWins();
+    const win = rA==null&&rB==null ? null
+              : rA==null ? "b" : rB==null ? "a"
+              : (hi ? (rA>rB?"a":"b") : (rA<rB?"a":"b"));
+    track("Race finished",{event_type:S.mode, event_label:eventLabel(),
+      car_a:S.a, car_b:S.b, winner:win?S[win]:null,
+      margin:(rA!=null&&rB!=null)?Math.abs(rA-rB):null});
+  }
   renderVerdict(); renderSlips(); renderResultBoard(); drawChart();
   openResultDialog();
 }
@@ -6032,6 +6147,10 @@ function initSharing(){
   $("#shareForm").onsubmit=e=>{
     e.preventDefault(); if(!name.value.trim()){ name.focus(); return; }
     link.value=shareURL(name.value,shareCar.value); $("#shareLinkWrap").hidden=false; $("#copyStatus").textContent="Link ready to send.";
+    /* the name typed into the form is the one thing on this page that could
+       identify a person, so the event records that a link was made and which
+       car was staked -- never the name, and never the URL that carries it */
+    track("Challenge link created",{car:shareCar.value});
     link.focus(); link.select();
   };
   $("#copyShare").onclick=async()=>{
@@ -6039,13 +6158,14 @@ function initSharing(){
     catch(e){ link.focus(); link.select(); $("#copyStatus").textContent="Select the link and copy it."; }
   };
   if(SHARED){
+    track("Challenge link opened",{car:S.a});
     const A=car(S.a), owner=SHARED.name.endsWith("s")?SHARED.name+"’":SHARED.name+"’s";
     $("#shareFrom").textContent=`Race ${owner} ${A.mk} ${A.md}`;
     $("#shareInstruction").textContent=`Choose your car in the right lane. The ${eventLabel()} setup and conditions are already set.`;
     $("#shareArrival").hidden=false;
     $("#exitChallenge").onclick=clearChallengeMode;
     $("#carA").disabled=true; $("#carA").setAttribute("aria-label",`${owner} ${A.mk} ${A.md}, fixed challenge car`);
-    $("#race").disabled=true;
+    raceBtn({on:false});
     setTimeout(()=>$("#carB").focus(),150);
   }
 }
@@ -6053,7 +6173,7 @@ function completeSharedChallenge(c){
   const A=car(S.a), owner=SHARED.name.endsWith("s")?SHARED.name+"’":SHARED.name+"’s";
   $("#shareFrom").textContent=`${c.mk} ${c.md} vs ${owner} ${A.mk} ${A.md}`;
   $("#shareInstruction").textContent="Your matchup is ready. Review the conditions or press Stage to run the race.";
-  $("#race").disabled=false;
+  raceBtn({on:true});
 }
 /* Leaving a challenge hands the whole simulator back: both lanes free, Stage
    live, and the link's query string gone so a reload does not re-enter it. */
@@ -6061,7 +6181,7 @@ function clearChallengeMode(){
   challengeActive=false; awaitingOpponent=false;
   $("#shareArrival").hidden=true;
   $("#carA").disabled=false; $("#carA").removeAttribute("aria-label");
-  $("#race").disabled=false;
+  raceBtn({on:true});
   try{ history.replaceState(null,"",location.origin+location.pathname); }catch(e){}
   renderCar("a"); renderCar("b"); refresh();
 }
@@ -6088,14 +6208,18 @@ function init(){
   let fqT=null;
   $("#fieldQ").oninput=e=>{ S.fq=e.target.value;
     clearTimeout(fqT); fqT=setTimeout(renderField,140); };   /* debounce: a keystroke re-runs every car */
-  $("#fieldWrap").addEventListener("toggle",()=>{ if(fieldOpen()&&fieldDirty) renderField(); });
-  $("#race").onclick=startRace; initSharing();
+  $("#fieldWrap").addEventListener("toggle",()=>{
+    if(fieldOpen()&&fieldDirty) renderField();
+    if(fieldOpen()) track("Field ranked",{event_type:S.mode, event_label:eventLabel()});
+  });
+  $$(".go-race").forEach(b=>b.onclick=startRace); initSharing();
   const rdlg=$("#resultDialog");
   $("#closeResult").onclick=()=>rdlg.close();
   rdlg.addEventListener("click",e=>{ if(e.target===rdlg) rdlg.close(); });
   renderCar("a"); renderCar("b"); renderStart(); renderPresets(); renderCustom(); renderNotes(); refresh();
   addEventListener("resize",()=>{ if(!running) refresh(); else drawChart(); });
-  $("#race").textContent="Stage";
+  raceBtn({text:"Stage"});
+  initDisclaimer();
 }
 init();
 /* The comparison pages hold their own loading panel over this frame. Tell them

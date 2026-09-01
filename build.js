@@ -132,5 +132,42 @@ ${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><changefreq>monthly</changefreq>
 </urlset>
 `);
 
+/* Analytics and the consent that gates it, as one file shared by the app and by
+   every generated page, so there is a single implementation of the question and
+   a single answer stored per visitor. The Mixpanel project token is a public
+   client-side identifier -- it can only write events, never read them -- but it
+   is still injected from the environment rather than committed, so a fork of
+   this repo does not post into someone else's project. With MIXPANEL_TOKEN
+   unset the file loads, the consent prompt still works, and nothing is sent. */
+{
+  const src = fs.readFileSync(path.join(SRC, "analytics.js"), "utf8");
+  const token = process.env.MIXPANEL_TOKEN || "";
+  if (!/^[a-f0-9]{0,64}$/i.test(token)) throw new Error("build: MIXPANEL_TOKEN is not a plausible token");
+  fs.writeFileSync(path.join(OUT, "analytics.js"), src.replace("__MP_TOKEN__", token));
+  if (!token) console.log("  note: MIXPANEL_TOKEN unset -- analytics.js will no-op");
+
+  /* Injected into every page the build produced, rather than into each of the
+     three templates that produce them, so a new template cannot ship untracked
+     and un-consented. */
+  const tag = '<script src="/analytics.js" defer></script>';
+  let pages = 0;
+  const walk = dir => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const f = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(f); continue; }
+      if (!e.name.endsWith(".html")) continue;
+      if (e.name === GOOGLE_VERIFY) continue;   /* a bare token file, not a page */
+      const doc = fs.readFileSync(f, "utf8");
+      if (doc.includes(tag)) continue;
+      const i = doc.lastIndexOf("</body>");
+      if (i < 0) throw new Error("build: no </body> to inject analytics into: " + f);
+      fs.writeFileSync(f, doc.slice(0, i) + tag + doc.slice(i));
+      pages++;
+    }
+  };
+  walk(OUT);
+  console.log(`  analytics injected into ${pages} pages`);
+}
+
 console.log(`built public/index.html (${(html.length / 1024).toFixed(0)} KB) + ${n} logos + `
   + `${vs.urls.length} comparison pages + ${listUrls.length} list pages`);

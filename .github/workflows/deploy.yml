@@ -26,7 +26,15 @@ jobs:
         with:
           node-version: '22'
 
+      # A Mixpanel project token is a write-only, client-side identifier: it is
+      # served to every visitor inside analytics.js and cannot read anything
+      # back. So it belongs in a repository VARIABLE, not a secret -- calling it
+      # a secret would only hide it from the one place it is useful (the build
+      # log) while it stays visible in the shipped file. Unset is fine: the
+      # build says so and analytics.js no-ops.
       - name: Build
+        env:
+          MIXPANEL_TOKEN: ${{ vars.MIXPANEL_TOKEN }}
         run: node build.js
 
       - name: Deploy to Netlify
