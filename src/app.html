@@ -5987,6 +5987,11 @@ function renderResultBoard(){
 
   const vW=vN(TW.vEnd), vL=vN(TL.vEnd);
   const speedRace = S.mode==="speed"||S.mode==="roll";
+  /* A roll-on has no launch, and neither does a distance race started from a
+     roll: the cars are already at speed when the clock starts, so "won it off
+     the line" and "the gap by 60 ft" describe something that did not happen.
+     The 60 ft mark is still a real point on the road, it just is not a launch. */
+  const standing = rollingStart()===0;
   const lengths=Math.abs(gapEnd)/(shapeOf(L).L||4.6);
 
   /* --- the headline ------------------------------------------------------
@@ -6009,10 +6014,12 @@ function renderResultBoard(){
     sub.push(`Came from behind &mdash; the ${esc(L.md)} led off the line.`);
   else if(seg&&seg.tail<-0.02)
     sub.push(`The ${esc(L.md)} was closing at the line.`);
-  else if(seg&&seg.launch>=0.5)
+  else if(standing&&seg&&seg.launch>=0.5)
     sub.push(`Won on the launch: ${pc(seg.launch)} of the gap was there by 60&nbsp;ft.`);
-  else if(seg&&seg.launch<=0.15)
+  else if(standing&&seg&&seg.launch<=0.15)
     sub.push(`Almost none of it off the line &mdash; ${pc(seg.launch)} by 60&nbsp;ft.`);
+  else if(!standing&&seg&&gapHalf!=null&&Math.abs(gapHalf)>0.3)
+    sub.push(`It was <span class="num">${dLabel(gapHalf)}</span> up at half distance.`);
   else if(seg&&seg.tail>=0.4)
     sub.push(`Still pulling away at the flag.`);
   else if(speedRace)
@@ -6028,7 +6035,8 @@ function renderResultBoard(){
     [S.mode==="time"?"Winning distance":"Winning time",S.mode==="time"?dLabel(wr):f2(wr)+" s"],
     ["Margin",margin],
     ["Gap at the finish",gapEnd>0.05?dLabel(gapEnd):"—"],
-    ["Gap by 60 ft",gap60==null?"—":dLabel(gap60)],
+    standing ? ["Gap by 60 ft",gap60==null?"—":dLabel(gap60)]
+             : ["Gap at halfway",gapHalf==null?"—":dLabel(gapHalf)],
     ["Lead changes",changes?String(changes):"None"],
     speedRace ? ["Road used",dLabel(dAt(TW,tFin))]
               : ["Speed advantage",`${(vW>vL?"+":"")+f1(vW-vL)} ${vU()}`]
