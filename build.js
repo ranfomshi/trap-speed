@@ -1,5 +1,7 @@
 /* Builds the site out of src/. No dependencies on purpose: Netlify runs
-   `node build.js` and everything it needs is in this repo. */
+   `node build.js` and everything it needs is in this repo.
+   Wrapped in an async main() only because the share-card step drives a browser
+   over a websocket, which cannot be done synchronously. */
 const fs = require("fs");
 const path = require("path");
 
@@ -145,6 +147,7 @@ const html = `<!doctype html>
 <meta property="og:description" content="${DESC}">
 <meta property="og:url" content="${SITE}/">
 <meta property="og:image" content="${SITE}/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${TITLE}">
 <meta name="twitter:description" content="${DESC}">
@@ -374,3 +377,27 @@ ${cats.map(u => `- [Fastest ${pretty(u)}](${SITE}${u})`).join("\n")}
 
 console.log(`built public/index.html (${(html.length / 1024).toFixed(0)} KB) + ${n} logos + `
   + `${vs.urls.length} comparison pages + ${listUrls.length} list pages`);
+
+(async()=>{
+/* Per-page share images. Generated after the pages exist and then patched INTO
+   them, rather than promised by them up front: if there is no browser on the
+   machine, or the render fails, the pages keep the static card and the build
+   still ships. A page must never claim an og:image that was not written. */
+{
+  const og=require("./lib/og.js");
+  const t2=Date.now();
+  /* Both page families that get shared: the comparison pages, and each car page
+     staged against its closest rival. */
+  const wanted=[
+    ...vs.made.map(m=>({a:m.a.id,b:m.b.id,slug:m.dir,file:path.join(OUT,"vs",m.dir,"index.html")})),
+    ...cars.hero.map(h=>({a:h.a,b:h.b,slug:"car-"+h.slug,file:path.join(OUT,"cars",h.slug,"index.html")}))
+  ];
+  const n=await og.build({outDir:OUT,site:SITE,pairs:wanted,onCard:(p,url)=>{
+    const f=p.file;
+    if(!fs.existsSync(f)) return;
+    const doc=fs.readFileSync(f,"utf8").split(`${SITE}/og.png`).join(url);
+    fs.writeFileSync(f,doc);
+  }});
+  console.log(`  ${n} share cards in ${((Date.now()-t2)/1000).toFixed(1)}s`);
+}
+})();
