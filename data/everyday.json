@@ -1761,11 +1761,11 @@
   "yr": 2015,
   "cls": "Everyday",
   "kW": 110,
-  "kg": 1541,
+  "kg": 1477,
   "dr": "fwd",
   "g": 6,
   "bx": "man",
-  "vmx": 206,
+  "vmx": 208,
   "ty": "all",
   "asp": "turbo",
   "hL": 0.3,
@@ -1778,9 +1778,10 @@
    0.89,
    0.324
   ],
-  "t100": 9.4,
+  "t100": 9.3,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "vauxhall-zafira-tourer-1-6-cdti",
@@ -1845,11 +1846,11 @@
   "yr": 2016,
   "cls": "Everyday",
   "kW": 81,
-  "kg": 1505,
+  "kg": 1430,
   "dr": "fwd",
   "g": 6,
   "bx": "man",
-  "vmx": 180,
+  "vmx": 184,
   "ty": "all",
   "asp": "turbo",
   "hL": 0.3,
@@ -1864,7 +1865,8 @@
   ],
   "t100": 12.4,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "vw-transporter-t6-2-0-tdi-150",
@@ -1929,7 +1931,7 @@
   "yr": 2015,
   "cls": "Everyday",
   "kW": 75,
-  "kg": 1480,
+  "kg": 1382,
   "dr": "fwd",
   "g": 5,
   "bx": "man",
@@ -1948,7 +1950,8 @@
   ],
   "t100": 12.9,
   "src": "mfr",
-  "fu": "d"
+  "fu": "d",
+  "massOk": 1
  },
  {
   "id": "vw-id3-pro-performance",
