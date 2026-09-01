@@ -65,6 +65,35 @@ node tools/make-og.js         # regenerates the social card (needs chromium)
 
 Netlify runs `node build.js` and publishes `public/`.
 
+## Page types
+
+| URL | What it answers |
+|---|---|
+| `/` | the simulator itself |
+| `/cars/<car>/` | "what is the X 0-60 time" — one page per car |
+| `/vs/<a>-vs-<b>/` | "is the X or the Y faster" |
+| `/0-60-times/<make>/` | "BMW 0-60 times" |
+| `/fastest/<kind>/` | "fastest hot hatch" |
+
+Car pages ship in tranches: `CAR_PAGES=700` by default, `CAR_PAGES=all` for the
+lot. Two reasons. 2,900 near-identical templates arriving in one push is the
+shape of a doorway network however real the content is; and a tranche you can
+measure is worth more than a backlog you cannot.
+
+The order is not alphabetical and not by make either. Cars already in a built
+comparison come first — somebody searched for that matchup — and the rest are
+taken **round-robin across makes**, quickest first. Sorting straight by make
+rank sounds right and is not: BMW and Porsche have 543 cars between them, so a
+700-page tranche ordered that way publishes two and a half makes, no Ferrari
+page, and no way to learn which makes deserve the next tranche.
+
+The background paragraph on a car page is **generated**, entirely from figures
+this repo holds. It contains no history, no press-launch anecdote and no opinion
+about how a car drives, because there is no source here for any of that and
+inventing it would put thousands of confident fabrications online under our
+name. What it does instead is explain the numbers — which end of the run the car
+is good at, and what it is quick relative to.
+
 ## Being found
 
 Two audiences, one body of work, all of it generated at build time by
@@ -97,7 +126,10 @@ without anyone having to remember which day a deploy happened.
 
 The funnel on a generated page is `Page viewed` -> `Page engaged` (10 s with
 scroll, or 25% depth) -> `Sim opened` (the conversion; the visitor staged a
-race). `Internal link clicked` says which page they went to next.
+race). `Internal link clicked` says which page they went to next. On a car page
+`Rival chosen` fires when somebody switches opponent — worth having on its own,
+because it says what they came to compare even when they never press Run, and
+that is the list the next batch of `/vs/` pages should be built from.
 
 ## Layout
 
@@ -110,6 +142,7 @@ src/logomap.json  make name -> badge file
 build.js          wraps app.html into public/index.html; writes llms.txt
 lib/seo.js        JSON-LD, answer blocks, FAQ markup, crawl directives
 lib/vs.js         the /vs/ comparison pages
+lib/cars.js       /cars/<car>/, its rivals and its background paragraph
 lib/lists.js      /0-60-times/<make>/ and /fastest/<what>/
 lib/race.js       the race panel shared by every generated page
 netlify.toml      build command, publish dir, cache headers

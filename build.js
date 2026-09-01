@@ -7,6 +7,9 @@ const SRC = path.join(__dirname, "src");
 const OUT = path.join(__dirname, "public");
 
 const SITE  = "https://myautoracer.com";
+/* The first tranche of car pages. Raise it, or set CAR_PAGES=all, once the
+   previous tranche has had time to be indexed and judged. */
+const CAR_PAGES_DEFAULT = 700;
 const TITLE = "My Auto Racer — drag race any two real cars";
 /* The count is in the description, so the description cannot be a constant --
    it is written once the car data has actually been read. */
@@ -185,11 +188,33 @@ for (const f of ["robots.txt", "og.png", INDEXNOW_KEY + ".txt", GOOGLE_VERIFY]) 
 
 /* Comparison pages. Their numbers come from the simulator itself, run in a VM
    over the same car data the app ships, so a page cannot disagree with the app. */
-const vs = require("./lib/vs.js").build(app, OUT, SITE);
+const V = require("./lib/vs.js");
+const vs = V.build(app, OUT, SITE);
+
+/* Every car, run once. Three page types need this and it is the expensive part
+   of the build, so it is computed here and handed down rather than recomputed
+   in each of them. */
+const A = V.physics(app);
+const t0 = Date.now();
+const all = A.CARS.map(c => ({ c, f: V.figures(A, c) }))
+                  .filter(r => r.f.s60 != null && r.f.qm != null);
+console.log(`  ran ${all.length} cars in ${((Date.now()-t0)/1000).toFixed(1)}s`);
+
+/* One page per car. CAR_PAGES caps the tranche -- "all" for the lot -- because
+   2,900 pages arriving in one push reads as a doorway network however real the
+   content is, and because a tranche you can measure is worth more than a
+   backlog you cannot. */
+const capRaw = process.env.CAR_PAGES || String(CAR_PAGES_DEFAULT);
+if (!/^(all|\d{1,5})$/.test(capRaw)) throw new Error("build: CAR_PAGES must be a number or 'all'");
+const cap = capRaw === "all" ? null : Number(capRaw);
+const cars = require("./lib/cars.js").build(all, OUT, SITE, vs.made, cap);
+console.log(`  ${cars.urls.length - 1} car pages of ${all.length} (CAR_PAGES=${capRaw})`);
+
 /* Make pages and the fastest-lists. They get the comparison manifest so a make
-   page can point at the head-to-heads that already exist for it. */
-const listUrls = require("./lib/lists.js").build(app, OUT, SITE, vs.made);
-const vsUrls = vs.urls.concat(listUrls);
+   page can point at the head-to-heads that already exist for it, and the car-page
+   lookup so a listed car links to its own page instead of straight into the app. */
+const listUrls = require("./lib/lists.js").build(app, OUT, SITE, vs.made, all, cars.carUrl);
+const vsUrls = vs.urls.concat(cars.urls, listUrls);
 
 /* lastmod is the one field crawlers actually act on, and it has to be honest:
    every page here is regenerated from the car data on every build, so the build
@@ -237,6 +262,15 @@ Kerb mass is held as the **DIN** figure (the car with no driver); the simulator 
 If you cite a figure from this site, please say that it is simulated.
 
 Last regenerated: ${SEO.BUILT}. Build: see /analytics.js.
+
+## Cars
+
+One page per car: 0-60, 60 ft, eighth and quarter mile, trap speed, the specification
+it was simulated from, where it ranks in the set, and three similar cars to race it
+against. ${cars.urls.length - 1} published of ${CARS.length.toLocaleString("en-GB")}.
+
+- [Every car](${SITE}/cars/): filterable, grouped by make.
+${cars.published.slice(0, 25).map(r => `- [${r.c.mk} ${r.c.md}](${SITE}/cars/${r.slug}/)`).join("\n")}
 
 ## Head-to-head comparisons
 
