@@ -24,7 +24,13 @@
   "use strict";
 
   var TOKEN = "__MP_TOKEN__";               /* build.js substitutes this */
-  var HOST  = "https://api-eu.mixpanel.com";  /* EU residency: the audience is UK */
+  /* Residency matters and is not negotiable at runtime: a project created with
+     EU data residency must be fed api-eu.mixpanel.com, and a US project the
+     plain host. Both endpoints answer status:1 to a write either way, so a
+     mismatch does not announce itself -- the events simply are not there when
+     you go looking. Hence a build-time constant with the EU default this
+     project was set up for, overridable without touching this file. */
+  var HOST  = "__MP_HOST__";
   var CKEY  = "mar:consent", DKEY = "mar:did";
 
   /* localStorage throws outright in some privacy modes, so every touch is

@@ -143,7 +143,12 @@ ${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><changefreq>monthly</changefreq>
   const src = fs.readFileSync(path.join(SRC, "analytics.js"), "utf8");
   const token = process.env.MIXPANEL_TOKEN || "";
   if (!/^[a-f0-9]{0,64}$/i.test(token)) throw new Error("build: MIXPANEL_TOKEN is not a plausible token");
-  fs.writeFileSync(path.join(OUT, "analytics.js"), src.replace("__MP_TOKEN__", token));
+  /* Set MIXPANEL_HOST to https://api.mixpanel.com if the project turns out to
+     live in US residency. Getting this wrong loses every event silently. */
+  const mpHost = process.env.MIXPANEL_HOST || "https://api-eu.mixpanel.com";
+  if (!/^https:\/\/api(-eu)?\.mixpanel\.com$/.test(mpHost)) throw new Error("build: MIXPANEL_HOST is not a Mixpanel ingestion host");
+  fs.writeFileSync(path.join(OUT, "analytics.js"),
+    src.replace("__MP_TOKEN__", token).replace("__MP_HOST__", mpHost));
   if (!token) console.log("  note: MIXPANEL_TOKEN unset -- analytics.js will no-op");
 
   /* Injected into every page the build produced, rather than into each of the
