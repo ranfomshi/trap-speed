@@ -5447,6 +5447,12 @@ function drawStrip(pos,spd,clock,finish,acc){
 
   for(const [k,ly,col,ink,c] of lanes){
     const gy=ly+laneH-20, apron=20;         /* ground line, with tarmac below it */
+    /* The pit board, measured here rather than where it is drawn: the
+       behind-arrow goes in at step 8, before the board at step 10, and has to
+       know where the model name lands so it can sit clear of it. */
+    const br=Math.max(12,Math.min(20,laneH*0.175)), WD=1.5,
+          bx=br*WD+12, by=ly+laneH*0.40,
+          pitY=by+br+Math.round(br*0.74);   /* baseline of the model name */
     sx.save(); sx.beginPath(); sx.rect(0,ly,w,laneH); sx.clip();
 
     /* 1. the air above the track */
@@ -5520,10 +5526,15 @@ function drawStrip(pos,spd,clock,finish,acc){
     /* 8. the car */
     const cxp=X(pos[k]), sh=shapeOf(c);
     if(cxp<-sh.L*ppm-4){
+      /* Dropped clear of the pit board rather than pinned to the ground line:
+         at the default lane height the two landed on top of each other and the
+         gap was printed straight through the model name. Measured off the name
+         itself, so it stays clear at any lane height. */
+      const ay=Math.max(gy-14,pitY+13);
       sx.fillStyle=ink; sx.textAlign="left";
-      sx.beginPath(); sx.moveTo(9,gy-14); sx.lineTo(21,gy-20); sx.lineTo(21,gy-8); sx.closePath(); sx.fill();
+      sx.beginPath(); sx.moveTo(9,ay); sx.lineTo(21,ay-6); sx.lineTo(21,ay+6); sx.closePath(); sx.fill();
       sx.font='11px "JetBrains Mono", monospace';
-      sx.fillText("−"+dLabel(lead-pos[k]),26,gy-10);
+      sx.fillText("−"+dLabel(lead-pos[k]),26,ay+4);
     }else if(cxp<w+sh.L*ppm){
       if(spd[k]>4){                                  /* the air it is dragging along */
         const gr=sx.createLinearGradient(cxp-sh.L*ppm*2.1,0,cxp-sh.L*ppm*0.9,0);
@@ -5546,14 +5557,13 @@ function drawStrip(pos,spd,clock,finish,acc){
     /* 10. the maker's badge, standing at the left of the lane like a pit board,
        and the model name away at the other end */
     if(c){
-      const br=Math.max(12,Math.min(20,laneH*0.175)), WD=1.5, bx=br*WD+12, by=ly+laneH*0.40;
       drawMark(sx,bx,by,br,c.mk,WD);
       sx.font='600 '+Math.round(br*0.66)+'px "Saira Condensed", system-ui, sans-serif';
       let pit=shortModel(c,car(k==="a"?S.b:S.a)).toUpperCase();
       while(pit.length>4 && sx.measureText(pit).width>132) pit=pit.slice(0,-1).trim();
       sx.textAlign="center"; sx.fillStyle=ink+"D9";
       /* centred under the badge, but never running off the left of the lane */
-      sx.fillText(pit,Math.max(bx,3+sx.measureText(pit).width/2),by+br+Math.round(br*0.74));
+      sx.fillText(pit,Math.max(bx,3+sx.measureText(pit).width/2),pitY);
       sx.font='600 10.5px "Saira Condensed", system-ui, sans-serif';
       sx.textAlign="right"; sx.fillStyle=ink+"CC";
       sx.fillText(c.md.toUpperCase().slice(0,44),w-8,ly+12);
