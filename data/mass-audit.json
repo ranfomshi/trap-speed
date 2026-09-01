@@ -18,7 +18,10 @@
   "nissan-qashqai-1-5-dci-110": "DIN 1365 base trim (Nissan J11 UK brochure footnote: \"Kerb weight condition is without driver\"); ours was 1430. Payload arithmetic checks: 1910 GVW - 1365 = 545 as printed. 0-100 11.9 and 182 km/h confirmed",
   "nissan-juke-1-0-dig-t-117": "DIN 1182 for the 6MT (Nissan Europe press data, min kerb); ours 1250 was near the EU 1257. Convention inferred from a 518 kg payload against a 1700 kg GVW, plus the German with-driver brochure. 0-100 10.4 and 180 km/h confirmed as the manual figures",
   "ford-puma-1-0-ecoboost-125": "DIN 1205 / EU 1280. Ours (1280) was Ford own number but on Ford own convention -- \"the lightest kerb weight assuming driver at 75 kg\". 9.8 s confirmed as the mHEV manual (the non-hybrid does 10.1)",
-  "renault-captur-tce-130": "DIN 1234 / EU 1309 (Renault UK press kit row heading: \"Kerb Weight (Excluding Driver)\"); ours 1284 matched neither. 0-100 9.6->10.6 -- 9.6 is the 7-speed EDC automatic, a full second quicker. vmx 196->195"
+  "renault-captur-tce-130": "DIN 1234 / EU 1309 (Renault UK press kit row heading: \"Kerb Weight (Excluding Driver)\"); ours 1284 matched neither. 0-100 9.6->10.6 -- 9.6 is the 7-speed EDC automatic, a full second quicker. vmx 196->195",
+  "bmw-x3-xdrive20d-g01": "DIN 1750 / EC 1825 -- BMW UK Technical Data PDF prints both rows; mine was the EC figure",
+  "volvo-xc40-d3-150": "DIN 1575 (ADAC 'Leergewicht (EU)' 1650 less 75); mine was 1684, a whole-range 1684-1733 launch figure with no convention stated. Also t100 10.4 -> 9.9 (ADAC/auto-data manual FWD; the Geartronic is 10.2). MEDIUM confidence: no Volvo document with the D3-manual line filled in was found, and carfolio/mobile.de print 1716, which would imply DIN 1641 -- rejected because 2120 GVW less 1650 gives ADAC's stated 470 kg payload, whereas 1716 gives 404 kg against an XC40 range of 480-532.",
+  "ford-s-max-2-0-tdci-150": "DIN 1650 (Ford's own EU spec sheet 1725 'assuming driver at 75 kg' less 75); mine was 1747, neither convention. Also vmx 195 -> 198 and t100 10.9 -> 10.8 (ADAC + auto-data, 6-speed manual FWD). Ford's 1725 is the 5-seat car; the 7-seater is heavier."
  },
  "verified_already_correct": {
   "vw-up-1-0": "929 kg confirmed as DIN, no change"
@@ -27,11 +30,6 @@
  "pending_agent_verification": {
   "blocked": "running one group at a time to stay inside the weekly limit",
   "groups": {
-   "4": [
-    "bmw-x3-xdrive20d-g01",
-    "volvo-xc40-d3-150",
-    "ford-s-max-2-0-tdci-150"
-   ],
    "5": [
     "vw-touran-2-0-tdi-150",
     "renault-scenic-dci-110",
@@ -40,6 +38,7 @@
   }
  },
  "calibration": "auto-data.net \"Kerb Weight\" is the DIN figure (driver excluded). Established against two makers who state their own convention: Hyundai i20 1140 \"inkl. 75 kg Fahrergewicht\" vs auto-data 1065; SEAT Leon 1316 \"[with driver]\" vs auto-data 1241. auto-data \"Max. weight\" matching the maker gross weight confirms the variant.",
- "calibration_caveat": "auto-data.net is USUALLY DIN but NOT always: it gave the EU figure for the pre-facelift SEAT Leon Mk3 (1305, matching SEAT), and for the Alfa Giulietta printed 1395 -- above Alfa own with-driver 1385. Reliable test: auto-data kerb exactly 75 below the maker with-driver figure AND auto-data \"Max. weight\" equal to the maker gross weight. Further counter-example: for the Nissan Qashqai J11 auto-data printed a kerb minimum 55 kg BELOW Nissan own no-driver figure -- neither convention. Note also Nissan CHANGED convention between generations: the J12 (2021+) brochure defines kerb weight per Dir. 92/21/95/48 as including 68 kg driver + 7 kg luggage, while the 2014 J11 brochure says \"without driver\".",
- "massOk_flag": "specs carrying massOk:1 have a source that states its own convention; tools/fit.js skips the EU-mass heuristic for them, because it still fires on some verified cars and a check that cries wolf stops being read"
+ "calibration_caveat": "auto-data.net is USUALLY DIN but NOT always: it gave the EU figure for the pre-facelift SEAT Leon Mk3 (1305, matching SEAT), and for the Alfa Giulietta printed 1395 -- above Alfa own with-driver 1385. Reliable test: auto-data kerb exactly 75 below the maker with-driver figure AND auto-data \"Max. weight\" equal to the maker gross weight. Further counter-example: for the Nissan Qashqai J11 auto-data printed a kerb minimum 55 kg BELOW Nissan own no-driver figure -- neither convention. Note also Nissan CHANGED convention between generations: the J12 (2021+) brochure defines kerb weight per Dir. 92/21/95/48 as including 68 kg driver + 7 kg luggage, while the 2014 J11 brochure says \"without driver\". Two further counter-examples from group 4: Volvo XC40 D3 (auto-data 1641 sits only 9 kg below the stated EU 1650, so it is not DIN) and Ford S-MAX 2.0 TDCi (auto-data 1725 is IDENTICAL to Ford's own with-driver figure). Both passed the 'Max. weight' half of the test and failed the 75-kg-gap half -- so the gap test is the one that decides, and it must be run per car.",
+ "massOk_flag": "specs carrying massOk:1 have a source that states its own convention; tools/fit.js skips the EU-mass heuristic for them, because it still fires on some verified cars and a check that cries wolf stops being read",
+ "model_bias": "After correction the XC40 D3 needs kp=1.165 to reach 9.9 s. That is high but in company: Discovery Sport TD4 1.168 and Zafira Tourer 1.6 CDTi 1.165, both unflagged. The sim under-predicts mid-size diesel launch, so a high kp on a diesel is not on its own evidence of a bad mass."
 }
