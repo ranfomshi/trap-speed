@@ -168,6 +168,11 @@ canvas{display:block;width:100%}
 .share-arrival .arrival-actions{margin-left:auto;flex:0 0 auto;display:flex;gap:8px}
 .exit-challenge-btn{border-color:var(--amber2);color:var(--amber)}
 .exit-challenge-btn:hover{border-color:var(--amber);background:rgba(242,162,12,.12)}
+.result-line{margin:0 0 14px;padding:12px 14px;background:var(--sunk);
+  border:1px solid var(--edge2);border-left:3px solid var(--amber);border-radius:var(--r);
+  font-size:14.5px;line-height:1.55;color:var(--ink2)}
+.result-line b{color:var(--ink);font-weight:600}
+.result-line .num{font-family:var(--mono);color:var(--amber)}
 .result-board{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:15px}
 /* The finish photo is the one thing on this screen that is a photograph, so it
    is framed like one: a print with the deep bottom margin you write on. */
@@ -184,7 +189,12 @@ canvas{display:block;width:100%}
 @media (prefers-reduced-motion:reduce){.polaroid{transform:none}}
 .result-stats h2{padding:10px 14px;border-bottom:1px solid var(--edge);font-size:11px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--ink2)}
-.result-stats{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r)}
+/* Shrink to its rows rather than stretching to the photo's height: stretched,
+   the last row's rule floated in the middle of an empty panel. The eight cells
+   are always an even number, so the final ROW is the last two. */
+.result-stats{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);
+  align-self:start}
+.stat-grid .stat:nth-last-child(-n+2){border-bottom:0}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr}
 .stat{padding:11px 13px;border-bottom:1px solid var(--edge);min-width:0}
 .stat:nth-child(odd){border-right:1px solid var(--edge)} .stat:last-child:nth-child(odd){grid-column:1/-1;border-right:0}
@@ -688,6 +698,10 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 <dialog id="resultDialog" class="result-dialog" aria-labelledby="resultTitle">
   <div class="dialog-head"><h2 id="resultTitle">Race result</h2><button class="icon-btn" id="closeResult" type="button" aria-label="Close">&times;</button></div>
   <div class="dialog-body">
+    <!-- The contest, in one sentence, across the full width. The grid beside
+         the photo is 140px a cell and can only hold short numbers; this is
+         where what actually happened between the two cars gets room. -->
+    <p class="result-line" id="resultLine"></p>
     <div class="result-board">
       <div class="finish-photo">
         <h2 id="photoHead">Finish-line photo</h2>
@@ -3916,6 +3930,12 @@ function dLabel(m){
   if(imp()){ return m>=MILE*0.45 ? (m/MILE).toFixed(2).replace(/0$/,"")+" mi" : Math.round(m/FT)+" ft"; }
   return m>=1000 ? (m/1000).toFixed(2).replace(/0$/,"")+" km" : Math.round(m)+" m";
 }
+/* No car in the set has an HTML-special character in its name today, and that
+   is a fact about the data rather than a guarantee about it: one "M&S Edition"
+   would put a stray entity on screen, and one stray angle bracket would do
+   worse. Cheap to be right about. */
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const f2=x=>x==null?"—":x.toFixed(2);
 const f1=x=>x==null?"—":x.toFixed(1);
 const f0=x=>x==null?"—":Math.round(x).toString();
@@ -5907,13 +5927,117 @@ function renderResultBoard(){
   }
   const aWins=ra!=null&&(rb==null||(hi?ra>rb:ra<rb)), wk=aWins?"a":"b", lk=aWins?"b":"a";
   const W=car(S[wk]), L=car(S[lk]), wr=result(TR[wk]), lr=result(TR[lk]);
-  const finishSpeed=k=>f1(vN(TR[k].vEnd))+" "+vU();
+  const TW=TR[wk], TL=TR[lk];
   const margin=lr==null?"Did not finish":hi?dLabel(Math.abs(wr-lr)):f2(Math.abs(lr-wr))+" s";
-  const lead=S.mode==="dist"&&lr!=null?Math.max(0,S.dist-(at(TR[lk],"t",tAtD(TR[wk],S.dist),"d")??0)):null;
+
+  /* --- what happened between the two cars ---------------------------------
+     Everything below asks only where each car was at a given instant, never
+     what its own clock said, so it reads the same in every mode: a distance
+     race, a 0-60, a roll-on and a fixed-time sprint all answer "who was ahead,
+     when, and by how much". */
+  const dAt=(tr,t)=>at(tr,"t",t,"d") ?? tr.dEnd;
+  /* the instant the race was decided, in trace time (result() has the rollout
+     already taken off, so put it back) */
+  const tFin = S.mode==="time" ? S.dur
+             : (wr!=null ? wr+rollOff(TW) : TW.tEnd);
+  const gapEnd = dAt(TW,tFin)-dAt(TL,tFin);
+
+  /* The gap the winner already had by 60 ft, against the gap it finished with.
+     A car holding most of its margin that early won on the launch; a car with
+     almost none of it won at the top end. This is the one number that says
+     WHY, and the table never had it. */
+  const t60 = tAtD(TW,D.SIXTY);
+  const gap60 = t60==null ? null : dAt(TW,t60)-dAt(TL,t60);
+  /* Halfway by DISTANCE, not by the clock: the second half of a drag race takes
+     much less time than the first, so splitting on time would call almost
+     everything a top-end win. */
+  const dFin = dAt(TW,tFin);
+  const tHalf = tAtD(TW,dFin/2);
+  const gapHalf = tHalf==null ? null : dAt(TW,tHalf)-dAt(TL,tHalf);
+  /* Two honest numbers rather than a three-way argmax. The segments are nothing
+     like equal -- 60 ft is 5% of a quarter mile, the midrange 45%, the top end
+     50% -- so picking the largest share always named the widest segment and
+     called every race a midrange win. What can be said without that bias is how
+     much of the gap the launch accounted for, and whether the winner was still
+     pulling at the flag or being reeled in. */
+  const seg = (gap60!=null&&gapHalf!=null&&Math.abs(gapEnd)>0.3)
+    ? { launch:gap60/gapEnd, tail:(gapEnd-gapHalf)/gapEnd } : null;
+
+  /* Did the lead ever change hands? Sampled on a common clock rather than read
+     off either car's splits, because the two cars reach a given distance at
+     different times and comparing their split tables cannot see a pass. The
+     0.3 m deadband keeps two cars running side by side from registering as a
+     dozen lead changes. */
+  let changes=0, ledFirst=0, passAt=null, prev=0;
+  for(let i=1;i<=240;i++){
+    const t=tFin*i/240, g=dAt(TW,t)-dAt(TL,t);
+    const sgn = g>0.3 ? 1 : g<-0.3 ? -1 : 0;
+    if(!sgn) continue;
+    if(!prev){ prev=sgn; ledFirst=sgn; continue; }
+    if(sgn!==prev){ changes++; prev=sgn; if(passAt==null&&sgn===1) passAt=dAt(TW,t); }
+  }
+
+  const vW=vN(TW.vEnd), vL=vN(TL.vEnd);
+  const speedRace = S.mode==="speed"||S.mode==="roll";
+  const lengths=Math.abs(gapEnd)/(shapeOf(L).L||4.6);
+
+  /* --- the sentence ------------------------------------------------------- */
+  const bits=[];
+  const lenTxt=lengths<10?lengths.toFixed(1).replace(/\.0$/,""):String(Math.round(lengths));
+  const inLengths=gapEnd>0.3
+    ? `about <span class="num">${lenTxt}</span> ${lenTxt==="1"?"length":"lengths"} of the ${esc(L.md)}`
+    : ``;
+  /* In a fixed-time sprint the margin IS the distance, so the gap does not get
+     printed twice. */
+  bits.push(`<b>${esc(W.mk+" "+W.md)}</b> took the ${esc(eventLabel())} by `
+    + `<span class="num">${margin}</span>`
+    + (!inLengths ? ``
+       : hi ? `, ${inLengths}`
+            : ` &mdash; <span class="num">${dLabel(gapEnd)}</span>, ${inLengths}`)
+    + `.`);
+  if(ledFirst===-1)
+    bits.push(`It came from behind: the ${esc(L.md)} led off the line`
+      + (passAt!=null?` and was still in front at <span class="num">${dLabel(passAt)}</span>`:``)+`.`);
+  else if(seg){
+    const pc=x=>`<span class="num">${Math.round(x*100)}%</span>`;
+    if(seg.launch>=0.5)
+      bits.push(`It was won on the launch: <span class="num">${dLabel(gap60)}</span> up by
+        60&nbsp;ft, ${pc(seg.launch)} of the final gap.`);
+    else if(seg.launch<=0.15)
+      bits.push(`The launch counted for little &mdash; only ${pc(seg.launch)} of the gap was there
+        by 60&nbsp;ft, and the rest came down the road.`);
+    else
+      bits.push(`${pc(seg.launch)} of the gap was there by 60&nbsp;ft; the rest came down the road.`);
+    /* A winner still being caught at the flag is the most interesting thing a
+       result can say, and a share of the total cannot say it. */
+    if(seg.tail<-0.02)
+      bits.push(`The ${esc(L.md)} was closing at the line.`);
+    else if(seg.tail>=0.4)
+      bits.push(`The ${esc(W.md)} was still pulling away at the flag.`);
+  }
+  /* Skipped when it would say nothing: in a 0-60 or a roll-on both cars finish
+     on the target speed by definition, so "doing 60.0 to the other's 60.0" is
+     noise dressed as a statistic. */
+  if(Math.abs(vW-vL)>=0.5)
+    bits.push(`At the finish the ${esc(W.md)} was doing <span class="num">${f1(vW)} ${vU()}</span>
+      to the ${esc(L.md)}&rsquo;s <span class="num">${f1(vL)}</span>,
+      <span class="num">${(vW>vL?"+":"")+f1(vW-vL)}</span> ${vU()}.`);
+  else if(speedRace)
+    bits.push(`The ${esc(W.md)} needed <span class="num">${dLabel(dAt(TW,tFin))}</span> of road to
+      get there, the ${esc(L.md)} <span class="num">${dLabel(dAt(TL,result(TL)!=null?result(TL)+rollOff(TL):TL.tEnd))}</span>.`);
+  $("#resultLine").innerHTML=bits.join(" ");
+
+  /* --- the grid: short numbers only, ~14 characters a cell ---------------- */
   const stats=[
-    ["Winner",`${W.mk} ${W.md}`],["Winning result",S.mode==="time"?dLabel(wr):f2(wr)+" s"],
-    ["Margin",lead>0?`${margin} · ${dLabel(lead)}`:margin],["Event",eventLabel()],
-    [`${W.md} finish speed`,finishSpeed(wk)],[`${L.md} finish speed`,finishSpeed(lk)]
+    ["Event",eventLabel()],
+    ["Winner",`${W.mk} ${W.md}`],
+    [S.mode==="time"?"Winning distance":"Winning time",S.mode==="time"?dLabel(wr):f2(wr)+" s"],
+    ["Margin",margin],
+    ["Gap at the finish",gapEnd>0.05?dLabel(gapEnd):"—"],
+    ["Gap by 60 ft",gap60==null?"—":dLabel(gap60)],
+    ["Lead changes",changes?String(changes):"None"],
+    speedRace ? ["Road used",dLabel(dAt(TW,tFin))]
+              : ["Speed advantage",`${(vW>vL?"+":"")+f1(vW-vL)} ${vU()}`]
   ];
   $("#resultStats").innerHTML=stats.map(([k,v])=>`<div class="stat"><b>${k}</b><span>${v}</span></div>`).join("");
   const pw=photoWords(W,L);
