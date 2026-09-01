@@ -5721,6 +5721,9 @@ function animate(){
       });
     });
     drawStrip(pos,spd,Math.min(t,tFin),lineD,ACC);
+    /* The trace grows with the cars. Same clock, same frame -- the chart is
+       part of the race now rather than a summary printed after it. */
+    drawChart(Math.min(t,tFin));
     if(!photoCaptured && t>=Math.min(finT.a,finT.b)){ captureFinishPhoto(pos); photoCaptured=true; }
     liveUpdate(shown,spd);
     const gone = lastGeo && t>tFin &&
@@ -5743,7 +5746,7 @@ function finishRace(){
       car_a:S.a, car_b:S.b, winner:win?S[win]:null,
       margin:(rA!=null&&rB!=null)?Math.abs(rA-rB):null});
   }
-  renderVerdict(); renderSlips(); renderResultBoard(); drawChart();
+  renderVerdict(); renderSlips(); renderResultBoard(); drawChart(null);
   openResultDialog();
 }
 
@@ -5944,8 +5947,40 @@ function renderSlips(){
    TELEMETRY CHART  (speed vs time or distance, two series, direct-labelled)
    ======================================================================= */
 let CH=null;
-function drawChart(){
-  const {w,h}=fit(chartC,cx); cx.clearRect(0,0,w,h);
+/* Measuring the canvas writes its width, which dirties layout, so measuring it
+   again next frame forces a fresh one. The strip already pays that cost sixty
+   times a second; a second canvas doing it too is where read-write-read-write
+   starts. Cache the box and re-measure only when something could have changed
+   it. */
+let chartBox=null;
+const chartResize=()=>{ chartBox=null; };
+function chartFit(){
+  if(!chartBox||!chartBox.w){
+    const r=chartC.getBoundingClientRect(), dpr=Math.min(2,devicePixelRatio||1);
+    if(!r.width||!r.height) return {w:0,h:0};      /* hidden, as in embed mode */
+    chartBox={w:r.width,h:r.height,dpr};
+    chartC.width=Math.max(1,r.width*dpr); chartC.height=Math.max(1,r.height*dpr);
+  }
+  cx.setTransform(chartBox.dpr,0,0,chartBox.dpr,0,0);
+  return chartBox;
+}
+
+/* clock is the race time to draw up to:
+     a number  -- draw the trace as far as the cars have got, with the head of
+                  each line where that car is right now;
+     0         -- an empty pair of axes, which is what to show before the lights;
+     null      -- the whole run, which is what to show once it is over.
+   The axes are always scaled to the FULL traces, never to the part drawn so
+   far, or the picture would rescale under itself every frame and a car pulling
+   away would look like a car holding station. */
+let chartClock=0, lastLegend=null;
+function drawChart(clock){
+  /* Called with no argument by everything that redraws for a reason other than
+     time passing -- hover, resize, axis flip. Those must not change WHAT is
+     shown, only redraw it. */
+  if(clock===undefined) clock=chartClock; else chartClock=clock;
+  const {w,h}=chartFit(); if(!w) return;
+  cx.clearRect(0,0,w,h);
   if(!TR) return;
   const L=48,R=86,T=18,B=32, pw=w-L-R, ph=h-T-B;
   const xk=S.xaxis;
@@ -5973,24 +6008,49 @@ function drawChart(){
   cx.fillText(vU(),8,T-5);
   cx.textAlign="right"; cx.fillText(xk==="t"?"seconds":dU(),L+pw,T+ph+29);
 
+  /* The playhead, on the time axis only. Against distance the two cars are at
+     different places at the same instant, so there is no single line to draw. */
+  if(clock!=null&&clock>0&&xk==="t"&&clock<xMax){
+    const px=X(clock);
+    cx.strokeStyle="#2A3644"; cx.lineWidth=1;
+    cx.beginPath(); cx.moveTo(px+.5,T); cx.lineTo(px+.5,T+ph); cx.stroke();
+  }
+
   const ends=[];
   ["a","b"].forEach(k=>{
     const tr=TR[k], col=k==="a"?CSS("--A"):CSS("--B"), ink=k==="a"?CSS("--Aink"):CSS("--Bink");
     const xs2=xk==="t"?tr.t:tr.d;
+    /* Where this car has got to. A car that has already finished holds its end
+       point while the other one is still coming. */
+    const done = clock==null||clock>=tr.tEnd;
+    const tc   = done ? tr.tEnd : clock;
+    if(tc<=0) return;                       /* nothing has happened yet */
+    const hv   = done ? tr.vEnd : (at(tr,"t",tc,"v") ?? tr.vEnd);
+    const hx   = xk==="t" ? tc
+               : (done ? tr.dEnd : (at(tr,"t",tc,"d") ?? tr.dEnd));
+
     cx.strokeStyle=col; cx.lineWidth=2; cx.lineJoin="round"; cx.beginPath();
-    for(let i=0;i<xs2.length;i++){ const x=X(xs2[i]),y=Y(vN(tr.v[i])); i?cx.lineTo(x,y):cx.moveTo(x,y); }
+    let n=0;
+    for(let i=0;i<xs2.length;i++){
+      if(tr.t[i]>tc) break;
+      const x=X(xs2[i]),y=Y(vN(tr.v[i])); n++ ? cx.lineTo(x,y) : cx.moveTo(x,y);
+    }
+    /* Finish on the interpolated point rather than the last sample below it, so
+       the head tracks the car smoothly instead of stepping between samples. */
+    const hX=X(hx), hY=Y(vN(hv));
+    n ? cx.lineTo(hX,hY) : cx.moveTo(hX,hY);
     cx.stroke();
-    /* gearchange notches */
+    /* gearchange notches, as they happen */
     cx.strokeStyle=ink; cx.lineWidth=1.5;
     for(const sh of tr.shifts){
+      if(sh.t>tc) break;
       const x=X(xk==="t"?sh.t:sh.d), y=Y(vN(sh.v));
       cx.beginPath(); cx.moveTo(x,y-4); cx.lineTo(x,y+4); cx.stroke();
     }
-    ends.push({k,col,ink,x:X(xs2[xs2.length-1]),y:Y(vN(tr.vEnd)),
-               nm:car(S[k]).md.split(/[ (]/)[0]});
+    ends.push({k,col,ink,x:hX,y:hY,nm:car(S[k]).md.split(/[ (]/)[0]});
   });
   /* nudge the two direct labels apart if the traces finish close together */
-  if(Math.abs(ends[0].y-ends[1].y)<13){
+  if(ends.length===2&&Math.abs(ends[0].y-ends[1].y)<13){
     const [lo,hiE]=ends[0].y<ends[1].y?[ends[0],ends[1]]:[ends[1],ends[0]];
     lo.ly=lo.y-7+ (0); hiE.ly=hiE.y+7;
   }
@@ -6001,13 +6061,17 @@ function drawChart(){
     cx.fillText(e.nm,Math.min(e.x+9,w-8-cx.measureText(e.nm).width),(e.ly||e.y)+4);
   });
   CH={L,R,T,B,pw,ph,xMax,yMax,X,Y,xk};
-  $("#legend").innerHTML=["a","b"].map(k=>{
+  /* This runs every frame now that the chart animates, and the legend changes
+     only when the cars do. Writing identical innerHTML sixty times a second is
+     sixty parses and sixty style recalcs for no change on screen. */
+  const legend=["a","b"].map(k=>{
     const c=car(S[k]);
     return `<span class="lg"><i style="background:${k==="a"?CSS("--A"):CSS("--B")}"></i>${c.mk} ${c.md}</span>`;
   }).join("");
+  if(legend!==lastLegend){ $("#legend").innerHTML=legend; lastLegend=legend; }
 }
 chartC.addEventListener("pointermove",ev=>{
-  if(!CH||!TR) return;
+  if(!CH||!TR||chartClock!==null) return;   /* only a finished run is inspectable */
   const r=chartC.getBoundingClientRect(), px=ev.clientX-r.left;
   if(px<CH.L||px>CH.L+CH.pw){ $("#tip").style.opacity=0; return; }
   const xv=(px-CH.L)/CH.pw*CH.xMax;
@@ -6235,7 +6299,7 @@ function refresh(){
     const idleV=rollingStart();
     drawStrip({a:0,b:0},{a:idleV,b:idleV},0,Math.max(TR.a.dEnd,TR.b.dEnd),{a:0,b:0});
     liveUpdate(posEnd,spdEnd);
-    renderVerdict(); renderSlips(); drawChart(); settlePips();
+    renderVerdict(); renderSlips(); drawChart(raced()?null:0); settlePips();
   }
   renderField();
 }
@@ -6334,7 +6398,7 @@ function init(){
   $("#closeResult").onclick=()=>rdlg.close();
   rdlg.addEventListener("click",e=>{ if(e.target===rdlg) rdlg.close(); });
   renderCar("a"); renderCar("b"); renderStart(); renderPresets(); renderCustom(); renderNotes(); refresh();
-  addEventListener("resize",()=>{ if(!running) refresh(); else drawChart(); });
+  addEventListener("resize",()=>{ chartResize(); if(!running) refresh(); else drawChart(); });
   raceBtn({text:"Stage"});
   initDisclaimer();
 }
