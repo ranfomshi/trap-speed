@@ -176,13 +176,14 @@ canvas{display:block;width:100%}
 .polaroid{background:#EFEBE3;padding:11px 11px 0;border-radius:2px;
   box-shadow:0 14px 30px rgba(0,0,0,.55),0 2px 5px rgba(0,0,0,.4);
   transform:rotate(-.55deg);transform-origin:50% 50%}
-.polaroid canvas{display:block;width:100%;background:var(--asphalt);border-radius:1px}
+/* height:auto, always: the capture is already cropped to the frame's rough
+   aspect, and a fixed height here is what squashed the cars before. */
+.polaroid canvas{display:block;width:100%;height:auto;background:var(--asphalt);border-radius:1px}
 .polaroid .finish-caption{padding:11px 3px 15px;color:#3B3630;font-size:11.5px;line-height:1.35;
   text-align:center;min-height:38px}
 @media (prefers-reduced-motion:reduce){.polaroid{transform:none}}
 .result-stats h2{padding:10px 14px;border-bottom:1px solid var(--edge);font-size:11px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--ink2)}
-#finishPhoto{height:224px}
 .result-stats{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r)}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr}
 .stat{padding:11px 13px;border-bottom:1px solid var(--edge);min-width:0}
@@ -219,6 +220,9 @@ dialog::backdrop{background:rgba(4,7,10,.78)}
 .slip dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
 .slip dd.hi{color:var(--amber)}
 .slip .rule{grid-column:1/-1;border-top:1px dashed var(--edge2);margin:5px 0 1px}
+.slip-wait{grid-column:1/-1;margin:0;padding:15px 14px;background:var(--sunk);
+  border:1px dashed var(--edge2);border-radius:var(--r);font-family:var(--mono);
+  font-size:12.5px;color:var(--ink3);text-align:center}
 
 /* ---------- chart ---------- */
 #chart{height:270px;background:var(--surface)}
@@ -335,7 +339,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
   .share-arrival .arrival-actions{margin-left:0;width:100%}.share-arrival .arrival-actions button{flex:1}
   .result-actions{width:100%;margin-left:0;flex-wrap:wrap}.result-actions button{flex:1 1 auto}
   .share-link{flex-direction:column}
-  .result-dialog{width:calc(100% - 16px)}.result-dialog #finishPhoto{height:170px}
+  .result-dialog{width:calc(100% - 16px)}
   .polaroid{transform:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -5717,7 +5721,7 @@ function animate(){
       });
     });
     drawStrip(pos,spd,Math.min(t,tFin),lineD,ACC);
-    if(!photoCaptured && t>=Math.min(finT.a,finT.b)){ captureFinishPhoto(); photoCaptured=true; }
+    if(!photoCaptured && t>=Math.min(finT.a,finT.b)){ captureFinishPhoto(pos); photoCaptured=true; }
     liveUpdate(shown,spd);
     const gone = lastGeo && t>tFin &&
       ["a","b"].every(k=>pos[k] > lastGeo.x0+lastGeo.span+6);
@@ -5729,7 +5733,7 @@ function animate(){
 function finishRace(){
   treeLit=new Set();
   captureFinishAt(); photoCaptured=true;
-  hasRun=true;
+  hasRun=true; ranSig=raceSig();
   {
     const rA=result(TR.a), rB=result(TR.b), hi=higherWins();
     const win = rA==null&&rB==null ? null
@@ -5798,10 +5802,40 @@ function wireVerdictActions(){
   const ex=$("#exitChallengeV"); if(ex) ex.onclick=clearChallengeMode;
 }
 
-function captureFinishPhoto(){
+/* The strip is about four times wider than it is tall; the polaroid frame it
+   lands in is about two. Copying the whole canvas and then letting CSS force it
+   to a fixed height squashed every car horizontally by nearly half.
+   A finish photo is a crop anyway -- nobody photographs the whole quarter mile
+   to show who won -- so take a window around the two cars and let the element
+   size itself from that window's own aspect. Then nothing is stretched, at any
+   frame width, on any screen. */
+function captureFinishPhoto(pos){
   const out=$("#finishPhoto");
-  out.width=stripC.width; out.height=stripC.height;
-  out.getContext("2d").drawImage(stripC,0,0);
+  const W=stripC.width, H=stripC.height;
+  let x0=0, w=W;
+  if(pos && lastGeo && lastGeo.w){
+    const dpr=W/lastGeo.w, ppm=lastGeo.w/lastGeo.span*dpr;
+    /* X(d) puts the car's NOSE on screen: the body runs back from there by its
+       own length, and the draft it drags goes back further still. Crop to the
+       cars, not to the points they are measured at. */
+    const len=Math.max(shapeOf(car(S.a)).L,shapeOf(car(S.b)).L)*ppm;
+    /* Only the cars the camera can actually see. By the time the winner crosses,
+       a beaten car is often metres off the left of frame -- and a crop told to
+       contain it then stretches to the whole strip, which is exactly the
+       full-width copy this was meant to replace. In a close race both are in
+       shot and both are framed; in a blowout the photo is of the winner
+       crossing, which is what a finish photo is. */
+    const xs=["a","b"].map(k=>(pos[k]-lastGeo.x0)*ppm).filter(x=>x>-len&&x<W+len);
+    if(!xs.length) xs.push(W/2);
+    let lo=Math.max(0,Math.min(...xs)-len*1.5), hi=Math.min(W,Math.max(...xs)+len*0.6);
+    /* Never narrower than the frame wants; open out around the middle if it is,
+       and never past the edges of what was drawn. */
+    const cx=(lo+hi)/2, cw=Math.min(W,Math.max(hi-lo,H*2.1));
+    x0=Math.round(Math.max(0,Math.min(W-cw,cx-cw/2)));
+    w=Math.round(Math.min(cw,W-x0));
+  }
+  out.width=w; out.height=H;
+  out.getContext("2d").drawImage(stripC,x0,0,w,H,0,0,w,H);
 }
 /* Sampling whatever frame the animation happened to be on gave photos with no
    cars in them: by the time the loop noticed, the strip had been redrawn. So
@@ -5816,7 +5850,7 @@ function captureFinishAt(){
     spd[k]=at(TR[k],"t",tw,"v")??TR[k].vEnd;
   });
   for(let i=0;i<16;i++) drawStrip(pos,spd,tw,lineD,{a:0,b:0});
-  captureFinishPhoto();
+  captureFinishPhoto(pos);
 }
 /* What the photo actually shows depends on what decided the race: a line for a
    distance run, a speed reached for 0-60 or a roll-on, a clock for a sprint. */
@@ -5864,8 +5898,25 @@ function renderResultBoard(){
   $("#finishCaption").textContent=pw.cap;
   $("#finishPhoto").setAttribute("aria-label",pw.alt);
 }
+/* Everything that changes what the numbers would be. SHARE_KEYS is already
+   exactly that list -- it is what a share link has to carry to reproduce a race
+   -- so reuse it rather than keeping a second copy here that can fall behind it
+   by one field and go quietly wrong. Units are excluded on purpose: switching
+   mph to km/h re-renders the same race, it does not invalidate it. */
+const raceSig=()=>[S.a,S.b].concat(
+  Object.keys(SHARE_KEYS).filter(k=>k!=="units").map(k=>S[k])).join("|");
+let ranSig=null;
+
 function renderSlips(){
   if(awaitingOpponent){ $("#slips").innerHTML=""; return; }
+  /* The slip is the record of a race that was run, not a preview of one that
+     could be. Printing the splits before the lights gives away the only thing
+     the page exists to show you -- and printing them after a setting changed is
+     worse, because those numbers then describe a race nobody watched. */
+  if(ranSig===null || ranSig!==raceSig()){
+    $("#slips").innerHTML=`<p class="slip-wait">Time slips print here once the cars have run.</p>`;
+    return;
+  }
   $("#slips").innerHTML=["a","b"].map(k=>{
     const c=car(S[k]), tr=TR[k], rows=slipRows(tr);
     const body=rows.map(r=>r[0]==="rule"?`<span class="rule"></span>`
