@@ -23,9 +23,22 @@ const KEY="4c5a35b261552b253134c84f789dbac4";
 const ROOT=path.join(__dirname,"..");
 const dry=process.argv.includes("--dry");
 
-const xml=fs.readFileSync(path.join(ROOT,"public/sitemap.xml"),"utf8");
-const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
+/* /sitemap.xml is a sitemap index, so its <loc>s are other sitemaps, not pages.
+   Follow them one level -- and only one: a sitemap index may not nest, so an
+   index inside an index means the build is wrong and should say so. */
+const read=f=>fs.readFileSync(path.join(ROOT,"public",f),"utf8");
+const locs=x=>[...x.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
+const root=read("sitemap.xml");
+let urls;
+if(/<sitemapindex/.test(root)){
+  urls=locs(root).flatMap(u=>{
+    const child=read(new URL(u).pathname.replace(/^\//,""));
+    if(/<sitemapindex/.test(child)) throw new Error("indexnow: nested sitemap index at "+u);
+    return locs(child);
+  });
+}else urls=locs(root);
 if(!urls.length) throw new Error("indexnow: no URLs in public/sitemap.xml -- run the build first");
+if(new Set(urls).size!==urls.length) throw new Error("indexnow: duplicate URLs across sitemaps");
 /* The documented ceiling is 10,000 per request. We are nowhere near it, but a
    silent truncation at some future size would be worse than a loud refusal. */
 if(urls.length>10000) throw new Error(`indexnow: ${urls.length} URLs exceeds the 10,000 limit`);

@@ -9,9 +9,17 @@ const SRC = path.join(__dirname, "src");
 const OUT = path.join(__dirname, "public");
 
 const SITE  = "https://myautoracer.com";
-/* The first tranche of car pages. Raise it, or set CAR_PAGES=all, once the
-   previous tranche has had time to be indexed and judged. */
-const CAR_PAGES_DEFAULT = 700;
+/* The tranche of car pages. Raise it, or set CAR_PAGES=all, once the previous
+   tranche has had time to be indexed and judged.
+
+   700 -> 850 because pages are now additive: the manifest pins everything
+   already published, so re-ordering the tranche can no longer swap 123 cars out
+   and 404 them -- it can only decide who fills the space above the pin. At 700
+   there was no space, and the whole point of the re-order (ordinary cars ahead
+   of each marque's supercar, because that is where the searches are) had nowhere
+   to land. The extra 150 are that re-order, and they are almost all everyday
+   cars. Still a measured tranche: 850 of 2,941. */
+const CAR_PAGES_DEFAULT = 850;
 const TITLE = "My Auto Racer — drag race any two real cars";
 /* The count is in the description, so the description cannot be a constant --
    it is written once the car data has actually been read. */
@@ -210,7 +218,21 @@ console.log(`  ran ${all.length} cars in ${((Date.now()-t0)/1000).toFixed(1)}s`)
 const capRaw = process.env.CAR_PAGES || String(CAR_PAGES_DEFAULT);
 if (!/^(all|\d{1,5})$/.test(capRaw)) throw new Error("build: CAR_PAGES must be a number or 'all'");
 const cap = capRaw === "all" ? null : Number(capRaw);
-const cars = require("./lib/cars.js").build(all, OUT, SITE, vs.made, cap);
+
+/* A handful of cars share a name AND a year with another car, so nothing we can
+   put in a title tells them apart. They are either one car entered twice or two
+   cars one of which is wrong -- a data question, not a naming one. Publishing
+   both would put two pages with one title on a domain that cannot afford to
+   have either discarded, so they are held back and written down instead. */
+const stuckIds = new Set(A.collisions.flatMap(c => c.ids.slice(1)));
+if (A.collisions.length) {
+  fs.writeFileSync(path.join(__dirname, "data/name-collisions.json"),
+    JSON.stringify(A.collisions, null, 1) + "\n");
+  console.log(`  ${A.collisions.length} name collisions held back `
+    + `(${[...stuckIds].join(", ")}) -> data/name-collisions.json`);
+}
+const cars = require("./lib/cars.js").build(all.filter(r => !stuckIds.has(r.c.id)),
+                                            OUT, SITE, vs.made, cap);
 console.log(`  ${cars.urls.length - 1} car pages of ${all.length} (CAR_PAGES=${capRaw})`);
 
 /* Make pages and the fastest-lists. They get the comparison manifest so a make
@@ -235,15 +257,44 @@ const vsUrls = vs.urls.concat(cars.urls, listUrls, answerUrls);
    date is the true modification date for all of them. The index pages get a
    higher priority than the leaves because they are how a crawler reaches them. */
 const isIndex = u => /^\/(vs|0-60-times|fastest)\/$/.test(u);
-fs.writeFileSync(path.join(OUT, "sitemap.xml"),
+
+/* One sitemap per page type, behind a sitemap index.
+   Search Console reports coverage per submitted sitemap, so a single file can
+   only ever answer "n of 1,188 indexed" -- a blended number across four kinds of
+   page that are working or failing for completely different reasons. Split, the
+   same report answers the question we actually have to decide on: which KIND of
+   page earns indexing. If the answer pages index and the car pages do not, then
+   releasing the remaining 2,200 car pages is precisely the wrong move, and with
+   one sitemap we would never have seen it.
+   /sitemap.xml stays the entry point, so the URL already submitted to Google and
+   Bing keeps working and the children are discovered through it. */
+const SETS = [
+  ["core",    ["/"]],
+  ["vs",      vs.urls],
+  ["cars",    cars.urls],
+  ["lists",   listUrls],
+  ["answers", answerUrls]
+].filter(([, us]) => us.length);
+
+const urlset = us =>
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${SITE}/</loc><lastmod>${SEO.BUILT}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-${vsUrls.map(u => `  <url><loc>${SITE}${u}</loc><lastmod>${SEO.BUILT}</lastmod>`
-  + `<changefreq>${isIndex(u) ? "weekly" : "monthly"}</changefreq>`
-  + `<priority>${isIndex(u) ? "0.9" : "0.7"}</priority></url>`).join("\n")}
+${us.map(u => `  <url><loc>${SITE}${u}</loc><lastmod>${SEO.BUILT}</lastmod>`
+  + `<changefreq>${u === "/" || isIndex(u) ? "weekly" : "monthly"}</changefreq>`
+  + `<priority>${u === "/" ? "1.0" : isIndex(u) ? "0.9" : "0.7"}</priority></url>`).join("\n")}
 </urlset>
+`;
+for (const [k, us] of SETS) fs.writeFileSync(path.join(OUT, `sitemap-${k}.xml`), urlset(us));
+
+fs.writeFileSync(path.join(OUT, "sitemap.xml"),
+`<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${SETS.map(([k]) => `  <sitemap><loc>${SITE}/sitemap-${k}.xml</loc>`
+  + `<lastmod>${SEO.BUILT}</lastmod></sitemap>`).join("\n")}
+</sitemapindex>
 `);
+console.log(`  sitemap: ${SETS.map(([k, us]) => `${k} ${us.length}`).join(", ")}`
+  + ` = ${SETS.reduce((n, [, us]) => n + us.length, 0)} urls`);
 
 /* --- llms.txt ------------------------------------------------------------
    A proposed convention (llmstxt.org): a markdown map of the site at a fixed

@@ -28,6 +28,29 @@ for(const row of rows){
   app=app.replace(re,()=>row);
   if(app!==before) changed++;
 }
-if(missing.length) throw new Error("sync: not in app.html: "+missing.join(", "));
+/* --add appends ids the app has never seen, which is how a new batch of cars
+   enters the set. Without it an unknown id is a typo in the spec file, and
+   silently creating a car from a typo is worse than stopping. */
+let added=0;
+if(missing.length && process.argv.includes("--add")){
+  const byId=new Map(rows.map(r=>[r.match(/^\{id:"([^"]+)"/)[1],r]));
+  /* Append at the end of the CARS array: the last line that is a car row. The
+     source order is what settles slugs and page tranches, so new cars go last
+     and cannot renumber anything already published. */
+  const lines=app.split("\n");
+  let last=-1;
+  for(let i=0;i<lines.length;i++) if(/^\{id:"/.test(lines[i])) last=i;
+  if(last<0) throw new Error("sync: cannot find the CARS array in app.html");
+  if(!/,\s*$/.test(lines[last])) lines[last]+=",";
+  /* fit.js --emit already terminates each row with a comma, so join on the
+     newline alone -- joining on "," too would leave `},,{` and a hole in the
+     array, which reads back as an undefined car. */
+  lines.splice(last+1,0,missing.map(id=>byId.get(id).replace(/,\s*$/,"")).join(",\n")+",");
+  app=lines.join("\n");
+  added=missing.length;
+  missing.length=0;
+}
+if(missing.length) throw new Error("sync: not in app.html: "+missing.join(", ")
+  +"  (pass --add to append them)");
 fs.writeFileSync(appPath,app);
-console.log(`sync: ${rows.length} rows, ${changed} changed`);
+console.log(`sync: ${rows.length} rows, ${changed} changed, ${added} added`);
