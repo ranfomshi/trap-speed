@@ -5203,18 +5203,22 @@ const PFMATCH=[
   ["huracan",     c=>c.mk==="Lamborghini" && /huracan|huracán|gallardo/i.test(c.md)],
   ["m3-g80",      c=>c.mk==="BMW" && /\bM3\b/.test(c.md) && !/touring|cabrio|coupe|csl/i.test(c.md)],
   ["gt-coupe",    c=>/f-type/i.test(c.md) || (c.mk==="Mercedes-Benz" && /amg gt/i.test(c.md))],
-  ["chiron",       c=>c.mk==="Bugatti" && /chiron/i.test(c.md)],
-  ["camaro-g6",    c=>c.mk==="Chevrolet" && /camaro/i.test(c.md) && c.yr>=2016],
-  ["countach",     c=>c.mk==="Lamborghini" && /countach/i.test(c.md)],
-  ["muscle-classic",c=>c.bd==="muscle" && c.yr<=1980],
+  /* Only the four that beat the archetype they replaced are wired up.
+     The other eight authored in the same sitting -- chiron, camaro-g6, countach,
+     muscle-classic, fiesta-mk7, saloon-exec, suv-large, hatch-family -- are left
+     defined but unmatched, because side by side they came out WORSE: the nose
+     droops into a long low snout and the glasshouse collapses into one blob,
+     where the archetype had a bonnet, a screen and a boot. saloon-exec and
+     hatch-family alone covered 624 published cars, so shipping them was a
+     regression on the back of a page meant to prevent exactly that.
+     They stay in the file because the geometry is most of the work and the fault
+     is in the front third of each; revive one only after it wins on the lab page.
+     The lesson, cheaply bought: a per-model outline has to beat an archetype
+     tuned over months, and eyeballing a 620px canvas is not how you check. */
   ["mini-hatch",   c=>/^mini$/i.test(c.mk) && !/clubman|countryman|paceman/i.test(c.md)],
   ["city-bubble",  c=>c.bd==="bubble" || (c.mk==="Fiat" && /^500\b/.test(c.md))],
   ["model-y",      c=>c.mk==="Tesla" && /model y/i.test(c.md)],
   ["van-panel",    c=>c.bd==="van"],
-  ["fiesta-mk7",   c=>c.mk==="Ford" && /fiesta/i.test(c.md)],
-  ["saloon-exec",  c=>c.bd==="saloon" && c.yr>=2010],
-  ["suv-large",    c=>c.bd==="suv" && c.sh && c.sh[0]>=4.60],
-  ["hatch-family", c=>c.bd==="hatch" && c.sh && c.sh[0]>=4.15 && c.yr>=2000],
   /* and three class outlines, for the shapes the archetypes served worst */
   ["rs6-avant",   c=>/avant|touring|estate|sportbrake|shooting brake/i.test(c.md)],
   ["suv-perf",    c=>c.bd==="suv"],
