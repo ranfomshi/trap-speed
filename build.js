@@ -250,6 +250,10 @@ const answers = require("./lib/answers.js").build(A, all, OUT, SITE, cars.carUrl
 const answerUrls = answers.map(a => a.url);
 console.log(`  ${answers.length} answer pages in ${((Date.now()-t1)/1000).toFixed(1)}s`);
 
+/* A temporary page for judging how the cars are drawn: /lab/cars/. Noindex,
+   unlinked, and deliberately NOT added to vsUrls, so it reaches no sitemap. */
+console.log("  lab page:", require("./lib/lab.js").build(app, OUT, SITE));
+
 const vsUrls = vs.urls.concat(cars.urls, listUrls, answerUrls);
 
 /* lastmod is the one field crawlers actually act on, and it has to be honest:
