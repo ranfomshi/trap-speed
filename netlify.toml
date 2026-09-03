@@ -2,6 +2,17 @@
   command = "node build.js"
   publish = "public"
 
+# The plate lookup runs as a Netlify function because the DVSA credentials must
+# never reach a browser. A v2 function declares its own route (/api/plate), so
+# no redirect is needed here.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[functions."plate"]
+  # global fetch and top-level await
+  node_version = "22"
+
 [[headers]]
   for = "/logos/*"
   [headers.values]

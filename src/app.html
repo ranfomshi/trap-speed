@@ -408,6 +408,22 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 .about .faq dt{font-weight:600;color:var(--ink);margin:14px 0 4px}
 .about .faq dd{margin:0 0 0 0;color:var(--ink2)}
 .embed .about{display:none}
+
+/* the number plate box. Yellow-on-black is the rear plate, which is the one
+   people read off their own car. */
+.plate{display:flex;gap:.4rem;margin-top:.45rem}
+.plateIn{flex:1 1 auto;min-width:0;font:700 .95rem/1.1 ui-monospace,"Cascadia Mono",Menlo,monospace;
+  letter-spacing:.08em;text-transform:uppercase;text-align:center;
+  background:#f5d312;color:#111;border:1px solid #b99f0a;border-radius:5px;padding:.42rem .3rem}
+.plateIn::placeholder{color:#7a6a08;opacity:.75;letter-spacing:.06em}
+.plateIn:focus{outline:2px solid var(--accent,#5cc8ff);outline-offset:1px}
+.plateGo{flex:0 0 auto;font:600 .82rem/1 inherit;padding:.42rem .6rem;cursor:pointer;
+  background:var(--card,#1b2130);color:var(--ink,#e8eef7);
+  border:1px solid var(--edge,#2c3446);border-radius:5px}
+.plateGo:hover{border-color:var(--accent,#5cc8ff)}
+.plateGo[disabled]{opacity:.55;cursor:default}
+.plateMsg{margin:.3rem 0 0;min-height:1.05em;font-size:.78rem;color:var(--dim,#93a1b5)}
+.plateMsg.bad{color:#ff9b9b}
 </style>
 
 <div class="wrap">
@@ -439,6 +455,13 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
           <div class="copts" id="optsA" role="listbox" aria-label="Left lane car results"></div>
         </div>
       </div>
+      <div class="plate">
+        <input type="text" id="plateA" class="plateIn" maxlength="9" autocomplete="off"
+               spellcheck="false" placeholder="YD70 JHF"
+               aria-label="Left lane: find your car by number plate">
+        <button type="button" class="plateGo" id="plateGoA">Find my car</button>
+      </div>
+      <p class="plateMsg" id="plateMsgA" role="status"></p>
       <div class="specs" id="specA"></div>
       <div class="trim" id="trimA"></div>
     </div>
@@ -468,6 +491,13 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
           <div class="copts" id="optsB" role="listbox" aria-label="Right lane car results"></div>
         </div>
       </div>
+      <div class="plate">
+        <input type="text" id="plateB" class="plateIn" maxlength="9" autocomplete="off"
+               spellcheck="false" placeholder="YD70 JHF"
+               aria-label="Right lane: find your car by number plate">
+        <button type="button" class="plateGo" id="plateGoB">Find my car</button>
+      </div>
+      <p class="plateMsg" id="plateMsgB" role="status"></p>
       <div class="specs" id="specB"></div>
       <div class="trim" id="trimB"></div>
     </div>
@@ -4145,6 +4175,49 @@ function searchCars(q,limit,f){
   SEARCH_TOTAL=hits.length;
   return hits.slice(0,limit).map(h=>h.c);
 }
+/* ---------- a number plate, narrowed to the cars we hold -------------------
+   DVSA answers with the make, the model, the fuel and the engine size, and
+   that is coarser than our list: it says PASSAT where we hold fourteen of
+   them, and never says GTE. So this does not try to pick a car. It filters
+   and ranks, and the driver chooses -- which is also the only honest thing to
+   do when the exact trim genuinely is not in the list. */
+const MAKE_ALIAS={
+  "VOLKSWAGEN":["vw","volkswagen"], "MERCEDES-BENZ":["mercedes-benz","mercedes-amg"],
+  "MERCEDES":["mercedes-benz","mercedes-amg"], "LAND ROVER":["land rover","range rover"],
+  "VAUXHALL":["vauxhall","opel"], "MCLAREN":["mclaren","mclaren mercedes"],
+  "ROLLS ROYCE":["rolls-royce"], "ROLLS-ROYCE":["rolls-royce"],
+  "ABARTH":["abarth","fiat"], "DS":["citroen","ds"], "CITROEN":["citroen"],
+  "ALFA ROMEO":["alfa romeo"], "BMW":["bmw","alpina"]
+};
+function matchPlate(v){
+  const mkq=(v.make||"").trim().toUpperCase();
+  const want=MAKE_ALIAS[mkq]||[mkq.toLowerCase()];
+  const mtok=norm(v.model||"").split(" ").filter(t=>t.length>1);
+  const yr=v.year||0, litres=v.engineCC?v.engineCC/1000:0;
+  const electric=/electric|hybrid/i.test(v.fuel||""), diesel=/diesel/i.test(v.fuel||"");
+  const rank=needModel=>{
+    const out=[];
+    for(const c of CARS){
+      const mk=c.mk.toLowerCase();
+      if(!want.some(w=>mk===w||mk.startsWith(w))) continue;
+      let s=0,hit=0;
+      for(const t of mtok) if(c._n.indexOf(t)>=0){ s+=6; hit++; }
+      if(needModel && mtok.length && !hit) continue;
+      /* our year is the generation, not the build year, so nearness scores
+         rather than filters -- a 2020 car can be a 2015-on model line */
+      if(yr){ const d=Math.abs(c.yr-yr); s+= d<=1?6:d<=3?4:d<=6?2:d<=10?0:-3; }
+      if(diesel) s+= c.fu==="d"?3:-1;
+      if(electric && /gte|phev|hybrid|e-tron|electric|\bev\b|\be-/i.test(c.md)) s+=6;
+      if(litres){ const m=c.md.match(/\b(\d\.\d)\b/); if(m) s+= Math.abs(+m[1]-litres)<0.16?4:-2; }
+      out.push({c,s});
+    }
+    out.sort((a,b)=> b.s-a.s || a.c._label.localeCompare(b.c._label));
+    return out.slice(0,12).map(o=>o.c);
+  };
+  /* if the model name is one we do not carry, fall back to the make alone
+     rather than showing nothing */
+  return rank(true).length ? rank(true) : rank(false);
+}
 function hilite(text,q){
   const t=norm(q).split(" ").filter(Boolean);
   if(!t.length) return text;
@@ -4224,7 +4297,7 @@ function combo(side){
      2,843 rows each carrying a maker badge is far too much to build up front,
      and a hard cap of 120 meant the list simply stopped inside the As. */
   const PAGE=80;
-  let shownN=0, lastGrp=null;
+  let shownN=0, lastGrp=null, plateSet=null;
   function rowHTML(c,i){
     let h="";
     if(c.cls!==lastGrp){ lastGrp=c.cls; h+=`<div class="cgrp">${c.cls}</div>`; }
@@ -4247,6 +4320,10 @@ function combo(side){
   /* keep filling while the arrow keys or a jump run past what is rendered */
   function ensureShown(i){ while(shownN<=i && appendPage()); }
   function render(){
+    /* a plate result replaces the search for as long as it is on screen; any
+       typing or refocus drops it and the picker is a search box again */
+    if(plateSet){ items=plateSet; if(idx>=items.length) idx=-1;
+      opts.innerHTML=""; opts.scrollTop=0; shownN=0; lastGrp=null; appendPage(); return; }
     items=searchCars(q,Infinity,f);
     if(!q){
       /* With no query the car you already have goes to the top -- both so you can
@@ -4293,12 +4370,12 @@ function combo(side){
     refresh();
   }
   input.addEventListener("focus",()=>{
-    q=""; input.value=""; idx=-1; show();
+    q=""; input.value=""; idx=-1; plateSet=null; show();
     /* the highlight has to be found in the list we just built, not the last one */
     idx=items.findIndex(c=>c.id===S[side]);
     if(idx>=0){ ensureShown(idx); input.setAttribute("aria-activedescendant",`o-${side}-${idx}`); scrollToSel(); }
   });
-  input.addEventListener("input",()=>{ q=input.value; idx=-1; if(!open) show(); else { render(); renderFlt(); } });
+  input.addEventListener("input",()=>{ q=input.value; idx=-1; plateSet=null; if(!open) show(); else { render(); renderFlt(); } });
   input.addEventListener("blur",()=>setTimeout(()=>{ if(open&&!list.contains(document.activeElement)) hide(); },140));
   input.addEventListener("keydown",e=>{
     if(e.key==="ArrowDown"||e.key==="ArrowUp"){
@@ -4318,11 +4395,58 @@ function combo(side){
     e.preventDefault(); pick(+el.dataset.i);
   });
   label();
-  return {label};
+  /* plate(): show these cars and nothing else, so the driver picks from the
+     handful the registration narrowed us to */
+  return {label, plate(cars){ plateSet=cars; idx=-1; open=true; list.hidden=false;
+    input.setAttribute("aria-expanded","true"); render(); renderFlt(); }};
 }
 const DRIVE={fwd:"Front drive",rwd:"Rear drive",awd:"All-wheel drive"};
 const BOX={man:"Manual",dct:"Dual-clutch",auto:"Automatic",ev:"Single speed",cvt:"CVT"};
 
+/* ---------- number plate -> a shortlist ------------------------------------
+   The credentials for the DVSA MOT history service cannot be in a page, so the
+   call goes through /api/plate, which is a Netlify function holding them.
+   A registration is personal data under UK GDPR once it is tied to a person,
+   so it is never sent to analytics, never written to the URL, and never put in
+   a message we keep: the event below records the make and the number of
+   matches, and nothing that identifies the vehicle. */
+function wirePlate(side){
+  const L=side.toUpperCase();
+  const inp=$("#plate"+L), btn=$("#plateGo"+L), msg=$("#plateMsg"+L);
+  if(!inp||!btn||!msg) return;
+  const say=(t,bad)=>{ msg.textContent=t; msg.classList.toggle("bad",!!bad); };
+  let busy=false;
+  async function go(){
+    if(busy) return;
+    const reg=inp.value.trim();
+    if(reg.replace(/[^A-Za-z0-9]/g,"").length<2) return say("Type a registration first.",1);
+    busy=true; btn.disabled=true; say("Looking it up…");
+    let r,d;
+    try{
+      r=await fetch("/api/plate?reg="+encodeURIComponent(reg),{headers:{accept:"application/json"}});
+      d=await r.json().catch(()=>({}));
+    }catch(e){ busy=false; btn.disabled=false; return say("Could not reach the lookup.",1); }
+    busy=false; btn.disabled=false;
+    if(r.status===404) return say("No vehicle on record with that registration.",1);
+    if(r.status===429) return say("That is a lot of lookups — give it a minute.",1);
+    if(r.status===503) return say("Plate lookup is not switched on yet.",1);
+    if(!r.ok)          return say("The lookup is unavailable right now.",1);
+
+    const cars=matchPlate(d);
+    const seen=[d.make,d.model].filter(Boolean).join(" ")
+      + (d.year?" ("+d.year+")":"") + (d.fuel?" · "+d.fuel:"");
+    if(!cars.length) return say(seen+" — nothing close in our list.",1);
+    say(cars.length===1 ? seen+" — one match, shown below."
+                        : seen+" — "+cars.length+" close matches, pick yours.");
+    COMBO[side].plate(cars);
+    track("Plate looked up",{lane:side, make:d.make||"", matches:cars.length});
+  }
+  btn.addEventListener("click",go);
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); go(); } });
+  /* uppercase as they type, because a plate is never lower case */
+  inp.addEventListener("input",()=>{ const p=inp.selectionStart;
+    inp.value=inp.value.toUpperCase(); inp.setSelectionRange(p,p); });
+}
 function renderCar(side){
   const c=car(S[side]), L=side.toUpperCase();
   $("#mk"+L).innerHTML=markImg(c.mk,24,"mki",1.45);
@@ -6836,6 +6960,7 @@ function clearChallengeMode(){
 }
 function init(){
   COMBO.a=combo("a"); COMBO.b=combo("b");
+  wirePlate("a"); wirePlate("b");
   setSeg("#modeSeg","mode",S.mode); setSeg("#unitSeg","u",S.units); setSeg("#surfSeg","s",S.surf);
   setSeg("#rollSeg","r",S.rollout); setSeg("#axisSeg","x",S.xaxis); setSeg("#rateSeg","p",S.rate);
   segWire("#modeSeg","mode",m=>{ S.mode=m; renderStart(); renderPresets(); renderCustom(); refresh(); });

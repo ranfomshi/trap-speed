@@ -37,6 +37,12 @@ jobs:
           MIXPANEL_TOKEN: ${{ vars.MIXPANEL_TOKEN }}
         run: node build.js
 
+      # --functions is required as well as --dir: with Netlify's own git builds
+      # turned off, a --no-build deploy ships the publish directory and nothing
+      # else, so without this flag the plate lookup simply would not exist in
+      # production. The DVSA credentials are NOT set here -- they are runtime
+      # site environment variables in Netlify. A GitHub secret would be wrong:
+      # it exists at build time, and this function needs them per request.
       - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -44,4 +50,5 @@ jobs:
         run: |
           npx --yes netlify-cli@24 deploy \
             --prod --no-build --dir=public \
+            --functions=netlify/functions \
             --message "$GITHUB_SHA"
