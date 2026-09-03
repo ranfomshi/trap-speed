@@ -69,8 +69,8 @@ export default async (req, ctx) => {
   if (!TOKEN_URL || !CLIENT_ID || !CLIENT_SECRET || !SCOPE || !API_KEY)
     return json(503, { error: "unconfigured" });
 
-  /* strip everything that is not a plate character, so "YD70 JHF", "yd70-jhf"
-     and "YD70JHF" are one lookup rather than three against the quota */
+  /* strip everything that is not a plate character, so "BD00 CAR", "bd00-car"
+     and "BD00CAR" are one lookup rather than three against the quota */
   const raw = new URL(req.url).searchParams.get("reg") || "";
   const reg = raw.toUpperCase().replace(/[^A-Z0-9]/g, "");
   /* seven is the most any UK registration carries, so a longer string is a
