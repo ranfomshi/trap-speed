@@ -412,11 +412,14 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 /* the number plate box. Yellow-on-black is the rear plate, which is the one
    people read off their own car. */
 .plate{display:flex;gap:.4rem;margin-top:.45rem}
-.plateIn{flex:1 1 auto;min-width:0;font:700 .95rem/1.1 ui-monospace,"Cascadia Mono",Menlo,monospace;
+/* input[type=text] earlier in this sheet sets the dark sunk background and
+   outranks a lone class, so this has to carry the element too or the plate
+   renders as near-black text on near-black. */
+.plate input.plateIn{flex:1 1 auto;min-width:0;font:700 .95rem/1.1 ui-monospace,"Cascadia Mono",Menlo,monospace;
   letter-spacing:.08em;text-transform:uppercase;text-align:center;
   background:#f5d312;color:#111;border:1px solid #b99f0a;border-radius:5px;padding:.42rem .3rem}
-.plateIn::placeholder{color:#7a6a08;opacity:.75;letter-spacing:.06em}
-.plateIn:focus{outline:2px solid var(--accent,#5cc8ff);outline-offset:1px}
+.plate input.plateIn::placeholder{color:#7a6a08;opacity:.75;letter-spacing:.06em}
+.plate input.plateIn:focus{outline:2px solid var(--accent,#5cc8ff);outline-offset:1px}
 .plateGo{flex:0 0 auto;font:600 .82rem/1 inherit;padding:.42rem .6rem;cursor:pointer;
   background:var(--card,#1b2130);color:var(--ink,#e8eef7);
   border:1px solid var(--edge,#2c3446);border-radius:5px}
@@ -456,7 +459,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
         </div>
       </div>
       <div class="plate">
-        <input type="text" id="plateA" class="plateIn" maxlength="9" autocomplete="off"
+        <input type="text" id="plateA" class="plateIn" maxlength="8" autocomplete="off"
                spellcheck="false" placeholder="YD70 JHF"
                aria-label="Left lane: find your car by number plate">
         <button type="button" class="plateGo" id="plateGoA">Find my car</button>
@@ -492,7 +495,7 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
         </div>
       </div>
       <div class="plate">
-        <input type="text" id="plateB" class="plateIn" maxlength="9" autocomplete="off"
+        <input type="text" id="plateB" class="plateIn" maxlength="8" autocomplete="off"
                spellcheck="false" placeholder="YD70 JHF"
                aria-label="Right lane: find your car by number plate">
         <button type="button" class="plateGo" id="plateGoB">Find my car</button>
@@ -4418,8 +4421,11 @@ function wirePlate(side){
   let busy=false;
   async function go(){
     if(busy) return;
-    const reg=inp.value.trim();
-    if(reg.replace(/[^A-Za-z0-9]/g,"").length<2) return say("Type a registration first.",1);
+    const reg=inp.value.trim(), bare=reg.replace(/[^A-Za-z0-9]/g,"");
+    if(bare.length<2) return say("Type a registration first.",1);
+    /* stop here rather than spend a lookup: no UK registration runs past seven
+       characters, so anything longer is a typo, not a miss */
+    if(bare.length>7) return say("That is too long for a registration.",1);
     busy=true; btn.disabled=true; say("Looking it up…");
     let r,d;
     try{

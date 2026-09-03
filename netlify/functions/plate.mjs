@@ -73,7 +73,9 @@ export default async (req, ctx) => {
      and "YD70JHF" are one lookup rather than three against the quota */
   const raw = new URL(req.url).searchParams.get("reg") || "";
   const reg = raw.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  if (reg.length < 2 || reg.length > 8) return json(400, { error: "format" });
+  /* seven is the most any UK registration carries, so a longer string is a
+     typo and not worth a lookup against a quota we do not control */
+  if (reg.length < 2 || reg.length > 7) return json(400, { error: "format" });
 
   const ip = ctx?.ip || req.headers.get("x-nf-client-connection-ip") || "?";
   if (overLimit(ip)) return json(429, { error: "rate" });
