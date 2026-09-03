@@ -5519,16 +5519,20 @@ function drawWheel(g,cx,wr,ang,blur,spokes,chrome){
   g.fillStyle="#161C23"; g.beginPath(); g.arc(0,0,rim,0,7); g.fill();
   g.rotate(ang);
   g.fillStyle=chrome?"#8E9AA8":"#4A5665"; g.beginPath(); g.arc(0,0,rim*0.94,0,7); g.fill();
-  if(!chrome){
-    g.globalAlpha=blur;
-    g.strokeStyle="#8C99A8"; g.lineWidth=wr*(spokes>6?0.06:0.11); g.lineCap="round";
-    for(let i=0;i<spokes;i++){
-      const a=i*Math.PI*2/spokes;
-      g.beginPath(); g.moveTo(Math.cos(a)*wr*0.16,Math.sin(a)*wr*0.16);
-      g.lineTo(Math.cos(a)*rim*0.86,Math.sin(a)*rim*0.86); g.stroke();
-    }
-    g.globalAlpha=1;
+  /* A chrome wheel used to get no spokes at all, which left every pre-1970 car
+     standing on two featureless grey discs -- the single worst thing about how
+     the classics were drawn. A wire wheel has MORE spokes than an alloy, not
+     none: thin, bright and many. */
+  g.globalAlpha=blur;
+  const wire=chrome?32:spokes;
+  g.strokeStyle=chrome?"#C3CDD8":"#8C99A8";
+  g.lineWidth=wr*(chrome?0.018:spokes>6?0.06:0.11); g.lineCap="round";
+  for(let i=0;i<wire;i++){
+    const a=i*Math.PI*2/wire;
+    g.beginPath(); g.moveTo(Math.cos(a)*wr*(chrome?0.12:0.16),Math.sin(a)*wr*(chrome?0.12:0.16));
+    g.lineTo(Math.cos(a)*rim*0.90,Math.sin(a)*rim*0.90); g.stroke();
   }
+  g.globalAlpha=1;
   g.fillStyle="#6E7C8C"; g.beginPath(); g.arc(0,0,wr*0.15,0,7); g.fill();
   g.restore();
 }
@@ -5618,6 +5622,20 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   const deckY=P.tail*H, screenX=P.rf*L, backX=P.rr*L;
   const cockpit=open?Math.max(P.belt*H+0.10*H, cowlY+0.10*H):0;   /* screen-top height, open cars */
 
+  /* The floor, and the dark under it. Without this the sill is a bright edge
+     with tarmac showing straight through underneath, and the car reads as
+     hovering rather than standing on the road -- the same tell as a game
+     sprite with no contact shadow. It goes down BEFORE the body so the body
+     covers whatever of it strays above the sill. */
+  if(!B.bare){
+    const u0=Math.min(xf+ar*0.55,xr), u1=Math.max(xr-ar*0.55,xf);
+    const ug=g.createLinearGradient(0,0,0,s);
+    ug.addColorStop(0,"rgba(0,0,0,.00)");
+    ug.addColorStop(0.45,"rgba(4,7,11,.72)");
+    ug.addColorStop(1,"rgba(4,7,11,.92)");
+    g.fillStyle=ug; g.fillRect(Math.min(u0,u1),0,Math.abs(u1-u0),s);
+  }
+
   g.beginPath();
   if(PRO){
     /* the model's own outline, closed along the sill with the arches that the
@@ -5682,18 +5700,40 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   /* everything from here on is detail painted ON the car, so clip it to the
      silhouette: no beltline running off into the sky past the bonnet. */
   g.save(); g.clip();
-  /* the shut line round the arches, which is what gives a car its stance */
-  g.strokeStyle="rgba(0,0,0,.45)"; g.lineWidth=1.4*px;
+  /* Glass, shared by the authored and the archetype paths. Both used to fill
+     the DLO with one flat near-black, which is why every cabin read as a hole
+     cut in the car rather than a window: real side glass is a mirror lying at
+     an angle, bright with sky where it leans back at the top and nearly black
+     in the footwell. One gradient buys that on all 2,941. */
+  const beltV=(PRO?PRO.belt:P.belt)*H;
+  const glass=g.createLinearGradient(0,H*1.02,0,beltV);
+  glass.addColorStop(0,   "rgba(120,152,186,.62)");
+  glass.addColorStop(0.34,"rgba(38,52,68,.92)");
+  glass.addColorStop(1,   "rgba(11,16,23,.96)");
+  /* pillars carry real width now -- they were a 1.7px hairline, so a saloon and
+     a coupe had the same thread of paint between the windows */
+  const pillarW=Math.max(2.4*px,0.0085*L);
+
+  /* The arch lip. A single hairline here was the biggest reason the cars read
+     as clip-art: the tyre is dark, the gap above it shows the background, and
+     against any dark ground the two merge into one blob with no edge between
+     wheel and bodywork. A real arch is a rolled lip -- it throws a shadow down
+     onto the tyre and catches light on its own edge. Both strokes are centred
+     ON the arch path, and the clip to the silhouette throws away the outer
+     half of each, so what lands is a band lying inside the bodywork. */
   for(const A of [PF,PR]){
-    g.beginPath(); A.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); g.stroke();
+    const trace=()=>{ g.beginPath(); A.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); };
+    trace(); g.strokeStyle="rgba(0,0,0,.38)"; g.lineWidth=6.0*px; g.stroke();
+    trace(); g.strokeStyle=shade(col,0.14); g.lineWidth=1.6*px; g.stroke();
+    trace(); g.strokeStyle="rgba(0,0,0,.55)"; g.lineWidth=1.1*px; g.stroke();
   }
 
   if(PRO){
     if(PRO.g){                                                  /* the model's glass */
       g.beginPath(); splinePath(g,PRO.g,L,H,1);
-      g.fillStyle="rgba(15,21,29,.93)"; g.fill();
+      g.fillStyle=glass; g.fill();
       g.save(); g.clip(); g.fillStyle=shade(col,-0.20);         /* pillars */
-      for(const dx of (PRO.door||[])) g.fillRect(dx*L-1.7*px,0,3.4*px,H);
+      for(const dx of (PRO.door||[])) g.fillRect(dx*L-pillarW,0,pillarW*2,H);
       g.restore();
       g.strokeStyle="rgba(190,214,238,.22)"; g.lineWidth=1.3*px;
       g.beginPath(); splinePath(g,PRO.g,L,H,1); g.stroke();
@@ -5758,11 +5798,11 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
       gx=QB(backX,blC[0],P.deck*L,t), gv=QB(roofY,blC[1],deckY,t)-GI;
       if(gv<=stopY){ gl.push([gx,stopY]); break; } gl.push([gx,gv]); }
     g.beginPath(); gl.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); g.closePath();
-    g.fillStyle="rgba(15,21,29,.93)"; g.fill();
+    g.fillStyle=glass; g.fill();
     /* pillars, clipped inside the glass so they read as pillars and not masts */
     g.save(); g.clip();
     g.fillStyle=shade(col,-0.20);
-    const pw=(era===0?1.1:era===1?2.0:1.7)*px, pA=screenX+0.05*L, pB=gl[gl.length-1][0]-0.04*L;
+    const pw=pillarW*(era===0?0.72:1), pA=screenX+0.05*L, pB=gl[gl.length-1][0]-0.04*L;
     for(let i=1;i<=P.dr;i++){
       const px0=lerp(pA,pB,i/(P.dr+0.35));
       g.fillRect(px0-pw, 0, pw*2, H);
@@ -5815,6 +5855,50 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
     if(c&&c.bd!=="seven"){ g.fillStyle=shade(col,-0.30);          /* wing mirror */
       g.fillRect(P.cowl*L+0.04*L, P.belt*H+0.02*H, 0.045*L, 0.045*H); }
   }
+  /* Bumpers, valances and a number plate. Every car in the set ended in a bare
+     tapered edge at both ends -- no shut line, no valance, nothing saying where
+     the body stops and the bumper starts, which is why the tails all read as a
+     flat cliff and the noses as a rounded snout. It is the same two lines on
+     every car, taken off the sill and the beltline it already has, so it costs
+     nothing per model and lands on the authored outlines as well as the
+     archetypes. Pre-1970 cars are skipped: era 0 draws its own chrome blades
+     and era 1 its own impact bumpers, and a second valance over either reads
+     as a dent. */
+  if(era>1&&!B.bare&&!open){
+    const sV=(PRO?PRO.sill:P.sill)*H, bV=(PRO?PRO.belt:P.belt)*H;
+    const bumpY=sV+(bV-sV)*0.44;
+    g.fillStyle="rgba(0,0,0,.13)";                       /* the valance, in shadow */
+    g.fillRect(0,sV-0.02*H,0.115*L,bumpY-sV+0.02*H);
+    g.fillRect(0.895*L,sV-0.02*H,0.105*L,bumpY-sV+0.02*H);
+    g.strokeStyle="rgba(0,0,0,.34)"; g.lineWidth=1.2*px;  /* the shut line above it */
+    g.beginPath(); g.moveTo(0,bumpY);        g.lineTo(0.110*L,bumpY); g.stroke();
+    g.beginPath(); g.moveTo(0.898*L,bumpY);  g.lineTo(L,bumpY);       g.stroke();
+    /* The plate, on the rear valance. A UK plate is 520 x 110mm, so on a 4.5m
+       car it is a shade over a tenth of the length and very shallow -- draw it
+       any deeper and it reads as a slab bolted to the bumper. It needs its dark
+       surround for the same reason: a bare pale rectangle floats. */
+    const plW=Math.min(0.115*L,0.52), plH=plW*0.212,
+          plX=L-plW-0.022*L, plY=sV+0.030*H;
+    g.fillStyle="rgba(0,0,0,.30)";
+    roundRect(g,plX-1.5*px,plY-1.5*px,plW+3*px,plH+3*px,0.006*H); g.fill();
+    g.fillStyle="rgba(226,227,218,.90)";
+    roundRect(g,plX,plY,plW,plH,0.005*H); g.fill();
+  }
+
+  /* A highlight along the roof so the shape reads against the sky. This used to
+     be painted after the clip was released, and the profile branch splines a
+     handful of points filtered off the top of the outline -- few enough that
+     the curve overshoots past the last one and hung a stray arc in the air
+     above the roof of every car with an authored outline. Inside the clip the
+     overshoot has nowhere to land. */
+  if(PRO&&!PRO.open){
+    g.strokeStyle="rgba(255,255,255,.30)"; g.lineWidth=1.4*px;
+    g.beginPath(); splinePath(g,PRO.b.filter(p=>p[1]>0.88),L,H); g.stroke();
+  }else if(!open&&c&&c.bd!=="seven"){
+    g.strokeStyle="rgba(255,255,255,.34)"; g.lineWidth=1.3*px;
+    g.beginPath(); g.moveTo(screenX,roofY-0.7*px);
+    g.quadraticCurveTo((screenX+backX)/2, crown-0.7*px, backX, roofY-0.7*px); g.stroke();
+  }
   g.restore();                       /* end of the clip to the silhouette */
   if(PRO&&PRO.screen){               /* a roadster screen stands above the body */
     g.beginPath(); splinePath(g,PRO.screen,L,H,1);
@@ -5833,15 +5917,6 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
     g.fillRect(0.795*L,wy-0.030*H,0.014*L,0.056*H);         /* endplate */
     g.fillRect(0.855*L,deckY-0.01*H,0.016*L,wy-deckY);
     g.fillRect(0.945*L,deckY-0.01*H,0.016*L,wy-deckY);
-  }
-  /* a highlight along the roof so the shape reads against the sky */
-  if(PRO&&!PRO.open){
-    g.strokeStyle="rgba(255,255,255,.30)"; g.lineWidth=1.4*px;
-    g.beginPath(); splinePath(g,PRO.b.filter(p=>p[1]>0.88),L,H); g.stroke();
-  }else if(!open&&c&&c.bd!=="seven"){
-    g.strokeStyle="rgba(255,255,255,.34)"; g.lineWidth=1.3*px;
-    g.beginPath(); g.moveTo(screenX,roofY-0.7*px);
-    g.quadraticCurveTo((screenX+backX)/2, crown-0.7*px, backX, roofY-0.7*px); g.stroke();
   }
   g.restore();
   if(B.bare){
