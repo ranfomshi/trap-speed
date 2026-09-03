@@ -1,0 +1,70 @@
+{
+ "_note": "Where each traced PROFILE outline came from. Every source is public domain or CC0, so none of these impose an attribution or share-alike obligation; the credit is recorded because knowing which drawing a shape came from is what makes it checkable.",
+ "_excluded": "CC BY-SA sources were deliberately not used. Tracing one makes the coordinates a derivative work, which would put the profile data under CC BY-SA too. That was worth 12 more cars and is not a commitment worth making for twelve cars.",
+ "profiles": {
+  "golf-2": {
+   "file": "File:VW Golf II bw.svg",
+   "licence": "Public domain",
+   "author": "Marseille77",
+   "page": "https://commons.wikimedia.org/wiki/File:VW_Golf_II_bw.svg"
+  },
+  "db5": {
+   "file": "File:Aston Martin DB5.svg",
+   "licence": "CC0",
+   "author": "charner1963",
+   "page": "https://commons.wikimedia.org/wiki/File:Aston_Martin_DB5.svg"
+  },
+  "testarossa": {
+   "file": "File:Ferrari Testarossa.svg",
+   "licence": "CC0",
+   "author": "charner1963",
+   "page": "https://commons.wikimedia.org/wiki/File:Ferrari_Testarossa.svg"
+  },
+  "esprit": {
+   "file": "File:Lotus esprite.svg",
+   "licence": "CC0",
+   "author": "cactus cowboy",
+   "page": "https://commons.wikimedia.org/wiki/File:Lotus_esprite.svg"
+  },
+  "mustang-classic": {
+   "file": "File:Ford Mustang.svg",
+   "licence": "CC0",
+   "author": "brunurb",
+   "page": "https://commons.wikimedia.org/wiki/File:Ford_Mustang.svg"
+  },
+  "sl-300": {
+   "file": "File:Mercedes benz 300sl profil.svg",
+   "licence": "Public domain",
+   "author": "Marseille77",
+   "page": "https://commons.wikimedia.org/wiki/File:Mercedes_benz_300sl_profil.svg"
+  },
+  "p959": {
+   "file": "File:Porsche 959.svg",
+   "licence": "CC0",
+   "author": "brunurb",
+   "page": "https://commons.wikimedia.org/wiki/File:Porsche_959.svg"
+  },
+  "w123": {
+   "file": "File:MB 280 W123.svg",
+   "licence": "Public domain",
+   "author": "Marseille77",
+   "page": "https://commons.wikimedia.org/wiki/File:MB_280_W123.svg"
+  },
+  "p911-air": {
+   "file": "File:Porsche 911 targa profile.svg",
+   "licence": "Public domain",
+   "author": "Marseille77",
+   "page": "https://commons.wikimedia.org/wiki/File:Porsche_911_targa_profile.svg",
+   "note": "the source drawing is a Targa; the roof between u .50 and .62 is closed back to a coupe, which is the only line in which the two bodies differ"
+  },
+  "p911-open": {
+   "file": "File:Porsche 911 targa profile.svg",
+   "licence": "Public domain",
+   "author": "Marseille77",
+   "page": "https://commons.wikimedia.org/wiki/File:Porsche_911_targa_profile.svg"
+  }
+ },
+ "_rejected": {
+  "cobra": "File:Cobra side.svg (CC0) extracts cleanly but the top edge of an open roadster follows the windscreen frame and roll bar, not the body, so the outline spikes twice. Separating them is not worth three cars."
+ }
+}
