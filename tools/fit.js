@@ -174,11 +174,47 @@ function fit(spec){
 }
 module.exports={physics:()=>A, fit, ENV, GRIP0};
 
+/* --emit over a few thousand cars is half an hour on one core, and it is the
+   step tools/sync.js runs, so it is sharded across them. The shards are
+   concatenated in input order, because source order is what settles slugs and
+   page tranches -- a batch that came back in a different order every run would
+   renumber the site. The report path is left single-threaded: it is read by a
+   person, on a spec file small enough to read. */
+if(require.main===module && process.env.FIT_SHARD){
+  const specs=JSON.parse(fs.readFileSync(process.env.FIT_SHARD,"utf8"));
+  fs.writeFileSync(process.env.FIT_SHARD+".out",
+    specs.map(s=>row(s,fit(s))+",").join("\n")+"\n");
+  process.exit(0);
+}
 if(require.main===module){
   const file=process.argv[2];
-  if(!file){ console.error("usage: node tools/fit.js <specs.json> [--emit]"); process.exit(1); }
+  if(!file){ console.error("usage: node tools/fit.js <specs.json> [--emit] [--jobs N]"); process.exit(1); }
   const specs=JSON.parse(fs.readFileSync(path.join(ROOT,file),"utf8"));
   const emit=process.argv.includes("--emit");
+  const ji=process.argv.indexOf("--jobs");
+  /* FIT_JOBS is the way tools/sync.js reaches this, since it shells out with a
+     fixed argument list. Seven workers on a 15 GB box was enough to get the
+     whole run killed once. */
+  const jobs=ji>=0 ? +process.argv[ji+1]
+           : +process.env.FIT_JOBS
+           || (emit && specs.length>400 ? Math.max(1,Math.min(4,require("os").cpus().length-1)) : 1);
+  if(emit && jobs>1){
+    const os=require("os"), {execFileSync}=require("child_process");
+    const per=Math.ceil(specs.length/jobs), files=[];
+    for(let i=0;i<jobs;i++){
+      const part=specs.slice(i*per,(i+1)*per); if(!part.length) break;
+      const f=path.join(os.tmpdir(),`fit-shard-${process.pid}-${i}.json`);
+      fs.writeFileSync(f,JSON.stringify(part)); files.push(f);
+    }
+    const {spawn}=require("child_process");
+    Promise.all(files.map(f=>new Promise((res,rej)=>{
+      const c=spawn(process.execPath,[__filename],{env:Object.assign({},process.env,{FIT_SHARD:f}),stdio:"inherit"});
+      c.on("exit",code=>code?rej(new Error("fit shard failed")):res());
+    }))).then(()=>{
+      for(const f of files){ process.stdout.write(fs.readFileSync(f+".out","utf8")); fs.unlinkSync(f); fs.unlinkSync(f+".out"); }
+    }).catch(e=>{ console.error(e.message); process.exit(1); });
+    return;
+  }
   const rows=[], warn=[];
   for(const spec of specs){
     const r=fit(spec);
@@ -240,6 +276,7 @@ function row(s,r){
   if(s.en) p.push(["en",s.en]);
   if(s.op) p.push(["op",s.op]);
   if(s.wg) p.push(["wg",s.wg]);
+  if(s.dm) p.push(["dm",s.dm]);          /* field order matches the existing table */
   p.push(["sh",s.sh],["k",[r.kg,r.kp]],["f",[r.used,r.used,r.rms]]);
   return "{"+p.filter(([,v])=>v!=null).map(([k,v])=>k+":"+(Array.isArray(v)?JSON.stringify(v):q(v))).join(",")+"}";
 }

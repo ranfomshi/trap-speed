@@ -10,3 +10,11 @@ ref/
 /vs.png
 /e.png
 /e2.png
+
+# Regenerable intermediates of the cardata.wiki ingest: cw-specs.json is two
+# minutes of tools/cw-ingest.js over the cached CSVs, cw-pass.json is twenty of
+# tools/cw-accept.js on top. Thirteen megabytes of git history for something a
+# command rebuilds is not worth it; what shipped (cw-batch.json) and what was
+# refused (cw-rejects.json) are kept, because those are decisions, not workings.
+/data/cw-specs.json
+/data/cw-pass.json

@@ -52,6 +52,37 @@ Every badge is the trademark of its owner and is shown only to identify that
 maker's cars. This project is not affiliated with, endorsed by or connected to
 any manufacturer.
 
+### Adding cars
+
+cardata.wiki publishes its whole database under CC BY 4.0 and declares a CSV
+download per make in the JSON-LD on every car page, so the ingest takes that
+route: 157 requests for 35,000 variants rather than 35,000 requests for the
+same thing. The paid REST API at `/api/v1` is a different product and is not
+used.
+
+```sh
+node tools/cw.js              # the CSV per make -> ref/cw-cache/ (cached)
+node tools/cw-ingest.js       # CSV -> spec rows  -> data/cw-specs.json
+node tools/cw-accept.js       # drop duplicates, fit the rest, ~20 min on 8 cores
+node tools/cw-cut.js          # choose the batch  -> data/cw-batch.json
+node tools/sync.js data/cw-batch.json --add
+```
+
+Three fields the simulator needs are not published anywhere, so `tools/cw-ingest.js`
+derives them, and `tools/derive.js` holds the rules — each one measured against
+the cars already in the table rather than invented. Body archetype comes from
+the body word in the model name, then from the car's own dimensions; aspiration
+from the maker's engine badge, then from specific output; engine position is
+inherited from the same family in the table. Everything after that is arithmetic:
+front overhang is 0.52 of the total overhang, weight distribution and CoG height
+are the table's medians per drivetrain, and the class bands reproduce 97% of the
+existing labels from power-to-weight alone.
+
+`tools/cw-accept.js` is the quality gate, and it is the physics rather than a
+rule of thumb: a car whose published mass, power and sprint cannot be reconciled
+needs an absurd trim to fit, so an extreme trim means the figures are wrong and
+the car is dropped with its reason recorded in `data/cw-rejects.json`.
+
 ## Build
 
 No dependencies. `build.js` wraps `src/app.html` in a document shell, writes the
@@ -75,7 +106,7 @@ Netlify runs `node build.js` and publishes `public/`.
 | `/0-60-times/<make>/` | "BMW 0-60 times" |
 | `/fastest/<kind>/` | "fastest hot hatch" |
 
-Car pages ship in tranches: `CAR_PAGES=700` by default, `CAR_PAGES=all` for the
+Car pages ship in tranches: `CAR_PAGES=850` by default, `CAR_PAGES=all` for the
 lot. Two reasons. 2,900 near-identical templates arriving in one push is the
 shape of a doorway network however real the content is; and a tranche you can
 measure is worth more than a backlog you cannot.

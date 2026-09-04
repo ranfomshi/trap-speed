@@ -12,5 +12,82 @@
    "subaru-impreza-wrx",
    "subaru-impreza-wrx-2008"
   ]
+ },
+ {
+  "name": "BMW Z3 Roadster (E36) 2.2i 170 (1996)",
+  "ids": [
+   "bmw-z3-roadster-e36-2-2i-170-110-1996",
+   "bmw-z3-roadster-e36-2-2i-170-125-1996"
+  ]
+ },
+ {
+  "name": "Chevrolet Cobalt Sedan 2.4 Ecotec 171 (2008)",
+  "ids": [
+   "chevrolet-cobalt-sedan-2-4-ecotec-171-127-2008",
+   "chevrolet-cobalt-sedan-2-4-ecotec-171-128-2008"
+  ]
+ },
+ {
+  "name": "Chevrolet Orlando 1.8 141 (2010)",
+  "ids": [
+   "chevrolet-orlando-1-8-141-103-2010",
+   "chevrolet-orlando-1-8-141-104-2010"
+  ]
+ },
+ {
+  "name": "Dacia Duster 1.5 dCi 85 (2010)",
+  "ids": [
+   "dacia-duster-1-5-dci-85-63-2010",
+   "dacia-duster-1-5-dci-85-66-2010"
+  ]
+ },
+ {
+  "name": "Daewoo Cielo/Nexia 1.5 90 (1994)",
+  "ids": [
+   "daewoo-cielo-nexia-1-5-90-55-1994",
+   "daewoo-cielo-nexia-1-5-90-66-1994"
+  ]
+ },
+ {
+  "name": "Dodge Nitro 2.8 CRD 163 (2006)",
+  "ids": [
+   "dodge-nitro-2-8-crd-163-120-2006",
+   "dodge-nitro-2-8-crd-163-157-2006"
+  ]
+ },
+ {
+  "name": "Fiat Sedici 1.6 16V 109 (2006)",
+  "ids": [
+   "fiat-sedici-1-6-16v-109-80-2006",
+   "fiat-sedici-1-6-16v-109-88-2006"
+  ]
+ },
+ {
+  "name": "Jaguar F-Type Coupe 3.0 V6 380 (2020)",
+  "ids": [
+   "jaguar-f-type-coupe-3-0-v6-380-221-2020",
+   "jaguar-f-type-coupe-3-0-v6-380-280-2020"
+  ]
+ },
+ {
+  "name": "Lexus RX 400h V6 CVT 210 (2004)",
+  "ids": [
+   "lexus-rx-400h-v6-cvt-210-155-2004",
+   "lexus-rx-400h-v6-cvt-210-199-2004"
+  ]
+ },
+ {
+  "name": "MG ZT 2.0d 131 (2001)",
+  "ids": [
+   "mg-zt-2-0d-131-96-2001",
+   "mg-zt-2-0d-131-132-2001"
+  ]
+ },
+ {
+  "name": "Nissan Serena 1.6 16V 97 (1991)",
+  "ids": [
+   "nissan-serena-1-6-16v-97-55-1991",
+   "nissan-serena-1-6-16v-97-71-1991"
+  ]
  }
 ]
