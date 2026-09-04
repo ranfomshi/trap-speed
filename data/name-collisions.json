@@ -89,5 +89,61 @@
    "nissan-serena-1-6-16v-97-55-1991",
    "nissan-serena-1-6-16v-97-71-1991"
   ]
+ },
+ {
+  "name": "Nissan X-Trail (T31) 2.0 dCi 150 (2007)",
+  "ids": [
+   "nissan-x-trail-t31-2-0-dci-150-127-2007",
+   "nissan-x-trail-t31-2-0-dci-150-110-2007"
+  ]
+ },
+ {
+  "name": "Opel Corsa 3dr 1.2 16V 65 (1997)",
+  "ids": [
+   "opel-corsa-3dr-1-2-16v-65-33-1997",
+   "opel-corsa-3dr-1-2-16v-65-48-1997"
+  ]
+ },
+ {
+  "name": "Renault Scenic 2.0 16V Turbo 163 (2003)",
+  "ids": [
+   "renault-scenic-2-0-16v-turbo-163-120-2003",
+   "renault-scenic-2-0-16v-turbo-163-99-2003"
+  ]
+ },
+ {
+  "name": "Suzuki Swift 5dr 1.0 53 (1996)",
+  "ids": [
+   "suzuki-swift-5dr-1-0-53-39-1996",
+   "suzuki-swift-5dr-1-0-53-50-1996"
+  ]
+ },
+ {
+  "name": "Volvo V50 2.5 T5 220 (2004)",
+  "ids": [
+   "volvo-v50-2-5-t5-220-162-2004",
+   "volvo-v50-2-5-t5-220-132-2004"
+  ]
+ },
+ {
+  "name": "Dacia Duster 1.5 dCi 110 (2013)",
+  "ids": [
+   "dacia-duster-1-5-dci-110-80-2013",
+   "dacia-duster-1-5-dci-110-81-2013"
+  ]
+ },
+ {
+  "name": "Ford Focus 4dr 1.6i 100 (1999)",
+  "ids": [
+   "ford-focus-4dr-1-6i-100-71-1999",
+   "ford-focus-4dr-1-6i-100-74-1999"
+  ]
+ },
+ {
+  "name": "Volvo S60 2.5T 210 (2008)",
+  "ids": [
+   "volvo-s60-2-5t-210-154-2008",
+   "volvo-s60-2-5t-210-155-2008"
+  ]
  }
 ]

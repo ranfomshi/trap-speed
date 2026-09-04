@@ -252,8 +252,16 @@ function toSpec(r,lookup){
   if(ev) asp="ev";
   else if(/kompressor|supercharg/i.test(name)) asp="sc";
   else if(BLOWN.test(name)) asp="turbo";
+  /* Diesel gets its own threshold, and gets asked first. A diesel badge is
+     often welded to the model number -- 325td, 525tds, 220d -- where no word
+     boundary exists for the badge list to find, and a turbodiesel makes less
+     torque per litre than a turbo petrol, so the petrol threshold was calling
+     them atmospheric. Over the 4,452 diesels whose badge settles it, 80 Nm/l
+     misses 0.4% of the turbos, and the genuinely atmospheric ones -- an Audi
+     100 2.4 D at 69, a Mercedes 200 D -- sit below it. */
+  else if(/DIESEL/.test(fuel))
+    asp = (nm && litres) ? (nm/litres>80 ? "turbo" : "na") : (yr>=1990 ? "turbo" : "na");
   else if(nm && litres) asp = nm/litres>110 ? "turbo" : "na";
-  else if(/DIESEL/.test(fuel)) asp = yr>=1990 ? "turbo" : "na";
   else asp = (litres && kW/litres>75) ? "turbo" : "na";
 
   const ty = cls==="Hypercar"||cls==="Supercar" ? "cup" : cls==="Performance" ? "perf" : "all";
