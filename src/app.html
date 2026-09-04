@@ -14368,6 +14368,28 @@ function shapeOf(c){
   const s=(c&&c.sh)||SHAPE_DEF;
   return {L:s[0],H:s[1],wb:s[2],fo:s[3],wr:s[4],B:BODY[(c&&c.bd)||"hatch"]||BODY.hatch};
 }
+/* Each archetype's OWN median front overhang, as a fraction of length, measured
+   across all 11,810 cars. It is the reference point for making the archetypes
+   parametric: a car whose overhang matches its archetype's median is drawn
+   exactly as it was before, and one that differs has the whole front of the car
+   moved by the difference. Within the hatchbacks alone the overhang runs 0.181
+   to 0.219 of length between the 10th and 90th percentile -- nearly four per
+   cent of the car -- and until now every one of them got the same bonnet. */
+const FOMED={bubble:.192,coupe:.214,estate:.217,fastback:.214,hatch:.197,mpv:.200,
+  muscle:.209,offroad:.207,p911:.239,pickup:.197,roadster:.211,saloon:.216,
+  seven:.168,super:.185,suv:.208,van:.195,wedge:.194};
+
+/* How many doors are in the side of this car, which the drawing has never
+   known: P.dr is a constant per archetype, so a three-door Corsa and a
+   five-door Corsa came out as the same picture. 1,080 cars state it in their
+   name; for the rest the archetype is the better guess it always was. */
+function sideDoors(c,B){
+  const s=c?`${c.mk} ${c.md}`:"";
+  const m=/\b([2-6])\s?(?:dr|doors?)\b/i.exec(s);
+  if(m) return +m[1]<=3 ? 1 : +m[1]<=5 ? 2 : 3;
+  if(/\b(coupe|coupé|cabriolet|cabrio|convertible|roadster|spider|spyder|targa|speedster)\b/i.test(s)) return 1;
+  return B.dr;
+}
 /* Four eras, because a 1968 car and a 2024 car are not the same shape even when
    they are the same size: chrome and upright glass, then black impact bumpers
    and flat panels, then rounded body-colour ends, then slim lamps and big wheels. */
@@ -14432,6 +14454,17 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   const PRO=c&&c._pf;                      /* this model's own outline, if it has one */
   const era=eraOf((c&&c.yr)||2015), en=(c&&c.en)||"f", open=(c&&c.op)||B.open, wing=(c&&c.wg)||0;
   const P=Object.assign({},B);
+  const nd=sideDoors(c,B);
+  /* The front of the car, from its own overhang rather than its archetype's.
+     Everything ahead of the windscreen sits on the front axle, so a car whose
+     axle is further back than its archetype's median gets a longer bonnet and a
+     screen further back -- which is the whole difference between a cab-forward
+     MPV and a long-nose saloon that the fixed constants could not express.
+     Clamped, and neutral at the median by construction. */
+  if(!B.spec){
+    const dFo=Math.max(-0.045,Math.min(0.045,(fo/L)-(FOMED[(c&&c.bd)||"hatch"]||0.21)));
+    P.nose+=dFo*0.50; P.bon+=dFo*0.70; P.cowl+=dFo*0.90; P.rf+=dFo*0.30;
+  }
   /* engine position moves the whole cabin, which is most of what tells a
      mid-engined car from a front-engined one at a glance */
   if(!B.spec){
@@ -14443,6 +14476,12 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   else if(era===3){ P.belt+=0.02; P.nose+=0.04; P.bon+=0.03; }        /* deep doors, tall bonnets */
 
   const xf=fo, xr=fo+wb, ar=wr*1.12, ay=wr*0.98, s=P.sill*H;
+  /* Where the doors divide, measured off the real axles rather than off the
+     archetype: the aperture runs from just behind the front arch to just ahead
+     of the rear one, so a long wheelbase spreads its doors and a short one does
+     not. The pillars above and the shutlines below both read from this. */
+  const nDoor=open?1:nd, doorX=[];
+  for(let i=1;i<=nDoor;i++) doorX.push(lerp(xf+ar*0.95, xr-ar*0.95, i/(nDoor+0.6)));
   const minB=(2*wr+0.05*H)/H,
         BB=Math.min(0.88,Math.max(P.bon,minB)),
         BN=Math.min(0.82,Math.max(P.nose,minB-0.09));
@@ -14691,11 +14730,12 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
     /* pillars, clipped inside the glass so they read as pillars and not masts */
     g.save(); g.clip();
     g.fillStyle=shade(col,-0.20);
-    const pw=pillarW*(era===0?0.72:1), pA=screenX+0.05*L, pB=gl[gl.length-1][0]-0.04*L;
-    for(let i=1;i<=P.dr;i++){
-      const px0=lerp(pA,pB,i/(P.dr+0.35));
-      g.fillRect(px0-pw, 0, pw*2, H);
-    }
+    /* A B-pillar stands on the door shutline underneath it. These used to be
+       spaced evenly along the glasshouse while the shutlines were spaced along
+       the door aperture, by a different divisor, so the pillar and the line
+       below it did not meet. Both now come from the same place. */
+    const pw=pillarW*(era===0?0.72:1);
+    for(const dx of doorX) g.fillRect(dx-pw, 0, pw*2, H);
     g.restore();
     g.strokeStyle=era===0?"rgba(206,222,238,.45)":"rgba(190,214,238,.22)"; g.lineWidth=1.3*px;
     g.beginPath(); gl.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); g.stroke();
@@ -14704,8 +14744,7 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   if(!PRO){
   g.fillStyle="rgba(255,255,255,.18)"; g.fillRect(0.09*L,P.belt*H,0.86*L,1.1*px);
   g.strokeStyle="rgba(0,0,0,.35)"; g.lineWidth=1.1*px;
-  for(let i=1;i<=(open?1:P.dr);i++){
-    const dx=lerp(xf+ar*0.95, xr-ar*0.95, i/((open?1:P.dr)+0.6));
+  for(const dx of doorX){
     g.beginPath(); g.moveTo(dx,s+0.02*H); g.lineTo(dx,P.belt*H+0.10*H); g.stroke();
   }
   }
@@ -14718,18 +14757,45 @@ function drawCar(g,x,gy,ppm,c,col,spd,acc,dist){
   const lampY=BN*H-0.115*H;
   if(PRO){ /* the profile drew its own */ }
   else if(era===0){
-    g.fillStyle="rgba(255,244,214,.95)";
+    /* A round lamp of the chrome era sits in a chromed bowl, so it gets the
+       same treatment: a dark rim, a lens that is bright at the top, and a
+       highlight where the glass catches the sky. */
+    g.fillStyle="rgba(0,0,0,.40)";
+    g.beginPath(); g.arc(0.062*L,lampY+0.040*H,0.043*H,0,7); g.fill();
+    const rg=g.createRadialGradient(0.056*L,lampY+0.052*H,0.004*H,0.062*L,lampY+0.040*H,0.038*H);
+    rg.addColorStop(0,"rgba(255,252,238,.98)"); rg.addColorStop(1,"rgba(190,166,112,.90)");
+    g.fillStyle=rg;
     g.beginPath(); g.arc(0.062*L,lampY+0.040*H,0.038*H,0,7); g.fill();
+    g.strokeStyle="rgba(255,255,255,.45)"; g.lineWidth=1.2*px;
+    g.beginPath(); g.arc(0.062*L,lampY+0.040*H,0.033*H,2.0,3.6); g.stroke();
     g.fillStyle="#B9C3CE"; g.fillRect(0.005*L,BN*H-0.30*H,0.12*L,0.055*H);   /* chrome */
     g.fillRect(L-0.115*L,deckY-0.30*H,0.11*L,0.055*H);
     g.fillStyle="rgba(226,60,60,.92)";
     g.beginPath(); g.arc(L-0.055*L,deckY-0.105*H,0.032*H,0,7); g.fill();
   }else{
-    g.fillStyle="rgba(255,240,205,.92)";
+    /* A lamp is set INTO the wing, and drawing it as one flat rectangle of
+       colour is what made every car look like it had a sticker on its nose.
+       Four things put it in the bodywork: a dark recess a hair larger than the
+       lens, so there is a shadow line all the way round; a gradient down the
+       lens, because glass is bright where it faces the sky and deep where it
+       faces the road; a bright rim along the top edge; and a shut line where
+       the lamp unit meets the panel. */
     const lh=era===3?0.055*H:0.080*H, lw=era===3?0.070*L:0.058*L;
-    roundRect(g,0.035*L,lampY+(era===3?0.02*H:0),lw,lh,0.02*H); g.fill();
-    g.fillStyle="rgba(226,60,60,.92)";
-    roundRect(g,L-0.090*L,deckY-0.145*H,0.060*L,lh,0.02*H); g.fill();
+    const lens=(x0,y0,w,h,top,bot,rim)=>{
+      g.fillStyle="rgba(0,0,0,.42)";                       /* the recess it sits in */
+      roundRect(g,x0-1.6*px,y0-1.6*px,w+3.2*px,h+3.2*px,0.022*H); g.fill();
+      const gr=g.createLinearGradient(0,y0,0,y0+h);        /* y runs up, so 0 is the bottom */
+      gr.addColorStop(0,bot); gr.addColorStop(1,top);
+      g.fillStyle=gr; roundRect(g,x0,y0,w,h,0.02*H); g.fill();
+      g.fillStyle=rim;                                     /* the lens rim catching the sky */
+      g.fillRect(x0+0.10*w,y0+h-1.4*px,w*0.80,1.4*px);
+    };
+    const fy=lampY+(era===3?0.02*H:0);
+    lens(0.035*L,fy,lw,lh,"rgba(255,247,222,.96)","rgba(176,150,96,.85)","rgba(255,255,255,.55)");
+    lens(L-0.090*L,deckY-0.145*H,0.060*L,lh,"rgba(238,86,86,.95)","rgba(120,20,24,.92)","rgba(255,190,186,.45)");
+    g.strokeStyle="rgba(0,0,0,.30)"; g.lineWidth=1.1*px;   /* the panel gap around the unit */
+    g.beginPath(); g.moveTo(0.035*L+lw+2.4*px,fy-1.6*px); g.lineTo(0.035*L+lw+2.4*px,fy+lh+1.6*px); g.stroke();
+    g.beginPath(); g.moveTo(L-0.090*L-2.4*px,deckY-0.145*H-1.6*px); g.lineTo(L-0.090*L-2.4*px,deckY-0.145*H+lh+1.6*px); g.stroke();
     if(era===1){ g.fillStyle="rgba(18,22,28,.85)";                            /* impact bumpers */
       g.fillRect(0.004*L,BN*H-0.30*H,0.13*L,0.075*H); g.fillRect(L-0.125*L,deckY-0.30*H,0.12*L,0.075*H); }
     if(era===3){ g.fillStyle="rgba(0,0,0,.42)";                               /* deep front intake */
