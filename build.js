@@ -18,8 +18,18 @@ const SITE  = "https://myautoracer.com";
    there was no space, and the whole point of the re-order (ordinary cars ahead
    of each marque's supercar, because that is where the searches are) had nowhere
    to land. The extra 150 are that re-order, and they are almost all everyday
-   cars. Still a measured tranche: 850 of 2,941. */
-const CAR_PAGES_DEFAULT = 850;
+   cars.
+
+   850 -> 2500 because the set stopped being the same kind of thing. The first
+   850 were drawn from 2,941 cars that were 90% performance cars, so most of
+   them are a marque's fast versions however the tranche is ordered. The table
+   now holds 11,810, of which 7,286 are everyday cars, and the ordering puts an
+   ordinary car first in each make -- "yaris 0-60" is typed far more often than
+   "grmn yaris 0-60". So this is not 1,650 more of the same page; it is the
+   first tranche that can reach the cars people actually drive. Round-robin
+   across 191 makes at 2,500 is about thirteen cars a make, ordinary ones
+   first. Still a measured tranche: 2,500 of 11,810, and still a knob. */
+const CAR_PAGES_DEFAULT = 2500;
 const TITLE = "My Auto Racer — drag race any two real cars";
 /* The count is in the description, so the description cannot be a constant --
    it is written once the car data has actually been read. */

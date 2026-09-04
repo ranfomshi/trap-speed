@@ -43,13 +43,31 @@ const clean=s=>String(s)
 const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 
 /* ---- body ------------------------------------------------------------ */
+/* Nameplates that only mean a people carrier under one make. "C8" is a Citroen
+   MPV and a Spyker supercar; "806" is a Peugeot MPV and a number that turns up
+   anywhere. Qualified by make they are safe, and they are worth keeping because
+   the fallback for a 1.75 m people carrier whose published height is wrong is
+   to draw it as a saloon. */
+const MPV_BY_MAKE=[
+  [/^citroen$/i,       /\b(c8|evasion|synergie|xsara picasso|c4 picasso|grand c4)\b/i],
+  [/^peugeot$/i,       /\b(806|807)\b/i],
+  [/^fiat$/i,          /\b(ulysse|multipla)\b/i],
+  [/^lancia$/i,        /\b(phedra|zeta|voyager)\b/i],
+  [/^chrysler$/i,      /\b(voyager|grand voyager|town and country)\b/i],
+  [/^ssangyong$/i,     /\brodius\b/i],
+];
 const BODYWORD=[
   [/\b(estate|wagon|avant|touring|variant|t-modell|sportbrake|tourer|combi|kombi|break|caravan|sw)\b/i,"estate"],
   [/\b(cabriolet|cabrio|convertible|roadster|spider|spyder|speedster|targa|cab|open)\b/i,"roadster"],
   [/\b(pick-?up|pickup|crew cab|king cab|double cab)\b/i,"pickup"],
   [/\b(van|transporter|sprinter|ducato|boxer|relay|jumper|jumpy|scudo|expert|proace|dispatch|transit|tourneo connect|crafter|movano|master|daily|vito|trafic|vivaro|primastar|hiace|nv\d{3}|talento|doblo|combo cargo|kastenwagen)\b/i,"van"],
   [/\b(suv|crossover|allroad|cross country)\b/i,"suv"],
-  [/\b(mpv|minivan|multivan|people carrier|tourneo|zafira|sharan|galaxy|scenic|picasso|verso|touran|espace|alhambra|meriva|carens|sedona|previa|odyssey|voyager|caravan|vaneo|berlingo|partner|kangoo|caddy life|ulysse|evasion|synergie|phedra|ipsum|trajet|stream|fr-v|prima|xsara picasso|c4 picasso|c8|806|807|8\d{2} mpv|s-max|orlando|rodius|carnival|serena|noah|freelander vogue)\b/i,"mpv"],
+  /* Nameplates only, and only ones that cannot collide: "c8" was in this list
+     for the Citroen C8 and it filed the Spyker C8 Preliator as a people carrier;
+     "prima" caught the FSO Prima, which is a saloon. A Peugeot 806 with no
+     nameplate match falls through to the box rule and is drawn as the tall
+     thing it is, which is close enough at this resolution. */
+  [/\b(mpv|minivan|multivan|people carrier|tourneo|zafira|sharan|galaxy|scenic|picasso|verso|touran|espace|alhambra|meriva|carens|sedona|previa|odyssey|voyager|caravan|vaneo|berlingo|partner|kangoo|caddy life|ulysse|evasion|synergie|phedra|ipsum|trajet|stream|fr-v|s-max|orlando|rodius|carnival|serena|noah)\b/i,"mpv"],
   [/\b(liftback|fastback|gran coupe|grand coupe|coupe-?suv)\b/i,"fastback"],
   [/\b(coupe|coupé)\b/i,"coupe"],
   [/\b(sedan|saloon|berline|limousine|notchback)\b/i,"saloon"],
@@ -219,6 +237,7 @@ function toSpec(r,lookup){
         five-door hatch; an A7 Sportback is a fastback. Length is what separates
         the two, and it is published. */
     bd = L>=4500 ? "fastback" : "hatch";
+  if(!bd) for(const [mkRe,npRe] of MPV_BY_MAKE) if(mkRe.test(mk)&&npRe.test(name)){ bd="mpv"; break; }
   if(!bd) for(const [re,b] of BODYWORD) if(re.test(name)){ bd=b; break; }
   if(!bd && (cls==="Supercar"||cls==="Hypercar") && (en==="m"||en==="r") && H<=1330) bd="super";
   if(!bd) bd=bodyFromBox(L/1000,H/1000);

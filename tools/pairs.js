@@ -24,7 +24,37 @@ const SEED=[
   "lamborghini huracan","lamborghini urus","ferrari 488","ferrari f8","mclaren 720s","mclaren 570s",
   "alpine a110","lotus emira","lotus elise","hyundai i30 n","renault megane rs","cupra leon",
   "jaguar f-type","aston martin vantage","corvette c8","dodge charger hellcat",
-  "range rover sport svr","alfa romeo giulia quadrifoglio","mini jcw","abarth 595"
+  "range rover sport svr","alfa romeo giulia quadrifoglio","mini jcw","abarth 595",
+  /* The ordinary half. Until the cardata.wiki batches there was nothing behind
+     these to compare -- the table held the Focus RS and no Focus 1.6 -- so
+     seeding them would have resolved to a hot hatch and answered the wrong
+     question. With 11,810 cars the standard car exists, and "golf vs focus" is
+     a far commoner search than "golf r vs focus rs". UK-weighted, and only
+     nameplates the table now carries in depth. */
+  "ford focus","ford fiesta","ford mondeo","ford puma","ford kuga","ford ka",
+  "vw golf","vw polo","vw passat","vw tiguan","vw up",
+  "vauxhall corsa","vauxhall astra","vauxhall insignia","vauxhall mokka","vauxhall zafira",
+  "peugeot 208","peugeot 308","peugeot 3008","peugeot 207",
+  "renault clio","renault megane","renault captur","renault scenic",
+  "citroen c3","citroen c4","citroen berlingo",
+  "toyota yaris","toyota corolla","toyota auris","toyota rav4","toyota prius","toyota aygo",
+  "honda civic","honda jazz","honda cr-v","honda accord",
+  "nissan qashqai","nissan juke","nissan micra","nissan leaf",
+  "mazda 3","mazda 6","mazda cx-5","mazda mx-5",
+  "hyundai i10","hyundai i20","hyundai i30","hyundai tucson","hyundai kona",
+  "kia ceed","kia sportage","kia picanto","kia niro",
+  "skoda octavia","skoda fabia","skoda superb","skoda karoq","skoda kodiaq",
+  "seat ibiza","seat leon","seat arona","seat ateca",
+  "bmw 320d","bmw 118d","bmw 520d","bmw x1","bmw x3",
+  "audi a1","audi a3","audi a4","audi a6","audi q3","audi q5",
+  "mercedes a class","mercedes c class","mercedes e class","mercedes gla",
+  "mini cooper","mini countryman",
+  "volvo v40","volvo xc60","volvo v60",
+  "fiat 500","fiat panda","fiat punto",
+  "dacia duster","dacia sandero",
+  "suzuki swift","suzuki vitara","mitsubishi outlander",
+  "land rover discovery","range rover evoque","jaguar xe","jaguar xf",
+  "tesla model 3","tesla model y"
 ];
 
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
