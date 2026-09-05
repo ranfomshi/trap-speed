@@ -47,8 +47,16 @@ if(process.env.CW_SHARD){
   const haveId=new Set(A.CARS.map(c=>c.id));
   const dup=s=>{
     if(haveId.has(s.id)) return true;
-    for(const c of byMake[s.mk.toLowerCase()]||[])
-      if(Math.abs(c.yr-s.yr)<=1 && Math.abs(c.kW-s.kW)<=2 && Math.abs(c.sh[0]-s.sh[0])<0.08) return true;
+    for(const c of byMake[s.mk.toLowerCase()]||[]){
+      if(Math.abs(c.yr-s.yr)<=1 && Math.abs(c.kW-s.kW)<=2 && Math.abs(c.sh[0]-s.sh[0])<0.08){
+        /* The manual and the automatic of one variant match on every figure in
+           this gate and are still two cars -- different mass, different sprint,
+           often a different number of gears. If the table's row says which
+           gearbox it is and this one disagrees, it is not the same car. */
+        if(c.bx && s.bx && c.bx!==s.bx) continue;
+        return true;
+      }
+    }
     return false;
   };
   const fresh=specs.filter(s=>!dup(s));

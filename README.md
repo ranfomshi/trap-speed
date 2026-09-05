@@ -1,10 +1,10 @@
 # My Auto Racer
 
-A drag race simulator for real cars. Pick any two of 2,843 models, set the
+A drag race simulator for real cars. Pick any two of 12,487 models, set the
 distance (or a target speed, a rolling start, a fixed time), set the surface,
 the air and the gradient, and watch them run side-on in real time.
 
-Live: **https://trap-speed.netlify.app**
+Live: **https://myautoracer.com**
 
 ## What it actually does
 
@@ -33,7 +33,7 @@ cars that publish one, mean error is 4.2%, median 3.4%.
 ## The cars are drawn, not sprited
 
 Each car on the strip is one canvas path built from its own length, height,
-wheelbase, front overhang and wheel radius — 1,103 of them measured, the rest
+wheelbase, front overhang and wheel radius — 10,365 of them measured, the rest
 estimated from mass and body type. The body archetype sets only the roofline;
 on top of it go engine position, the era the car was built in, an open top, and
 a wing where the car has one. The wheel arches are cut to fit under whatever
@@ -67,6 +67,22 @@ node tools/cw-accept.js       # drop duplicates, fit the rest, ~20 min on 8 core
 node tools/cw-cut.js          # choose the batch  -> data/cw-batch.json
 node tools/sync.js data/cw-batch.json --add
 ```
+
+`cw-cut.js` samples across makes by default, because a car costs about 48 bytes
+of the page after compression and the page has to parse before anything moves.
+When the point is a marque with no holes in it rather than an even spread,
+`--make` turns the quotas off:
+
+```sh
+node tools/cw-cut.js --make VW --from 1986    # every fitted VW of the last 40 years
+```
+
+The gearbox is a field and not part of the name, so the manual and the
+automatic of one variant arrive as one name twice. They are two cars — a Bora
+1.9 TDI 130 does 10.1 s with the six-speed manual and 10.9 s with the
+five-speed automatic — so where a name lands twice the gearbox goes into the
+name and the manual keeps the bare one. Dropping the second row instead was
+costing 4,483 cars, whichever ones the CSV happened to list second.
 
 Three fields the simulator needs are not published anywhere, so `tools/cw-ingest.js`
 derives them, and `tools/derive.js` holds the rules — each one measured against
@@ -106,8 +122,8 @@ Netlify runs `node build.js` and publishes `public/`.
 | `/0-60-times/<make>/` | "BMW 0-60 times" |
 | `/fastest/<kind>/` | "fastest hot hatch" |
 
-Car pages ship in tranches: `CAR_PAGES=850` by default, `CAR_PAGES=all` for the
-lot. Two reasons. 2,900 near-identical templates arriving in one push is the
+Car pages ship in tranches: `CAR_PAGES=2500` by default, `CAR_PAGES=all` for the
+lot. Two reasons. 12,000 near-identical templates arriving in one push is the
 shape of a doorway network however real the content is; and a tranche you can
 measure is worth more than a backlog you cannot.
 

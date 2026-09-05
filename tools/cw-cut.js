@@ -17,15 +17,24 @@
  *   3. Demand. data/demand.json is what people actually type; a make that
  *      appears in it gets a wider quota than one that does not.
  *
+ * Sometimes the answer is "all of them". --make takes one marque and ships
+ * every fitted car it has from --from onwards, quotas off: the point of
+ *   node tools/cw-cut.js --make VW --from 1986
+ * is that the VW range should have no holes in it, not that it should be
+ * evenly sampled.
+ *
  *   node tools/cw-cut.js [--target 5000]
+ *   node tools/cw-cut.js --make VW --from 1986
  */
 const fs=require("fs"), path=require("path");
 const ROOT=path.join(__dirname,"..");
 const arg=(k,d)=>{const i=process.argv.indexOf("--"+k); return i<0?d:+process.argv[i+1];};
+const sarg=(k)=>{const i=process.argv.indexOf("--"+k); return i<0?null:process.argv[i+1];};
 
 const A=require("./fit.js").physics();
 const pass=JSON.parse(fs.readFileSync(path.join(ROOT,"data","cw-pass.json"),"utf8"));
 const target=arg("target",5000);
+const onlyMk=sarg("make"), fromYr=arg("from",0);
 
 /* which nameplates the table already holds, and which makes people search for */
 const nameplate=s=>s.mk+"|"+s.md.replace(/\(.*?\)/g,"").trim().split(/\s+/).slice(0,1).join(" ").toLowerCase();
@@ -37,8 +46,19 @@ try{
   for(const row of d) for(const m of makes) if(String(row.phrase).includes(m)) demand.add(m);
 }catch(e){ /* demand is a nice-to-have, not a dependency */ }
 
+let pool=pass.filter(s=>s.yr>=fromYr);
+if(onlyMk){
+  const want=onlyMk.toLowerCase();
+  pool=pool.filter(s=>s.mk.toLowerCase()===want);
+  if(!pool.length){
+    console.error(`no fitted cars for make "${onlyMk}" from ${fromYr} -- makes in cw-pass: `
+      +[...new Set(pass.map(s=>s.mk))].sort().join(", "));
+    process.exit(1);
+  }
+}
+
 const fam={};
-for(const s of pass) (fam[nameplate(s)]=fam[nameplate(s)]||[]).push(s);
+for(const s of pool) (fam[nameplate(s)]=fam[nameplate(s)]||[]).push(s);
 
 /* An era-then-power walk: take one from each five-year era in turn, and inside
    an era alternate the cheapest and the quickest still unpicked. */
@@ -68,12 +88,17 @@ const quota=k=>{
   return q;
 };
 let kept=[];
-for(const [k,list] of Object.entries(fam)) kept.push(...spread(list,quota(k)));
+if(onlyMk){
+  /* Whole marque: every car that reconciles, in one go. */
+  kept=pool.slice();
+}else{
+  for(const [k,list] of Object.entries(fam)) kept.push(...spread(list,quota(k)));
+}
 
 /* If the quotas land short of the target, widen them evenly rather than
    letting one make take up the slack. */
 let round=0;
-while(kept.length<target && round<12){
+while(!onlyMk && kept.length<target && round<12){
   round++;
   const have=new Set(kept.map(s=>s.id));
   for(const [k,list] of Object.entries(fam)){
@@ -84,7 +109,7 @@ while(kept.length<target && round<12){
     extra.forEach(s=>{ kept.push(s); have.add(s.id); });
   }
 }
-kept=kept.slice(0,target);
+if(!onlyMk) kept=kept.slice(0,target);
 kept.sort((a,b)=>a.mk.localeCompare(b.mk)||a.md.localeCompare(b.md)||a.yr-b.yr||a.kW-b.kW);
 fs.writeFileSync(path.join(ROOT,"data","cw-batch.json"),JSON.stringify(kept,null," ")+"\n");
 
@@ -92,7 +117,7 @@ const byMk={}; kept.forEach(s=>byMk[s.mk]=(byMk[s.mk]||0)+1);
 const byCls={}; kept.forEach(s=>byCls[s.cls]=(byCls[s.cls]||0)+1);
 const byBd={};  kept.forEach(s=>byBd[s.bd]=(byBd[s.bd]||0)+1);
 const dsl=kept.filter(s=>s.fu==="d").length, ev=kept.filter(s=>s.asp==="ev").length;
-console.log(`${kept.length} of ${pass.length} kept, over ${Object.keys(byMk).length} makes `
+console.log(`${kept.length} of ${pool.length} kept, over ${Object.keys(byMk).length} makes `
   +`and ${new Set(kept.map(nameplate)).size} nameplates -> data/cw-batch.json`);
 console.log("class:  "+Object.entries(byCls).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+" "+v).join(", "));
 console.log("body:   "+Object.entries(byBd).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+" "+v).join(", "));

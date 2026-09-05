@@ -56,10 +56,53 @@ const MPV_BY_MAKE=[
   [/^chrysler$/i,      /\b(voyager|grand voyager|town and country)\b/i],
   [/^ssangyong$/i,     /\brodius\b/i],
 ];
+/* Crossovers, by make. A modern small crossover is only 1.55-1.60 m tall, so
+   the box rule at the bottom of this file cannot see it: measured over the
+   5,860 rows whose name carries a body word, dropping the SUV line to 1.55 m
+   catches none of them and mislabels 169 hatches and estates. Height is simply
+   the wrong signal, and the nameplate is the right one -- which is how the
+   people carriers are already handled above.
+
+   It was leaving 607 rows drawn as something they are not, a BMW X5 filed as a
+   saloon and a T-Roc as a hatchback among them. Qualified by make throughout,
+   because "2008" is a Peugeot crossover and also a year. Pickups are NOT in
+   here (a Gladiator is a pickup) and neither are raised estates -- an XC70 and
+   a C4 Cactus are closer to what the box rule already says. */
+const SUV_BY_MAKE=[
+  [/^(vw|volkswagen)$/i,  /\b(t-roc|t-cross|taigo|tayron|atlas|teramont|tharu|nivus)\b/i],
+  [/^audi$/i,             /\bq[2-8]\b/i],
+  [/^skoda$/i,            /\b(kamiq|karoq|kodiaq|yeti|enyaq|elroq)\b/i],
+  [/^seat$/i,             /\b(arona|ateca|tarraco)\b/i],
+  [/^cupra$/i,            /\b(formentor|ateca|terramar)\b/i],
+  [/^ford$/i,             /\b(kuga|ecosport|edge|explorer|bronco|territory)\b/i],
+  [/^renault$/i,          /\b(captur|kadjar|arkana|koleos|austral|symbioz)\b/i],
+  [/^dacia$/i,            /\b(duster|jogger|bigster)\b/i],
+  [/^peugeot$/i,          /\b(2008|3008|4008|5008)\b/i],
+  [/^citroen$/i,          /\b(c3 aircross|c4 aircross|c5 aircross)\b/i],
+  [/^nissan$/i,           /\b(juke|qashqai|x-trail|ariya|murano|kicks|rogue)\b/i],
+  [/^toyota$/i,           /\b(c-hr|rav4|yaris cross|corolla cross|urban cruiser|highlander)\b/i],
+  [/^honda$/i,            /\b(hr-v|cr-v|zr-v|pilot|passport)\b/i],
+  [/^hyundai$/i,          /\b(kona|tucson|santa fe|bayon|venue|palisade|creta)\b/i],
+  [/^kia$/i,              /\b(stonic|sportage|sorento|niro|seltos|telluride)\b/i],
+  [/^mazda$/i,            /\bcx-?\d+\b/i],
+  [/^bmw$/i,              /\bx[1-7]\b/i],
+  [/^mercedes-benz$/i,    /\b(gla|glb|glc|gle|gls|glk|gl|eqa|eqb|eqc)\b/i],
+  [/^volvo$/i,            /\bxc(40|60|90)\b/i],
+  [/^mini$/i,             /\b(countryman|paceman|aceman)\b/i],
+  [/^(opel|vauxhall)$/i,  /\b(mokka|crossland|grandland|antara|frontera)\b/i],
+  [/^fiat$/i,             /\b(500x|panda cross)\b/i],
+  [/^suzuki$/i,           /\b(vitara|s-cross|sx4|ignis|jimny)\b/i],
+  [/^subaru$/i,           /\b(forester|xv|crosstrek|outback|ascent)\b/i],
+  [/^jeep$/i,             /\b(renegade|compass|avenger|cherokee|wrangler)\b/i],
+  [/^lexus$/i,            /\b(nx|rx|ux|lx|gx)\b/i],
+  [/^land rover$/i,       /\b(evoque|velar|discovery|defender|freelander|range rover)\b/i],
+];
 const BODYWORD=[
   [/\b(estate|wagon|avant|touring|variant|t-modell|sportbrake|tourer|combi|kombi|break|caravan|sw)\b/i,"estate"],
+  /* Pickup is asked before roadster because the roadster list holds a bare
+     "cab" -- and "Amarok Double Cab" is not a convertible. */
+  [/\b(pick-?up|pickup|(?:single|regular|super|crew|king|double|extra|quad|access|club|mega)\s?cab|amarok|hilux|ranger(?! rover)|navara|l200|d-?max|bt-?50|tacoma|tundra|f-1[05]0|silverado|frontier|ridgeline|gladiator|musso|alaskan|x-class)\b/i,"pickup"],
   [/\b(cabriolet|cabrio|convertible|roadster|spider|spyder|speedster|targa|cab|open)\b/i,"roadster"],
-  [/\b(pick-?up|pickup|crew cab|king cab|double cab)\b/i,"pickup"],
   [/\b(van|transporter|sprinter|ducato|boxer|relay|jumper|jumpy|scudo|expert|proace|dispatch|transit|tourneo connect|crafter|movano|master|daily|vito|trafic|vivaro|primastar|hiace|nv\d{3}|talento|doblo|combo cargo|kastenwagen)\b/i,"van"],
   [/\b(suv|crossover|allroad|cross country)\b/i,"suv"],
   /* Nameplates only, and only ones that cannot collide: "c8" was in this list
@@ -117,16 +160,19 @@ function tidyVariant(v,hp){
   return s;
 }
 /* "BMW 3 Series Cabriolet (E93)" under make BMW -> "3 Series Cabriolet (E93)" */
-function tidyModel(model,mk){
+function tidyModel(model,mk,...alsoMk){
   /* The model column sometimes repeats the make and sometimes spells it its own
      way -- "Mercedes-Benz A-Class" under make "MERCEDES BENZ" -- so the prefix
-     is matched with the punctuation ignored rather than character by character. */
+     is matched with the punctuation ignored rather than character by character.
+     It has to be matched against the SOURCE's spelling as well as the table's:
+     the table calls the make VW and the CSV writes "Volkswagen Golf", so
+     matching on "VW" alone left 273 VW cards reading "VW - Volkswagen Golf". */
   let s=clean(model);
-  const flat=x=>x.toLowerCase().replace(/[^a-z0-9]/g,"");
-  const want=flat(mk);
+  const flat=x=>String(x).toLowerCase().replace(/[^a-z0-9]/g,"");
+  const want=new Set([mk,...alsoMk].filter(Boolean).map(flat));
   const words=s.split(/\s+/);
   for(let n=Math.min(3,words.length);n>0;n--)
-    if(flat(words.slice(0,n).join(""))===want){ s=words.slice(n).join(" "); break; }
+    if(want.has(flat(words.slice(0,n).join("")))){ s=words.slice(n).join(" "); break; }
   return s.replace(/\b(\d)\s*doors?\b/ig,"$1dr").replace(/\s+/g," ").trim();
 }
 /* The family a car belongs to, for looking it up in the existing table. */
@@ -233,6 +279,12 @@ function toSpec(r,lookup){
 
   let bd=null;
   if(mk==="Porsche"&&/^911\b/.test(fam)) bd="p911";
+  /* Asked before Sportback, so a Q3 Sportback is a crossover and not a
+     fastback -- the only Sportbacks in the crossover list are the Q cars. An
+     open top outranks the nameplate, though: a T-Roc Cabriolet and an Evoque
+     Convertible are roofless, and that is the more visible half of the shape. */
+  if(!bd && !/\b(cabriolet|cabrio|convertible|roadster|spider|spyder|speedster|targa)\b/i.test(name))
+    for(const [mkRe,npRe] of SUV_BY_MAKE) if(mkRe.test(mk)&&npRe.test(name)){ bd="suv"; break; }
   if(!bd && /\bsportback\b/i.test(name))                 /* an A1 Sportback is a
         five-door hatch; an A7 Sportback is a fastback. Length is what separates
         the two, and it is published. */
@@ -285,11 +337,12 @@ function toSpec(r,lookup){
 
   const ty = cls==="Hypercar"||cls==="Supercar" ? "cup" : cls==="Performance" ? "perf" : "all";
 
+  const md0=tidyModel(r.model,mk,r.make,r._make);
   const spec={
     /* The year is part of the id because the same badge is reused across
        generations: three different Focus 1.6s are all "1.6 16V (100 HP)". */
-    id: slug(mk+" "+tidyModel(r.model,mk)+" "+tidyVariant(r.variant)+" "+kW+" "+yr),
-    mk, md: (tidyModel(r.model,mk)+" "+tidyVariant(r.variant)).replace(/\s+/g," ").trim(),
+    id: slug(mk+" "+md0+" "+tidyVariant(r.variant)+" "+kW+" "+yr),
+    mk, md: (md0+" "+tidyVariant(r.variant)).replace(/\s+/g," ").trim(),
     yr, cls, kW, kg, dr, g, bx, vmx, ty, asp,
     hL: ing.HL(bd,dr,en), wd: ing.WD(dr,en), bd,
     sh: [ +(L/1000).toFixed(3), +(H/1000).toFixed(3), +(wb/1000).toFixed(3),
@@ -338,7 +391,54 @@ function repairBoxes(rows){
   });
   return {rows:out, fixed, dropped:before-out.length};
 }
-module.exports={toSpec,familyIndex,makeNames,family,tidyModel,tidyVariant,bodyFromBox,repairBoxes};
+/* cardata lists the manual and the automatic of the same variant as two rows,
+   and they are two different cars: a Bora 1.9 TDI 130 does 10.1 s with the
+   six-speed manual and 10.9 s with the five-speed automatic, on 46 kg more.
+   They collide only because the gearbox is a FIELD and not part of the name,
+   so where a name lands twice the gearbox goes into the name. Dropping the
+   second one instead cost 275 rows of VW alone, and the ones it dropped were
+   whichever the CSV happened to list second.
+
+   The manual keeps the bare name, because that is the car the badge describes
+   and it is how the table already writes it; the others carry their box. Two
+   rows sharing a box are separated by their gear count, and anything still
+   identical after that really is the same car listed twice. */
+const BXNAME={auto:"Auto",dct:"DCT",cvt:"CVT",man:"Man"};
+function disambiguate(specs){
+  const by=new Map();
+  for(const s of specs){ if(!by.has(s.id)) by.set(s.id,[]); by.get(s.id).push(s); }
+  let tagged=0;
+  for(const [,group] of by){
+    if(group.length<2) continue;
+    const boxes=new Set(group.map(s=>s.bx));
+    const bare=(boxes.size>1 && group.filter(s=>s.bx==="man").length===1) ? "man" : null;
+    for(const s of group){
+      const bits=[];
+      if(s.bx!==bare) bits.push(BXNAME[s.bx]||s.bx);
+      /* Gears only separate cars that have countable gears: a CVT is always
+         listed as one, so "CVT 1sp" is noise on a name that already says CVT. */
+      if(s.g>1 && new Set(group.filter(t=>t.bx===s.bx).map(t=>t.g)).size>1) bits.push(s.g+"sp");
+      /* "Koleos 2.0 dCi CVT" does not need a second CVT. */
+      const said=w=>new RegExp("\\b"+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s.md);
+      const use=bits.filter(b=>!said(b));
+      if(!use.length) continue;
+      bits.length=0; bits.push(...use);
+      s.md=(s.md+" "+bits.join(" ")).replace(/\s+/g," ").trim();
+      s.id=slug(s.id+" "+bits.join(" "));
+      tagged++;
+    }
+  }
+  /* Original order is kept deliberately: source order settles slugs and which
+     tranche of car pages a car lands in. */
+  const out=[], seen=new Set(); let dropped=0;
+  for(const s of specs){
+    if(seen.has(s.id)){ dropped++; continue; }
+    seen.add(s.id); out.push(s);
+  }
+  return {rows:out, tagged, dropped};
+}
+
+module.exports={toSpec,familyIndex,makeNames,family,tidyModel,tidyVariant,bodyFromBox,repairBoxes,disambiguate};
 
 if(require.main===module) (async()=>{
   const only=process.argv.slice(2).filter(a=>!a.startsWith("--"));
@@ -349,14 +449,15 @@ if(require.main===module) (async()=>{
   if(only.length) rows=rows.filter(r=>only.includes(r._make));
   const rep=repairBoxes(rows); rows=rep.rows;
   console.log(`box check: ${rep.fixed} heights replaced by the nameplate median, ${rep.dropped} rows dropped as impossible`);
-  const out=[], bad={}, ids=new Map();
+  let out=[]; const bad={};
   for(const r of rows){
     const x=toSpec(r,lookup);
     if(x.err){ bad[x.err.replace(/\d+/g,"n")]=(bad[x.err.replace(/\d+/g,"n")]||0)+1; continue; }
-    const s=x.spec;
-    if(ids.has(s.id)){ bad["duplicate id"]=(bad["duplicate id"]||0)+1; continue; }
-    ids.set(s.id,s); out.push(s);
+    out.push(x.spec);
   }
+  const dis=disambiguate(out); out=dis.rows;
+  bad["same car listed twice"]=dis.dropped;
+  console.log(`${dis.tagged} names given their gearbox to tell them from a twin`);
   fs.writeFileSync(path.join(ROOT,"data","cw-specs.json"),JSON.stringify(out,null," ")+"\n");
   console.log(out.length+" specs of "+rows.length+" rows -> data/cw-specs.json");
   console.log("dropped: "+Object.entries(bad).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+"="+v).join(", "));

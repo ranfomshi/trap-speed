@@ -424,28 +424,28 @@
   "label": "Volkswagen Golf GTI (Mk8) vs Volkswagen Polo 1.0 TSI 95"
  },
  {
-  "a": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
-  "b": "vw-volkswagen-golf-ii-gti-3dr-1-8-129-95-1984",
+  "a": "vw-polo-3dr-1-4-60-44-1999",
+  "b": "vw-golf-ii-gti-3dr-1-8-129-95-1984",
   "weight": 1,
   "rank": 0,
   "phrase": "vw polo vs golf",
-  "label": "VW Volkswagen Polo 3dr 1.4 60 vs VW Volkswagen Golf II GTI 3dr 1.8 129"
+  "label": "VW Polo 3dr 1.4 60 vs VW Golf II GTI 3dr 1.8 129"
  },
  {
   "a": "skoda-fabia-sedan-2-0-115-85-2001",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 1,
   "rank": 0,
   "phrase": "skoda fabia vs vw polo",
-  "label": "Skoda Fabia Sedan 2.0 115 vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "Skoda Fabia Sedan 2.0 115 vs VW Polo 3dr 1.4 60"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "vw-jetta-2-0-115-85-2010",
   "weight": 1,
   "rank": 0,
   "phrase": "vw passat vs jetta",
-  "label": "VW Volkswagen Passat 1.6 72 vs VW Jetta 2.0 115"
+  "label": "VW Passat 1.6 72 vs VW Jetta 2.0 115"
  },
  {
   "a": "vw-up-1-0",
@@ -1297,35 +1297,35 @@
  },
  {
   "a": "audi-a1-1-6-tdi",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 0.5,
   "rank": 1,
   "phrase": "audi a1 vs vw polo",
-  "label": "Audi A1 1.6 TDI vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "Audi A1 1.6 TDI vs VW Polo 3dr 1.4 60"
  },
  {
   "a": "seat-ibiza-st-1-2-70-51-2010",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 0.5,
   "rank": 1,
   "phrase": "seat ibiza vs vw polo",
-  "label": "SEAT Ibiza ST 1.2 70 vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "SEAT Ibiza ST 1.2 70 vs VW Polo 3dr 1.4 60"
  },
  {
   "a": "vw-up-1-0",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 0.5,
   "rank": 1,
   "phrase": "vw up vs polo",
-  "label": "Volkswagen up! 1.0 vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "Volkswagen up! 1.0 vs VW Polo 3dr 1.4 60"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "skoda-superb-2-0-115-85-2006",
   "weight": 0.5,
   "rank": 1,
   "phrase": "vw passat vs skoda superb",
-  "label": "VW Volkswagen Passat 1.6 72 vs Skoda Superb 2.0 115"
+  "label": "VW Passat 1.6 72 vs Skoda Superb 2.0 115"
  },
  {
   "a": "vauxhall-zafira-1-6-105-77-2005",
@@ -5937,11 +5937,11 @@
  },
  {
   "a": "ford-fiesta",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 0.45,
   "rank": 0,
   "phrase": "ford fiesta vs vw polo",
-  "label": "Ford Fiesta vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "Ford Fiesta vs VW Polo 3dr 1.4 60"
  },
  {
   "a": "ford-fiesta",
@@ -6537,11 +6537,11 @@
  },
  {
   "a": "suzuki-swift-sedan-1-3-68-50-1991",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 0.45,
   "rank": 0,
   "phrase": "suzuki swift vs volkswagen polo",
-  "label": "Suzuki Swift Sedan 1.3 68 vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "Suzuki Swift Sedan 1.3 68 vs VW Polo 3dr 1.4 60"
  },
  {
   "a": "polo",
@@ -6560,12 +6560,12 @@
   "label": "Volkswagen Polo 1.0 TSI 95 vs BMW 1 Series (F20) 116d 116"
  },
  {
-  "a": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "a": "vw-polo-3dr-1-4-60-44-1999",
   "b": "citroen-c3-1-1-60-44-2009",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw polo vs citroen c3",
-  "label": "VW Volkswagen Polo 3dr 1.4 60 vs Citroen C3 1.1 60"
+  "label": "VW Polo 3dr 1.4 60 vs Citroen C3 1.1 60"
  },
  {
   "a": "polo",
@@ -6584,12 +6584,12 @@
   "label": "Honda Jazz/Fit 1.5 130 vs Volkswagen Polo 1.0 TSI 95"
  },
  {
-  "a": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "a": "vw-polo-3dr-1-4-60-44-1999",
   "b": "vw-jetta-2-0-115-85-2010",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw polo vs jetta",
-  "label": "VW Volkswagen Polo 3dr 1.4 60 vs VW Jetta 2.0 115"
+  "label": "VW Polo 3dr 1.4 60 vs VW Jetta 2.0 115"
  },
  {
   "a": "polo",
@@ -6600,20 +6600,20 @@
   "label": "Volkswagen Polo 1.0 TSI 95 vs Kia Picanto 1.0 67"
  },
  {
-  "a": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "a": "vw-polo-3dr-1-4-60-44-1999",
   "b": "vw-lupo-1-0-50-37-1998",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw polo vs lupo",
-  "label": "VW Volkswagen Polo 3dr 1.4 60 vs VW Lupo 1.0 50"
+  "label": "VW Polo 3dr 1.4 60 vs VW Lupo 1.0 50"
  },
  {
-  "a": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "a": "vw-polo-3dr-1-4-60-44-1999",
   "b": "mazda-2-1-5-113-83-2008",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw polo vs mazda 2",
-  "label": "VW Volkswagen Polo 3dr 1.4 60 vs Mazda 2 1.5 113"
+  "label": "VW Polo 3dr 1.4 60 vs Mazda 2 1.5 113"
  },
  {
   "a": "polo",
@@ -6632,28 +6632,28 @@
   "label": "Volkswagen Polo 1.0 TSI 95 vs Audi Q2 1.0 TFSI 116"
  },
  {
-  "a": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "a": "vw-polo-3dr-1-4-60-44-1999",
   "b": "renault-clio-197",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw polo vs renault clio",
-  "label": "VW Volkswagen Polo 3dr 1.4 60 vs Renault Clio 197"
+  "label": "VW Polo 3dr 1.4 60 vs Renault Clio 197"
  },
  {
   "a": "polo",
-  "b": "vw-volkswagen-cross-up-1-0-75-55-2016",
+  "b": "vw-cross-up-1-0-75-55-2016",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw polo vs up",
-  "label": "Volkswagen Polo 1.0 TSI 95 vs VW Volkswagen Cross Up! 1.0 75"
+  "label": "Volkswagen Polo 1.0 TSI 95 vs VW Cross Up! 1.0 75"
  },
  {
   "a": "vauxhall-corsa-3dr-1-0-60-44-2006",
-  "b": "vw-volkswagen-polo-3dr-1-4-60-44-1999",
+  "b": "vw-polo-3dr-1-4-60-44-1999",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vauxhall corsa vs vw polo",
-  "label": "Vauxhall Corsa 3dr 1.0 60 vs VW Volkswagen Polo 3dr 1.4 60"
+  "label": "Vauxhall Corsa 3dr 1.0 60 vs VW Polo 3dr 1.4 60"
  },
  {
   "a": "polo",
@@ -6665,11 +6665,11 @@
  },
  {
   "a": "skoda-octavia-1-4-80-59-2008",
-  "b": "vw-volkswagen-passat-1-6-72-53-1988",
+  "b": "vw-passat-1-6-72-53-1988",
   "weight": 0.45,
   "rank": 0,
   "phrase": "skoda octavia vs vw passat",
-  "label": "Skoda Octavia 1.4 80 vs VW Volkswagen Passat 1.6 72"
+  "label": "Skoda Octavia 1.4 80 vs VW Passat 1.6 72"
  },
  {
   "a": "vw-passat-2-0-tdi-150-b8",
@@ -6681,43 +6681,43 @@
  },
  {
   "a": "audi-a4-1-6-102-75-2004",
-  "b": "vw-volkswagen-passat-1-6-72-53-1988",
+  "b": "vw-passat-1-6-72-53-1988",
   "weight": 0.45,
   "rank": 0,
   "phrase": "audi a4 vs vw passat",
-  "label": "Audi A4 1.6 102 vs VW Volkswagen Passat 1.6 72"
+  "label": "Audi A4 1.6 102 vs VW Passat 1.6 72"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
-  "b": "vw-volkswagen-golf-ii-gti-3dr-1-8-129-95-1984",
+  "a": "vw-passat-1-6-72-53-1988",
+  "b": "vw-golf-ii-gti-3dr-1-8-129-95-1984",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw passat vs golf",
-  "label": "VW Volkswagen Passat 1.6 72 vs VW Volkswagen Golf II GTI 3dr 1.8 129"
+  "label": "VW Passat 1.6 72 vs VW Golf II GTI 3dr 1.8 129"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "vw-cc-3-6-v6-4motion-280-206-2012",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw passat vs cc",
-  "label": "VW Volkswagen Passat 1.6 72 vs VW CC 3.6 V6 4Motion 280"
+  "label": "VW Passat 1.6 72 vs VW CC 3.6 V6 4Motion 280"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "honda-accord-1-8-100-74-1990",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw passat vs honda accord",
-  "label": "VW Volkswagen Passat 1.6 72 vs Honda Accord 1.8 100"
+  "label": "VW Passat 1.6 72 vs Honda Accord 1.8 100"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "bmw-3-series-coupe-e30-316-90-66-1983",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw passat vs bmw 3 series",
-  "label": "VW Volkswagen Passat 1.6 72 vs BMW 3 Series Coupe (E30) 316 90"
+  "label": "VW Passat 1.6 72 vs BMW 3 Series Coupe (E30) 316 90"
  },
  {
   "a": "vw-passat-2-0-tdi-150-b8",
@@ -6737,19 +6737,19 @@
  },
  {
   "a": "mazda-2-1-6-95-71-2007",
-  "b": "vw-volkswagen-passat-1-6-72-53-1988",
+  "b": "vw-passat-1-6-72-53-1988",
   "weight": 0.45,
   "rank": 0,
   "phrase": "mazda 6 vs vw passat",
-  "label": "Mazda 2 1.6 95 vs VW Volkswagen Passat 1.6 72"
+  "label": "Mazda 2 1.6 95 vs VW Passat 1.6 72"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "vw-phaeton-6-0-w12-420-309-2002",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw passat vs phaeton",
-  "label": "VW Volkswagen Passat 1.6 72 vs VW Phaeton 6.0 W12 420"
+  "label": "VW Passat 1.6 72 vs VW Phaeton 6.0 W12 420"
  },
  {
   "a": "vw-passat-2-0-tdi-150-b8",
@@ -6768,12 +6768,12 @@
   "label": "Volkswagen Passat 2.0 TDI 150 (B8) vs VW Tiguan R"
  },
  {
-  "a": "vw-volkswagen-passat-1-6-72-53-1988",
+  "a": "vw-passat-1-6-72-53-1988",
   "b": "volvo-xc60-3-2-243-179-2008",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw passat vs volvo xc60",
-  "label": "VW Volkswagen Passat 1.6 72 vs Volvo XC60 3.2 243"
+  "label": "VW Passat 1.6 72 vs Volvo XC60 3.2 243"
  },
  {
   "a": "vw-passat-2-0-tdi-150-b8",

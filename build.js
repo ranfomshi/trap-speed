@@ -207,6 +207,22 @@ for (const f of ["robots.txt", "og.png", INDEXNOW_KEY + ".txt", GOOGLE_VERIFY]) 
   if (fs.existsSync(p)) fs.copyFileSync(p, path.join(OUT, f));
 }
 
+/* A /vs/ URL is built from the two car NAMES, so correcting a name moves a page
+   that is already indexed and already linked. data/url-aliases.json records
+   every such move; each one becomes a 301 so the old URL keeps its value
+   instead of becoming a 404. Append to it, never rewrite it -- an alias is
+   only spent when nothing points at the old URL any more. */
+{
+  const aliasFile = path.join(__dirname, "data", "url-aliases.json");
+  const aliases = fs.existsSync(aliasFile)
+    ? JSON.parse(fs.readFileSync(aliasFile, "utf8")) : [];
+  if (aliases.length) {
+    fs.writeFileSync(path.join(OUT, "_redirects"),
+      aliases.map(a => `${a.from} ${a.to} 301!`).join("\n") + "\n");
+    console.log(`  ${aliases.length} renamed URLs redirected -> _redirects`);
+  }
+}
+
 /* Comparison pages. Their numbers come from the simulator itself, run in a VM
    over the same car data the app ships, so a page cannot disagree with the app. */
 const V = require("./lib/vs.js");
