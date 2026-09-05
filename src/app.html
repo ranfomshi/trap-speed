@@ -427,7 +427,42 @@ footer{color:var(--ink3);font-size:11.5px;text-align:center;border-top:1px solid
 .plateGo[disabled]{opacity:.55;cursor:default}
 .plateMsg{margin:.3rem 0 0;min-height:1.05em;font-size:.78rem;color:var(--dim,#93a1b5)}
 .plateMsg.bad{color:#ff9b9b}
+/* The plate lookup asks the DVSA MOT service, which knows only vehicles
+   registered in the UK, so outside the UK the box is not a feature -- it is a
+   control that can only fail. Hidden by an attribute set before first paint
+   rather than by script after it, so it never appears and then vanishes. */
+html[data-uk="0"] .plate,
+html[data-uk="0"] .plateMsg{display:none}
 </style>
+
+<script>
+/* Is this visitor in the UK? Asked here, at the top, because the answer has to
+   be known before the plate box would paint.
+
+   There is no server-side answer available: the page is one static file on a
+   CDN, served identically to everyone, so a per-country variant would mean an
+   edge function and a cache split for one input box. The browser already knows
+   two things worth asking -- the IANA time zone it is set to, and the languages
+   it says it prefers -- and either one being British is enough. Both are
+   generous on purpose.
+
+   It fails OPEN: anything unexpected and the box stays. Showing the lookup to
+   someone who cannot use it costs them one failed search; hiding it from a
+   British visitor costs them the feature entirely, and that is the worse of the
+   two mistakes. The Crown dependencies keep Europe/London and so keep the box;
+   they are not DVSA-covered, but a rare failed lookup beats a rule carrying a
+   list of territories. */
+(function(){
+  try{
+    var tz="";
+    try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""; }catch(e){}
+    var langs=(navigator.languages&&navigator.languages.length
+               ? navigator.languages : [navigator.language||""]).join(",");
+    var uk = tz==="Europe/London" || /\ben-GB\b/i.test(langs);
+    if(!uk && tz) document.documentElement.setAttribute("data-uk","0");
+  }catch(e){ /* leave it showing */ }
+})();
+</script>
 
 <div class="wrap">
 
@@ -16492,6 +16527,9 @@ const BOX={man:"Manual",dct:"Dual-clutch",auto:"Automatic",ev:"Single speed",cvt
    a message we keep: the event below records the make and the number of
    matches, and nothing that identifies the vehicle. */
 function wirePlate(side){
+  /* Hidden outside the UK by the check at the top of this file; there is no
+     point binding a fetch to a control nobody can reach. */
+  if(document.documentElement.getAttribute("data-uk")==="0") return;
   const L=side.toUpperCase();
   const inp=$("#plate"+L), btn=$("#plateGo"+L), msg=$("#plateMsg"+L);
   if(!inp||!btn||!msg) return;
