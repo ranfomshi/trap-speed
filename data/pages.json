@@ -5873,11 +5873,11 @@
  },
  {
   "a": "ford-focus-1-5-tdci-120",
-  "b": "opel-astra-5dr-1-4-100-74-2015",
+  "b": "vauxhall-astra-hatchback-1-4-100-74-2015",
   "weight": 0.45,
   "rank": 0,
   "phrase": "ford focus vs opel astra",
-  "label": "Ford Focus 1.5 TDCi 120 (Mk4) vs Opel Astra 5dr 1.4 100"
+  "label": "Ford Focus 1.5 TDCi 120 (Mk4) vs Vauxhall Astra Hatchback 1.4 100"
  },
  {
   "a": "ford-focus-1-5-tdci-120",
@@ -6233,11 +6233,11 @@
  },
  {
   "a": "ford-puma-1-5-ecoblue-120-88-2019",
-  "b": "opel-mokka-x-1-6-115-85-2016",
+  "b": "vauxhall-mokka-x-1-6i-ecotec-115-85-2016",
   "weight": 0.45,
   "rank": 0,
   "phrase": "ford puma vs opel mokka",
-  "label": "Ford Puma 1.5 EcoBlue 120 vs Opel Mokka X 1.6 115"
+  "label": "Ford Puma 1.5 EcoBlue 120 vs Vauxhall Mokka X 1.6i ecoTEC 115"
  },
  {
   "a": "ford-puma-st",
@@ -6489,11 +6489,11 @@
  },
  {
   "a": "gti8",
-  "b": "opel-astra-5dr-1-4-100-74-2015",
+  "b": "vauxhall-astra-hatchback-1-4-100-74-2015",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vw golf vs opel astra",
-  "label": "Volkswagen Golf GTI (Mk8) vs Opel Astra 5dr 1.4 100"
+  "label": "Volkswagen Golf GTI (Mk8) vs Vauxhall Astra Hatchback 1.4 100"
  },
  {
   "a": "peugeot-308-bluehdi-130",
@@ -7281,11 +7281,11 @@
  },
  {
   "a": "vauxhall-mokka-1-6-116-85-2012",
-  "b": "opel-mokka-x-1-6-115-85-2016",
+  "b": "vauxhall-mokka-x-1-6i-ecotec-115-85-2016",
   "weight": 0.45,
   "rank": 0,
   "phrase": "vauxhall mokka vs opel mokka",
-  "label": "Vauxhall Mokka 1.6 116 vs Opel Mokka X 1.6 115"
+  "label": "Vauxhall Mokka 1.6 116 vs Vauxhall Mokka X 1.6i ecoTEC 115"
  },
  {
   "a": "vauxhall-mokka-1-6-116-85-2012",
@@ -7457,11 +7457,11 @@
  },
  {
   "a": "peugeot-308-bluehdi-130",
-  "b": "opel-astra-5dr-1-4-100-74-2015",
+  "b": "vauxhall-astra-hatchback-1-4-100-74-2015",
   "weight": 0.45,
   "rank": 0,
   "phrase": "peugeot 308 vs opel astra",
-  "label": "Peugeot 308 BlueHDi 130 (Mk2) vs Opel Astra 5dr 1.4 100"
+  "label": "Peugeot 308 BlueHDi 130 (Mk2) vs Vauxhall Astra Hatchback 1.4 100"
  },
  {
   "a": "peugeot-308-bluehdi-130",
@@ -8241,11 +8241,11 @@
  },
  {
   "a": "citroen-c4-coupe-1-4-88-65-2004",
-  "b": "opel-mokka-x-1-6-115-85-2016",
+  "b": "vauxhall-mokka-x-1-6i-ecotec-115-85-2016",
   "weight": 0.45,
   "rank": 0,
   "phrase": "citroen c4 vs opel mokka",
-  "label": "Citroen C4 Coupe 1.4 88 vs Opel Mokka X 1.6 115"
+  "label": "Citroen C4 Coupe 1.4 88 vs Vauxhall Mokka X 1.6i ecoTEC 115"
  },
  {
   "a": "citroen-c4-coupe-1-4-88-65-2004",
@@ -8449,11 +8449,11 @@
  },
  {
   "a": "toyota-gr-corolla",
-  "b": "opel-astra-5dr-1-4-100-74-2015",
+  "b": "vauxhall-astra-hatchback-1-4-100-74-2015",
   "weight": 0.45,
   "rank": 0,
   "phrase": "toyota corolla vs opel astra",
-  "label": "Toyota GR Corolla vs Opel Astra 5dr 1.4 100"
+  "label": "Toyota GR Corolla vs Vauxhall Astra Hatchback 1.4 100"
  },
  {
   "a": "toyota-gr-corolla",

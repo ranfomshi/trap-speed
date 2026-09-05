@@ -173,6 +173,13 @@ function tidyModel(model,mk,...alsoMk){
   const words=s.split(/\s+/);
   for(let n=Math.min(3,words.length);n>0;n--)
     if(want.has(flat(words.slice(0,n).join("")))){ s=words.slice(n).join(" "); break; }
+  /* One family, one spelling. The source carries the German name for some
+     markets and the English one for others -- "A-Klasse" beside "A-Class",
+     "5-Series" beside "5 Series" -- and they are not duplicate cars but they
+     do split one family into two on a make page and in the picker. The maker's
+     own English form wins: Mercedes hyphenates a Class, BMW spaces a Series. */
+  s = s.replace(/\b([A-Za-z0-9]+)-Klasse\b/g,"$1-Class")
+       .replace(/\b(\d)-Series\b/g,"$1 Series");
   return s.replace(/\b(\d)\s*doors?\b/ig,"$1dr").replace(/\s+/g," ").trim();
 }
 /* The family a car belongs to, for looking it up in the existing table. */

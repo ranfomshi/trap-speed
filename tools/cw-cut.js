@@ -110,6 +110,41 @@ while(!onlyMk && kept.length<target && round<12){
   }
 }
 if(!onlyMk) kept=kept.slice(0,target);
+
+/* cw-pass records a DECISION -- these cars reconcile -- taken against whatever
+   the derivation rules said at the time. data/cw-specs.json is the current
+   truth. A rule that has been corrected since (a crossover that stopped being a
+   hatchback, a cabriolet that stopped being a crossover) changes the body,
+   which changes CdA, which changes the fit -- so the chosen rows are refreshed
+   from the spec file and re-checked against the same thresholds cw-accept uses.
+   Without this, correcting one rule means a 12-minute re-accept before any
+   batch can ship. Anything that stops reconciling is dropped here and named. */
+{
+  const spec=new Map(JSON.parse(fs.readFileSync(path.join(ROOT,"data","cw-specs.json"),"utf8"))
+    .map(s=>[s.id,s]));
+  const fit=require("./fit.js");
+  const fresh=[], lost=[];
+  let moved=0;
+  for(const s of kept){
+    const cur=spec.get(s.id);
+    if(!cur){ fresh.push(s); continue; }        /* not re-derived: keep as passed */
+    if(cur.bd!==s.bd) moved++;
+    let r; try{ r=fit.fit(cur); }catch(e){ lost.push([cur.md,e.message]); continue; }
+    const why = !isFinite(r.kp)||!isFinite(r.kg) ? "non-finite"
+      : r.kp<0.78 ? "power trim "+r.kp+" too low"
+      : r.kp>1.22 ? "power trim "+r.kp+" too high"
+      : r.kg<0.72||r.kg>1.55 ? "grip trim "+r.kg
+      : r.rms>6 ? "rms "+r.rms+"%" : null;
+    if(why) lost.push([cur.mk+" "+cur.md+" "+cur.yr,why]); else fresh.push(cur);
+  }
+  if(moved) console.log(`${moved} rows took a body the rules give them today`);
+  if(lost.length){
+    console.log(`${lost.length} no longer reconcile and were dropped:`);
+    lost.slice(0,8).forEach(([n,w])=>console.log("   "+n+" -- "+w));
+  }
+  kept=fresh;
+}
+
 kept.sort((a,b)=>a.mk.localeCompare(b.mk)||a.md.localeCompare(b.md)||a.yr-b.yr||a.kW-b.kW);
 fs.writeFileSync(path.join(ROOT,"data","cw-batch.json"),JSON.stringify(kept,null," ")+"\n");
 

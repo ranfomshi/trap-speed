@@ -140,6 +140,13 @@
   ]
  },
  {
+  "name": "Ford Galaxy 2.3 145 (2000)",
+  "ids": [
+   "ford-galaxy-2-3-145-107-2000",
+   "ford-galaxy-2-3-145-110-2000"
+  ]
+ },
+ {
   "name": "Volvo S60 2.5T 210 (2008)",
   "ids": [
    "volvo-s60-2-5t-210-154-2008",
@@ -151,6 +158,13 @@
   "ids": [
    "vw-passat-sedan-1-6-tdi-bluemotion-120-88-2014",
    "vw-passat-sedan-1-6-tdi-bluemotion-120-103-2014"
+  ]
+ },
+ {
+  "name": "Opel Zafira Tourer 2.0 CDTI 130 (2011)",
+  "ids": [
+   "opel-zafira-tourer-2-0-cdti-130-95-2011",
+   "opel-zafira-tourer-2-0-cdti-130-96-2011"
   ]
  }
 ]

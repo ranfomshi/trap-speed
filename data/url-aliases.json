@@ -98,5 +98,33 @@
  {
   "from": "/vs/vw-volkswagen-passat-1-6-72-vs-volvo-xc60-3-2-243/",
   "to": "/vs/vw-passat-1-6-72-1988-vs-volvo-xc60-3-2-243/"
+ },
+ {
+  "from": "/vs/ford-focus-1-5-tdci-120-mk4-vs-opel-astra-5dr-1-4-100/",
+  "to": "/vs/ford-focus-1-5-tdci-120-mk4-vs-vauxhall-astra-hatchback-1-4-100/"
+ },
+ {
+  "from": "/vs/ford-puma-1-5-ecoblue-120-vs-opel-mokka-x-1-6-115/",
+  "to": "/vs/ford-puma-1-5-ecoblue-120-vs-vauxhall-mokka-x-1-6i-ecotec-115/"
+ },
+ {
+  "from": "/vs/volkswagen-golf-gti-mk8-vs-opel-astra-5dr-1-4-100/",
+  "to": "/vs/volkswagen-golf-gti-mk8-vs-vauxhall-astra-hatchback-1-4-100/"
+ },
+ {
+  "from": "/vs/vauxhall-mokka-1-6-116-vs-opel-mokka-x-1-6-115/",
+  "to": "/vs/vauxhall-mokka-1-6-116-vs-vauxhall-mokka-x-1-6i-ecotec-115/"
+ },
+ {
+  "from": "/vs/peugeot-308-bluehdi-130-mk2-vs-opel-astra-5dr-1-4-100/",
+  "to": "/vs/peugeot-308-bluehdi-130-mk2-vs-vauxhall-astra-hatchback-1-4-100/"
+ },
+ {
+  "from": "/vs/citroen-c4-coupe-1-4-88-vs-opel-mokka-x-1-6-115/",
+  "to": "/vs/citroen-c4-coupe-1-4-88-vs-vauxhall-mokka-x-1-6i-ecotec-115/"
+ },
+ {
+  "from": "/vs/toyota-gr-corolla-vs-opel-astra-5dr-1-4-100/",
+  "to": "/vs/toyota-gr-corolla-vs-vauxhall-astra-hatchback-1-4-100/"
  }
 ]
