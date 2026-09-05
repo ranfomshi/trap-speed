@@ -52,3 +52,17 @@ jobs:
             --prod --no-build --dir=public \
             --functions=netlify/functions \
             --message "$GITHUB_SHA"
+
+      # Google retired its sitemap ping in 2023 and Bing followed, so IndexNow
+      # is the only mechanism left that says "these URLs changed, now" instead
+      # of waiting to be crawled. It reaches Bing, Yandex, Seznam and Naver --
+      # not Google, which never joined and for which the sitemap's lastmod is
+      # the whole story. This ran as a manual step for exactly as long as it
+      # took to be forgotten: three pushes shipped 3,242 cars and 2,888 new
+      # comparison pages before anyone told a crawler. It runs AFTER the deploy
+      # because submitting a URL that is not serving yet wastes the submission,
+      # and it does not gate the deploy: a search engine being unreachable is
+      # not a reason to fail a release that is already live.
+      - name: Tell IndexNow what changed
+        continue-on-error: true
+        run: node tools/indexnow.js

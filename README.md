@@ -148,7 +148,10 @@ Two audiences, one body of work, all of it generated at build time by
 
 - **Search.** Every page carries a canonical, a `BreadcrumbList`, and
   `max-snippet:-1` so a result is not truncated to 160 characters. The sitemap
-  carries a real `lastmod`.
+  carries a real `lastmod`, which is the whole story for Google: it retired its
+  sitemap ping in 2023, so there is nothing to resubmit and nothing to press.
+  For everyone else there is IndexNow, which the deploy runs after publishing —
+  Bing, Yandex, Seznam and Naver, in batches of 10,000 URLs.
 - **Answer engines.** Every generated page opens with one self-contained
   paragraph that names both cars, carries every unit, and says where the number
   came from — written so it survives being quoted with nothing around it. Below
