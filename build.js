@@ -28,8 +28,26 @@ const SITE  = "https://myautoracer.com";
    "grmn yaris 0-60". So this is not 1,650 more of the same page; it is the
    first tranche that can reach the cars people actually drive. Round-robin
    across 191 makes at 2,500 is about thirteen cars a make, ordinary ones
-   first. Still a measured tranche: 2,500 of 11,810, and still a knob. */
-const CAR_PAGES_DEFAULT = 2500;
+   first. Still a measured tranche: 2,500 of 11,810, and still a knob.
+
+   2500 -> 6000 on measured evidence rather than appetite. Four days after the
+   site entered Google's index: 232 impressions, average position 25, and 104
+   of 3,829 pages seen in search at all -- but 56 of those 104 already rank in
+   the top ten, and car pages are the best-performing type on the site. So the
+   pages work when they are indexed, and the binding constraint is how few of
+   them exist: 2,500 of 14,999.
+
+   It matters WHICH 2,500. The queries being won are halo cars -- "brabus
+   rocket gts", "aston martin am8", "civic type r fk2" -- because a tranche cut
+   from the old table could not be anything else. The 3,242 ordinary cars added
+   since target a different and far busier set of searches, and almost none of
+   them had a page. 6,000 is roughly the size of that gap.
+
+   Not "all": 15,000 near-identical templates arriving at once is the shape of
+   a doorway network however real the content is, on a domain four days old
+   that has yet to earn the crawl budget to read them. Publishing everything
+   also removes the ability to tell whether a tranche worked. */
+const CAR_PAGES_DEFAULT = 6000;
 const TITLE = "My Auto Racer — drag race any two real cars";
 /* The count is in the description, so the description cannot be a constant --
    it is written once the car data has actually been read. */
