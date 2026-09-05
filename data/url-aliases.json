@@ -126,5 +126,25 @@
  {
   "from": "/vs/toyota-gr-corolla-vs-opel-astra-5dr-1-4-100/",
   "to": "/vs/toyota-gr-corolla-vs-vauxhall-astra-hatchback-1-4-100/"
+ },
+ {
+  "from": "/vs/mercedes-benz-a-class-w176-220-4matic-183-vs-mercedes-benz-c-class-c-160-129/",
+  "to": "/vs/mercedes-benz-a-class-w176-220-4matic-183-2012-vs-mercedes-benz-c-class-c-160-129/"
+ },
+ {
+  "from": "/vs/mercedes-benz-a-class-w176-220-4matic-183-vs-mercedes-benz-b-class-w246-200-156/",
+  "to": "/vs/mercedes-benz-a-class-w176-220-4matic-183-2012-vs-mercedes-benz-b-class-w246-200-156/"
+ },
+ {
+  "from": "/vs/mercedes-benz-a-class-w176-220-4matic-183-vs-ford-focus-1-5-tdci-120-mk4/",
+  "to": "/vs/mercedes-benz-a-class-w176-220-4matic-183-2012-vs-ford-focus-1-5-tdci-120-mk4/"
+ },
+ {
+  "from": "/vs/mercedes-benz-a-class-w176-220-4matic-183-vs-volkswagen-golf-gti-mk8/",
+  "to": "/vs/mercedes-benz-a-class-w176-220-4matic-183-2012-vs-volkswagen-golf-gti-mk8/"
+ },
+ {
+  "from": "/vs/mercedes-benz-a-class-w176-220-4matic-183-vs-honda-jazz-fit-1-5-130/",
+  "to": "/vs/mercedes-benz-a-class-w176-220-4matic-183-2012-vs-honda-jazz-fit-1-5-130/"
  }
 ]

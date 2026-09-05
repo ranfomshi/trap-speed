@@ -120,14 +120,25 @@ if(!onlyMk) kept=kept.slice(0,target);
    Without this, correcting one rule means a 12-minute re-accept before any
    batch can ship. Anything that stops reconciling is dropped here and named. */
 {
-  const spec=new Map(JSON.parse(fs.readFileSync(path.join(ROOT,"data","cw-specs.json"),"utf8"))
-    .map(s=>[s.id,s]));
+  const all=JSON.parse(fs.readFileSync(path.join(ROOT,"data","cw-specs.json"),"utf8"));
+  const spec=new Map(all.map(s=>[s.id,s]));
+  /* A corrected rule can change the NAME, and the name is in the id, so the id
+     moves with it. Looking up by id alone then misses and -- if the fallback is
+     to keep what passed -- ships the stale name: that is exactly how 272
+     Mercedes went out reading "A-Klasse" after the table had been renamed to
+     "A-Class". So a miss falls back to the car itself, which its figures
+     identify regardless of what it is called. */
+  const byCar=new Map(all.map(s=>[[s.mk,s.yr,s.kW,s.kg,s.sh[0]].join("|"),s]));
   const fit=require("./fit.js");
   const fresh=[], lost=[];
-  let moved=0;
+  let moved=0, renamed=0;
   for(const s of kept){
-    const cur=spec.get(s.id);
-    if(!cur){ fresh.push(s); continue; }        /* not re-derived: keep as passed */
+    let cur=spec.get(s.id);
+    if(!cur){
+      cur=byCar.get([s.mk,s.yr,s.kW,s.kg,s.sh[0]].join("|"));
+      if(cur) renamed++;
+    }
+    if(!cur){ lost.push([s.mk+" "+s.md+" "+s.yr,"no longer derived from the source"]); continue; }
     if(cur.bd!==s.bd) moved++;
     let r; try{ r=fit.fit(cur); }catch(e){ lost.push([cur.md,e.message]); continue; }
     const why = !isFinite(r.kp)||!isFinite(r.kg) ? "non-finite"
@@ -138,6 +149,7 @@ if(!onlyMk) kept=kept.slice(0,target);
     if(why) lost.push([cur.mk+" "+cur.md+" "+cur.yr,why]); else fresh.push(cur);
   }
   if(moved) console.log(`${moved} rows took a body the rules give them today`);
+  if(renamed) console.log(`${renamed} rows matched on their figures after a name change`);
   if(lost.length){
     console.log(`${lost.length} no longer reconcile and were dropped:`);
     lost.slice(0,8).forEach(([n,w])=>console.log("   "+n+" -- "+w));
